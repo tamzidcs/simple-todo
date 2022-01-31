@@ -1,6 +1,6 @@
 
 Features Included:
----------------------
+-----
 I eventually realized the requirement says its one todo list which is shared by multiple users.
 The way I have implemented there are seperate tasks/todos which can be shared among users.
 Initially the creator owns the task.
