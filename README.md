@@ -1,8 +1,8 @@
 <b>How to run:</b>
 
 1. Export the db(postgres) from 'todolist_db.sql'
-    1.1 Run(from powershell):
-    1.2 psql -U username -d  todolist_db -f todolist_db.sql
+    \t Run(from powershell):
+    \t psql -U username -d  todolist_db -f todolist_db.sql
 
 2. Update database(postgres) credentials in ./server/config.js
 
