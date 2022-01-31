@@ -1,15 +1,44 @@
 
 Features Included:
-------------------
+---------------------
 I eventually realized the requirement says its one todo list which is shared by multiple users.
-The way I have implemented there are seperate tasks/todos which can be shared among users.
-Initially the creator owns the task.
-Only the owners can see tasks.
-User can share tasks among each other.
+The way I have implemented the project there are seperate tasks/todos which can be created and then 
+shared among users which can also be updated by the users if they own it or the owner shared it with them.
 
-## Features that coulbe be included
-1. Could add a little more validation.
-2. Updating the task title or desciption.
+
+Here are the steps to test all the features:
+-----------------------------------------------
+
+1. Click signup button from the landing page.
+2. Sign up multiple users by going to the signup page from the landing page by clicking signup.
+3. Once there are a few users, login with a user and start creating tasks.
+4. Tasks will be visible to the owner first.
+5. Use share button and select username from drop down list.
+6. Once shared, other users can see the task on their list.
+7. Click done button to mark the task as complete, it will disappear and
+   all the users will be able to see the change if logged in.
+8. Login/Logout or switching users is necessery to see the changes 
+   when taks are shared or completed.
+9. Signout  button on top left under username text can be used to signout
+   a user.
+
+
+Features that coulbe be included:
+-----------------------------------
+
+1. Could add a little more validation on each forms.
+2. Task title/description edit option.
 3. Storing the password securely.
-4. Signup could inlcude users first name and last name.
-5. 
+4. Signup could include users first name and last name.
+5. Based on the original requirements it could be one list with
+   multiple tasks in it which could be marked as done or updated
+   and each user could see the updates.
+6. Option to delete the task.
+7. Option to view completed tasks seperately.
+8. Option to see list of users with whoom the task is shared.
+9. Opition to update remove sharing with a user.
+10. Serach tasks.
+11. Add dates with task and search by date of creation or owners name etc.
+12. Advanced user management with different previlages.
+
+
