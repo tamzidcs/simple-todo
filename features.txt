@@ -1,1 +1,14 @@
 
+Features Included:
+I eventually realized the requirement says its one todo list which is shared by multiple users.
+The way I have implemented there are seperate tasks/todos which can be shared among users.
+Initially the creator owns the task.
+Only the owners can see tasks.
+User can share tasks among each other.
+
+### Features that coulbe be included
+1. Could add a little more validation.
+2. Updating the task title or desciption.
+3. Storing the password securely.
+4. Signup could inlcude users first name and last name.
+5. 
