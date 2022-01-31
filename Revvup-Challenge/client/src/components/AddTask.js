@@ -7,15 +7,16 @@ export function AddTask(props) {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const navigate = useNavigate();
-    const addTask =(event)=>{
+    const addTask = (event) => {
         event.preventDefault()
-        console.log(title)
-        axios.post('http://localhost:3005/Tasks',{title:title,description:description,username:localStorage.getItem('username')})
-        .then(resp=>{
-            console.log(resp.data)
-            props.taskListUpdate()
-        }) 
-        
+        if (title && description) {
+            axios.post('http://localhost:3005/Tasks', { title: title, description: description, username: localStorage.getItem('username') })
+                .then(resp => {
+                    console.log(resp.data)
+                    props.taskListUpdate()
+                })
+        }
+
     }
 
     return (
