@@ -30,7 +30,7 @@ Features that coulbe be included:
 7. Option to view completed tasks seperately.
 8. Option to see list of users with whoom the task is shared.
 9. Opition to update remove sharing with a user.
-10. Serach tasks.
+10. Search tasks.
 11. Add dates with task and search by date of creation or owners name etc.
 12. Advanced user management with different previlages.
 
