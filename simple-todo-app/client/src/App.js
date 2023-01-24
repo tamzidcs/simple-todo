@@ -1,17 +1,14 @@
 
 import './App.css';
-
-
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from "react-router-dom";
-import { ToDoList } from './components/ToDoList';
-
-import {Landing} from './components/Landing'
-import {Signup} from './components/Signup'
-import { Login } from './components/Login';
+import { ToDoList } from './components/todo/ToDoList';
+import {Landing} from './components/landing/Landing'
+import {Signup} from './components/signup/Signup'
+import { Login } from './components/login/Login';
 
 function App() {
   return (
@@ -21,11 +18,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/toDoList" element={<ToDoList />} />
         <Route path="/login" element={<Login />} />
-
       </Routes>
-
     </Router>
-
   );
 }
 
