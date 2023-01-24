@@ -1,0 +1,36 @@
+.add-task-container {
+    display: inline-block;
+    margin-left: 40vw;
+    padding: 1vw;
+    width: 20vw;
+    color: black;
+    background-color: lightblue;
+}
+
+.titleTextField {
+    width: 18vw;
+}
+
+.descriptionTextField {
+    width: 18vw
+}
+
+.titleLabel {
+    width: 10vw;
+}
+
+.descriptionLabel {
+    width: 10vw;
+}
+
+.addButton {
+    margin-top: 2vh;
+    padding: 1vh;
+    width: 6vw;
+}
+
+.addButtonDiv {
+    width: 15vw;
+    display: flex;
+    justify-Content: right;
+}

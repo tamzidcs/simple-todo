@@ -1,0 +1,20 @@
+.header-container {
+    width: 100vw;
+    height: 8vh;
+    color: black;
+    background-color: lightgreen;
+}
+
+.signout {
+    display: flex;
+    justify-content: right;
+    margin-right: 10vw;
+}
+
+.username {
+    display: flex;
+    justify-content: right;
+    margin-right: 10vw;
+    margin-bottom: 0.5vh;
+    font-weight: bold;
+}
