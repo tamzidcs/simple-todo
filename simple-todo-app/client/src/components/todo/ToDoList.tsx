@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { AddTask } from "../addTask/addTask";
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import './toDoList.scss';
 const axios = require('axios');
 
 export const ToDoList= () => {
@@ -37,7 +38,7 @@ export const ToDoList= () => {
     const taskDone = (url: string,taskId: string) => {
         let data = axios.put(url + taskId)
             .then((resp: { data: { [x: string]: string; }; }) => {
-                if (resp.data['msg'] == 'task updated')
+                if (resp.data['msg'] === 'task updated')
                 {
                     alert('Task Updated.')
                     getTasks('http://localhost:3005/Tasks/','username');
@@ -48,23 +49,23 @@ export const ToDoList= () => {
     const taskShare = (url: string, taskId: any,userName: string) => {
         let data = axios.post(url,{taskId:taskId,username:userName})
             .then((resp: { data: { [x: string]: string; }; }) => {
-                if (resp.data['msg'] == 'task shared')
+                if (resp.data['msg'] === 'task shared')
                     alert('Task Shared with '+userName)
             })
     }
     return (
-        <div style={styles.container}>
+        <div className='to-do-list-container'>
             <Header />
             <AddTask taskListUpdate={taskListUpdate}/>
-            <div style={styles.todolist}>
+            <div className='todolist'>
                 {data.map(task =>
                  (
                     <div key={task.id}>
-                        <div style={styles.todos}>
-                            <div style={styles.title}>{task.title}</div>
-                            <div style={styles.description}>{task.description}</div>
+                        <div  className='todos'>
+                            <div className='title'>{task.title}</div>
+                            <div className='description'>{task.description}</div>
                         </div>
-                        <div style={styles.doneButton}>
+                        <div className='doneButton'>
                             <button onClick={() => taskDone('http://localhost:3005/Tasks/',task.id)}> Done</button>
                         </div>
                         <div>
@@ -81,41 +82,4 @@ export const ToDoList= () => {
             </div>
         </div>
     )
-}
-
-const styles = {
-    todolist: {
-        paddingTop: '10vh',
-        display: 'inline-block',
-        marginLeft: '40vw',
-        width: '20vw',
-    },
-    container: {
-        display: 'inline-block',
-        width: '100vw',
-        marginBottom:'15vh'
-
-    },
-    title: {
-        paddingLeft:'0.5vw',
-        color: 'black',
-        backgroundColor: 'darkgray',
-        width: '20vw',
-        fontWeight: 'bold'
-    },
-    description: {
-        color: 'black',
-        width: '20vw'
-    },
-    todos: {
-        paddingTop: '5vh',
-        
-
-
-    },
-    doneButton:{
-        marginLeft:'0vw',
-        margin :'1vh'
-    }
-
 }

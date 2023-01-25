@@ -5,10 +5,10 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import { ToDoList } from './components/todo/ToDoList';
-import {Landing} from './components/landing/Landing'
-import {Signup} from './components/signup/Signup'
-import { Login } from './components/login/Login';
+import { ToDoList } from './components/todo/toDoList';
+import {Landing} from './components/landing/landing'
+import {Signup} from './components/signup/signup'
+import { Login } from './components/login/login';
 
 function App() {
   return (

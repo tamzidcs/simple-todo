@@ -1,0 +1,34 @@
+.todolist {
+    padding-top: 10vh;
+    display: inline-block;
+    margin-left: 40vw;
+    width: 20vw;
+}
+
+.to-do-list-container {
+    display: inline-block;
+    width: 100vw;
+    margin-bottom: 15vh;
+}
+
+.title {
+    padding-left: 0.5vw;
+    color: black;
+    background-color: darkgray;
+    width: 20vw;
+    font-weight: bold;
+}
+
+.description {
+    color: black;
+    width: 20vw;
+}
+
+.todos {
+    padding-top: 5vh;
+}
+
+.doneButton {
+    margin-left: 0vw;
+    margin: 1vh;
+}

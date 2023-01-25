@@ -1,0 +1,36 @@
+.login-container {
+    display: inline-block;
+    margin-left: 30vw;
+    padding: 7vw;
+    width: 20vw;
+    color: black;
+    background-color: lightgreen;
+}
+
+.userNameTextField {
+    width: 15vw;
+}
+
+.passwordTextField {
+    width: 15vw;
+}
+
+.userNameLabel {
+    width: 10vw;
+}
+
+.passwordLabel {
+    width: 10vw;
+}
+
+.loginButton {
+    margin-top: 2vh;
+    padding: 1vh;
+    width: 10vw;
+}
+
+.loginButtonDiv {
+    width: 15vw;
+    display: flex;
+    justify-content: right;
+}
