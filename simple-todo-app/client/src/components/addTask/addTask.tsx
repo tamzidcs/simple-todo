@@ -5,15 +5,18 @@ import { useNavigate } from 'react-router-dom';
 import './addTask.scss';
 
 const axios = require('axios')
+const url = {
+    addTask: 'http://localhost:3005/Tasks'
+} 
 
 export const  AddTask= (props: { taskListUpdate: () => void; }) => {
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
     const navigate = useNavigate();
     const addTask = (event: { preventDefault: () => void; }) => {
         event.preventDefault()
         if (title && description) {
-            axios.post('http://localhost:3005/Tasks', { title: title, description: description, username: localStorage.getItem('username') })
+            axios.post(url.addTask, { title: title, description: description, username: localStorage.getItem('username') })
                 .then((resp: { data: any; }) => {
                     props.taskListUpdate()
                 })
