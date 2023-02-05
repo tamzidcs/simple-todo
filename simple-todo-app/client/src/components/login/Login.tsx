@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import './login.scss';
 const axios = require('axios')
 const url = {
-    login: 'http://localhost:3005/Login'
+    login: 'http://localhost:3005/login'
 }
 
 export const Login = () => {

@@ -6,7 +6,7 @@ import './addTask.scss';
 
 const axios = require('axios')
 const url = {
-    addTask: 'http://localhost:3005/Tasks'
+    addTask: 'http://localhost:3005/tasks'
 } 
 
 export const  AddTask= (props: { taskListUpdate: () => void; }) => {

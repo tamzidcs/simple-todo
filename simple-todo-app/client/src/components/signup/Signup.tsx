@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 const axios = require('axios')
 const url = {
-    addUser: 'http://localhost:3005/Users'
+    addUser: 'http://localhost:3005/users'
 }
 
 export const Signup = () => {

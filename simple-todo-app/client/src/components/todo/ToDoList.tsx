@@ -5,6 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import './toDoList.scss';
 const axios = require('axios');
+const url = {
+    getTasks: 'http://localhost:3005/tasks',
+    getUsers: 'http://localhost:3005/users'
+}
 
 export const ToDoList= () => {
     const [data, setData] = useState<any[]>([])
@@ -27,9 +31,9 @@ export const ToDoList= () => {
         setTaskListUpdated(true)
     }
     useEffect(() => {
-        getTasks('http://localhost:3005/Tasks/','username');
+        getTasks(url.getTasks,'username');
         setTaskListUpdated(false)
-        let res= axios.get('http://localhost:3005/Users')
+        let res= axios.get()
             .then((resp: { data: any; }) => {
                 setUserNameList(resp.data)
             })
