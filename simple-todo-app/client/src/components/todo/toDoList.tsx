@@ -45,7 +45,7 @@ export const ToDoList= () => {
                 if (resp.data['msg'] === 'task updated')
                 {
                     alert('Task Updated.')
-                    getTasks('http://localhost:3005/Tasks/','username');
+                    getTasks('http://localhost:3005/tasks/','username');
                 }
             })
     }
@@ -70,7 +70,7 @@ export const ToDoList= () => {
                             <div className='description'>{task.description}</div>
                         </div>
                         <div className='doneButton'>
-                            <button onClick={() => taskDone('http://localhost:3005/Tasks/',task.id)}> Done</button>
+                            <button onClick={() => taskDone('http://localhost:3005/tasks/',task.id)}> Done</button>
                         </div>
                         <div>
                             <input list='userNameList' type='text' placeholder="select user" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setShareUserName(e.target.value)}/>
@@ -79,7 +79,7 @@ export const ToDoList= () => {
                                     <option key={indx} >{val.username}</option>
                                 ))}
                             </datalist>
-                            <button onClick={() => taskShare('http://localhost:3005/Share',task.id,shareUserName)}> Share</button>
+                            <button onClick={() => taskShare('http://localhost:3005/share',task.id,shareUserName)}> Share</button>
                         </div>
                     </div>
                 ))}
