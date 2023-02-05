@@ -42,7 +42,6 @@ app.post("/login", (req, res) => {
 })
 
 const  getUserId = async (username) =>{  
-    console.log(username)
     let query = "SELECT id from app_user where username='"+username+"'"
     const results = await pool.query(query)
     return results.rows[0].id
@@ -61,9 +60,7 @@ const  insertIntoTaskAppUser = async (taskId,userId) =>{
 
 app.post("/tasks", async(req, res) => {
     const userId = await getUserId(req.body.username)
-    console.log(userId)
     const taskId = await insertIntoTask(req.body.title,req.body.description)
-    console.log(taskId)
     await insertIntoTaskAppUser(taskId,userId)
     res.status(200).json({msg:'task added'}).end()
 })
