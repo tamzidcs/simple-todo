@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,6 +8,7 @@ import { ToDoList } from './components/todo/toDoList';
 import {Landing} from './components/landing/landing'
 import {Signup} from './components/signup/signup'
 import { Login } from './components/login/login';
+import React from 'react';
 
 function App() {
   return (

@@ -6,11 +6,12 @@ import React from 'react';
 import './toDoList.scss';
 const axios = require('axios');
 const url = {
-    getTasks: 'http://localhost:3005/tasks',
-    getUsers: 'http://localhost:3005/users'
+    tasks: 'http://localhost:3005/tasks/',
+    users: 'http://localhost:3005/users/',
+    share: 'http://localhost:3005/share/'
 }
 
-export const ToDoList= () => {
+export const ToDoList = () => {
     const [data, setData] = useState<any[]>([])
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -19,44 +20,47 @@ export const ToDoList= () => {
     const [shareUserName, setShareUserName] = useState('')
     const navigate = useNavigate();
     const [taskListUpdated,setTaskListUpdated] = useState(false)
-    const getTasks=(url: string,item: string)=> {
+    const getTasks=(item: string)=> {
         if(localStorage.getItem(item)) {
-            axios.get(url+ localStorage.getItem(item))
+            axios.get(url.tasks + localStorage.getItem(item))
             .then((resp: any) => {
                 setData(resp.data as any)
             })
         }
     }
+    
     const taskListUpdate=()=>{
         setTaskListUpdated(true)
     }
+
     useEffect(() => {
-        getTasks(url.getTasks,'username');
+        getTasks('username');
         setTaskListUpdated(false)
-        let res= axios.get()
+        let res = axios.get()
             .then((resp: { data: any; }) => {
                 setUserNameList(resp.data)
             })
     }, [taskListUpdated]);
 
-    const taskDone = (url: string,taskId: string) => {
+    const taskDone = (taskId: string) => {
         let data = axios.put(url + taskId)
             .then((resp: { data: { [x: string]: string; }; }) => {
                 if (resp.data['msg'] === 'task updated')
                 {
                     alert('Task Updated.')
-                    getTasks('http://localhost:3005/tasks/','username');
+                    getTasks('username');
                 }
             })
     }
 
-    const taskShare = (url: string, taskId: any,userName: string) => {
-        let data = axios.post(url,{taskId:taskId,username:userName})
+    const taskShare = (taskId: any,userName: string) => {
+        let data = axios.post(url.tasks,{taskId:taskId,username:userName})
             .then((resp: { data: { [x: string]: string; }; }) => {
                 if (resp.data['msg'] === 'task shared')
                     alert('Task Shared with '+userName)
             })
     }
+
     return (
         <div className='to-do-list-container'>
             <Header />
@@ -70,7 +74,7 @@ export const ToDoList= () => {
                             <div className='description'>{task.description}</div>
                         </div>
                         <div className='doneButton'>
-                            <button onClick={() => taskDone('http://localhost:3005/tasks/',task.id)}> Done</button>
+                            <button onClick={() => taskDone(task.id)}> Done</button>
                         </div>
                         <div>
                             <input list='userNameList' type='text' placeholder="select user" onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setShareUserName(e.target.value)}/>
@@ -79,7 +83,7 @@ export const ToDoList= () => {
                                     <option key={indx} >{val.username}</option>
                                 ))}
                             </datalist>
-                            <button onClick={() => taskShare('http://localhost:3005/share',task.id,shareUserName)}> Share</button>
+                            <button onClick={() => taskShare(task.id,shareUserName)}> Share</button>
                         </div>
                     </div>
                 ))}

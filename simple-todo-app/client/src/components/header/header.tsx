@@ -8,6 +8,7 @@ export const  Header = () => {
         localStorage.setItem('username','')
         navigate('/login')
     }
+    
     return(
         <div className='header-container'>
             <div className='username'>{localStorage.getItem('username')}</div>
