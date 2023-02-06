@@ -43,7 +43,7 @@ export const ToDoList = () => {
     }, [taskListUpdated]);
 
     const taskDone = (taskId: string) => {
-        let data = axios.put(url + taskId)
+        let data = axios.put(url.tasks + taskId)
             .then((resp: { data: { [x: string]: string; }; }) => {
                 if (resp.data['msg'] === 'task updated')
                 {
@@ -57,7 +57,7 @@ export const ToDoList = () => {
         let data = axios.post(url.tasks,{taskId:taskId,username:userName})
             .then((resp: { data: { [x: string]: string; }; }) => {
                 if (resp.data['msg'] === 'task shared')
-                    alert('Task Shared with '+userName)
+                    alert('Task Shared with ' + userName)
             })
     }
 
