@@ -4,6 +4,9 @@ import { Navigate } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 import './login.scss';
 const axios = require('axios')
+const url = {
+    login: 'http://localhost:3005/login'
+}
 
 export const Login = () => {
     const [userName, setUserName] = useState('')
@@ -12,7 +15,7 @@ export const Login = () => {
     const login = (event: { preventDefault: () => void; }) => {
         event.preventDefault()
         if (userName && password) {
-            axios.post('http://localhost:3005/Login', { username: userName, password: password })
+            axios.post(url.login, { username: userName, password: password })
                 .then((resp: { data: { [x: string]: string; }; }) => {
                     console.log(resp.data)
                     if (resp.data['msg'] === 'login success') {
