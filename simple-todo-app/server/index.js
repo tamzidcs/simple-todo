@@ -6,9 +6,9 @@ const PORT = process.env.PORT || 3005;
 
 const app = express()
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 
-app.get("/tasks/:username", (req, res) => {
+const getTaskByUsername = (req, res) => {
     const query = "SELECT task.id,task.title,task.description  FROM task,app_user,task_app_user where task.id=task_app_user.task_id and app_user.id=task_app_user.user_id and app_user.username='"+req.params.username+"' and task.status='open'"
     pool.query(query, (error, results) => {
         if (error) {
@@ -16,9 +16,9 @@ app.get("/tasks/:username", (req, res) => {
         }
         res.status(200).json(results.rows).end()
     })
-})
+}
 
-app.put("/tasks/:taskId", (req, res) => {
+const getTaskById = (req, res) => {
     const query = "UPDATE  task SET  status='done' where id="+req.params.taskId
     pool.query(query, (error, results) => {
         if (error) {
@@ -26,9 +26,9 @@ app.put("/tasks/:taskId", (req, res) => {
         }
         res.status(200).json({'msg':'task updated'}).end()
     })
-})
+}
 
-app.post("/login", (req, res) => {
+const login = (req, res) => {
     const query = "SELECT *  FROM app_user where username='"+req.body.username+"' and app_password='"+req.body.password+"'"
     pool.query(query, (error, results) => {
         if (error) {
@@ -39,7 +39,7 @@ app.post("/login", (req, res) => {
         else
         res.status(200).json({'msg':'login failed'}).end()
     })
-})
+}
 
 const  getUserId = async (username) =>{  
     let query = "SELECT id from app_user where username='"+username+"'"
@@ -58,14 +58,14 @@ const  insertIntoTaskAppUser = async (taskId,userId) =>{
     await pool.query(query)
 }
 
-app.post("/tasks", async(req, res) => {
+const getTasks = async(req, res) => {
     const userId = await getUserId(req.body.username)
     const taskId = await insertIntoTask(req.body.title,req.body.description)
     await insertIntoTaskAppUser(taskId,userId)
     res.status(200).json({msg:'task added'}).end()
-})
+}
 
-app.post("/share", async(req, res) => {
+const share = async(req, res) => {
     const userId = await getUserId(req.body.username)
     let query = "INSERT INTO task_app_user(user_id,task_id) VALUES('"+userId+"','"+req.body.taskId+"')"
     pool.query(query, (error, results) => {
@@ -74,9 +74,9 @@ app.post("/share", async(req, res) => {
         }
         res.status(200).json({msg:'task shared'}).end()
     })
-})
+}
 
-app.post("/users", async(req, res) => { 
+const addUser =async(req, res) => { 
     let query = "INSERT INTO app_user(username,app_password) VALUES('"+req.body.username+"','"+req.body.password+"')"
     pool.query(query, (error, results) => {
         if (error) {
@@ -84,9 +84,9 @@ app.post("/users", async(req, res) => {
         }
         res.status(200).json({msg:'user added'}).end()
     })
-})
+}
 
-app.get("/users", async(req, res) => { 
+const getUsers =  async(req, res) => { 
     let query = "SELECT username FROM app_user";
     pool.query(query, (error, results) => {
         if (error) {
@@ -94,7 +94,15 @@ app.get("/users", async(req, res) => {
         }
         res.status(200).json(results.rows).end()
     })
-})
+}
+
+app.get("/tasks/:username", getTaskByUsername);
+app.put("/tasks/:taskId", getTaskById);
+app.post("/login", login);
+app.post("/tasks", getTasks);
+app.post("/share", share);
+app.post("/users", addUser)
+app.get("/users", getUsers);
 
 app.listen(PORT, () => {
     console.log(`Server listening  on ${PORT}`);
