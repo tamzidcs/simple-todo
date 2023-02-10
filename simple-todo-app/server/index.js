@@ -1,8 +1,8 @@
 const express = require('express')
 const cors = require('cors')
 const fs = require('fs')
-let {pool: pool} = require("./db")
-const db = require('./db')
+let {pool: pool} = require("./src/app/db")
+const db = require('./src/app/db')
 const PORT = process.env.PORT || 3005;
 
 const app = express()
