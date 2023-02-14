@@ -11,4 +11,3 @@ require('./src/app/routes/tasks.js')(app);
 app.listen(PORT, () => {
     console.log(`Server listening  on ${PORT}`);
 })
-
