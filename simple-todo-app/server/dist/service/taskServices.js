@@ -8,13 +8,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = require("express");
-const task_1 = require("../controller/task");
-const tasksRouter = (0, express_1.Router)();
-tasksRouter.post('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const payload = req.body;
-    const result = yield (0, task_1.addNewArticle)(payload);
-    return res.status(200).send(result);
-}));
-exports.default = tasksRouter;
+exports.getAllTasks = exports.addNewTask = void 0;
+const Task_1 = __importDefault(require("../db/models/Task"));
+function addNewTask(newTask) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const task = yield Task_1.default.create(newTask);
+        return task;
+    });
+}
+exports.addNewTask = addNewTask;
+function getAllTasks() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const allTasks = yield Task_1.default.findAll();
+        return allTasks;
+    });
+}
+exports.getAllTasks = getAllTasks;

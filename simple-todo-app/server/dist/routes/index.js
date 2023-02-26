@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Router = void 0;
-const tasks_1 = require("./tasks");
-class Router {
-    static initializeRoutes(app) {
-        app.use('/tasks', new tasks_1.TaskRouter().router);
-    }
-}
-exports.Router = Router;
+const express_1 = require("express");
+const task_1 = require("../controller/task");
+const router = (0, express_1.Router)();
+const express = require('express');
+router.use(express.json());
+router.post('/tasks', task_1.addNewTask);
+router.get('/tasks', task_1.getAllTasks);
+exports.default = router;

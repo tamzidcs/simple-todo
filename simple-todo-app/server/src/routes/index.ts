@@ -1,8 +1,12 @@
-import express from "express";
-import { TaskRouter } from "./tasks";
+import { Router } from 'express'
+import { addNewTask,getAllTasks } from '../controller/task';
 
-export default class Router {
-  constructor(app: express.Application){
-    app.use('/tasks', new TaskRouter().router)
-  }
-}
+
+const router = Router()
+const express = require('express');
+
+router.use(express.json());
+router.post('/tasks', addNewTask);
+router.get('/tasks', getAllTasks);
+
+export default router;
