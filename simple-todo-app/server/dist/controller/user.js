@@ -32,13 +32,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllTasks = exports.addNewTask = void 0;
-const taskService = __importStar(require("../service/task.service"));
-function addNewTask(req, res, next) {
+exports.loginUser = exports.registerUser = void 0;
+const userService = __importStar(require("../service/user.service"));
+const http_status_1 = require("http-status");
+function registerUser(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        const task = req.body;
+        const user = req.body;
         try {
-            const result = yield taskService.addNewTask(task);
+            const result = yield userService.registerUser(user);
             res.send(result);
         }
         catch (error) {
@@ -46,19 +47,26 @@ function addNewTask(req, res, next) {
         }
     });
 }
-exports.addNewTask = addNewTask;
-function getAllTasks(req, res, next) {
+exports.registerUser = registerUser;
+function loginUser(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log('get all tasks...');
+        const user = req.body;
         try {
-            console.log('get all tasks...');
-            const data = yield taskService.getAllTasks();
-            console.log("data:", data);
-            res.send(data);
+            const loggedInUser = yield userService.loginUser(user);
+            if (loggedInUser) {
+                res.status(http_status_1.OK).json({
+                    username: loggedInUser.username,
+                });
+            }
+            else {
+                res.status(http_status_1.UNAUTHORIZED).json({
+                    username: user.username,
+                });
+            }
         }
         catch (error) {
             console.log(error);
         }
     });
 }
-exports.getAllTasks = getAllTasks;
+exports.loginUser = loginUser;

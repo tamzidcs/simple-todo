@@ -1,10 +1,6 @@
 import { DataTypes, Model, Optional } from 'sequelize'
 import sequelize from '../../db'
 
-interface TaskMetadata {
-    cookingTime: string | null
-}
-
 interface TaskAttributes {
     id: number;
     title: string;

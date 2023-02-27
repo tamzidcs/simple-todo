@@ -18,7 +18,7 @@ export const Login = () => {
             axios.post(url.login, { username: userName, password: password })
                 .then((resp: { data: { [x: string]: string; }; }) => {
                     console.log(resp.data)
-                    if (resp.data['msg'] === 'login success') {
+                    if (resp.data['username']) {
                         localStorage.setItem('username', userName)
                         navigate('/toDoList')
                     }

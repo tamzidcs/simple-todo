@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import Task, { TaskInput, TaskOutput } from '../db/models/Task';
-import * as taskService from '../service/taskServices';
+import * as taskService from '../service/task.service';
 
 export async function addNewTask(
   req: Request<unknown, unknown, TaskInput, unknown>,
