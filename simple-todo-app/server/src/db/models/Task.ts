@@ -1,5 +1,6 @@
-import { DataTypes, Model, Optional } from 'sequelize'
+import { BelongsToGetAssociationMixin, BelongsToManyAddAssociationMixin, BelongsToManyAddAssociationsMixin, DataTypes, Model, Optional } from 'sequelize'
 import sequelize from '../../db'
+import User from './User';
 
 interface TaskAttributes {
     id: number;
@@ -15,6 +16,7 @@ export interface GetAllTasksResponse {
 }
 
 class Task extends Model<TaskAttributes> implements TaskAttributes {
+    declare addUser: BelongsToManyAddAssociationsMixin<User,number>;
     public id!: number;
     public title!: string;
     public description!: string;

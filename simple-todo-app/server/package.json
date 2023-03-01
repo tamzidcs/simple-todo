@@ -16,11 +16,7 @@
     "express": "^4.18.2",
     "http-errors": "~1.6.3",
     "http-status": "^1.6.2",
-    "jade": "^1.9.2",
-    "morgan": "~1.9.1",
-    "pg": "^8.9.0",
-    "zod-error": "^1.5.0",
-    "zod-validation-error": "^0.3.2"
+    "pg": "^8.9.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",

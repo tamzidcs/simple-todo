@@ -49,11 +49,8 @@ function addNewTask(req, res, next) {
 exports.addNewTask = addNewTask;
 function getAllTasks(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log('get all tasks...');
         try {
-            console.log('get all tasks...');
             const data = yield taskService.getAllTasks();
-            console.log("data:", data);
             res.send(data);
         }
         catch (error) {

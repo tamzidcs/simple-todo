@@ -5,7 +5,6 @@ import { RegisterRequest, RegisterResponse } from "../db/models/User";
 export async function registerUser(
   newUser: RegisterRequest
 ): Promise<RegisterResponse | undefined> {
-  console.log("new user",newUser);
   const user: RegisterRequest = await User.create({
     id: newUser.id,
     username: newUser.username,
@@ -15,10 +14,10 @@ export async function registerUser(
   if (user) {
     return {
       id: user.id,
-      username: user.username
+      username: user.username,
     };
   } else {
-    console.log('Registration failed.')
+    console.log("Registration failed.");
   }
 }
 

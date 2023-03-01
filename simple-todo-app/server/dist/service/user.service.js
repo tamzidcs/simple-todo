@@ -16,7 +16,6 @@ exports.loginUser = exports.registerUser = void 0;
 const User_1 = __importDefault(require("../db/models/User"));
 function registerUser(newUser) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log("new user", newUser);
         const user = yield User_1.default.create({
             id: newUser.id,
             username: newUser.username,
@@ -25,11 +24,11 @@ function registerUser(newUser) {
         if (user) {
             return {
                 id: user.id,
-                username: user.username
+                username: user.username,
             };
         }
         else {
-            console.log('Registration failed.');
+            console.log("Registration failed.");
         }
     });
 }

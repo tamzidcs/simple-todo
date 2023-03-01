@@ -22,11 +22,8 @@ export async function getAllTasks(
   res: Response<Task[]>,
   next: NextFunction
 ): Promise<void> {
-    console.log('get all tasks...');
   try {
-    console.log('get all tasks...');
     const data = await taskService.getAllTasks();
-    console.log("data:", data);
     res.send(data);
   } catch (error) {
     console.log(error);

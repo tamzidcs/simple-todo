@@ -1,5 +1,6 @@
 import { DataTypes, Model, Optional } from 'sequelize'
 import sequelize from '../../db'
+import Task from './Task';
 
 interface UserAttributes {
     id: number;

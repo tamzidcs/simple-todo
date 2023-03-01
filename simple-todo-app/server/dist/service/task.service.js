@@ -14,9 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllTasks = exports.addNewTask = void 0;
 const Task_1 = __importDefault(require("../db/models/Task"));
+const User_1 = __importDefault(require("../db/models/User"));
 function addNewTask(newTask) {
     return __awaiter(this, void 0, void 0, function* () {
         const task = yield Task_1.default.create(newTask);
+        const user = yield User_1.default.findAll({ where: { id: 1 } });
+        if (user) {
+            task.addUser([...user]);
+        }
         return task;
     });
 }
