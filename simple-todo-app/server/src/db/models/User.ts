@@ -1,69 +1,102 @@
-import { DataTypes, Model, Optional } from 'sequelize'
-import sequelize from '../../db'
-import Task from './Task';
+// import { DataTypes, Model, Optional } from 'sequelize'
+// import sequelize from '../../db'
+// import Task from './Task';
 
-interface UserAttributes {
-    id: number;
-    username: string;
-    name?: string;
-    password: string;
-}
+// interface UserAttributes {
+//     id: number;
+//     username: string;
+//     name?: string;
+//     password: string;
+// }
 
-export interface UserInput extends Required<UserAttributes> {}
-export interface UserOutput extends Required<UserAttributes> {}
-export interface GetAllUsersResponse {
-    users: User[];
-}
+// export interface UserInput extends Required<UserAttributes> {}
+// export interface UserOutput extends Required<UserAttributes> {}
+// export interface GetAllUsersResponse {
+//     users: User[];
+// }
 
-export interface RegisterRequest {
-    id: number;
-    username: string;
-    password: string;
-}
+// export interface RegisterRequest {
+//     id: number;
+//     username: string;
+//     password: string;
+// }
 
-export interface RegisterResponse {
-    id?: number;
-    username?: string;
-}
+// export interface RegisterResponse {
+//     id?: number;
+//     username?: string;
+// }
 
-export interface LoginRequest {
-    username: string;
-    password: string;
-}
+// export interface LoginRequest {
+//     username: string;
+//     password: string;
+// }
 
-export interface LoginResponse {
-    username?: string | null;
-}
+// export interface LoginResponse {
+//     username?: string | null;
+// }
 
-class User extends Model<UserAttributes> implements UserAttributes {
-    public id!: number;
-    public username!: string;
-    public password!: string;
+// class User extends Model<UserAttributes> implements UserAttributes {
+//     public id!: number;
+//     public username!: string;
+//     public password!: string;
 
-    // timestamps!
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
-    public readonly deletedAt!: Date;
-}
+//     // timestamps!
+//     public readonly createdAt!: Date;
+//     public readonly updatedAt!: Date;
+//     public readonly deletedAt!: Date;
+// }
 
-User.init({
-    id: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        autoIncrement: true,
-        primaryKey: true,
-    },
-    username: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
+// User.init({
+//     id: {
+//         type: DataTypes.INTEGER.UNSIGNED,
+//         autoIncrement: true,
+//         primaryKey: true,
+//     },
+//     username: {
+//         type: DataTypes.STRING,
+//         allowNull: false
+//     },
+//     password: {
+//         type: DataTypes.STRING,
+//         allowNull: false,
+//     },
     
-}, {
-    sequelize: sequelize,
-    paranoid: true
-})
+// }, {
+//     sequelize: sequelize,
+//     paranoid: true
+// })
 
-export default User
+// export default User
+
+
+
+import {
+    Table,
+    Model,
+    Column,
+    DataType,
+    BelongsToMany,
+    ForeignKey,
+  } from 'sequelize-typescript';
+import TaskUser from './TaskUser';
+  import Task from './Task';
+  
+  @Table({
+    timestamps: true,
+  })
+  export default class User extends Model {
+    @Column({
+      type: DataType.STRING,
+      allowNull: false,
+    })
+    username!: string;
+  
+    @Column({
+      type: DataType.STRING,
+      allowNull: false,
+    })
+    password!: string;
+  
+    @BelongsToMany(() => Task, () => TaskUser)
+    tasks!: Task[];
+  }

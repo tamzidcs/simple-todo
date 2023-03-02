@@ -1,39 +1,24 @@
-import User, { GetAllUsersResponse, LoginRequest, LoginResponse } from "../db/models/User";
-import { TaskInput, TaskOutput } from "../db/models/Task";
-import { RegisterRequest, RegisterResponse } from "../db/models/User";
+import User from "../db/models/User";
 
-export async function registerUser(
-  newUser: RegisterRequest
-): Promise<RegisterResponse | undefined> {
-  const user: RegisterRequest = await User.create({
-    id: newUser.id,
-    username: newUser.username,
-    password: newUser.password,
-  });
-
-  if (user) {
-    return {
-      id: user.id,
-      username: user.username,
-    };
-  } else {
-    console.log("Registration failed.");
-  }
+export async function registerUser(newUser: User): Promise<User> {
+  const user = new User();
+  user.username = newUser.username;
+  user.password = newUser.password;
+  user.save();
+  return user;
 }
-
-export async function loginUser(
-  user: LoginRequest
-): Promise<LoginResponse | null> {
-  console.log("user",user);
-  const checkUser = await User.findOne({ where: { username: "usr1" } });
+interface LoginResponse {
+  username: string;
+}
+export async function loginUser(user: User): Promise<LoginResponse | null> {
+  const checkUser = await User.findOne({ where: { username: user.username } });
   if (!checkUser) {
-    return { username: checkUser };
-  } else {
+    return null;
+  } else if(checkUser !== null){
     if (user.password === checkUser.password) {
       return { username: checkUser?.username };
-    } else {
-      return null;
     }
+    return { username: user.username };
   }
   return null;
 }

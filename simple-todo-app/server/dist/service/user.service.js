@@ -16,37 +16,25 @@ exports.loginUser = exports.registerUser = void 0;
 const User_1 = __importDefault(require("../db/models/User"));
 function registerUser(newUser) {
     return __awaiter(this, void 0, void 0, function* () {
-        const user = yield User_1.default.create({
-            id: newUser.id,
-            username: newUser.username,
-            password: newUser.password,
-        });
-        if (user) {
-            return {
-                id: user.id,
-                username: user.username,
-            };
-        }
-        else {
-            console.log("Registration failed.");
-        }
+        const user = new User_1.default();
+        user.username = newUser.username;
+        user.password = newUser.password;
+        user.save();
+        return user;
     });
 }
 exports.registerUser = registerUser;
 function loginUser(user) {
     return __awaiter(this, void 0, void 0, function* () {
-        console.log("user", user);
-        const checkUser = yield User_1.default.findOne({ where: { username: "usr1" } });
+        const checkUser = yield User_1.default.findOne({ where: { username: user.username } });
         if (!checkUser) {
-            return { username: checkUser };
+            return null;
         }
-        else {
+        else if (checkUser !== null) {
             if (user.password === checkUser.password) {
                 return { username: checkUser === null || checkUser === void 0 ? void 0 : checkUser.username };
             }
-            else {
-                return null;
-            }
+            return { username: user.username };
         }
         return null;
     });

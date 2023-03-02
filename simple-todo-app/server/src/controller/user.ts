@@ -1,11 +1,11 @@
 import { Request, Response, NextFunction } from "express";
-import User, { LoginRequest, LoginResponse, RegisterRequest, RegisterResponse, UserInput, UserOutput } from "../db/models/User";
+import User from "../db/models/User";
 import * as userService from "../service/user.service";
 import { OK, UNAUTHORIZED } from 'http-status';
 
 export async function registerUser(
-  req: Request<unknown, unknown, RegisterRequest, unknown>,
-  res: Response<RegisterResponse>,
+  req: Request,
+  res: Response,
   next: NextFunction
 ): Promise<void> {
   const user = req.body;
@@ -22,7 +22,7 @@ export async function loginUser(
   res: Response,
   next: NextFunction
 ): Promise<void> {
-  const user: LoginRequest = req.body;
+  const user: User = req.body;
   try {
     const loggedInUser = await userService.loginUser(user);
     if (loggedInUser) {

@@ -19,7 +19,8 @@ export const ToDoList = () => {
     const [userNameList, setUserNameList] = useState<any[]>([])
     const [shareUserName, setShareUserName] = useState('')
     const navigate = useNavigate();
-    const [taskListUpdated,setTaskListUpdated] = useState(false)
+    const [taskListUpdated,setTaskListUpdated] = useState(false);
+    
     const getTasks=(item: string)=> {
         if(localStorage.getItem(item)) {
             axios.get(url.tasks + localStorage.getItem(item))

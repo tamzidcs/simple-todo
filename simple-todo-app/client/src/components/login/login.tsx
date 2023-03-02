@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import React from 'react';
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
@@ -17,13 +18,16 @@ export const Login = () => {
         if (userName && password) {
             axios.post(url.login, { username: userName, password: password })
                 .then((resp: { data: { [x: string]: string; }; }) => {
-                    console.log(resp.data)
                     if (resp.data['username']) {
                         localStorage.setItem('username', userName)
                         navigate('/toDoList')
                     }
                     else
                         alert('Wrong username and password.')
+                }).catch((error: AxiosError)=>{
+                    if(error.response?.status === 401) {
+                        alert('Wrong username and/or password.')
+                    }
                 })
         }
     }

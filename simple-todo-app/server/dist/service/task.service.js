@@ -15,21 +15,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAllTasks = exports.addNewTask = void 0;
 const Task_1 = __importDefault(require("../db/models/Task"));
 const User_1 = __importDefault(require("../db/models/User"));
+const TaskUser_1 = __importDefault(require("../db/models/TaskUser"));
 function addNewTask(newTask) {
     return __awaiter(this, void 0, void 0, function* () {
-        const task = yield Task_1.default.create(newTask);
-        const user = yield User_1.default.findAll({ where: { id: 1 } });
-        if (user) {
-            task.addUser([...user]);
-        }
+        const task = new Task_1.default();
+        task.title = newTask.title;
+        task.description = newTask.description;
+        task.status = newTask.status;
+        yield task.save();
+        const taskUser = new TaskUser_1.default();
+        taskUser.userId = newTask.userId;
+        taskUser.taskId = task.id;
+        yield taskUser.save();
         return task;
     });
 }
 exports.addNewTask = addNewTask;
-function getAllTasks() {
+function getAllTasks(username) {
     return __awaiter(this, void 0, void 0, function* () {
-        const allTasks = yield Task_1.default.findAll();
-        return allTasks;
+        const user = yield User_1.default.findOne({ where: { username: username } });
+        const allTaskUser = yield TaskUser_1.default.findAll({ where: { userId: user === null || user === void 0 ? void 0 : user.id } });
+        const tasks = yield Task_1.default.findAll({ where: { id: allTaskUser.map((allTaskUser) => { return allTaskUser.taskId; }) } });
+        return tasks;
     });
 }
 exports.getAllTasks = getAllTasks;

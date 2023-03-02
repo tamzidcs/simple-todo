@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
-import Task, { TaskInput, TaskOutput } from '../db/models/Task';
+import Task from '../db/models/Task';
 import * as taskService from '../service/task.service';
 
 export async function addNewTask(
-  req: Request<unknown, unknown, TaskInput, unknown>,
-  res: Response<TaskOutput>,
+  req: Request,
+  res: Response,
   next: NextFunction
 ): Promise<void> {
   const task = req.body;
@@ -23,7 +23,8 @@ export async function getAllTasks(
   next: NextFunction
 ): Promise<void> {
   try {
-    const data = await taskService.getAllTasks();
+    const user = req.body;
+    const data = await taskService.getAllTasks(user.username);
     res.send(data);
   } catch (error) {
     console.log(error);

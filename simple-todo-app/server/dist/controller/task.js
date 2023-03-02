@@ -50,7 +50,8 @@ exports.addNewTask = addNewTask;
 function getAllTasks(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const data = yield taskService.getAllTasks();
+            const user = req.body;
+            const data = yield taskService.getAllTasks(user.username);
             res.send(data);
         }
         catch (error) {
