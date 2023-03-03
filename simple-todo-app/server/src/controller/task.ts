@@ -17,14 +17,13 @@ export async function addNewTask(
   }
 }
 
-export async function getAllTasks(
+export async function getAllTasksByUsername(
   req: Request,
   res: Response<Task[]>,
   next: NextFunction
 ): Promise<void> {
   try {
     const user = req.params;
-    console.log("user:", user);
     const data = await taskService.getAllTasks(user.username);
     res.send(data);
   } catch (error) {
