@@ -8,11 +8,12 @@ export async function addNewTask(newTask: TaskInput): Promise<Task> {
   const task = new Task();
   task.title = newTask.title;
   task.description =newTask.description;
-  task.status = newTask.status;
+  task.status = "pending";
   await task.save();
   
   const taskUser = new TaskUser();
-  taskUser.userId = newTask.userId;
+  const user =  await User.findOne({where: {username: newTask.username}})
+  taskUser.userId = user?.id;
   taskUser.taskId = task.id;
   await taskUser.save();
 

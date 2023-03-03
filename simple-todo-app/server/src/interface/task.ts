@@ -1,6 +1,6 @@
 export default interface TaskInput {
     id: string;
-    userId: string;
+    username: string;
     title: string;
     description: string;
     status: string;

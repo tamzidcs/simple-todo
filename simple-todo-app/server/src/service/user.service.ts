@@ -10,6 +10,7 @@ export async function registerUser(newUser: User): Promise<User> {
 interface LoginResponse {
   username: string;
 }
+
 export async function loginUser(user: User): Promise<LoginResponse | null> {
   const checkUser = await User.findOne({ where: { username: user.username } });
   if (!checkUser) {
@@ -21,4 +22,9 @@ export async function loginUser(user: User): Promise<LoginResponse | null> {
     return { username: user.username };
   }
   return null;
+}
+
+export async function getAllUsers(user: User): Promise<User[]> {
+  const users = await User.findAll();
+  return users;
 }

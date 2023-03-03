@@ -23,7 +23,8 @@ export async function getAllTasks(
   next: NextFunction
 ): Promise<void> {
   try {
-    const user = req.body;
+    const user = req.params;
+    console.log("user:", user);
     const data = await taskService.getAllTasks(user.username);
     res.send(data);
   } catch (error) {

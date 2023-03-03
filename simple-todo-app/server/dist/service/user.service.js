@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginUser = exports.registerUser = void 0;
+exports.getAllUsers = exports.loginUser = exports.registerUser = void 0;
 const User_1 = __importDefault(require("../db/models/User"));
 function registerUser(newUser) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -40,3 +40,10 @@ function loginUser(user) {
     });
 }
 exports.loginUser = loginUser;
+function getAllUsers(user) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const users = yield User_1.default.findAll();
+        return users;
+    });
+}
+exports.getAllUsers = getAllUsers;

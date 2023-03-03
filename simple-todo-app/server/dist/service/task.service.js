@@ -21,10 +21,11 @@ function addNewTask(newTask) {
         const task = new Task_1.default();
         task.title = newTask.title;
         task.description = newTask.description;
-        task.status = newTask.status;
+        task.status = "pending";
         yield task.save();
         const taskUser = new TaskUser_1.default();
-        taskUser.userId = newTask.userId;
+        const user = yield User_1.default.findOne({ where: { username: newTask.username } });
+        taskUser.userId = user === null || user === void 0 ? void 0 : user.id;
         taskUser.taskId = task.id;
         yield taskUser.save();
         return task;
