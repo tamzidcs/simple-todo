@@ -23,6 +23,14 @@ export async function addNewTask(newTask: TaskInput): Promise<Task> {
 export async function getAllTasks(username: string): Promise<Task[]> {
   const user = await User.findOne({where: {username: username}})
   const allTaskUser = await TaskUser.findAll({where:{userId: user?.id}})
-  const tasks = await Task.findAll({where:{id: allTaskUser.map((allTaskUser)=>{return allTaskUser.taskId})}});
+  const tasks = await Task.findAll({where:{id: allTaskUser.map((allTaskUser)=>{return allTaskUser.taskId}), status: 'pending'}});
   return tasks;
+}
+
+export async function updateTaskStatus(taskId: string): Promise<string> {
+  const affectedRows = await Task.update({status:'done'},{where:{id: taskId}})
+  if(affectedRows[0] === 0) {
+    throw new Error('status update failed.');
+  }
+  return taskId;
 }

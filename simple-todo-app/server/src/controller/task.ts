@@ -30,3 +30,17 @@ export async function getAllTasksByUsername(
     console.log(error);
   }
 }
+
+export async function updateTaskStatus(
+  req: Request,
+  res: Response<string>,
+  next: NextFunction
+): Promise<void> {
+  const taskId = req.params.taskId;
+  try {
+    const data = await taskService.updateTaskStatus(taskId);
+    res.send(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
