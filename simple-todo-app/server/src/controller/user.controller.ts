@@ -38,3 +38,17 @@ export async function loginUser(
     console.log(error);
   }
 }
+
+export async function getAllUsers(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  const user = req.params.username;
+  try {
+    const result = await userService.getAllUsers();
+    res.send(result);
+  } catch (error) {
+    console.log(error);
+  }
+}

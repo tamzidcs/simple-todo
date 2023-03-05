@@ -24,7 +24,7 @@ export async function loginUser(user: User): Promise<LoginResponse | null> {
   return null;
 }
 
-export async function getAllUsers(user: User): Promise<User[]> {
+export async function getAllUsers(): Promise<User[]> {
   const users = await User.findAll();
   return users;
 }

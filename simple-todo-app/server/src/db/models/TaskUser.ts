@@ -15,12 +15,12 @@ export default class TaskUser extends Model {
     type: DataType.UUID,
     allowNull: false,
   })
-  userId!: string;
+  userId!: number;
 
   @ForeignKey(() => Task)
   @Column({
     type: DataType.UUID,
     allowNull: false,
   })
-  taskId!: string;
+  taskId!: number;
 }

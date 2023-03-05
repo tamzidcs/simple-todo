@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
+import { TaskUser } from '../db/models';
 import Task from '../db/models/Task';
 import * as taskService from '../service/task.service';
+import * as taskUserService from '../service/taskUser.service';
 
 export async function addNewTask(
   req: Request,
@@ -40,6 +42,20 @@ export async function updateTaskStatus(
   try {
     const data = await taskService.updateTaskStatus(taskId);
     res.send(data);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function shareTask(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> {
+  const newTaskUser = req.body;
+  try {
+    const result = await taskService.shareTask(newTaskUser);
+    res.send(result);
   } catch (error) {
     console.log(error);
   }

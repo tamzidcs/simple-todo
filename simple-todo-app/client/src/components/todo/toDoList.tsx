@@ -19,7 +19,7 @@ export const ToDoList = () => {
 
     const getTasks = (item: string) => {
         if (localStorage.getItem(item)) {
-            const username =  localStorage.getItem(item);
+            const username = localStorage.getItem(item);
             axios.get(url.tasks + username)
                 .then((resp: any) => {
                     setData(resp.data as any)
@@ -34,10 +34,10 @@ export const ToDoList = () => {
     useEffect(() => {
         getTasks('username');
         setTaskListUpdated(false)
-        // axios.get(url.users)
-        //     .then((resp: { data: any; }) => {
-        //         setUserNameList(resp.data)
-        //     })
+        axios.get(url.users)
+            .then((resp: { data: any; }) => {
+                setUserNameList(resp.data)
+            })
     }, [taskListUpdated]);
 
     const taskDone = (taskId: string) => {
@@ -47,15 +47,15 @@ export const ToDoList = () => {
                     alert('Task Updated.')
                     getTasks('username');
                 }
-            }).catch((error: AxiosError)=>{
+            }).catch((error: AxiosError) => {
                 alert(error.message);
             })
     }
 
     const taskShare = (taskId: any, userName: string) => {
-        axios.post(url.tasks, { taskId: taskId, username: userName })
+        axios.post(url.share, { taskId: taskId, username: userName })
             .then((resp: { data: { [x: string]: string; }; }) => {
-                if (resp.data['msg'] === 'task shared')
+                if (resp.data)
                     alert('Task Shared with ' + userName)
             })
     }
