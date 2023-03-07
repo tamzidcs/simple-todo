@@ -17,7 +17,6 @@ export const Signup = () => {
         if (userName && password) {
             axios.post(url.addUser, { username: userName, password: password })
                 .then((resp: { data: any; }) => {
-                    console.log(resp.data)
                     alert('signup complete.')
                     navigate('/login')
                 })

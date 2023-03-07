@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import React from 'react';
 import { useState } from "react";
 import './addTask.scss';
@@ -10,12 +11,16 @@ const url = {
 export const  AddTask = (props: { taskListUpdate: () => void; }) => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const username = localStorage.getItem('username');
+
     const addTask = (event: { preventDefault: () => void; }) => {
-        event.preventDefault()
-        if(title && description) {
-            axios.post(url.addTask, { title: title, description: description, username: localStorage.getItem('username') })
+        event.preventDefault();
+        if (title && description) {
+            axios.post(url.addTask, { title: title, description: description, username: username})
                 .then((resp: { data: any; }) => {
                     props.taskListUpdate()
+                }).catch((error: AxiosError)=>{
+                    
                 })
         }
     }
