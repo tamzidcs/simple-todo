@@ -37,7 +37,6 @@ export async function updateTaskStatus(taskId: string): Promise<string> {
 }
 
 export async function shareTask(newTaskUser: TaskUserInput): Promise<TaskUser> {
-
   const taskUser = new TaskUser();
   const user =  await User.findOne({where: {username: newTaskUser.username}})
   taskUser.userId = user?.id;
