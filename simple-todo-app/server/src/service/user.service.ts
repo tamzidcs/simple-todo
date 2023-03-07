@@ -14,14 +14,14 @@ interface LoginResponse {
 export async function loginUser(user: User): Promise<LoginResponse | null> {
   const checkUser = await User.findOne({ where: { username: user.username } });
   if (!checkUser) {
-    return null;
+    throw new Error('user not found');
   } else if(checkUser !== null){
     if (user.password === checkUser.password) {
       return { username: checkUser?.username };
     }
     return { username: user.username };
   }
-  return null;
+  throw new Error('login failed');
 }
 
 export async function getAllUsers(): Promise<User[]> {

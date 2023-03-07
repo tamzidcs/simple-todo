@@ -35,7 +35,9 @@ export async function loginUser(
       });
     }
   } catch (error) {
-    console.log(error);
+    res.status(UNAUTHORIZED).json({
+      username: user.username,
+    });
   }
 }
 

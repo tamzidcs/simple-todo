@@ -8,7 +8,7 @@ import { where } from "sequelize";
 export async function addNewTask(newTask: TaskInput): Promise<Task> {
   const task = new Task();
   task.title = newTask.title;
-  task.description =newTask.description;
+  task.description = newTask.description;
   task.status = "pending";
   await task.save();
   
