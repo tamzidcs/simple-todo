@@ -7,13 +7,15 @@ const sequelizeConf = {
     user: "postgres",
     password: "minat123",
     host: 'localhost',
-    dialect: 'postgres'
+    dialect: 'postgres',
+    logging: false
 }
 
 
 const sequelize = new Sequelize(sequelizeConf.database,sequelizeConf.user,sequelizeConf.password , {
     host: sequelizeConf.host,
-    dialect: sequelizeConf.dialect
+    dialect: sequelizeConf.dialect,
+    logging: sequelizeConf.logging
 });
 sequelize.addModels([Task,User,TaskUser]);
 export default sequelize;
