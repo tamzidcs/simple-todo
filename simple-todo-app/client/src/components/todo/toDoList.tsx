@@ -17,10 +17,11 @@ export const ToDoList = () => {
     const [shareUserName, setShareUserName] = useState('')
     const [taskListUpdated, setTaskListUpdated] = useState(false);
 
-    const getTasks = (item: string) => {
-        if (localStorage.getItem(item)) {
-            const username = localStorage.getItem(item);
-            axios.get(url.tasks + username)
+    const getTasksByParam = (param: string) => {
+        const localStorageItem = localStorage.getItem(param)
+        if (localStorageItem) {
+            const username = localStorageItem;
+            axios.get(url.tasks + localStorageItem)
                 .then((resp: any) => {
                     setData(resp.data as any)
                 })
@@ -32,7 +33,7 @@ export const ToDoList = () => {
     }
 
     useEffect(() => {
-        getTasks('username');
+        getTasksByParam('username');
         setTaskListUpdated(false)
         axios.get(url.users)
             .then((resp: { data: any; }) => {
@@ -45,7 +46,7 @@ export const ToDoList = () => {
             .then((resp: { data: { [x: string]: string; }; }) => {
                 if (resp.data) {
                     alert('Task Updated.')
-                    getTasks('username');
+                    getTasksByParam('username');
                 }
             }).catch((error: AxiosError) => {
                 alert(error.message);
