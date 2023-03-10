@@ -12,7 +12,7 @@ router.use(express.json());
 
 router.post('/todos', addNewTodo);
 router.post('/share', shareTodo);
-router.put('/todos/:todoId', updateTodoStatus);
+router.patch('/todos/:todoId', updateTodoStatus);
 router.get('/todos/:username', getAllTodosByUsername);
 router.post('/users', registerUser);
 router.get('/users', getAllUsers);

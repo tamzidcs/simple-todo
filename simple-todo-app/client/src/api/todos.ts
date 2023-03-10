@@ -2,16 +2,40 @@ import axios, { AxiosError } from "axios";
 import { todo } from "../interfaces/todo";
 
 const url = {
-  addTodo: "http://localhost:3005/todos",
-};
+  todo: 'http://localhost:3005/todos/',
+  share: 'http://localhost:3005/share/',
+}
 
-export default async function addNewTodo(newTodo: todo): Promise<todo> {
+export async function postTodo(newTodo: todo): Promise<todo> {
   return axios
-        .post(url.addTodo, newTodo)
-        .then((resp: { data: any; }) => {
-            return resp.data;
-        })
-        .catch((error: AxiosError) => {
-            return error;
-        });
+    .post(url.todo, newTodo)
+    .then((resp: { data: any }) => {
+      return resp.data;
+    })
+    .catch((error: AxiosError) => {
+      return error;
+    });
+}
+
+export  async function updateTodoDone(todoId: string): Promise<todo> {
+  return axios
+    .patch(url.todo + todoId)
+    .then((resp: { data: any }) => {
+      return resp.data;
+    })
+    .catch((error: AxiosError) => {
+      return error;
+    });
+}
+
+export  async function postTodoShare(todoId: string, username: string): Promise<todo> {
+  return axios
+    .post(url.share, { todoId: todoId, username: username })
+    .then((resp: { data: any }) => {
+      if (resp.data) {
+        return resp.data;
+      }
+    }).catch((error: AxiosError) => {
+      return error;
+    });
 }

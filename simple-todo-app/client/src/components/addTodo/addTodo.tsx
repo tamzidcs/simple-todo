@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { todo } from "../../interfaces/todo";
 import "./addTodo.scss";
-import addNewTodo from "../../api/todos"
+import { postTodo } from "../../api/todos"
 
 export const AddTodo = (props: { taskListUpdate: () => void }) => {
   const newTodo: todo = { title: "", description: "", username: "" };
@@ -12,18 +12,18 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
 
   const addTodoHandler = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    if(username) {
-        setData({...data,username: username});
+    if (username) {
+      setData({ ...data, username: username });
     }
-    if (data.title && data.description && data.username)  {
-        const result = await addNewTodo(data);
-        if(result) {
-            props.taskListUpdate();
-            alert('New todo Added.')
-        }
-        else {
-            alert('Add todo Failed.')
-        }
+    if (data.title && data.description && data.username) {
+      const result = await postTodo(data);
+      if (result) {
+        await props.taskListUpdate();
+        alert('New todo Added.');
+      }
+      else {
+        alert('Add todo Failed.');
+      }
     }
   };
 
@@ -40,7 +40,7 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
         <label className="descriptionLabel">Desciption</label>
         <textarea
           className="descriptionTextField"
-          onChange={(e) => setData({...data,description:e.target.value})}
+          onChange={(e) => setData({ ...data, description: e.target.value })}
         />
         <div className="addButtonDiv">
           <input className="addButton" type="submit" value="Add" />
