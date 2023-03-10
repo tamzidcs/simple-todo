@@ -1,13 +1,13 @@
 import axios, { AxiosError } from "axios";
-import { task } from "../interfaces/task";
+import { todo } from "../interfaces/todo";
 
 const url = {
-  addTask: "http://localhost:3005/tasks",
+  addTodo: "http://localhost:3005/todos",
 };
 
-export default async function addNewTask(newTask: task): Promise<task> {
+export default async function addNewTodo(newTodo: todo): Promise<todo> {
   return axios
-        .post(url.addTask, newTask)
+        .post(url.addTodo, newTodo)
         .then((resp: { data: any; }) => {
             return resp.data;
         })

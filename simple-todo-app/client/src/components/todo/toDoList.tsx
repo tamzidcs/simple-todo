@@ -1,12 +1,12 @@
 import { Header } from "../header/header";
 import { useEffect, useState } from "react";
-import { AddTask } from "../addTask/addTask";
+import { AddTodo } from "../addTodo/addTodo";
 import React from 'react';
 import './toDoList.scss';
 import { Axios, AxiosError } from "axios";
 const axios = require('axios');
 const url = {
-    tasks: 'http://localhost:3005/tasks/',
+    tasks: 'http://localhost:3005/todos/',
     users: 'http://localhost:3005/users/',
     share: 'http://localhost:3005/share/'
 }
@@ -15,9 +15,9 @@ export const ToDoList = () => {
     const [data, setData] = useState<any[]>([])
     const [userNameList, setUserNameList] = useState<any[]>([])
     const [shareUserName, setShareUserName] = useState('')
-    const [taskListUpdated, setTaskListUpdated] = useState(false);
+    const [taskListUpdated, setTodoListUpdated] = useState(false);
 
-    const getTasksByParam = (param: string) => {
+    const getTodosByParam = (param: string) => {
         const localStorageItem = localStorage.getItem(param)
         if (localStorageItem) {
             const username = localStorageItem;
@@ -29,12 +29,12 @@ export const ToDoList = () => {
     }
 
     const taskListUpdate = () => {
-        setTaskListUpdated(true)
+        setTodoListUpdated(true)
     }
 
     useEffect(() => {
-        getTasksByParam('username');
-        setTaskListUpdated(false)
+        getTodosByParam('username');
+        setTodoListUpdated(false)
         axios.get(url.users)
             .then((resp: { data: any; }) => {
                 setUserNameList(resp.data)
@@ -45,8 +45,8 @@ export const ToDoList = () => {
         axios.put(url.tasks + taskId)
             .then((resp: { data: { [x: string]: string; }; }) => {
                 if (resp.data) {
-                    alert('Task Updated.')
-                    getTasksByParam('username');
+                    alert('todo Updated.')
+                    getTodosByParam('username');
                 }
             }).catch((error: AxiosError) => {
                 alert(error.message);
@@ -57,24 +57,24 @@ export const ToDoList = () => {
         axios.post(url.share, { taskId: taskId, username: userName })
             .then((resp: { data: { [x: string]: string; }; }) => {
                 if (resp.data)
-                    alert('Task Shared with ' + userName)
+                    alert('todo Shared with ' + userName)
             })
     }
 
     return (
         <div className='to-do-list-container'>
             <Header />
-            <AddTask taskListUpdate={taskListUpdate} />
+            <AddTodo taskListUpdate={taskListUpdate} />
             <div className='todolist'>
-                {data.map(task =>
+                {data.map(todo =>
                 (
-                    <div key={task.id}>
+                    <div key={todo.id}>
                         <div className='todos'>
-                            <div className='title'>{task.title}</div>
-                            <div className='description'>{task.description}</div>
+                            <div className='title'>{todo.title}</div>
+                            <div className='description'>{todo.description}</div>
                         </div>
                         <div className='doneButton'>
-                            <button onClick={() => taskDone(task.id)}> Done</button>
+                            <button onClick={() => taskDone(todo.id)}> Done</button>
                         </div>
                         <div>
                             <input list='userNameList' type='text' placeholder="select user" onChange={(e: React.ChangeEvent<HTMLInputElement>) => setShareUserName(e.target.value)} />
@@ -83,7 +83,7 @@ export const ToDoList = () => {
                                     <option key={indx} >{val.username}</option>
                                 ))}
                             </datalist>
-                            <button onClick={() => taskShare(task.id, shareUserName)}> Share</button>
+                            <button onClick={() => taskShare(todo.id, shareUserName)}> Share</button>
                         </div>
                     </div>
                 ))}

@@ -1,4 +1,4 @@
-import { Task, TaskUser, User } from "./db/models";
+import { Todo, TodoUser, User } from "./db/models";
 
 const { Sequelize } = require('sequelize-typescript');
 const config = require('./config/config');
@@ -17,5 +17,5 @@ const sequelize = new Sequelize(sequelizeConf.database,sequelizeConf.user,sequel
     dialect: sequelizeConf.dialect,
     logging: sequelizeConf.logging
 });
-sequelize.addModels([Task,User,TaskUser]);
+sequelize.addModels([Todo,User,TodoUser]);
 export default sequelize;

@@ -1,4 +1,4 @@
-export default interface TaskInput {
+export default interface TodoInput {
     id: string;
     username: string;
     title: string;

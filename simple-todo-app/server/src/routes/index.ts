@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import { addNewTask,getAllTasksByUsername } from '../controller/task.controller';
+import { addNewTodo,getAllTodosByUsername } from '../controller/todo.controller';
 import { getAllUsers, loginUser, registerUser } from '../controller/user.controller';
-import { updateTaskStatus } from '../controller/task.controller';
-import { shareTask } from '../controller/task.controller';
+import { updateTodoStatus } from '../controller/todo.controller';
+import { shareTodo } from '../controller/todo.controller';
 // import { getAllUsers } from '../controller/user';
 
 const router = Router();
@@ -10,10 +10,10 @@ const express = require('express');
 
 router.use(express.json());
 
-router.post('/tasks', addNewTask);
-router.post('/share', shareTask);
-router.put('/tasks/:taskId', updateTaskStatus);
-router.get('/tasks/:username', getAllTasksByUsername);
+router.post('/todos', addNewTodo);
+router.post('/share', shareTodo);
+router.put('/todos/:todoId', updateTodoStatus);
+router.get('/todos/:username', getAllTodosByUsername);
 router.post('/users', registerUser);
 router.get('/users', getAllUsers);
 router.post('/login', loginUser);

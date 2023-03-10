@@ -7,9 +7,9 @@ import {
     ForeignKey
   } from 'sequelize-typescript';
   import User from './User';
-  import Task from './Task';
+  import Todo from './Todo';
 @Table
-export default class TaskUser extends Model {
+export default class TodoUser extends Model {
   @ForeignKey(() => User)
   @Column({
     type: DataType.UUID,
@@ -17,10 +17,10 @@ export default class TaskUser extends Model {
   })
   userId!: number;
 
-  @ForeignKey(() => Task)
+  @ForeignKey(() => Todo)
   @Column({
     type: DataType.UUID,
     allowNull: false,
   })
-  taskId!: number;
+  todoId!: number;
 }

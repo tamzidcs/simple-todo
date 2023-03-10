@@ -1,35 +1,35 @@
 import { AxiosError } from "axios";
 import React from "react";
 import { useState } from "react";
-import { task } from "../../interfaces/task";
-import "./addTask.scss";
-import addNewTask from "../../api/tasks"
+import { todo } from "../../interfaces/todo";
+import "./addTodo.scss";
+import addNewTodo from "../../api/todos"
 
-export const AddTask = (props: { taskListUpdate: () => void }) => {
-  const newTask: task = { title: "", description: "", username: "" };
-  const [data, setData] = useState<task>(newTask);
+export const AddTodo = (props: { taskListUpdate: () => void }) => {
+  const newTodo: todo = { title: "", description: "", username: "" };
+  const [data, setData] = useState<todo>(newTodo);
   const username = localStorage.getItem('username');
 
-  const addTaskHandler = async (event: { preventDefault: () => void }) => {
+  const addTodoHandler = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     if(username) {
         setData({...data,username: username});
     }
     if (data.title && data.description && data.username)  {
-        const result = await addNewTask(data);
+        const result = await addNewTodo(data);
         if(result) {
             props.taskListUpdate();
-            alert('New Task Added.')
+            alert('New todo Added.')
         }
         else {
-            alert('Add Task Failed.')
+            alert('Add todo Failed.')
         }
     }
   };
 
   return (
-    <div className="add-task-container">
-      <form onSubmit={addTaskHandler}>
+    <div className="add-todo-container">
+      <form onSubmit={addTodoHandler}>
         <label className="titleLabel">Title</label>
         <input
           className="titleTextField"
