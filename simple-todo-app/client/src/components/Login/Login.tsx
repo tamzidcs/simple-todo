@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../../api/users';
 import { user } from '../../interfaces/user';
-import './login.scss';
+import './Login.scss';
 
 const User: user = {
     username: '',

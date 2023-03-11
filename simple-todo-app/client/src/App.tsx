@@ -4,10 +4,10 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import { ToDoList } from './components/todo/toDoList';
-import {Landing} from './components/landing/landing'
-import {Signup} from './components/signup/signup'
-import { Login } from './components/login/login';
+import { ToDoList } from './components/Todo/ToDoList';
+import {Landing} from './components/Landing/Landing'
+import {Signup} from './components/Signup/Signup'
+import { Login } from './components/Login/Login';
 import React from 'react';
 
 function App() {

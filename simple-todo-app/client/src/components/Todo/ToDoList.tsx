@@ -2,7 +2,7 @@ import { Header } from "../Header/Header";
 import { useEffect, useState } from "react";
 import { AddTodo } from "../AddTodo/AddTodo";
 import React from "react";
-import "./toDoList.scss";
+import "./ToDoList.scss";
 import axios from "axios";
 import { postTodoShare, updateTodoDone } from "../../api/todos";
 

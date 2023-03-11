@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { postUser } from '../../api/users';
 import { user } from '../../interfaces/user';
-import './signup.scss';
+import './Signup.scss';
 const newUser: user = {
     username: '',
     password: ''
