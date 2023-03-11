@@ -1,4 +1,4 @@
-import { Header } from "../header/header";
+import { Header } from "../Header/Header";
 import { useEffect, useState } from "react";
 import { AddTodo } from "../AddTodo/AddTodo";
 import React from "react";
