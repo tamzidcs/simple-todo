@@ -1,15 +1,10 @@
-import axios, { AxiosError } from 'axios';
 import React from 'react';
-import { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../../api/users';
 import { user } from '../../interfaces/user';
 import './login.scss';
 
-const url = {
-    login: 'http://localhost:3005/login'
-}
 const User: user = {
     username: '',
     password: ''

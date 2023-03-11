@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import React from "react";
 import { useState } from "react";
 import { todo } from "../../interfaces/todo";

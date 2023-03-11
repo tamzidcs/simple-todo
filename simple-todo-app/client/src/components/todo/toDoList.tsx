@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { AddTodo } from "../addTodo/addTodo";
 import React from "react";
 import "./toDoList.scss";
-import axios, { Axios, AxiosError } from "axios";
+import axios from "axios";
 import { postTodoShare, updateTodoDone } from "../../api/todos";
 
 const url = {
@@ -21,7 +21,6 @@ export const ToDoList = () => {
   const getTodosByParam = (param: string) => {
     const localStorageItem = localStorage.getItem(param);
     if (localStorageItem) {
-      const username = localStorageItem;
       axios.get(url.tasks + localStorageItem).then((resp: any) => {
         setData(resp.data as any);
       });

@@ -1,20 +1,15 @@
 import React from 'react';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { postUser } from '../../api/users';
 import { user } from '../../interfaces/user';
 import './signup.scss';
-const axios = require('axios')
-const url = {
-    addUser: 'http://localhost:3005/users'
-}
 const newUser: user = {
     username: '',
     password: ''
 };
 export const Signup = () => {
     const [data, setData] = useState<user>(newUser);
-    const [password, setPassword] = useState('')
     const navigate = useNavigate();
    
     const addUser = async (event: { preventDefault: () => void; }) => {

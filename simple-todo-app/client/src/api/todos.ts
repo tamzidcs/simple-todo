@@ -9,7 +9,7 @@ const url = {
 export async function postTodo(newTodo: todo): Promise<todo> {
   return axios
     .post(url.todo, newTodo)
-    .then((resp: { data: any }) => {
+    .then((resp) => {
       return resp.data;
     })
     .catch((error: AxiosError) => {
@@ -20,7 +20,7 @@ export async function postTodo(newTodo: todo): Promise<todo> {
 export  async function updateTodoDone(todoId: string): Promise<todo> {
   return axios
     .patch(url.todo + todoId)
-    .then((resp: { data: any }) => {
+    .then((resp) => {
       return resp.data;
     })
     .catch((error: AxiosError) => {
@@ -31,7 +31,7 @@ export  async function updateTodoDone(todoId: string): Promise<todo> {
 export  async function postTodoShare(todoId: string, username: string): Promise<todo> {
   return axios
     .post(url.share, { todoId: todoId, username: username })
-    .then((resp: { data: any }) => {
+    .then((resp) => {
       if (resp.data) {
         return resp.data;
       }
