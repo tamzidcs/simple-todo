@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { todo } from "../../interfaces/todo";
-import "./addTodo.scss";
+import "./AddTodo.scss";
 import { postTodo } from "../../api/todos"
 
 export const AddTodo = (props: { taskListUpdate: () => void }) => {

@@ -1,13 +1,13 @@
 import { Header } from "../header/header";
 import { useEffect, useState } from "react";
-import { AddTodo } from "../addTodo/addTodo";
+import { AddTodo } from "../AddTodo/AddTodo";
 import React from "react";
 import "./toDoList.scss";
 import axios from "axios";
 import { postTodoShare, updateTodoDone } from "../../api/todos";
 
 const url = {
-  tasks: "http://localhost:3005/todos/",
+  todos: "http://localhost:3005/todos/",
   users: "http://localhost:3005/users/",
   share: "http://localhost:3005/share/",
 };
@@ -21,7 +21,7 @@ export const ToDoList = () => {
   const getTodosByParam = (param: string) => {
     const localStorageItem = localStorage.getItem(param);
     if (localStorageItem) {
-      axios.get(url.tasks + localStorageItem).then((resp: any) => {
+      axios.get(url.todos + localStorageItem).then((resp: any) => {
         setData(resp.data as any);
       });
     }
@@ -39,7 +39,7 @@ export const ToDoList = () => {
     });
   }, [taskListUpdated]);
 
-  const taskDone = (taskId: string) => {
+  const todoDone = (taskId: string) => {
     updateTodoDone(taskId);
     getTodosByParam("username");
   };
@@ -63,7 +63,7 @@ export const ToDoList = () => {
               <div className="description">{todo.description}</div>
             </div>
             <div className="doneButton">
-              <button onClick={() => taskDone(todo.id)}> Done</button>
+              <button onClick={() => todoDone(todo.id)}> Done</button>
             </div>
             <div>
               <input
