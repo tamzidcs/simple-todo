@@ -1,35 +1,43 @@
 import React from 'react';
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { postUser } from '../../api/users';
+import { user } from '../../interfaces/user';
 import './signup.scss';
 const axios = require('axios')
 const url = {
     addUser: 'http://localhost:3005/users'
 }
-
+const newUser: user = {
+    username: '',
+    password: ''
+};
 export const Signup = () => {
-    const [userName, setUserName] = useState('')
+    const [data, setData] = useState<user>(newUser);
     const [password, setPassword] = useState('')
     const navigate = useNavigate();
-     
-    const addUser = (event: { preventDefault: () => void; }) => {
+   
+    const addUser = async (event: { preventDefault: () => void; }) => {
         event.preventDefault()
-        if (userName && password) {
-            axios.post(url.addUser, { username: userName, password: password })
-                .then((resp: { data: any; }) => {
-                    alert('signup complete.')
-                    navigate('/login')
-                })
-        }
+        if (data.username && data.password) {
+            const result = await postUser(data);
+            if (result) {
+                alert('signup complete.')
+                navigate('/login')
+            }
+            else {
+                alert('Signup unsuccessful.')
+            }
+        }       
     }
 
     return (
         <div className='signup-container'>
             <form onSubmit={addUser}>
                 <label className='userNameLabel'>Username</label>
-                <input className='userNameTextField' type='text' value={userName} onChange={e => setUserName(e.target.value)} />
+                <input className='userNameTextField' type='text'  onChange={e => setData({...data,username:e.target.value})} />
                 <label className='passwordLabel'>Password</label>
-                <input className='passwordTextField' type='password' onChange={e => setPassword(e.target.value)} />
+                <input className='passwordTextField' type='password' onChange={e => setData({...data,password:e.target.value})} />
                 <div className='signupButtonDiv'><input className='signupButton' type='submit' value='Signup' /></div>
             </form>
         </div>
