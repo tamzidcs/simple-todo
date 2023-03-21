@@ -9,6 +9,7 @@ const User: user = {
     username: '',
     password: ''
 };
+
 export const Login = () => {
     const [data,setData] = useState<user>(User);
     const navigate = useNavigate();

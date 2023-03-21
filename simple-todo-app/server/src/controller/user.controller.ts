@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import User from "../db/models/User";
 import * as userService from "../service/user.service";
-import { OK, UNAUTHORIZED } from 'http-status';
+import { OK, UNAUTHORIZED } from "http-status";
 
 export async function registerUser(
   req: Request,
@@ -13,7 +13,7 @@ export async function registerUser(
     const result = await userService.registerUser(user);
     res.send(result);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 }
 
@@ -51,6 +51,6 @@ export async function getAllUsers(
     const result = await userService.getAllUsers();
     res.send(result);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 }
