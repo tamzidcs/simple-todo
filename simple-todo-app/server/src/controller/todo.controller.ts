@@ -15,7 +15,7 @@ export async function addNewTodo(
     const result = await todoService.addNewTodo(todo);
     res.send(result);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 }
 
@@ -29,7 +29,7 @@ export async function getAllTodosByUsername(
     const data = await todoService.getAllTodos(user.username);
     res.send(data);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 }
 
@@ -43,7 +43,7 @@ export async function updateTodoStatus(
     const data = await todoService.updateTodoStatus(todoId);
     res.send(data);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 }
 
@@ -57,6 +57,6 @@ export async function shareTodo(
     const result = await todoService.shareTodo(newTodoUser);
     res.send(result);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 }
