@@ -6,8 +6,8 @@ import {
     BelongsToMany,
     ForeignKey,
   } from 'sequelize-typescript';
-import TaskUser from './TaskUser';
-  import Task from './Task';
+import TodoUser from './TodoUser';
+  import Todo from './Todo';
   
   @Table({
     timestamps: true,
@@ -25,6 +25,6 @@ import TaskUser from './TaskUser';
     })
     password!: string;
   
-    @BelongsToMany(() => Task, () => TaskUser)
-    tasks!: Task[];
+    @BelongsToMany(() => Todo, () => TodoUser)
+    todos!: Todo[];
   }

@@ -1,7 +1,7 @@
-import Task from './Task'
+import Todo from './Todo'
 import User from './User'
-import TaskUser from './TaskUser'
+import TodoUser from './TodoUser'
 
 export {
-  Task,User,TaskUser
+  Todo,User,TodoUser
 }

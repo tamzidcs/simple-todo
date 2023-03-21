@@ -6,13 +6,13 @@ import {
   BelongsToMany,
   ForeignKey
 } from "sequelize-typescript";
-import TaskUser from "./TaskUser";
+import TodoUser from "./TodoUser";
 import User from "./User";
 
 @Table({
   timestamps: true,
 })
-export default class Task extends Model {
+export default class Todo extends Model {
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -31,6 +31,6 @@ export default class Task extends Model {
   })
   status!: string;
 
-  @BelongsToMany(() => User, () => TaskUser)
+  @BelongsToMany(() => User, () => TodoUser)
   users!: User[];
 }
