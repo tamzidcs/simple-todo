@@ -1,10 +1,14 @@
 import User from "../db/models/User";
 
 export async function registerUser(newUser: User): Promise<User> {
-  const user = new User();
-  user.username = newUser.username;
-  user.password = newUser.password;
-  user.save();
+  const user = new User({
+    username: newUser.username,
+    password: newUser.password
+  });
+  const savedUser = await user.save();
+  if(!savedUser) {
+    throw new Error('Invalid user');
+  }
   return user;
 }
 interface LoginResponse {

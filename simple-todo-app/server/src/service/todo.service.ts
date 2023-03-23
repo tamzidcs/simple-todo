@@ -4,27 +4,42 @@ import TodoUser from "../db/models/TodoUser";
 import TodoInput from '../interface/todo';
 import TodoUserInput from '../interface/todoUser';
 import { where } from "sequelize";
+import { title } from "process";
 
 export async function addNewTodo(newTodo: TodoInput): Promise<Todo> {
-  const todo = new Todo();
-  todo.title = newTodo.title;
-  todo.description = newTodo.description;
-  todo.status = "pending";
-  await todo.save();
-  
-  const todoUser = new TodoUser();
-  const user =  await User.findOne({where: {username: newTodo.username}})
-  todoUser.userId = user?.id;
-  todoUser.todoId = todo.id;
-  await todoUser.save();
+  const todo = new Todo({
+    title: newTodo.title,
+    description: newTodo.description,
+    status: "pending",
+  });
+
+  const savedTodo = await todo.save();
+  if(savedTodo) {
+    const todoUser = new TodoUser();
+    const user = await User.findOne({ where: { username: newTodo.username } });
+    todoUser.userId = user?.id;
+    todoUser.todoId = todo.id;
+    await todoUser.save();
+  }
+  else {
+    throw new Error('Invalid ToDo')
+  }
+ 
 
   return todo;
 }
 
 export async function getAllTodos(username: string): Promise<Todo[]> {
-  const user = await User.findOne({where: {username: username}})
-  const allTodoUser = await TodoUser.findAll({where:{userId: user?.id}})
-  const todos = await Todo.findAll({where:{id: allTodoUser.map((allTodoUser)=>{return allTodoUser.todoId}), status: 'pending'}});
+  const user = await User.findOne({ where: { username: username } });
+  const allTodoUser = await TodoUser.findAll({ where: { userId: user?.id } });
+  const todos = await Todo.findAll({
+    where: {
+      id: allTodoUser.map((allTodoUser) => {
+        return allTodoUser.todoId;
+      }),
+      status: "pending",
+    },
+  });
   return todos;
 }
 

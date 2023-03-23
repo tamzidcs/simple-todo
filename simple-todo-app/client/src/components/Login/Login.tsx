@@ -5,7 +5,7 @@ import { postLogin } from '../../api/users';
 import { user } from '../../interfaces/user';
 import './Login.scss';
 
-const User: user = {
+let User: user = {
     username: '',
     password: ''
 };
@@ -16,6 +16,7 @@ export const Login = () => {
     const login = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         if (data.username && data.password) {
+            User = data;
             const result = await postLogin(User);
             if (result) {
                 localStorage.setItem('username', data.username);
