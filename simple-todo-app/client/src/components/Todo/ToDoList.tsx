@@ -62,7 +62,7 @@ export const ToDoList = () => {
               <div className="title">{todo.title}</div>
               <div className="description">{todo.description}</div>
             </div>
-            <div className="doneButton">
+            <div className="done-button">
               <button onClick={() => todoDone(todo.id)}> Done</button>
             </div>
             <div>
