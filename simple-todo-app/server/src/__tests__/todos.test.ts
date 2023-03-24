@@ -1,4 +1,5 @@
 import request from "supertest";
+import status from 'http-status';
 import { describe, expect, test } from "@jest/globals";
 import db from "../db";
 import app from "../app";
@@ -12,6 +13,39 @@ describe("GET /todos", () => {
   it("should respond with a 200 status code", async () => {
     debugger;
     const response = await request(app).get("/todos/user1");
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(status.OK);
   });
 });
+
+describe("POST /todos", () => {
+  it("should respond with a 200 status code", async () => {
+    const response = await request(app).post("/todos").send({
+      title: 'todo1',
+      description: 'description1',
+      status: 'pending',
+      username: 'user1'
+    });
+    expect(response.status).toBe(status.OK);
+  });
+});
+
+describe("POST /share", () => {
+  it("should respond with a 200 status code", async () => { 
+    const response = await request(app).post("/share").send({
+      todoId: 10, 
+      username: 'user2'
+    });
+    expect(response.status).toBe(status.OK);
+    debugger;
+  });
+});
+
+describe("PATCH /todos", () => {
+  it("should respond with a 200 status code", async () => { 
+    const response = await request(app).patch("/todos/1")
+    expect(response.status).toBe(status.OK);
+    debugger;
+  });
+});
+
+

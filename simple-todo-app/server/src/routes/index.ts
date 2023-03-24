@@ -3,7 +3,6 @@ import { addNewTodo,getAllTodosByUsername } from '../controller/todo.controller'
 import { getAllUsers, loginUser, registerUser } from '../controller/user.controller';
 import { updateTodoStatus } from '../controller/todo.controller';
 import { shareTodo } from '../controller/todo.controller';
-// import { getAllUsers } from '../controller/user';
 
 const router = Router();
 const express = require('express');
