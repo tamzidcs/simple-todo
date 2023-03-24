@@ -11,7 +11,6 @@ beforeEach(async () => {
 
 describe("GET /todos", () => {
   it("should respond with a 200 status code", async () => {
-    debugger;
     const response = await request(app).get("/todos/user1");
     expect(response.status).toBe(status.OK);
   });
@@ -36,7 +35,6 @@ describe("POST /share", () => {
       username: 'user2'
     });
     expect(response.status).toBe(status.OK);
-    debugger;
   });
 });
 
@@ -44,7 +42,6 @@ describe("PATCH /todos", () => {
   it("should respond with a 200 status code", async () => { 
     const response = await request(app).patch("/todos/1")
     expect(response.status).toBe(status.OK);
-    debugger;
   });
 });
 
