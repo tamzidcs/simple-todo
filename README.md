@@ -1,11 +1,34 @@
-<b>How to run:</b>
+# Simple ToDo App
+Simple ToDO app using React, Node, Express and Postgres.
+# How to run:
 
+# Database:
 1. Export the db(postgres) from 'todolist_db.sql'
     - Run(from powershell):
-    - psql -U username -d  todolist_db -f todolist_db.sql
+    ```
+        psql -U username -d  todolist_db -f todolist_db.sql
+    ```
 
 2. Update database(postgres) credentials in ./server/config.js
 
-3. Run 'npm install' on both server and client folder.
+# Server:
 
-4. Run 'npm start' on both server and client folder.
+1. Install packages:
+    ```cmd
+    npm install
+    ```
+2. Run the server:
+    ```cmd
+    npm start
+    ```
+
+# Client:
+
+1. Install packages:
+    ```cmd 
+    npm install
+    ```
+2. Run the react app:
+    ```cmd 
+    npm start
+    ```
