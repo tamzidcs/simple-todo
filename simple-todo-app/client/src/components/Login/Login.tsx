@@ -27,12 +27,12 @@ export const Login = () => {
     return (
         <div className='login-container'>
             <form onSubmit={login}>
-                <label className='userNameLabel'>Username</label>
-                <input className='userNameTextField' type='text' onChange={e => setData({...data,username:e.target.value})} />
-                <label className='passwordLabel'>Password</label>
-                <input className='passwordTextField' type='password' onChange={e => setData({...data,password:e.target.value})} />
-                <div className='loginButtonDiv'><input className='loginButton' type='submit' value='Login' /></div>
-                <div className='loginButtonDiv'><input className='loginButton' type='button' value='Signup' onClick={() => navigate('/signup')} /></div>
+                <label className='username-label'>Username</label>
+                <input className='username-textfield' type='text' onChange={e => setData({...data,username:e.target.value})} />
+                <label className='password-label'>Password</label>
+                <input className='password-textfield' type='password' onChange={e => setData({...data,password:e.target.value})} />
+                <div className='login-button-div'><input className='login-button' type='submit' value='Login' /></div>
+                <div className='login-button-div'><input className='login-button' type='button' value='Signup' onClick={() => navigate('/signup')} /></div>
             </form>
         </div>
     )

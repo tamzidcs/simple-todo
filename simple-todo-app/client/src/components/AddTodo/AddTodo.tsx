@@ -29,20 +29,20 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
   return (
     <div className="add-todo-container">
       <form onSubmit={addTodoHandler}>
-        <label className="titleLabel">Title</label>
+        <label className="title-label">Title</label>
         <input
-          className="titleTextField"
+          className="title-textfield"
           type="text"
           value={data.title}
           onChange={(e) => setData({ ...data, title: e.target.value })}
         />
-        <label className="descriptionLabel">Desciption</label>
+        <label className="description-label">Desciption</label>
         <textarea
-          className="descriptionTextField"
+          className="description-textfield"
           onChange={(e) => setData({ ...data, description: e.target.value })}
         />
-        <div className="addButtonDiv">
-          <input className="addButton" type="submit" value="Add" />
+        <div className="add-button-div">
+          <input className="add-button" type="submit" value="Add" />
         </div>
       </form>
     </div>
