@@ -1,10 +1,10 @@
 import express from 'express';
 import router from './routes';
-import cors from 'cors';
+import cors, { CorsOptions } from 'cors';
 
 const app = express();
-const optionsOrigin = 'http://localhost:3005';
-const options = {
+const optionsOrigin = 'http://localhost:3000';
+const options:CorsOptions = {
   origin: optionsOrigin,
 };
 

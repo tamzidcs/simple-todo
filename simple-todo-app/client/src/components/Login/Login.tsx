@@ -16,8 +16,7 @@ export const Login = () => {
     const login = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         if (data.username && data.password) {
-            User = data;
-            const result = await postLogin(User);
+            const result = await postLogin(data);
             if (result) {
                 localStorage.setItem('username', data.username);
                 navigate('/toDoList');
