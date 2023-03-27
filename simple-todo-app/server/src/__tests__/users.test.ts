@@ -4,7 +4,7 @@ import { describe, expect, test } from "@jest/globals";
 import db from "../db";
 import app from "../app";
 
-beforeEach(async () => {
+beforeAll(async () => {
   jest.clearAllMocks();
   await db.sync({ alter: true });
 });
@@ -34,6 +34,21 @@ describe("POST /login", () => {
       password: "123456",
     };
     const response = await request(app).post("/login").send(user);
+    expect(response.status).toEqual(status.OK);
+    const userResponse = response.body;
+    expect(userResponse).toEqual({
+      username: "user1",
+    });
+  });
+});
+
+describe("POST /users", () => {
+  it("should respond with a 200 status code", async () => {
+    const user = {
+      username: "user1",
+      password: "123456",
+    };
+    const response = await request(app).post("/users").send(user);
     expect(response.status).toEqual(status.OK);
     const userResponse = response.body;
     expect(userResponse).toEqual({
