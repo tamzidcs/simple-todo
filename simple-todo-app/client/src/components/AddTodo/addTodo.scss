@@ -2,17 +2,17 @@
     display: flex;
     margin: 0 auto;
     padding: 1vw;
-    width: 20vw;
+    width: min-content;
     color: black;
     background-color: lightblue;
 }
 
 .title-textfield {
-    width: 18vw;
+    width: 20vw;
 }
 
 .description-textfield {
-    width: 18vw
+    width: 20vw
 }
 
 .title-label {
@@ -29,8 +29,8 @@
     width: 6vw;
 }
 
-.add-button-div {
-    width: 15vw;
+.add-button-container {
     display: flex;
     justify-Content: right;
+    width: 20vw;
 }

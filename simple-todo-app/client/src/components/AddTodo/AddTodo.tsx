@@ -41,7 +41,7 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
           className="description-textfield"
           onChange={(e) => setData({ ...data, description: e.target.value })}
         />
-        <div className="add-button-div">
+        <div className="add-button-container">
           <input className="add-button" type="submit" value="Add" />
         </div>
       </form>
