@@ -48,3 +48,4 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
     </div>
   );
 };
+export default AddTodo;
