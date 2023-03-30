@@ -1,8 +1,7 @@
 .add-todo-container {
-    display: flex;
     margin: 5px auto;
-    padding: 1vw;
-    width: min-content;
+    padding: 2vw;
+    width: 25vw;
     color: black;
     background-color: lightblue;
 }
@@ -12,7 +11,7 @@
 }
 
 .description-textfield {
-    width: 20vw
+    width: 20vw;
 }
 
 .title-label {
@@ -33,4 +32,9 @@
     display: flex;
     justify-Content: right;
     width: 20vw;
+}
+
+.add-todo-form {
+    display: flex;
+    flex-direction: column;
 }

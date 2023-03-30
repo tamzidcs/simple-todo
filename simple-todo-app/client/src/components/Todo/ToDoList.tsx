@@ -57,8 +57,8 @@ export const ToDoList = () => {
       <AddTodo taskListUpdate={taskListUpdate} />
       <div className="todolist">
         {data.map((todo) => (
-          <div key={todo.id}>
-            <div className="todos">
+          <div className="todo-container" key={todo.id}>
+            <div className="todo">
               <div className="title">{todo.title}</div>
               <div className="description">{todo.description}</div>
             </div>

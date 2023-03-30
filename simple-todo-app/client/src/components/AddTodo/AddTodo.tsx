@@ -28,7 +28,7 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
 
   return (
     <div className="add-todo-container">
-      <form onSubmit={addTodoHandler}>
+      <form className="add-todo-form" onSubmit={addTodoHandler}>
         <label className="title-label">Title</label>
         <input
           className="title-textfield"
