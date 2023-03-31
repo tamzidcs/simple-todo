@@ -8,17 +8,15 @@
     padding-left: 0.5vw;
     color: black;
     background-color: darkgray;
-    width: 20vw;
+    height: 20px;
     font-weight: bold;
 }
 
 .description {
-    color: black;
-    width: 20vw;
-}
-
-.todo {
-    padding-top: 5vh;
+    color: rgb(255, 255, 255);
+    background-color: rgb(100,100,100);
+    height: 100px;
+    padding-left: 0.5vw;
 }
 
 .done-button {
@@ -33,4 +31,8 @@
     width: 25vw;
     padding: 2vw;
     margin: 0px auto;
+}
+
+.todo-container {
+    padding-bottom: 30px;
 }
