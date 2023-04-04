@@ -28,7 +28,7 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
 
   return (
     <div className="add-todo-container">
-      <form onSubmit={addTodoHandler}>
+      <form className="add-todo-form" onSubmit={addTodoHandler}>
         <label className="title-label">Title</label>
         <input
           className="title-textfield"
@@ -41,10 +41,11 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
           className="description-textfield"
           onChange={(e) => setData({ ...data, description: e.target.value })}
         />
-        <div className="add-button-div">
+        <div className="add-button-container">
           <input className="add-button" type="submit" value="Add" />
         </div>
       </form>
     </div>
   );
 };
+export default AddTodo;

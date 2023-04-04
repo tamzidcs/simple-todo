@@ -1,10 +1,3 @@
-.todolist {
-    padding-top: 10vh;
-    display: inline-block;
-    margin-left: 40vw;
-    width: 20vw;
-}
-
 .to-do-list-container {
     display: inline-block;
     width: 100vw;
@@ -15,20 +8,47 @@
     padding-left: 0.5vw;
     color: black;
     background-color: darkgray;
-    width: 20vw;
+    width: 300px;
+    height: 20px;
     font-weight: bold;
 }
 
 .description {
-    color: black;
-    width: 20vw;
+    color: rgb(255, 255, 255);
+    background-color: rgb(100,100,100);
+    height: 100px;
+    padding-left: 0.5vw;
 }
 
-.todos {
-    padding-top: 5vh;
+.todolist {
+    display: flex;
+    flex-direction: column;
+    background-color: lightsteelblue;
+    width: 25vw;
+    padding: 2vw;
+    margin: 0px auto;
 }
 
-.doneButton {
-    margin-left: 0vw;
-    margin: 1vh;
+.todo-container {
+    padding-bottom: 30px;
+}
+
+.todo {
+    margin-bottom: 10px;
+}
+
+.todo-top {
+    display: flex;
+}
+
+.done-button {
+    margin-left: 5px;
+}
+
+.shareToDo {
+    float: right;
+}
+
+.user-name-input {
+    width: 150px;
 }

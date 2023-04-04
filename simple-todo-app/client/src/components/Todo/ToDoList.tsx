@@ -45,9 +45,9 @@ export const ToDoList = () => {
   };
 
   const todoShare = async (todoId: any, userName: string) => {
-    const result = await postTodoShare(todoId,userName)
-    if(result) {
-        alert('Todo shared with '+userName);
+    const result = await postTodoShare(todoId, userName)
+    if (result) {
+      alert('Todo shared with ' + userName);
     }
   };
 
@@ -57,16 +57,19 @@ export const ToDoList = () => {
       <AddTodo taskListUpdate={taskListUpdate} />
       <div className="todolist">
         {data.map((todo) => (
-          <div key={todo.id}>
-            <div className="todos">
-              <div className="title">{todo.title}</div>
+          <div className="todo-container" key={todo.id}>
+            <div className="todo">
+              <div className="todo-top">
+                <div className="title">{todo.title}</div>
+                <div className="done-button">
+                  <button onClick={() => todoDone(todo.id)}> Done</button>
+                </div>
+              </div>
               <div className="description">{todo.description}</div>
             </div>
-            <div className="done-button">
-              <button onClick={() => todoDone(todo.id)}> Done</button>
-            </div>
-            <div>
+            <div className="shareToDo">
               <input
+                className="user-name-input"
                 list="userNameList"
                 type="text"
                 placeholder="select user"
@@ -90,3 +93,4 @@ export const ToDoList = () => {
     </div>
   );
 };
+export default ToDoList;
