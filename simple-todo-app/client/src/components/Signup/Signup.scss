@@ -1,36 +1,48 @@
+$usernameTextfieldWidth: 200px;
+$passwordTextfieldWidth: 280px;
+$usernameLabelWidth: 200px;
+$passwordLabelWidth: 200px;
+$signupButtonMarginTop: 20px;
+$signupButtonPadding: 10px;
+$signupButtonWidth: 100px;
+$signupButtonDiv: 222px;
+$signupContainerPadding: 100px;
+$signupContainerWidth: 250px;
+$signupContainerBackgroundColor: lightgreen;
+
 .signup-container {
     display: inline-block;
-    margin-left: 30vw;
-    padding: 7vw;
-    width: 20vw;
+    margin: auto 30vw;
+    padding: $signupContainerPadding;
+    width: $signupContainerWidth;
     color: black;
-    background-color: lightgreen;
+    background-color: $signupContainerBackgroundColor;
 }
 
 .username-textfield {
-    width: 15vw;
+    width: $usernameTextfieldWidth;
 }
 
 .password-textfield {
-    width: 15vw;
+    width: $passwordTextfieldWidth;
 }
 
 .username-label {
-    width: 10vw;
+    width: $usernameLabelWidth;
 }
 
 .password-label {
-    width: 10vw;
+    width: $passwordLabelWidth;
 }
 
 .signup-button {
-    margin-top: 2vh;
-    padding: 1vh;
-    width: 10vw;
+    margin-top: $signupButtonMarginTop;
+    padding: $signupButtonPadding;
+    width: $signupButtonWidth;
 }
 
 .signup-button-div {
-    width: 15vw;
+    width: $signupButtonDiv;
     display: flex;
     justify-content: right;
 }

@@ -1,0 +1,54 @@
+$addToDoContainerPadding: 30px;
+$addToDoContainerWidth: 355px;
+$addToDoContainerColor: black;
+$addToDoContainerBackgroundColor: lightblue;
+$titleTextField: 285px;
+$descriptionTextField: 285px;
+$titleLabelWidth: 285px;
+$titleDescriptionWidth: 285px;
+$addButtonContainerWidth: 285px;
+$addButtonWidth: 80px;
+$addButtonPadding: 10px;
+$addButtonMarginTop:10px;
+
+.add-todo-container {
+    margin: 5px auto;
+    padding: $addToDoContainerPadding;
+    width: $addToDoContainerWidth;
+    color: $addToDoContainerColor;
+    background-color: $addToDoContainerBackgroundColor;
+}
+
+.title-textfield {
+    width: $titleTextField;
+}
+
+.description-textfield {
+    width: $descriptionTextField;
+}
+
+.title-label {
+    width: $titleLabelWidth;
+}
+
+.description-label {
+    width: $titleDescriptionWidth;
+}
+
+.add-button {
+    margin-top: $addButtonMarginTop;
+    padding: $addButtonPadding;
+    width: $addButtonWidth;
+}
+
+.add-button-container {
+    display: flex;
+    justify-Content: right;
+    width: $addButtonContainerWidth;
+}
+
+.add-todo-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

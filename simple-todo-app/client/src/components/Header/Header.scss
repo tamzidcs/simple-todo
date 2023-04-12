@@ -1,20 +1,26 @@
+$headerContainerWidth: 100vw;
+$headerHeight: 65px;
+$signoutButtonContainerMarginRight: 140px; 
+$usernameContainerMarginRight: 140px;
+$usernameContainerMarginBottom: 10px;
+
 .header-container {
-    width: 100vw;
-    height: 8vh;
+    width: $headerContainerWidth;
+    height: $headerHeight;
     color: black;
     background-color: lightgreen;
 }
 
-.signout {
+.signout-button-container {
     display: flex;
     justify-content: right;
-    margin-right: 10vw;
+    margin-right: $signoutButtonContainerMarginRight; //ToDo: better way to set the margin or spacing
 }
 
-.username {
+.username-container {
     display: flex;
     justify-content: right;
-    margin-right: 10vw;
-    margin-bottom: 0.5vh;
+    margin-right: $usernameContainerMarginRight;
+    margin-bottom: $usernameContainerMarginBottom;
     font-weight: bold;
 }

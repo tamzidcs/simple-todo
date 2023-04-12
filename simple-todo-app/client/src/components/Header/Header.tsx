@@ -11,8 +11,8 @@ export const  Header = () => {
     
     return(
         <div className='header-container'>
-            <div className='username'>{localStorage.getItem('username')}</div>
-            <div className='signout'><button onClick={signout}>Signout</button></div>
+            <div className='username-container'>{localStorage.getItem('username')}</div>
+            <div className='signout-button-container'><button onClick={signout}>Signout</button></div>
         </div>
     );
 };
