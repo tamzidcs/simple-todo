@@ -1,36 +1,48 @@
+$loginContainerMarginLeft: 250px;
+$loginContainerPadding: 100px;
+$loginContainerWidth: 250px;
+$usernameTextfieldWidth: 250px;
+$passwordTextfieldWidth: 250px;
+$loginButtonWidth: 120px;
+$userNameLabelWidth: 200px;
+$passwordLabelWidth: 200px;
+$loginButtonPadding: 10px;
+$loginButtonMarginTop: 10px;
+$loginButtonDivWidth: 250px;
+
 .login-container {
     display: inline-block;
-    margin-left: 30vw;
-    padding: 7vw;
-    width: 20vw;
+    margin: auto 30vw;
+    padding: $loginContainerPadding;
+    width: $loginContainerWidth;
     color: black;
     background-color: lightgreen;
 }
 
 .username-textfield {
-    width: 15vw;
+    width: $usernameTextfieldWidth;
 }
 
 .password-textfield {
-    width: 15vw;
+    width: $passwordTextfieldWidth;
 }
 
 .username-label {
-    width: 10vw;
+    width: $userNameLabelWidth;
 }
 
 .password-label {
-    width: 10vw;
+    width: $passwordLabelWidth;
 }
 
 .login-button {
-    margin-top: 2vh;
-    padding: 1vh;
-    width: 10vw;
+    margin-top: $loginButtonMarginTop;
+    padding: $loginButtonPadding;
+    width: $loginButtonWidth;
 }
 
 .login-button-div {
-    width: 15vw;
+    width: $loginButtonDivWidth;
     display: flex;
     justify-content: right;
 }

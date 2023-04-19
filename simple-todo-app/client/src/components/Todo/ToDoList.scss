@@ -1,40 +1,54 @@
+$toDoListContainerWidth: 100vw;
+$toDoListContainerMarginBottom: 100px;
+$titleWidth: 300px;
+$titleHeight: 20px;
+$titlePaddingLeft: 10px;
+$descriptionHeight: 100px;
+$descriptionPaddingLeft: 10px;
+$todolistWidth: 355px;
+$todolistPadding: 30px;
+$todoContainerPaddingBottom: 30px;
+$todoMarginBottom: 10px;
+$doneButtonMarginLeft: 5px;
+$userNameInputWidth: 150px;
+
 .to-do-list-container {
     display: inline-block;
-    width: 100vw;
-    margin-bottom: 15vh;
+    width: $toDoListContainerWidth;
+    margin-bottom: $toDoListContainerMarginBottom;
 }
 
 .title {
-    padding-left: 0.5vw;
+    padding-left: $titlePaddingLeft;
     color: black;
     background-color: darkgray;
-    width: 300px;
-    height: 20px;
+    width: $titleWidth;
+    height: $titleHeight;
     font-weight: bold;
 }
 
 .description {
     color: rgb(255, 255, 255);
     background-color: rgb(100,100,100);
-    height: 100px;
-    padding-left: 0.5vw;
+    height: $descriptionHeight;
+    padding-left: $descriptionPaddingLeft;
 }
 
 .todolist {
     display: flex;
     flex-direction: column;
     background-color: lightsteelblue;
-    width: 25vw;
-    padding: 2vw;
+    width: $todolistWidth;
+    padding: $todolistPadding;
     margin: 0px auto;
 }
 
 .todo-container {
-    padding-bottom: 30px;
+    padding-bottom: $todoContainerPaddingBottom;
 }
 
 .todo {
-    margin-bottom: 10px;
+    margin-bottom: $todoMarginBottom;
 }
 
 .todo-top {
@@ -42,7 +56,7 @@
 }
 
 .done-button {
-    margin-left: 5px;
+    margin-left: $doneButtonMarginLeft;
 }
 
 .shareToDo {
@@ -50,5 +64,5 @@
 }
 
 .user-name-input {
-    width: 150px;
+    width: $userNameInputWidth;
 }

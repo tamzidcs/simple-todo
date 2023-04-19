@@ -1,37 +1,50 @@
+$addToDoContainerPadding: 30px;
+$addToDoContainerWidth: 355px;
+$addToDoContainerColor: black;
+$addToDoContainerBackgroundColor: lightblue;
+$titleTextField: 285px;
+$descriptionTextField: 285px;
+$titleLabelWidth: 285px;
+$titleDescriptionWidth: 285px;
+$addButtonContainerWidth: 285px;
+$addButtonWidth: 80px;
+$addButtonPadding: 10px;
+$addButtonMarginTop:10px;
+
 .add-todo-container {
     margin: 5px auto;
-    padding: 2vw;
-    width: 25vw;
-    color: black;
-    background-color: lightblue;
+    padding: $addToDoContainerPadding;
+    width: $addToDoContainerWidth;
+    color: $addToDoContainerColor;
+    background-color: $addToDoContainerBackgroundColor;
 }
 
 .title-textfield {
-    width: 20vw;
+    width: $titleTextField;
 }
 
 .description-textfield {
-    width: 20vw;
+    width: $descriptionTextField;
 }
 
 .title-label {
-    width: 20vw;
+    width: $titleLabelWidth;
 }
 
 .description-label {
-    width: 20vw;
+    width: $titleDescriptionWidth;
 }
 
 .add-button {
-    margin-top: 2vh;
-    padding: 1vh;
-    width: 6vw;
+    margin-top: $addButtonMarginTop;
+    padding: $addButtonPadding;
+    width: $addButtonWidth;
 }
 
 .add-button-container {
     display: flex;
     justify-Content: right;
-    width: 20vw;
+    width: $addButtonContainerWidth;
 }
 
 .add-todo-form {
