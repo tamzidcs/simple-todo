@@ -12,7 +12,7 @@ const sequelizeConf = {
     dialect: process.env.DB_DIALECT,
     logging: false
 }
-debugger;
+
 const sequelize = new Sequelize(sequelizeConf.database,sequelizeConf.user,sequelizeConf.password , {
     host: sequelizeConf.host,
     dialect: sequelizeConf.dialect,
