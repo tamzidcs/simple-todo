@@ -1,8 +1,11 @@
 $loginContainerMarginLeft: 250px;
 $loginContainerPadding: 100px;
-$loginContainerWidth: 250px;
+$loginContainerWidth: 100vw;
+$loginFormBackgroundColor: lightGreen;
 $usernameTextfieldWidth: 250px;
 $passwordTextfieldWidth: 250px;
+$loginFormWidth: 250px;
+$loginFormPadding: 30px;
 $loginButtonWidth: 120px;
 $userNameLabelWidth: 200px;
 $passwordLabelWidth: 200px;
@@ -11,16 +14,22 @@ $loginButtonMarginTop: 10px;
 $loginButtonDivWidth: 250px;
 
 .login-container {
-    display: inline-block;
-    margin: auto 30vw;
-    padding: $loginContainerPadding;
+    display: flex;
+    justify-content: center;
+    padding-top: $loginContainerPadding;
+    padding-bottom: $loginContainerPadding;
     width: $loginContainerWidth;
     color: black;
-    background-color: lightgreen;
+}
+
+.login-form {
+    width: $loginFormWidth;
+    background-color: $loginFormBackgroundColor;
+    padding: $loginFormPadding;
 }
 
 .username-textfield {
-    width: $usernameTextfieldWidth;
+    width: $usernameTextfieldWidth; 
 }
 
 .password-textfield {

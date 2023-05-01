@@ -26,7 +26,7 @@ export const Login = () => {
 
     return (
         <div className='login-container'>
-            <form onSubmit={login}>
+            <form className='login-form' onSubmit={login}>
                 <label className='username-label'>Username</label>
                 <input className='username-textfield' type='text' onChange={e => setData({...data,username:e.target.value})} />
                 <label className='password-label'>Password</label>
