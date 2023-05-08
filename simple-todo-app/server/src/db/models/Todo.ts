@@ -10,7 +10,7 @@ import TodoUser from "./TodoUser";
 import User from "./User";
 
 @Table({
-  timestamps: true,
+  timestamps: false,
 })
 export default class Todo extends Model {
   @Column({
