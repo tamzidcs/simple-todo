@@ -13,10 +13,14 @@ const sequelizeConf = {
     logging: false
 }
 
-const sequelize = new Sequelize(sequelizeConf.database,sequelizeConf.user,sequelizeConf.password , {
+const sequelize = new Sequelize({
+    database: sequelizeConf.database,
+    username: sequelizeConf.user,
+    password: sequelizeConf.password,
     host: sequelizeConf.host,
     dialect: sequelizeConf.dialect,
-    logging: sequelizeConf.logging
+    logging: sequelizeConf.logging,
+    models: [User,Todo,TodoUser]
 });
 sequelize.addModels([Todo,User,TodoUser]);
 export default sequelize;
