@@ -19,7 +19,7 @@ Simple ToDO app using React, Node, Express and Postgres.
     ```
 2. Run the server:
     ```cmd
-    npm start
+    npm run dev
     ```
 
 # Client:
