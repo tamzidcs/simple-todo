@@ -12,25 +12,30 @@ Create a .env file inside server folder. Follow the template bellow and replace 
     LOG_LEVEL=xxx
     NODE_ENV=xxx
   ```
+
 ## Installation:
 ### Server:
 
 1. Install packages:
-    ```cmd
+```cmd
     npm install
-    ```
-2. Run the server:
-    ```cmd
+```
+2. Run database scripts.
+```cmd
+    npm run db
+```
+3. Run the server:
+```cmd
     npm run dev
-    ```
+```
 
 ### Client:
 
 1. Install packages:
-    ```cmd 
+```cmd 
     npm install
-    ```
+```
 2. Run the react app:
-    ```cmd 
+```cmd 
     npm start
-    ```
+```
