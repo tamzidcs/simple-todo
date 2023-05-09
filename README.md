@@ -12,14 +12,6 @@ Create a .env file inside server folder. Follow the template bellow and replace 
     LOG_LEVEL=xxx
     NODE_ENV=xxx
   ```
-# Database:
-1. Export the db(postgres) from 'todolist_db.sql'
-    - Run(from powershell):
-    ```
-        psql -U username -d  todolist_db -f todolist_db.sql
-    ```
-
-2. Update database(postgres) credentials in ./server/config.js
 
 # Server:
 
