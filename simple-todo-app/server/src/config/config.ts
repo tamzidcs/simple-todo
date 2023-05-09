@@ -6,7 +6,7 @@ export const development =  {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
-    port: 5432
+    port: process.env.DB_PORT
 }
 
 export const test =  {
@@ -15,7 +15,7 @@ export const test =  {
   database: process.env.DB_NAME,
   host: process.env.DB_HOST,
   dialect: process.env.DB_DIALECT,
-  port: 5432
+  port: process.env.DB_PORT
 }
 
 export const production =  {
@@ -24,6 +24,6 @@ export const production =  {
   database: process.env.DB_NAME,
   host: process.env.DB_HOST,
   dialect: process.env.DB_DIALECT,
-  port: 5432
+  port: process.env.DB_PORT
 }
 
