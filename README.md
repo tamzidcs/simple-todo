@@ -8,9 +8,9 @@ Create a .env file inside server folder. Follow the template bellow and replace 
     DB_HOST=xxx
     DB_USERNAME=xxx
     DB_PASSWORD=xxx
-    DB_DIALECT=xxx
-    LOG_LEVEL=xxx
-    NODE_ENV=xxx
+    DB_DIALECT='postgres'
+    LOG_LEVEL='debug'
+    NODE_ENV='development'
   ```
 
 # Server:
