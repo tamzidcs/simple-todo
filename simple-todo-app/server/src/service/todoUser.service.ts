@@ -5,7 +5,10 @@ import TodoInput from '../interface/todo';
 import { where } from "sequelize";
 import TodoUserInput from "../interface/todoUser";
 
-export async function addNewTodoUser(todoId: number, userId: number): Promise<TodoUser> {
+export async function addNewTodoUser(
+  todoId: number,
+  userId: number
+): Promise<TodoUser> {
   const todoUser = new TodoUser();
   todoUser.userId = todoId;
   todoUser.todoId = userId;
