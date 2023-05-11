@@ -1,5 +1,6 @@
 import { error } from "console";
 import User from "../db/models/User";
+import * as bcrypt from "bcrypt";
 
 interface LoginResponse {
   username: string;
@@ -9,18 +10,29 @@ interface RegisterResponse {
   username: string;
 }
 
-export async function registerUser(newUser: User): Promise<RegisterResponse> {
+async function createNewUser(username: string, password: string) {
   const user = new User({
-    username: newUser.username,
-    password: newUser.password,
+    username: username,
+    password: password,
   });
   try {
     await user.save();
-  }
-  catch(error) {
+  } catch (error) {
     console.log(error);
   }
-  return { username: user.username };
+}
+
+async function validatePassord(userPassword: string, loginPassword: string): Promise<Boolean> {
+  const valid = await bcrypt.compare(loginPassword,userPassword);
+  return valid;
+}
+
+export async function registerUser(newUser: User): Promise<RegisterResponse> {
+  const saltOrRounds = 10;
+  bcrypt.hash(newUser.password, saltOrRounds, (err, hash) => {
+    return createNewUser(newUser.username, hash);
+  });
+  return { username: newUser.username };
 }
 
 export async function loginUser(user: User): Promise<LoginResponse | null> {
@@ -28,10 +40,11 @@ export async function loginUser(user: User): Promise<LoginResponse | null> {
   if (!checkUser) {
     throw new Error("user not found");
   } else if (checkUser !== null) {
-    if (user.password === checkUser.password) {
+    const valid = await validatePassord(checkUser.password, user.password);
+    if(valid) {
       return { username: checkUser?.username };
     }
-    return { username: user.username };
+    throw new Error("login failed");
   }
   throw new Error("login failed");
 }
