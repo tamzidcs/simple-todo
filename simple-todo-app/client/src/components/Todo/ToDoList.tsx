@@ -57,9 +57,9 @@ export const ToDoList = () => {
       <AddTodo taskListUpdate={taskListUpdate} />
       <div className="todolist">
         {data.map((todo) => (
-          <div className="todo-container" key={todo.id}>
+          <div className="todo-container" key={todo.id} data-testid='todo'>
             <div className="todo">
-              <div className="todo-top" data-testid='todo'>
+              <div className="todo-top">
                 <div className="title">{todo.title}</div>
                 <div className="done-button">
                   <button onClick={() => todoDone(todo.id)}> Done</button>
