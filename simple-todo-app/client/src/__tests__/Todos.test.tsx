@@ -31,9 +31,6 @@ const dummyTodos = [
     status: "pending"
   },
 ];
-const setLocalStorage = (id: string, data: { data: string; }) => {
-  window.localStorage.setItem(id, JSON.stringify(data));
-};
 
 it("todos list", async () => {
   localStorage.setItem('username', 'user1');
