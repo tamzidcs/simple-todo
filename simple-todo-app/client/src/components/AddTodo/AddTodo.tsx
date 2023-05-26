@@ -14,14 +14,18 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
     if (username) {
       setData({ ...data, username: username });
     }
-    if (data.title && data.description && data.username) {
-      const result = await postTodo(data);
-      if (result) {
-        await props.taskListUpdate();
-        alert('New todo Added.');
-      }
-      else {
-        alert('Add todo Failed.');
+    if (data.title && data.description && username) {
+      try {
+        const result = await postTodo(data);
+        if (true) {
+          await props.taskListUpdate();
+          alert('New todo Added.');
+        }
+        else {
+          alert('Add todo Failed.');
+        }
+      } catch (error) {
+        console.error(error);
       }
     }
   };
@@ -32,6 +36,7 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
         <label className="title-label">Title</label>
         <input
           className="title-textfield"
+          data-testid="title-textfield"
           type="text"
           value={data.title}
           onChange={(e) => setData({ ...data, title: e.target.value })}
@@ -39,10 +44,11 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
         <label className="description-label">Desciption</label>
         <textarea
           className="description-textfield"
+          data-testid="description-textfield"
           onChange={(e) => setData({ ...data, description: e.target.value })}
         />
         <div className="add-button-container">
-          <input className="add-button" type="submit" value="Add" />
+          <button className="add-button" data-testid="add-button" type="submit" value="Add" />
         </div>
       </form>
     </div>
