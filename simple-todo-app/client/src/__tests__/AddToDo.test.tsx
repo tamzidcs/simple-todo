@@ -4,7 +4,6 @@ import AddToDo from '../components/AddTodo/AddTodo';
 import axios from "axios";
 import { render, waitFor, screen, fireEvent } from "@testing-library/react";
 import { ToDoList } from '../components/Todo/ToDoList';
-import userEvent from '@testing-library/user-event';
 import { postTodo } from '../api/todos';
 import { todo } from '../interfaces/todo';
 
@@ -43,10 +42,10 @@ describe("AddToDo", () => {
       await waitFor(() => fireEvent.change(descriptionTextField, { target: { value: 'description1' } }));
       await waitFor(() => fireEvent.click(addButton));
     });
-    it("calls the prop function to update list", async () => {
+    it("title textfield has the correct value", async () => {
       expect(titleTextField.value).toBe('title1')
     })
-    it("calls the prop function to update list", async () => {
+    it("description textfield has the correct value", async () => {
       expect(descriptionTextField.value).toBe('description1')
     })
     it("calls the prop function to update list", async () => {
