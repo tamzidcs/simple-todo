@@ -1,9 +1,7 @@
-import { shallow } from 'enzyme';
 import React from 'react';
 import AddToDo from '../components/AddTodo/AddTodo';
 import axios from "axios";
 import { render, waitFor, screen, fireEvent } from "@testing-library/react";
-import { ToDoList } from '../components/Todo/ToDoList';
 import { postTodo } from '../api/todos';
 import { todo } from '../interfaces/todo';
 
