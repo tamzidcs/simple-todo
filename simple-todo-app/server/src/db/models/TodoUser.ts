@@ -8,9 +8,7 @@ import {
   } from 'sequelize-typescript';
   import User from './User';
   import Todo from './Todo';
-  @Table({
-    timestamps: false,
-  })
+@Table
 export default class TodoUser extends Model {
   @ForeignKey(() => User)
   @Column({

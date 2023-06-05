@@ -8,8 +8,7 @@
     "start": "node dist/server.js",
     "dev": "concurrently \"npx tsc  --watch\" \"nodemon  -q dist/server.js\"",
     "start:debug:ts": "node --inspect --require ts-node/register src/server.ts",
-    "test": "jest",
-    "db":"sequelize db:create && sequelize db:migrate"
+    "test": "jest"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

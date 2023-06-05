@@ -1,4 +1,3 @@
-import { error } from "console";
 import User from "../db/models/User";
 
 interface LoginResponse {
@@ -14,11 +13,9 @@ export async function registerUser(newUser: User): Promise<RegisterResponse> {
     username: newUser.username,
     password: newUser.password,
   });
-  try {
-    await user.save();
-  }
-  catch(error) {
-    console.log(error);
+  const savedUser = await user.save();
+  if (!savedUser) {
+    throw new Error("Invalid user");
   }
   return { username: user.username };
 }
