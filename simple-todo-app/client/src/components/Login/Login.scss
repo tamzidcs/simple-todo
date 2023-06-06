@@ -21,7 +21,7 @@ $loginButtonBorder: 0px;
 $loginButtonTextFontWeight: bold;
 $loginHeaderFontSize: 35px;
 $loginHeaderFontWeight: bold;
-$loginHeaderFontPaddingBottom: 20px;
+$loginHeaderPaddingBottom: 20px;
 
 .login-container {
     display: flex;
@@ -68,5 +68,5 @@ $loginHeaderFontPaddingBottom: 20px;
 .login-header {
     font-size: $loginHeaderFontSize;
     font-weight:  $loginHeaderFontWeight;
-    padding-bottom: $loginHeaderFontPaddingBottom;
+    padding-bottom: $loginHeaderPaddingBottom;
 }
