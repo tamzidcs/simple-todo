@@ -1,17 +1,27 @@
 $loginContainerMarginLeft: 250px;
 $loginContainerPadding: 100px;
 $loginContainerWidth: 100vw;
-$loginFormBackgroundColor: lightGreen;
-$usernameTextfieldWidth: 250px;
-$passwordTextfieldWidth: 250px;
-$loginFormWidth: 250px;
-$loginFormPadding: 30px;
+$loginFormBackgroundColor: cadetblue;
+$loginTextfieldWidth: 250px;
+$loginTextfieldHeight: 30px;
+$loginFormWidth: 260px;
+$loginFormHeight: 250px;
+$loginFormPaddingLeft: 70px;
+$loginFormPaddingRight: 70px;
+$loginFormPaddingTop: 50px;
+$loginFormPaddingBottom: 50px;
 $loginButtonWidth: 120px;
-$userNameLabelWidth: 200px;
-$passwordLabelWidth: 200px;
+$loginLabelWidth: 200px;
 $loginButtonPadding: 10px;
 $loginButtonMarginTop: 10px;
 $loginButtonDivWidth: 250px;
+$loginButtonColor: burlywood;
+$loginButtonTextColor: black;
+$loginButtonBorder: 0px;
+$loginButtonTextFontWeight: bold;
+$loginHeaderFontSize: 35px;
+$loginHeaderFontWeight: bold;
+$loginHeaderPaddingBottom: 20px;
 
 .login-container {
     display: flex;
@@ -25,33 +35,38 @@ $loginButtonDivWidth: 250px;
 .login-form {
     width: $loginFormWidth;
     background-color: $loginFormBackgroundColor;
-    padding: $loginFormPadding;
+    padding-left: $loginFormPaddingLeft;
+    padding-right: $loginFormPaddingRight;
+    padding-top: $loginFormPaddingTop;
+    padding-bottom: $loginFormPaddingBottom;
 }
 
-.username-textfield {
-    width: $usernameTextfieldWidth; 
+.login-textfield {
+    width: $loginTextfieldWidth;
+    height: $loginTextfieldHeight; 
 }
 
-.password-textfield {
-    width: $passwordTextfieldWidth;
-}
-
-.username-label {
-    width: $userNameLabelWidth;
-}
-
-.password-label {
-    width: $passwordLabelWidth;
+.login-label {
+    width: $loginLabelWidth;
 }
 
 .login-button {
+    background-color: $loginButtonColor;
+    color: $loginButtonTextColor;
     margin-top: $loginButtonMarginTop;
     padding: $loginButtonPadding;
     width: $loginButtonWidth;
+    border: $loginButtonBorder;
+    font-weight: $loginButtonTextFontWeight;
 }
 
 .login-button-div {
-    width: $loginButtonDivWidth;
     display: flex;
     justify-content: right;
+}
+
+.login-header {
+    font-size: $loginHeaderFontSize;
+    font-weight:  $loginHeaderFontWeight;
+    padding-bottom: $loginHeaderPaddingBottom;
 }
