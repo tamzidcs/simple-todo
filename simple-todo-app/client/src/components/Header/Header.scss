@@ -14,7 +14,7 @@ $usernameContainerMarginBottom: 10px;
 .signout-button-container {
     display: flex;
     justify-content: right;
-    margin-right: $signoutButtonContainerMarginRight;
+    margin-right: $signoutButtonContainerMarginRight; //ToDo: better way to set the margin or spacing
 }
 
 .username-container {
