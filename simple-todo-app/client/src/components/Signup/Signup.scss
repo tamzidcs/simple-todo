@@ -1,48 +1,72 @@
-$usernameTextfieldWidth: 200px;
-$passwordTextfieldWidth: 280px;
-$usernameLabelWidth: 200px;
-$passwordLabelWidth: 200px;
-$signupButtonMarginTop: 20px;
-$signupButtonPadding: 10px;
-$signupButtonWidth: 100px;
-$signupButtonDiv: 222px;
+$signupContainerMarginLeft: 250px;
 $signupContainerPadding: 100px;
-$signupContainerWidth: 250px;
-$signupContainerBackgroundColor: lightgreen;
+$signupContainerWidth: 100vw;
+$signupFormBackgroundColor: cadetblue;
+$signupTextfieldWidth: 250px;
+$signupTextfieldHeight: 30px;
+$signupFormWidth: 260px;
+$signupFormHeight: 250px;
+$signupFormPaddingLeft: 70px;
+$signupFormPaddingRight: 70px;
+$signupFormPaddingTop: 50px;
+$signupFormPaddingBottom: 50px;
+$signupButtonWidth: 120px;
+$signupLabelWidth: 200px;
+$signupButtonPadding: 10px;
+$signupButtonMarginTop: 10px;
+$signupButtonDivWidth: 250px;
+$signupButtonColor: burlywood;
+$signupButtonTextColor: black;
+$signupButtonBorder: 0px;
+$signupButtonTextFontWeight: bold;
+$signupHeaderFontSize: 35px;
+$signupHeaderFontWeight: bold;
+$signupHeaderPaddingBottom: 20px;
 
 .signup-container {
-    display: inline-block;
-    margin: auto 30vw;
-    padding: $signupContainerPadding;
+    display: flex;
+    justify-content: center;
+    padding-top: $signupContainerPadding;
+    padding-bottom: $signupContainerPadding;
     width: $signupContainerWidth;
     color: black;
-    background-color: $signupContainerBackgroundColor;
 }
 
-.username-textfield {
-    width: $usernameTextfieldWidth;
+.signup-form {
+    width: $signupFormWidth;
+    background-color: $signupFormBackgroundColor;
+    padding-left: $signupFormPaddingLeft;
+    padding-right: $signupFormPaddingRight;
+    padding-top: $signupFormPaddingTop;
+    padding-bottom: $signupFormPaddingBottom;
 }
 
-.password-textfield {
-    width: $passwordTextfieldWidth;
+.signup-textfield {
+    width: $signupTextfieldWidth;
+    height: $signupTextfieldHeight; 
 }
 
-.username-label {
-    width: $usernameLabelWidth;
-}
-
-.password-label {
-    width: $passwordLabelWidth;
+.signup-label {
+    width: $signupLabelWidth;
 }
 
 .signup-button {
+    background-color: $signupButtonColor;
+    color: $signupButtonTextColor;
     margin-top: $signupButtonMarginTop;
     padding: $signupButtonPadding;
     width: $signupButtonWidth;
+    border: $signupButtonBorder;
+    font-weight: $signupButtonTextFontWeight;
 }
 
 .signup-button-div {
-    width: $signupButtonDiv;
     display: flex;
     justify-content: right;
+}
+
+.signup-header {
+    font-size: $signupHeaderFontSize;
+    font-weight:  $signupHeaderFontWeight;
+    padding-bottom: $signupHeaderPaddingBottom;
 }
