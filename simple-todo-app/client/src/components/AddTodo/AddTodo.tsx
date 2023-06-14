@@ -5,23 +5,25 @@ import "./AddTodo.scss";
 import { postTodo } from "../../api/todos"
 
 export const AddTodo = (props: { taskListUpdate: () => void }) => {
-  const newTodo: todo = { title: "", description: "", username: "" };
+  const username = String(localStorage.getItem('username'));
+  const newTodo: todo = { title: "", description: "", username: username };
   const [data, setData] = useState<todo>(newTodo);
-  const username = localStorage.getItem('username');
 
   const addTodoHandler = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    if (username) {
-      setData({ ...data, username: username });
-    }
+
     if (data.title && data.description && data.username) {
-      const result = await postTodo(data);
-      if (result) {
-        await props.taskListUpdate();
-        alert('New todo Added.');
-      }
-      else {
-        alert('Add todo Failed.');
+      try {
+        const result = await postTodo(data);
+        if (result) {
+          await props.taskListUpdate();
+          alert('New todo Added.');
+        }
+        else {
+          alert('Add todo Failed.');
+        }
+      } catch (error) {
+        console.error(error);
       }
     }
   };
@@ -42,7 +44,7 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
           onChange={(e) => setData({ ...data, description: e.target.value })}
         />
         <div className="add-button-container">
-          <input className="add-button" type="submit" value="Add" />
+          <button className="add-button" type="submit">Add</button>
         </div>
       </form>
     </div>
