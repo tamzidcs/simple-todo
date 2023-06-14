@@ -15,7 +15,7 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
     if (data.title && data.description && data.username) {
       try {
         const result = await postTodo(data);
-        if (true) {
+        if (result) {
           await props.taskListUpdate();
           alert('New todo Added.');
         }
