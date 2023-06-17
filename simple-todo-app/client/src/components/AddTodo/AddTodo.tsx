@@ -46,7 +46,7 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
           onChange={(e) => setData({ ...data, description: e.target.value })}
         />
         <div className="add-button-container">
-          <button className="add-button" data-testid="add-button" type="submit" value="Add" />
+          <button className="add-button" data-testid="add-button" type="submit">Add</button>
         </div>
       </form>
     </div>
