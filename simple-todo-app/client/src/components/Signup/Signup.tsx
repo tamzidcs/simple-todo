@@ -33,11 +33,12 @@ export const Signup = () => {
 
     return (
         <div className='signup-container'>
-            <form onSubmit={addUser}>
-                <label className='username-label'>Username</label>
-                <input className='username-textfield' type='text' onChange={e => setData({ ...data, username: e.target.value })} />
-                <label className='password-label'>Password</label>
-                <input className='password-textfield' type='password' onChange={e => setData({ ...data, password: e.target.value })} />
+            <form className='signup-form' onSubmit={addUser}>
+                <div className='signup-header'>Signup</div>
+                <label className='signup-label'>Username</label>
+                <input className='signup-textfield' type='text' placeholder="Username" onChange={e => setData({ ...data, username: e.target.value })} />
+                <label className='signup-label'>Password</label>
+                <input className='signup-textfield' type='password' placeholder="Password" onChange={e => setData({ ...data, password: e.target.value })} />
                 <div className='signup-button-div'><input className='signup-button' type='submit' value='Signup' /></div>
             </form>
         </div>

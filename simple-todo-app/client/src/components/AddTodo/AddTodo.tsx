@@ -8,7 +8,7 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
   const username = String(localStorage.getItem('username'));
   const newTodo: todo = { title: "", description: "", username: username };
   const [data, setData] = useState<todo>(newTodo);
-
+  
   const addTodoHandler = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
@@ -34,6 +34,7 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
         <label className="title-label">Title</label>
         <input
           className="title-textfield"
+          data-testid="title-textfield"
           type="text"
           value={data.title}
           onChange={(e) => setData({ ...data, title: e.target.value })}
@@ -41,10 +42,11 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
         <label className="description-label">Desciption</label>
         <textarea
           className="description-textfield"
+          data-testid="description-textfield"
           onChange={(e) => setData({ ...data, description: e.target.value })}
         />
         <div className="add-button-container">
-          <button className="add-button" type="submit">Add</button>
+          <button className="add-button" data-testid="add-button" type="submit">Add</button>
         </div>
       </form>
     </div>
