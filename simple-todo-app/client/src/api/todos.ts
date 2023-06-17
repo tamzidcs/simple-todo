@@ -17,6 +17,17 @@ export async function postTodo(newTodo: todo): Promise<todo> {
     });
 }
 
+export async function getTodo(username: string): Promise<todo[]> {
+  return axios
+    .get(url.todo + username)
+    .then((resp) => {
+      return resp.data;
+    })
+    .catch((error: AxiosError) => {
+      return error;
+    });
+}
+
 export async function updateTodoDone(todoId: string): Promise<todo> {
   return axios
     .patch(url.todo + todoId)
