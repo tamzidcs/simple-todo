@@ -5,16 +5,14 @@ import "./AddTodo.scss";
 import { postTodo } from "../../api/todos"
 
 export const AddTodo = (props: { taskListUpdate: () => void }) => {
-  const newTodo: todo = { title: "", description: "", username: "" };
+  const username = String(localStorage.getItem('username'));
+  const newTodo: todo = { title: "", description: "", username: username };
   const [data, setData] = useState<todo>(newTodo);
-  const username = localStorage.getItem('username');
 
   const addTodoHandler = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    if (username) {
-      setData({ ...data, username: username });
-    }
-    if (data.title && data.description && username) {
+
+    if (data.title && data.description && data.username) {
       try {
         const result = await postTodo(data);
         if (result) {

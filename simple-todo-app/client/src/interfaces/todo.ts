@@ -1,5 +1,6 @@
 export interface todo {
-    title: string;
-    description: string;
-    username: string;
+  id?: string;
+  title: string;
+  description: string;
+  username: string;
 }

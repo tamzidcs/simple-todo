@@ -16,10 +16,15 @@ export const Login = () => {
     const login = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         if (data.username && data.password) {
-            const result = await postLogin(data);
-            if (result) {
-                localStorage.setItem('username', data.username);
-                navigate('/toDoList');
+            try {
+                const result = await postLogin(data);
+                if (result) {
+                    localStorage.setItem('username', data.username);
+                    navigate('/toDoList');
+                }
+            }
+            catch (error) {
+                console.error(error);
             }
         }
     }
