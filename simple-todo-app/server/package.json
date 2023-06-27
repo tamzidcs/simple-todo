@@ -8,8 +8,9 @@
     "start": "node dist/server.js",
     "dev": "concurrently \"npx tsc  --watch\" \"nodemon  -q dist/server.js\"",
     "start:debug:ts": "node --inspect --require ts-node/register src/server.ts",
-    "test": "jest --detectOpenHandles",
-    "db": "sequelize db:create && sequelize db:migrate"
+    "test": "NODE_ENV=test jest --detectOpenHandles",
+    "db": "NODE_ENV=development sequelize db:create && NODE_ENV=development sequelize db:migrate",
+    "db:test": "NODE_ENV=test sequelize db:create && NODE_ENV=test sequelize db:migrate"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
