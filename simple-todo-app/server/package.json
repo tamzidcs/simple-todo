@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/server.js",
-    "dev": "concurrently \"npx tsc  --watch\" \"nodemon  -q dist/server.js\"",
+    "dev": "NODE_ENV=development concurrently \"npx tsc  --watch\" \"nodemon  -q dist/server.js\"",
     "start:debug:ts": "node --inspect --require ts-node/register src/server.ts",
     "test": "NODE_ENV=test jest --detectOpenHandles",
     "db": "NODE_ENV=development sequelize db:create && NODE_ENV=development sequelize db:migrate",
