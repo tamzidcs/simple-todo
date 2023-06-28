@@ -29,8 +29,8 @@ async function validatePassord(userPassword: string, loginPassword: string): Pro
 
 export async function registerUser(newUser: User): Promise<RegisterResponse> {
   const saltOrRounds = 10;
-  bcrypt.hash(newUser.password, saltOrRounds, (err, hash) => {
-    return createNewUser(newUser.username, hash);
+  await bcrypt.hash(newUser.password, saltOrRounds, async(err, hash) => {
+    await createNewUser(newUser.username, hash);
   });
   return { username: newUser.username };
 }
