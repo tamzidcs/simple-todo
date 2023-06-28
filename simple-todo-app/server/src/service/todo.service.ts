@@ -19,11 +19,16 @@ export async function addNewTodo(newTodo: TodoInput): Promise<Todo> {
   const savedTodo = await todo.save();
   if (savedTodo) {
     const user = await User.findOne({ where: { username: newTodo.username } });
-    const todoUser = new TodoUser({
-      userId: user?.id,
-      todoId: todo.id,
-    });
-    await todoUser.save();
+    if(user) {
+      const todoUser = new TodoUser({
+        userId: user?.id,
+        todoId: todo.id,
+      });
+      await todoUser.save();
+    }
+    else {
+      throw new Error("User not found");
+    }
   } else {
     throw new Error("Invalid ToDo");
   }
