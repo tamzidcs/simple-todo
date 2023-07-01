@@ -28,7 +28,7 @@ export const ToDoList = () => {
           setData(result);
         }
       } catch (error) {
-        console.error(error);
+        alert(error);
       }
     }
   };

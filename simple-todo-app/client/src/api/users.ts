@@ -1,8 +1,9 @@
 import axios, { AxiosError } from "axios";
 import { user } from "../interfaces/user";
+import { handleError } from "../utils/errorHandler";
 const url = {
   user: "http://localhost:3005/users/",
-  login: 'http://localhost:3005/login'
+  login: "http://localhost:3005/login",
 };
 
 export async function postUser(newUser: user): Promise<user> {
@@ -12,7 +13,7 @@ export async function postUser(newUser: user): Promise<user> {
       return resp.data;
     })
     .catch((error: AxiosError) => {
-      return error;
+      handleError(error);
     });
 }
 
@@ -23,8 +24,6 @@ export async function postLogin(User: user): Promise<user> {
       return resp.data;
     })
     .catch((error: AxiosError) => {
-      if (error.response?.status === 401) {
-        alert("Wrong username and/or password.");
-      }
+      handleError(error);
     });
 }
