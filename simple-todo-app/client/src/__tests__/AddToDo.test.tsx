@@ -33,7 +33,8 @@ describe("AddToDo", () => {
       addButton = screen.getByTestId("add-button") as HTMLInputElement;
       titleTextField = screen.getByTestId("title-textfield") as HTMLInputElement;
       descriptionTextField = screen.getByTestId("description-textfield") as HTMLInputElement;
-
+      const jsdomAlert = window.alert;  
+      window.alert = () => {};  
       (axios.post as jest.Mock).mockResolvedValue({ data: newTodo });
       const result = await postTodo(newTodo);
       await waitFor(() => fireEvent.change(titleTextField, { target: { value: 'title1' } }));
