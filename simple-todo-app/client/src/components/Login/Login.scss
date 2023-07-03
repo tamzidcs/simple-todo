@@ -15,6 +15,13 @@ $loginLabelWidth: 200px;
 $loginButtonPadding: 10px;
 $loginButtonMarginTop: 10px;
 $loginButtonDivWidth: 250px;
+$loginButtonColor: burlywood;
+$loginButtonTextColor: black;
+$loginButtonBorder: 0px;
+$loginButtonTextFontWeight: bold;
+$loginHeaderFontSize: 35px;
+$loginHeaderFontWeight: bold;
+$loginHeaderPaddingBottom: 20px;
 
 .login-container {
     display: flex;
@@ -56,4 +63,10 @@ $loginButtonDivWidth: 250px;
 .login-button-div {
     display: flex;
     justify-content: right;
+}
+
+.login-header {
+    font-size: $loginHeaderFontSize;
+    font-weight:  $loginHeaderFontWeight;
+    padding-bottom: $loginHeaderPaddingBottom;
 }
