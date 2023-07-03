@@ -8,7 +8,7 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
   const username = String(localStorage.getItem('username'));
   const newTodo: todo = { title: "", description: "", username: username };
   const [data, setData] = useState<todo>(newTodo);
-  
+
   const addTodoHandler = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
