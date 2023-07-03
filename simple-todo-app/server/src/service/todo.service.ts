@@ -6,21 +6,29 @@ import TodoUserInput from "../interface/todoUser";
 import { where } from "sequelize";
 import { title } from "process";
 
+const PendingStatus = "pending";
+const DoneStatus = "done";
+
 export async function addNewTodo(newTodo: TodoInput): Promise<Todo> {
   const todo = new Todo({
     title: newTodo.title,
     description: newTodo.description,
-    status: "pending",
+    status: PendingStatus,
   });
 
   const savedTodo = await todo.save();
   if (savedTodo) {
     const user = await User.findOne({ where: { username: newTodo.username } });
-    const todoUser = new TodoUser({
-      userId: user?.id,
-      todoId: todo.id,
-    });
-    await todoUser.save();
+    if(user) {
+      const todoUser = new TodoUser({
+        userId: user?.id,
+        todoId: todo.id,
+      });
+      await todoUser.save();
+    }
+    else {
+      throw new Error("User not found");
+    }
   } else {
     throw new Error("Invalid ToDo");
   }
@@ -35,7 +43,7 @@ export async function getAllTodos(username: string): Promise<Todo[]> {
       id: allTodoUser.map((allTodoUser) => {
         return allTodoUser.todoId;
       }),
-      status: "pending",
+      status: PendingStatus,
     },
   });
   return todos;
@@ -43,7 +51,7 @@ export async function getAllTodos(username: string): Promise<Todo[]> {
 
 export async function updateTodoStatus(todoId: string): Promise<string> {
   const affectedRows = await Todo.update(
-    { status: "done" },
+    { status: DoneStatus },
     { where: { id: todoId } }
   );
   if (affectedRows[0] === 0) {
