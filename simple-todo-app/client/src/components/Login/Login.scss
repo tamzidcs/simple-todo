@@ -24,9 +24,10 @@ $loginHeaderFontWeight: bold;
 $loginHeaderFontPaddingBottom: 20px;
 
 .login-container {
-    display: inline-block;
-    margin: auto 30vw;
-    padding: $loginContainerPadding;
+    display: flex;
+    justify-content: center;
+    padding-top: $loginContainerPadding;
+    padding-bottom: $loginContainerPadding;
     width: $loginContainerWidth;
     color: black;
 }
