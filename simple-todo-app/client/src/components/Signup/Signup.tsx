@@ -21,9 +21,6 @@ export const Signup = () => {
                     alert('signup complete.')
                     navigate('/login')
                 }
-                else {
-                    alert('Signup unsuccessful.')
-                }
             }
             catch (error) {
                 alert(error);
