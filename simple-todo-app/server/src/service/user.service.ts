@@ -15,10 +15,17 @@ async function createNewUser(username: string, password: string) {
     username: username,
     password: password,
   });
-  try {
-    await user.save();
-  } catch (error) {
-    console.log(error);
+
+  const existingUser = await User.findOne({ where: { username: username } });
+  if (existingUser) {
+    throw new Error("User already exists.");
+  } else {
+    try {
+      await user.save();
+      return user;
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
 
@@ -27,11 +34,17 @@ async function validatePassord(userPassword: string, loginPassword: string): Pro
   return valid;
 }
 
-export async function registerUser(newUser: User): Promise<RegisterResponse> {
+export async function registerUser(newUser: User): Promise<RegisterResponse>{
   const saltOrRounds = 10;
-  await bcrypt.hash(newUser.password, saltOrRounds, async(err, hash) => {
-    await createNewUser(newUser.username, hash);
-  });
+  const hashedPassword = await bcrypt.hash(newUser.password, saltOrRounds);
+  try {
+    const result = await createNewUser(newUser.username, hashedPassword);
+    if (result) {
+      return { username: newUser.username };
+    }
+  } catch (error) {
+    throw error;
+  }
   return { username: newUser.username };
 }
 
