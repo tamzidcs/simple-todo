@@ -24,7 +24,7 @@ export const Login = () => {
                 }
             }
             catch (error) {
-                console.error(error);
+                alert(error);
             }
         }
     }

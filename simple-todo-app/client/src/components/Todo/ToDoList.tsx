@@ -28,7 +28,7 @@ export const ToDoList = () => {
           setData(result);
         }
       } catch (error) {
-        console.error(error);
+        alert(error);
       }
     }
   };
@@ -63,7 +63,7 @@ export const ToDoList = () => {
       <AddTodo taskListUpdate={taskListUpdate} />
       <div className="todolist">
         {data.length > 0 ? data.map((todo) => (
-          <div className="todo-container" key={todo.id}>
+          <div className="todo-container" key={todo.id} data-testid='todo'>
             <div className="todo">
               <div className="todo-top">
                 <div className="title">{todo.title}</div>
