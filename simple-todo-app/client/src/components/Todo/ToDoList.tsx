@@ -4,7 +4,8 @@ import { AddTodo } from "../AddTodo/AddTodo";
 import React from "react";
 import "./ToDoList.scss";
 import axios from "axios";
-import { postTodoShare, updateTodoDone } from "../../api/todos";
+import { getTodo, postTodoShare, updateTodoDone } from "../../api/todos";
+import { todo } from "../../interfaces/todo";
 
 const url = {
   todos: "http://localhost:3005/todos/",
@@ -13,17 +14,22 @@ const url = {
 };
 
 export const ToDoList = () => {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<todo[]>([]);
   const [userNameList, setUserNameList] = useState<any[]>([]);
   const [shareUserName, setShareUserName] = useState("");
   const [taskListUpdated, setTodoListUpdated] = useState(false);
 
-  const getTodosByParam = (param: string) => {
+  const getTodosByParam = async (param: string) => {
     const localStorageItem = localStorage.getItem(param);
     if (localStorageItem) {
-      axios.get(url.todos + localStorageItem).then((resp: any) => {
-        setData(resp.data as any);
-      });
+      try {
+        const result = await getTodo(localStorageItem);
+        if (result) {
+          setData(result);
+        }
+      } catch (error) {
+        alert(error);
+      }
     }
   };
 
@@ -56,13 +62,13 @@ export const ToDoList = () => {
       <Header />
       <AddTodo taskListUpdate={taskListUpdate} />
       <div className="todolist">
-        {data.map((todo) => (
-          <div className="todo-container" key={todo.id}>
+        {data.length > 0 ? data.map((todo) => (
+          <div className="todo-container" key={todo.id} data-testid='todo'>
             <div className="todo">
               <div className="todo-top">
                 <div className="title">{todo.title}</div>
                 <div className="done-button">
-                  <button onClick={() => todoDone(todo.id)}> Done</button>
+                  <button onClick={() => todoDone(String(todo.id))}> Done</button>
                 </div>
               </div>
               <div className="description">{todo.description}</div>
@@ -88,7 +94,7 @@ export const ToDoList = () => {
               </button>
             </div>
           </div>
-        ))}
+        )) : <div></div>}
       </div>
     </div>
   );

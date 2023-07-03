@@ -15,13 +15,18 @@ export const Signup = () => {
     const addUser = async (event: { preventDefault: () => void; }) => {
         event.preventDefault()
         if (data.username && data.password) {
-            const result = await postUser(data);
-            if (result) {
-                alert('signup complete.')
-                navigate('/login')
+            try {
+                const result = await postUser(data);
+                if (result) {
+                    alert('signup complete.')
+                    navigate('/login')
+                }
+                else {
+                    alert('Signup unsuccessful.')
+                }
             }
-            else {
-                alert('Signup unsuccessful.')
+            catch (error) {
+                alert(error);
             }
         }
     }

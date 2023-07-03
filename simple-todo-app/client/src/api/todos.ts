@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { todo } from "../interfaces/todo";
-
+import { handleError } from "../utils/errorHandler";
 const url = {
   todo: "http://localhost:3005/todos/",
   share: "http://localhost:3005/share/",
@@ -13,7 +13,18 @@ export async function postTodo(newTodo: todo): Promise<todo> {
       return resp.data;
     })
     .catch((error: AxiosError) => {
-      return error;
+      handleError(error);
+    });
+}
+
+export async function getTodo(username: string): Promise<todo[]> {
+  return axios
+    .get(url.todo + username)
+    .then((resp) => {
+      return resp.data;
+    })
+    .catch((error: AxiosError) => {
+      handleError(error);
     });
 }
 
@@ -24,7 +35,7 @@ export async function updateTodoDone(todoId: string): Promise<todo> {
       return resp.data;
     })
     .catch((error: AxiosError) => {
-      return error;
+      handleError(error);
     });
 }
 
@@ -40,6 +51,6 @@ export async function postTodoShare(
       }
     })
     .catch((error: AxiosError) => {
-      return error;
+      handleError(error);
     });
 }

@@ -4,26 +4,26 @@ export const development =  {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    host: "127.0.0.1",
-    dialect: "postgres",
-    port: 5432
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT,
+    port: process.env.DB_PORT
 }
 
 export const test =  {
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  host: "127.0.0.1",
-  dialect: "postgres",
-  port: 5432
+  host: process.env.DB_HOST,
+  dialect: process.env.DB_DIALECT,
+  port: process.env.DB_PORT
 }
 
 export const production =  {
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
-  host: "127.0.0.1",
-  dialect: "postgres",
-  port: 5432
+  host: process.env.DB_HOST,
+  dialect: process.env.DB_DIALECT,
+  port: process.env.DB_PORT
 }
 

@@ -1,58 +1,66 @@
 import request from "supertest";
 import status from "http-status";
 import { describe, expect, test } from "@jest/globals";
-import db from "../db";
+import { initializeDatabase } from "../db";
 import app from "../app";
+import { User } from "../db/models";
+import { registerUser } from "../service/user.service";
+
+const createUser = async () => {
+  const user = new User({
+    username: "user3",
+    password: "123456",
+  });
+
+  await registerUser(user);
+};
 
 beforeAll(async () => {
   jest.clearAllMocks();
-  await db.sync({ alter: true });
+  initializeDatabase();
+  await createUser();
 });
 
-describe("POST /users", () => {
-  it("should return the JSON for the created user", async () => {
-    const user = {
-      username: "user1",
-      password: "123456",
-    };
-    const response = await request(app).post("/users").send(user);
-    expect(response.status).toEqual(status.OK);
+afterAll(async () => {
+  await User.destroy({
+    where: {},
+    truncate: true
   });
 });
 
-describe("GET /users", () => {
-  it("should respond with a 200 status code", async () => {
-    const response = await request(app).get("/users");
-    expect(response.status).toEqual(status.OK);
-  });
-});
-
-describe("POST /login", () => {
-  it("should respond with a 200 status code", async () => {
-    const user = {
-      username: "user1",
-      password: "123456",
-    };
-    const response = await request(app).post("/login").send(user);
-    expect(response.status).toEqual(status.OK);
-    const userResponse = response.body;
-    expect(userResponse).toEqual({
-      username: "user1",
+describe("Users", () => {
+  describe("POST /users", () => {
+    it("should return the JSON for the created user", async () => {
+      const user = {
+        username: "user4",
+        password: "123456",
+      };
+      const response = await request(app).post("/users").send(user);
+      expect(response.status).toEqual(status.OK);
     });
   });
-});
 
-describe("POST /users", () => {
-  it("should respond with a 200 status code", async () => {
-    const user = {
-      username: "user1",
-      password: "123456",
-    };
-    const response = await request(app).post("/users").send(user);
-    expect(response.status).toEqual(status.OK);
-    const userResponse = response.body;
-    expect(userResponse).toEqual({
-      username: "user1",
+  describe("GET /users", () => {
+    it("should respond with a 200 status code", async () => {
+      const response = await request(app).get("/users");
+      expect(response.status).toEqual(status.OK);
+    });
+
+   
+  });
+
+  describe("POST /login", () => {
+    it("should respond with a 200 status code", async () => {
+      const user = {
+        username: "user3",
+        password: "123456",
+      };
+      const response = await request(app).post("/login").send(user);
+      expect(response.status).toEqual(status.OK);
+      const userResponse = response.body;
+      expect(userResponse).toEqual({
+        username: "user3",
+      });
     });
   });
 });
