@@ -2,7 +2,7 @@
 Simple ToDO app using React, Node, Express and Postgres.
 
 ## Pre-Installation:
-Create a .env file inside server folder. Follow the template bellow and replace with appropriate values.
+Create .env.development and .env.test file inside the server folder. Follow the template bellow and replace with appropriate values.
   ```
     DB_NAME=xxx
     DB_HOST=xxx
