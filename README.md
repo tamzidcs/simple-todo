@@ -10,7 +10,6 @@ Create .env.development and .env.test file inside the server folder. Follow the 
     DB_PASSWORD=xxx
     DB_DIALECT='postgres'
     LOG_LEVEL='debug'
-    NODE_ENV='development'
   ```
 
 ## Installation:
