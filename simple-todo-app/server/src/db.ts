@@ -1,15 +1,14 @@
-import * as dotenv from "dotenv";
-require('dotenv').config({ path: `.env.${process.env.NODE_ENV}` })
 import { Todo, TodoUser, User } from "./db/models";
+import Config  from "./db/config/config";
 
 const { Sequelize } = require("sequelize-typescript");
-const config = require("./config/config");
+
 const sequelizeConf = {
-  database: process.env.DB_NAME,
-  user: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  host: process.env.DB_HOST,
-  dialect: process.env.DB_DIALECT,
+  database: Config.database,
+  user: Config.username,
+  password: Config.password,
+  host: Config.host,
+  dialect: Config.dialect,
   logging: false,
 };
 
