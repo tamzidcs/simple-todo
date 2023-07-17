@@ -4,6 +4,7 @@ $loginContainerWidth: 100vw;
 $loginFormBackgroundColor: cadetblue;
 $loginTextfieldWidth: 250px;
 $loginTextfieldHeight: 30px;
+$loginTextfieldMarginBottom: 10px;
 $loginFormWidth: 260px;
 $loginFormHeight: 250px;
 $loginFormPaddingLeft: 70px;
@@ -12,6 +13,7 @@ $loginFormPaddingTop: 50px;
 $loginFormPaddingBottom: 50px;
 $loginButtonWidth: 120px;
 $loginLabelWidth: 200px;
+$loginLabelMarginBottom: 5px;
 $loginButtonPadding: 10px;
 $loginButtonMarginTop: 10px;
 $loginButtonDivWidth: 250px;
@@ -43,11 +45,14 @@ $loginHeaderFontPaddingBottom: 20px;
 
 .login-textfield {
     width: $loginTextfieldWidth;
-    height: $loginTextfieldHeight; 
+    height: $loginTextfieldHeight;
+    margin-bottom: $loginTextfieldMarginBottom; 
 }
 
 .login-label {
+    display: inline-block;
     width: $loginLabelWidth;
+    margin-bottom: $loginLabelMarginBottom;
 }
 
 .login-button {
