@@ -3,12 +3,13 @@ $headerHeight: 65px;
 $signoutButtonContainerMarginRight: 140px; 
 $usernameContainerMarginRight: 140px;
 $usernameContainerMarginBottom: 10px;
+$headerContainerBackgroundColor: #1381b6;
 
 .header-container {
     width: $headerContainerWidth;
     height: $headerHeight;
     color: black;
-    background-color: lightgreen;
+    background-color: $headerContainerBackgroundColor;
 }
 
 .signout-button-container {
