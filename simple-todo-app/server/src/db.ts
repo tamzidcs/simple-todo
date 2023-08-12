@@ -1,14 +1,14 @@
 import { Todo, TodoUser, User } from "./db/models";
-import Config  from "./db/config/config";
+import config  from "./db/config/config";
 
 const { Sequelize } = require("sequelize-typescript");
 
 const sequelizeConf = {
-  database: Config.database,
-  user: Config.username,
-  password: Config.password,
-  host: Config.host,
-  dialect: Config.dialect,
+  database: config.database,
+  user: config.username,
+  password: config.password,
+  host: config.host,
+  dialect: config.dialect,
   logging: false,
 };
 
