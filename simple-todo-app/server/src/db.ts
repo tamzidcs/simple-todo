@@ -1,20 +1,20 @@
 import { Todo, TodoUser, User } from "./db/models";
-import config  from "./db/config/config";
-
+import dotenv from 'dotenv';
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 const { Sequelize } = require("sequelize-typescript");
 
 const sequelizeConf = {
-  database: config.database,
-  user: config.username,
-  password: config.password,
-  host: config.host,
-  dialect: config.dialect,
+  database: process.env.DB_NAME,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  host: process.env.DB_HOST,
+  dialect: process.env.DB_DIALECT,
   logging: false,
 };
 
 const sequelize = new Sequelize({
   database: sequelizeConf.database,
-  username: sequelizeConf.user,
+  username: sequelizeConf.username,
   password: sequelizeConf.password,
   host: sequelizeConf.host,
   dialect: sequelizeConf.dialect,
@@ -31,5 +31,4 @@ export async function initializeDatabase() {
     console.error("Unable to connect to the database:", error);
   }
 }
-
 export default sequelize;
