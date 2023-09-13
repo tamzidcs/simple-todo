@@ -3,7 +3,11 @@ $addToDoContainerWidth: 355px;
 $addToDoContainerColor: black;
 $addToDoContainerBackgroundColor: lightblue;
 $titleTextField: 285px;
-$descriptionTextField: 285px;
+$descriptionTextFieldWidth: 285px;
+$descriptionTextFieldHeight: 96px;
+$descriptionTextFieldMaxHeight: 200px;
+$descriptionTextFieldMinHeight: 96px;
+$descriptionTextFieldResize: vertical;
 $titleLabelWidth: 285px;
 $titleDescriptionWidth: 285px;
 $addButtonContainerWidth: 285px;
@@ -24,7 +28,11 @@ $addButtonMarginTop:10px;
 }
 
 .description-textfield {
-    width: $descriptionTextField;
+    width: $descriptionTextFieldWidth;
+    height: $descriptionTextFieldHeight;
+    max-height: $descriptionTextFieldMaxHeight;
+    min-height: $descriptionTextFieldMinHeight;
+    resize: $descriptionTextFieldResize;
 }
 
 .title-label {
