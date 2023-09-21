@@ -9,6 +9,7 @@ $descriptionTextFieldMaxHeight: 200px;
 $descriptionTextFieldMinHeight: 96px;
 $descriptionTextFieldResize: vertical;
 $titleLabelWidth: 285px;
+$titleLabelHeight: 30px;
 $titleDescriptionWidth: 285px;
 $addButtonContainerWidth: 285px;
 $addButtonWidth: 80px;
@@ -25,6 +26,7 @@ $addButtonMarginTop:10px;
 
 .title-textfield {
     width: $titleTextField;
+    height: $titleLabelHeight;
 }
 
 .description-textfield {
