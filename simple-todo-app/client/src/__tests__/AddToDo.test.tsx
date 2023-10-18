@@ -5,7 +5,6 @@ import { render, waitFor, screen, fireEvent } from "@testing-library/react";
 import { postTodo } from '../api/todos';
 import { todo } from '../interfaces/todo';
 
-
 const mockedUsedNavigate = jest.fn();
 jest.mock("axios");
 jest.mock('react-router-dom', () => ({

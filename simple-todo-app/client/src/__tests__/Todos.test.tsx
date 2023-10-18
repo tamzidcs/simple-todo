@@ -40,7 +40,7 @@ it("todos list", async () => {
   expect(todoList).toHaveLength(3);
 });
 
-it("should render signup", () => {
+it("should render todo list", () => {
   const wrapper = shallow(<ToDoList />);
 });
 
