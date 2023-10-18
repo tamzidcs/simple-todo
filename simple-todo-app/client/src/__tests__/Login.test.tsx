@@ -8,7 +8,7 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
-it("should render signup", () => {
+it("should render login", () => {
   const wrapper = shallow(<Login />);
 });
 
