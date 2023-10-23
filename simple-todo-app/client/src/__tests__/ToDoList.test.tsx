@@ -31,16 +31,12 @@ const dummyTodos = [
     status: "pending"
   },
 ];
-
-it("todos list", async () => {
-  localStorage.setItem('username', 'user1');
-  (axios.get as jest.Mock).mockResolvedValue({ data: dummyTodos });
-  render(<ToDoList />);
-  const todoList = await waitFor(() => screen.findAllByTestId("todo"));
-  expect(todoList).toHaveLength(3);
+describe("ToDoList", () => {
+  it("should render todos list", async () => {
+    localStorage.setItem('username', 'user1');
+    (axios.get as jest.Mock).mockResolvedValue({ data: dummyTodos });
+    render(<ToDoList />);
+    const todoList = await waitFor(() => screen.findAllByTestId("todo"));
+    expect(todoList).toHaveLength(3);
+  });
 });
-
-it("should render todo list", () => {
-  const wrapper = shallow(<ToDoList />);
-});
-
