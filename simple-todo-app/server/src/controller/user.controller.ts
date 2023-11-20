@@ -11,7 +11,7 @@ export async function registerUser(
   const user = req.body;
   try {
     const result = await userService.registerUser(user);
-    res.send(result);
+    res.status(201).send(result);
   } catch (error) {
     if(error instanceof Error && error.message === "User already exists.") {
       res.status(CONFLICT).json({
