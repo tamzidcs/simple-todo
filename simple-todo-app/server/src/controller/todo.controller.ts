@@ -3,6 +3,7 @@ import { TodoUser } from '../db/models';
 import Todo from '../db/models/Todo';
 import * as todoService from '../service/todo.service';
 import * as todoUserService from '../service/todoUser.service';
+import { CREATED } from "http-status";
 
 export async function addNewTodo(
   req: Request,
@@ -13,7 +14,7 @@ export async function addNewTodo(
 
   try {
     const result = await todoService.addNewTodo(todo);
-    res.status(201).send(result);
+    res.status(CREATED).send(result);
   } catch (error) {
     next(error);
   }
