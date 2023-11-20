@@ -13,7 +13,7 @@ export async function addNewTodo(
 
   try {
     const result = await todoService.addNewTodo(todo);
-    res.send(result);
+    res.status(201).send(result);
   } catch (error) {
     next(error);
   }
