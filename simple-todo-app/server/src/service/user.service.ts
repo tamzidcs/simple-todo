@@ -1,14 +1,19 @@
 import { error } from "console";
 import User from "../db/models/User";
 import * as bcrypt from "bcrypt";
+import { UNAUTHORIZED, OK } from "http-status";
 
 interface LoginResponse {
-  username: string;
+  statusCode: number;
+  message: string;
 }
 
 interface RegisterResponse {
   username: string;
 }
+
+const incorrectUserNamePasswordMessage = "Incorrect username or password.";
+const loginSuccessfullMessage = "Login successfull.";
 
 async function createNewUser(username: string, password: string) {
   const user = new User({
@@ -29,12 +34,15 @@ async function createNewUser(username: string, password: string) {
   }
 }
 
-async function validatePassord(userPassword: string, loginPassword: string): Promise<Boolean> {
-  const valid = await bcrypt.compare(loginPassword,userPassword);
+async function validatePassord(
+  userPassword: string,
+  loginPassword: string
+): Promise<Boolean> {
+  const valid = await bcrypt.compare(loginPassword, userPassword);
   return valid;
 }
 
-export async function registerUser(newUser: User): Promise<RegisterResponse>{
+export async function registerUser(newUser: User): Promise<RegisterResponse> {
   const saltOrRounds = 10;
   const hashedPassword = await bcrypt.hash(newUser.password, saltOrRounds);
   try {
@@ -51,15 +59,20 @@ export async function registerUser(newUser: User): Promise<RegisterResponse>{
 export async function loginUser(user: User): Promise<LoginResponse | null> {
   const checkUser = await User.findOne({ where: { username: user.username } });
   if (!checkUser) {
-    throw new Error("user not found");
+    return {
+      statusCode: UNAUTHORIZED,
+      message: incorrectUserNamePasswordMessage,
+    };
   } else if (checkUser !== null) {
     const valid = await validatePassord(checkUser.password, user.password);
-    if(valid) {
-      return { username: checkUser?.username };
+    if (valid) {
+      return { statusCode: OK, message: loginSuccessfullMessage };
     }
-    throw new Error("login failed");
   }
-  throw new Error("login failed");
+  return {
+    statusCode: UNAUTHORIZED,
+    message: incorrectUserNamePasswordMessage,
+  };
 }
 
 export async function getAllUsers(): Promise<User[]> {
