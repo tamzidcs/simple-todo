@@ -68,14 +68,14 @@ describe("Todo", () => {
   });
 
   describe("POST /todos", () => {
-    it("should respond with a 200 status code", async () => {
+    it("should respond with a 201 status code", async () => {
       const response = await request(app).post("/todos").send({
         title: "todo2",
         description: "description2",
         status: "pending",
         username: "user1",
       });
-      expect(response.status).toBe(status.OK);
+      expect(response.status).toBe(status.CREATED);
     });
   });
 

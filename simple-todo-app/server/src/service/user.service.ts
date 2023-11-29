@@ -1,7 +1,7 @@
 import { error } from "console";
 import User from "../db/models/User";
 import * as bcrypt from "bcrypt";
-import { UNAUTHORIZED, OK } from "http-status";
+import { UNAUTHORIZED, OK, CREATED, CONFLICT, INTERNAL_SERVER_ERROR } from "http-status";
 
 interface LoginResponse {
   statusCode: number;
@@ -9,11 +9,16 @@ interface LoginResponse {
 }
 
 interface RegisterResponse {
+  statusCode: number;
+  message: string;
   username: string;
 }
 
 const incorrectUserNamePasswordMessage = "Incorrect username or password.";
 const loginSuccessfullMessage = "Login successfull.";
+const userAlreadyExistMessage = "User already exists";
+const userCreatedMessage = "User created.";
+const registrationFailed = "User registration failed.";
 
 async function createNewUser(username: string, password: string) {
   const user = new User({
@@ -23,13 +28,13 @@ async function createNewUser(username: string, password: string) {
 
   const existingUser = await User.findOne({ where: { username: username } });
   if (existingUser) {
-    throw new Error("User already exists.");
+    return { userCreated: false, message: userAlreadyExistMessage };
   } else {
     try {
       await user.save();
-      return user;
+      return { userCreated: true, message: userCreatedMessage };
     } catch (error) {
-      console.log(error);
+      return { userCreated: false, message: error };
     }
   }
 }
@@ -47,13 +52,32 @@ export async function registerUser(newUser: User): Promise<RegisterResponse> {
   const hashedPassword = await bcrypt.hash(newUser.password, saltOrRounds);
   try {
     const result = await createNewUser(newUser.username, hashedPassword);
-    if (result) {
-      return { username: newUser.username };
+    if (result.userCreated) {
+      return {
+        statusCode: CREATED,
+        message: userCreatedMessage,
+        username: newUser.username,
+      };
+    } else if (result.message === userAlreadyExistMessage) {
+      return {
+        statusCode: CONFLICT,
+        message: userAlreadyExistMessage,
+        username: newUser.username,
+      };
+    } else {
+      return {
+        statusCode: INTERNAL_SERVER_ERROR,
+        message: registrationFailed,
+        username: newUser.username,
+      };
     }
   } catch (error) {
-    throw error;
+    return {
+      statusCode: INTERNAL_SERVER_ERROR,
+      message: registrationFailed,
+      username: newUser.username,
+    };
   }
-  return { username: newUser.username };
 }
 
 export async function loginUser(user: User): Promise<LoginResponse | null> {

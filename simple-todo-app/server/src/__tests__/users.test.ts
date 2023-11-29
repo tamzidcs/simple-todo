@@ -30,13 +30,13 @@ afterAll(async () => {
 
 describe("Users", () => {
   describe("POST /users", () => {
-    it("should return the JSON for the created user", async () => {
+    it("should respond with a 201 status code", async () => {
       const user = {
         username: "user4",
         password: "123456",
       };
       const response = await request(app).post("/users").send(user);
-      expect(response.status).toEqual(status.OK);
+      expect(response.status).toEqual(status.CREATED);
     });
   });
 
@@ -45,8 +45,6 @@ describe("Users", () => {
       const response = await request(app).get("/users");
       expect(response.status).toEqual(status.OK);
     });
-
-   
   });
 
   describe("POST /login", () => {
@@ -59,7 +57,7 @@ describe("Users", () => {
       expect(response.status).toEqual(status.OK);
       const userResponse = response.body;
       expect(userResponse).toEqual({
-        username: "user3",
+        message: "Login successfull.",
       });
     });
   });
