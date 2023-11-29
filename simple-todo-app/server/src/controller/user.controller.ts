@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import User from "../db/models/User";
 import * as userService from "../service/user.service";
-import { OK, UNAUTHORIZED, CONFLICT, CREATED } from "http-status";
+import { OK, UNAUTHORIZED, CONFLICT, CREATED, INTERNAL_SERVER_ERROR } from "http-status";
 
 export async function registerUser(
   req: Request,
@@ -11,13 +11,12 @@ export async function registerUser(
   const user = req.body;
   try {
     const result = await userService.registerUser(user);
-    res.status(CREATED).send(result);
+    const resp = { message: result.message, username: result.username };
+    res.status(result.statusCode).send(resp);
   } catch (error) {
-    if (error instanceof Error && error.message === "User already exists.") {
-      res.status(CONFLICT).json({
-        username: user.username,
-      });
-    }
+    res.status(INTERNAL_SERVER_ERROR).json({
+      username: user.username,
+    });
     next(error);
   }
 }
