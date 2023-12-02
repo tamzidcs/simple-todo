@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const todo_controller_1 = require("../controller/todo.controller");
+const user_controller_1 = require("../controller/user.controller");
+const todo_controller_2 = require("../controller/todo.controller");
+const todo_controller_3 = require("../controller/todo.controller");
+const router = (0, express_1.Router)();
+const express = require('express');
+router.use(express.json());
+router.post('/todos', todo_controller_1.addNewTodo);
+router.post('/share', todo_controller_3.shareTodo);
+router.patch('/todos/:todoId', todo_controller_2.updateTodoStatus);
+router.get('/todos/:username', todo_controller_1.getAllTodosByUsername);
+router.post('/users', user_controller_1.registerUser);
+router.get('/users', user_controller_1.getAllUsers);
+router.post('/login', user_controller_1.loginUser);
+exports.default = router;
