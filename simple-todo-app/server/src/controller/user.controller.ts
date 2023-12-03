@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import User from "../db/models/User";
 import * as userService from "../service/user.service";
-import { OK, UNAUTHORIZED,CONFLICT } from "http-status";
+import { OK, UNAUTHORIZED, CONFLICT, CREATED, INTERNAL_SERVER_ERROR } from "http-status";
 
 export async function registerUser(
   req: Request,
@@ -11,13 +11,12 @@ export async function registerUser(
   const user = req.body;
   try {
     const result = await userService.registerUser(user);
-    res.send(result);
+    const resp = { message: result.message, username: result.username };
+    res.status(result.statusCode).send(resp);
   } catch (error) {
-    if(error instanceof Error && error.message === "User already exists.") {
-      res.status(CONFLICT).json({
-        username: user.username,
-      });
-    }
+    res.status(INTERNAL_SERVER_ERROR).json({
+      username: user.username,
+    });
     next(error);
   }
 }
@@ -29,20 +28,14 @@ export async function loginUser(
 ): Promise<void> {
   const user: User = req.body;
   try {
-    const loggedInUser = await userService.loginUser(user);
-    if (loggedInUser) {
-      res.status(OK).json({
-        username: loggedInUser.username,
-      });
-    } else {
-      res.status(UNAUTHORIZED).json({
-        username: user.username,
+    const loginResponse = await userService.loginUser(user);
+    if (loginResponse) {
+      res.status(loginResponse.statusCode).json({
+        message: loginResponse?.message,
       });
     }
   } catch (error) {
-    res.status(UNAUTHORIZED).json({
-      username: user.username,
-    });
+    next(error);
   }
 }
 

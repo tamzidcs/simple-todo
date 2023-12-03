@@ -1,14 +1,24 @@
 import { error } from "console";
 import User from "../db/models/User";
 import * as bcrypt from "bcrypt";
+import { UNAUTHORIZED, OK, CREATED, CONFLICT, INTERNAL_SERVER_ERROR } from "http-status";
 
 interface LoginResponse {
-  username: string;
+  statusCode: number;
+  message: string;
 }
 
 interface RegisterResponse {
+  statusCode: number;
+  message: string;
   username: string;
 }
+
+const incorrectUserNamePasswordMessage = "Incorrect username or password.";
+const loginSuccessfullMessage = "Login successfull.";
+const userAlreadyExistMessage = "User already exists";
+const userCreatedMessage = "User created.";
+const registrationFailed = "User registration failed.";
 
 async function createNewUser(username: string, password: string) {
   const user = new User({
@@ -18,48 +28,75 @@ async function createNewUser(username: string, password: string) {
 
   const existingUser = await User.findOne({ where: { username: username } });
   if (existingUser) {
-    throw new Error("User already exists.");
+    return { userCreated: false, message: userAlreadyExistMessage };
   } else {
     try {
       await user.save();
-      return user;
+      return { userCreated: true, message: userCreatedMessage };
     } catch (error) {
-      console.log(error);
+      return { userCreated: false, message: error };
     }
   }
 }
 
-async function validatePassord(userPassword: string, loginPassword: string): Promise<Boolean> {
-  const valid = await bcrypt.compare(loginPassword,userPassword);
+async function validatePassord(
+  userPassword: string,
+  loginPassword: string
+): Promise<Boolean> {
+  const valid = await bcrypt.compare(loginPassword, userPassword);
   return valid;
 }
 
-export async function registerUser(newUser: User): Promise<RegisterResponse>{
+export async function registerUser(newUser: User): Promise<RegisterResponse> {
   const saltOrRounds = 10;
   const hashedPassword = await bcrypt.hash(newUser.password, saltOrRounds);
   try {
     const result = await createNewUser(newUser.username, hashedPassword);
-    if (result) {
-      return { username: newUser.username };
+    if (result.userCreated) {
+      return {
+        statusCode: CREATED,
+        message: userCreatedMessage,
+        username: newUser.username,
+      };
+    } else if (result.message === userAlreadyExistMessage) {
+      return {
+        statusCode: CONFLICT,
+        message: userAlreadyExistMessage,
+        username: newUser.username,
+      };
+    } else {
+      return {
+        statusCode: INTERNAL_SERVER_ERROR,
+        message: registrationFailed,
+        username: newUser.username,
+      };
     }
   } catch (error) {
-    throw error;
+    return {
+      statusCode: INTERNAL_SERVER_ERROR,
+      message: registrationFailed,
+      username: newUser.username,
+    };
   }
-  return { username: newUser.username };
 }
 
 export async function loginUser(user: User): Promise<LoginResponse | null> {
   const checkUser = await User.findOne({ where: { username: user.username } });
   if (!checkUser) {
-    throw new Error("user not found");
+    return {
+      statusCode: UNAUTHORIZED,
+      message: incorrectUserNamePasswordMessage,
+    };
   } else if (checkUser !== null) {
     const valid = await validatePassord(checkUser.password, user.password);
-    if(valid) {
-      return { username: checkUser?.username };
+    if (valid) {
+      return { statusCode: OK, message: loginSuccessfullMessage };
     }
-    throw new Error("login failed");
   }
-  throw new Error("login failed");
+  return {
+    statusCode: UNAUTHORIZED,
+    message: incorrectUserNamePasswordMessage,
+  };
 }
 
 export async function getAllUsers(): Promise<User[]> {
