@@ -1,0 +1,88 @@
+$dropDownHeight: 200px;
+$dropDownZIndex: 3;
+$dropDownTextPaddingTop: 2px;
+$dropDownTextPaddingBottom: 2px;
+$dropDownTextPaddingLeft: 2px;
+$dropDownTextPaddingRight: 2px;
+$dropDownTextBorderRadius: 4px;
+$dropdownCaretBackgroundColor: #ffffff;
+$dropdownCaretHeight: 22px;
+$dropdownCaretWidth: 12px;
+$searchInputWidth: 150px;
+$searchInputHeight: 20px;
+$searchInputFontSize: 16px;
+$optionViewWidth: 172px;
+$optionViewBorderRadius: 4px;
+$optionViewZIndex: 2;
+$optionFontSize: 16px;
+$optionPaddingLeft: 16px;
+$optionPaddingRight: 16px;
+$optionPaddingBottom: 6px;
+$optionPaddingTop: 6px;
+$optionZIndex: 2;
+$optionHoverBackgroundColor: #d3d3d3;
+$dropDownTextBorderColor: #d3d3d3;
+$searchInputFocusBorderColor: #96c8da;
+$searchInputFocusOutlineColor: #586f78;
+$optionViewBackgroundColor: #bcbcbc;
+$optionViewBorderColor: #393939;
+$optionBorderTopColor: #fafbfa;
+
+.dropdown { 
+    height: $dropDownHeight;
+    z-index: $dropDownZIndex;
+    position: absolute;
+}
+.dropdown-text {
+    padding-top: $dropDownTextPaddingTop;
+    padding-bottom: $dropDownTextPaddingBottom;
+    padding-left: $dropDownTextPaddingLeft;
+    padding-right: $dropDownTextPaddingRight;
+    border: 1px solid $dropDownTextBorderColor;
+    border-radius: $dropDownTextBorderRadius;
+    cursor: pointer;
+}
+.dropdown-caret {
+    display: inline-block;
+    vertical-align: middle;
+    background-color: $dropdownCaretBackgroundColor;
+    height: $dropdownCaretHeight;
+    width: $dropdownCaretWidth;
+}
+.search-input {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: $searchInputWidth;
+    height: $searchInputHeight;
+    border: none;
+    font-size: $searchInputFontSize;
+    cursor: pointer;
+}
+.search-input:focus {
+    border-color: $searchInputFocusBorderColor;
+    outline: $searchInputFocusOutlineColor;
+}
+.option-view {
+    display: block;
+    position: absolute;
+    background-color: $optionViewBackgroundColor;
+    width: $optionViewWidth;
+    border: 1px solid $optionViewBorderColor;
+    border-radius: $optionViewBorderRadius;
+    z-index: $optionViewZIndex;
+}
+.option {
+    border-top: 1px solid $optionBorderTopColor;
+    font-size: $optionFontSize;
+    font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    padding-top: $optionPaddingTop;
+    padding-bottom: $optionPaddingBottom;
+    padding-left: $optionPaddingLeft;
+    padding-right: $optionPaddingRight;
+    z-index: $optionZIndex;
+    cursor: pointer;
+}
+.option:hover {
+    background-color: $optionHoverBackgroundColor;
+}
