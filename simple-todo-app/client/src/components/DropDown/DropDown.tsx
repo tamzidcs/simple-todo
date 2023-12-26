@@ -4,17 +4,11 @@ import "./DropDown.scss";
 export const DropDown = (props: { userNameList: any[], updateUserShareName: (username: string) => void }) => {
     const [open, setOpen] = useState(false);
     const [currentOption, setCurrentOption] = useState('');
-    const [focused, setFocused,] = useState(false); 
 
     const dropDownClicked = () => {
         setOpen(!open);
-        setFocused(true);
     }
-
-    const dropDownOutOfFocus = () => {
-        setOpen(!open);
-    }
-
+    
     const handleOptionClick = (username: string) => {
         setOpen(false);
         setCurrentOption(username);
@@ -46,7 +40,7 @@ export const DropDown = (props: { userNameList: any[], updateUserShareName: (use
         <div className="dropdown" ref={dropDownRef}>
             <div className="dropdown-text" onClick={dropDownClicked}>
                 <input id="search-input" className="search-input" value={currentOption} onChange={(event) => updateCurrentOption(event)} /><span
-                    className="dropdown-caret"><img src={require('../../resources/assets/caret-down-icon.png')} width="8px" height="8px" /></span>
+                    className="dropdown-caret"><img src={require('../../resources/assets/caret-down-icon.png')} alt="dropdown-caret" width="8px" height="8px" /></span>
             </div>
             {open && <div id="option-view" className="option-view">
                 {props.userNameList.map((user) =>
