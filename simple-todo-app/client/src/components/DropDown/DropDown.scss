@@ -21,6 +21,12 @@ $optionPaddingBottom: 6px;
 $optionPaddingTop: 6px;
 $optionZIndex: 2;
 $optionHoverBackgroundColor: #d3d3d3;
+$dropDownTextBorderColor: #d3d3d3;
+$searchInputFocusBorderColor: #96c8da;
+$searchInputFocusOutlineColor: #586f78;
+$optionViewBackgroundColor: #bcbcbc;
+$optionViewBorderColor: #393939;
+$optionBorderTopColor: #fafbfa;
 
 .dropdown { 
     height: $dropDownHeight;
@@ -32,7 +38,7 @@ $optionHoverBackgroundColor: #d3d3d3;
     padding-bottom: $dropDownTextPaddingBottom;
     padding-left: $dropDownTextPaddingLeft;
     padding-right: $dropDownTextPaddingRight;
-    border: 1px solid lightgray;
+    border: 1px solid $dropDownTextBorderColor;
     border-radius: $dropDownTextBorderRadius;
     cursor: pointer;
 }
@@ -54,20 +60,20 @@ $optionHoverBackgroundColor: #d3d3d3;
     cursor: pointer;
 }
 .search-input:focus {
-    border-color: #96c8da;
-    outline: #586f78;
+    border-color: $searchInputFocusBorderColor;
+    outline: $searchInputFocusOutlineColor;
 }
 .option-view {
     display: block;
     position: absolute;
-    background-color: #bcbcbc;
+    background-color: $optionViewBackgroundColor;
     width: $optionViewWidth;
-    border: 1px solid #393939;
+    border: 1px solid $optionViewBorderColor;
     border-radius: $optionViewBorderRadius;
     z-index: $optionViewZIndex;
 }
 .option {
-    border-top: 1px solid #fafbfa;
+    border-top: 1px solid $optionBorderTopColor;
     font-size: $optionFontSize;
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
     padding-top: $optionPaddingTop;
