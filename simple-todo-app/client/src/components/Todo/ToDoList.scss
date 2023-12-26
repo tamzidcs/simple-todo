@@ -11,6 +11,9 @@ $todoContainerPaddingBottom: 30px;
 $todoMarginBottom: 10px;
 $doneButtonMarginLeft: 5px;
 $userNameInputWidth: 150px;
+$shareTodoWidth: 228px;
+$shareButtonHeight: 26px;
+$shareButtonZIndex: 1;
 
 .to-do-list-container {
     display: inline-block;
@@ -61,7 +64,7 @@ $userNameInputWidth: 150px;
 
 .shareToDo {
     float: right;
-    width: 228px;
+    width: $shareTodoWidth;
 }
 
 .user-name-input {
@@ -70,7 +73,7 @@ $userNameInputWidth: 150px;
 
 .share-button {
     position: relative;
-    z-index: 1;
-    height: 26px;
+    z-index: $shareButtonZIndex;
+    height: $shareButtonHeight;
     float: right;
 }
