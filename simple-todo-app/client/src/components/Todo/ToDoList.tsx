@@ -58,10 +58,6 @@ export const ToDoList = () => {
     }
   };
 
-  const handleTodoListClick = () => {
-    
-  }
-
   const updateUserShareName = (username: string)=> {
     setShareUserName(username);
   }
@@ -70,7 +66,7 @@ export const ToDoList = () => {
     <div className="to-do-list-container">
       <Header />
       <AddTodo taskListUpdate={taskListUpdate} />
-      <div className="todolist" onClick={handleTodoListClick}>
+      <div className="todolist">
         {data.length > 0 ? data.map((todo) => (
           <div className="todo-container" key={todo.id} data-testid='todo'>
             <div className="todo">
