@@ -1,38 +1,56 @@
+$dropDownHeight: 200px;
+$dropDownZIndex: 3;
+$dropDownTextPaddingTop: 2px;
+$dropDownTextPaddingBottom: 2px;
+$dropDownTextPaddingLeft: 2px;
+$dropDownTextPaddingRight: 2px;
+$dropDownTextBorderRadius: 4px;
+$dropdownCaretBackgroundColor: #ffffff;
+$dropdownCaretHeight: 22px;
+$dropdownCaretWidth: 12px;
+$searchInputWidth: 150px;
+$searchInputHeight: 20px;
+$searchInputFontSize: 16px;
+$optionViewWidth: 172px;
+$optionViewBorderRadius: 4px;
+$optionViewZIndex: 2;
+$optionFontSize: 16px;
+$optionPaddingLeft: 16px;
+$optionPaddingRight: 16px;
+$optionPaddingBottom: 6px;
+$optionPaddingTop: 6px;
+$optionZIndex: 2;
+$optionHoverBackgroundColor: #d3d3d3;
+
 .dropdown { 
-    height: 200px;
-    z-index: 3;
-    position:absolute;
+    height: $dropDownHeight;
+    z-index: $dropDownZIndex;
+    position: absolute;
 }
 .dropdown-text {
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-left: 2px;
-    padding-right: 2px;
+    padding-top: $dropDownTextPaddingTop;
+    padding-bottom: $dropDownTextPaddingBottom;
+    padding-left: $dropDownTextPaddingLeft;
+    padding-right: $dropDownTextPaddingRight;
     border: 1px solid lightgray;
-    border-radius: 4px;
+    border-radius: $dropDownTextBorderRadius;
     cursor: pointer;
-}
-.dropdown-btn {
-    width: 21px;
-    height: 21px;
-    position: relative;
-    top: 1px;
 }
 .dropdown-caret {
     display: inline-block;
     vertical-align: middle;
-    background-color: #ffffff;
-    height: 22px;
-    width: 12px;
+    background-color: $dropdownCaretBackgroundColor;
+    height: $dropdownCaretHeight;
+    width: $dropdownCaretWidth;
 }
 .search-input {
     display: inline-block;
     vertical-align: middle;
     position: relative;
-    width: 150px;
-    height: 20px;
+    width: $searchInputWidth;
+    height: $searchInputHeight;
     border: none;
-    font-size: 16px;
+    font-size: $searchInputFontSize;
     cursor: pointer;
 }
 .search-input:focus {
@@ -43,22 +61,22 @@
     display: block;
     position: absolute;
     background-color: #bcbcbc;
-    width: 172px;
+    width: $optionViewWidth;
     border: 1px solid #393939;
-    border-radius: 4px;
-    z-index: 2;
+    border-radius: $optionViewBorderRadius;
+    z-index: $optionViewZIndex;
 }
 .option {
     border-top: 1px solid #fafbfa;
-    font-size: 16px;
+    font-size: $optionFontSize;
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-left: 16px;
-    padding-right: 16px;
-    z-index: 2;
+    padding-top: $optionPaddingTop;
+    padding-bottom: $optionPaddingBottom;
+    padding-left: $optionPaddingLeft;
+    padding-right: $optionPaddingRight;
+    z-index: $optionZIndex;
     cursor: pointer;
 }
 .option:hover {
-    background-color: #d3d3d3;
+    background-color: $optionHoverBackgroundColor;
 }
