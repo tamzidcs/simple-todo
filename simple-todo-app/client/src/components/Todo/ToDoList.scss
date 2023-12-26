@@ -61,8 +61,16 @@ $userNameInputWidth: 150px;
 
 .shareToDo {
     float: right;
+    width: 228px;
 }
 
 .user-name-input {
     width: $userNameInputWidth;
+}
+
+.share-button {
+    position: relative;
+    z-index: 1;
+    height: 26px;
+    float: right;
 }
