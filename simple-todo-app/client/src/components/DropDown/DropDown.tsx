@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import "./DropDown.scss";
 
 export const DropDown = (props: { userNameList: any[], updateUserShareName: (username: string) => void }) => {
     const [open, setOpen] = useState(false);
     const [currentOption, setCurrentOption] = useState('');
+    const dropDownRef = useRef<HTMLDivElement>(null);
 
     const dropDownClicked = () => {
         setOpen(!open);
@@ -20,21 +21,17 @@ export const DropDown = (props: { userNameList: any[], updateUserShareName: (use
         props.updateUserShareName(event.target.value);
     }
 
-    const useOutsideAlerter = (ref: any) => {
-        useEffect(() => {
-            const handleClickOutside = (event: { target: any; }) => {
-                if (ref.current && !ref.current.contains(event.target)) {
-                    setOpen(false);
-                }
+    useLayoutEffect(() => {
+        const handleClickOutside = (event: { target: any; }) => {
+            if (dropDownRef !== null && dropDownRef.current && !dropDownRef.current.contains(event.target)) {
+                setOpen(false);
             }
-            document.addEventListener("mousedown", handleClickOutside);
-            return () => {
-                document.removeEventListener("mousedown", handleClickOutside);
-            };
-        }, [ref]);
-    }
-    const dropDownRef = useRef(null);
-    useOutsideAlerter(dropDownRef);
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [dropDownRef]);
 
     return (
         <div className="dropdown" ref={dropDownRef}>
