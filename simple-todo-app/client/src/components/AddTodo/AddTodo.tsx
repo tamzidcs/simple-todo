@@ -3,7 +3,7 @@ import { todo } from '../../interfaces/todo';
 import './AddTodo.scss';
 import { postTodo } from '../../api/todos';
 
-export function AddTodo(props: { taskListUpdate: () => void }) {
+export const AddTodo = (props: { taskListUpdate: () => void }) => {
   const username = String(localStorage.getItem('username'));
   const newTodo: todo = { title: '', description: '', username };
   const [data, setData] = useState<todo>(newTodo);
