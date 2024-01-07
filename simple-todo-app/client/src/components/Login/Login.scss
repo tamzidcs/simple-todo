@@ -45,8 +45,10 @@ $loginTextFieldPaddingRight: 5px;
 }
 
 .login-textfield {
-    width: $loginTextfieldWidth;
-    height: $loginTextfieldHeight; 
+    width: $loginTextFieldWidth;
+    height: $loginTextFieldHeight; 
+    padding-left: $loginTextFieldPaddingLeft; 
+    padding-right: $loginTextFieldPaddingRight; 
 }
 
 .login-label {
