@@ -15,6 +15,9 @@ $addButtonContainerWidth: 285px;
 $addButtonWidth: 80px;
 $addButtonPadding: 10px;
 $addButtonMarginTop:10px;
+$titleTextFieldPaddingLeft: 5px;
+$titleTextFieldPaddingRight: 5px;
+$descriptionTextFieldPadding: $titleTextFieldPaddingLeft;
 
 .add-todo-container {
     margin: 5px auto;
@@ -27,6 +30,8 @@ $addButtonMarginTop:10px;
 .title-textfield {
     width: $titleTextField;
     height: $titleLabelHeight;
+    padding-left: $titleTextFieldPaddingLeft;
+    padding-right: $titleTextFieldPaddingRight;
 }
 
 .description-textfield {
@@ -35,6 +40,7 @@ $addButtonMarginTop:10px;
     max-height: $descriptionTextFieldMaxHeight;
     min-height: $descriptionTextFieldMinHeight;
     resize: $descriptionTextFieldResize;
+    padding: $descriptionTextFieldPadding;;
 }
 
 .title-label {
