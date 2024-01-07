@@ -6,6 +6,7 @@ import "./ToDoList.scss";
 import axios from "axios";
 import { getTodo, postTodoShare, updateTodoDone } from "../../api/todos";
 import { todo } from "../../interfaces/todo";
+import DropDown from "../DropDown/DropDown";
 
 const url = {
   todos: "http://localhost:3005/todos/",
@@ -57,6 +58,10 @@ export const ToDoList = () => {
     }
   };
 
+  const updateUserShareName = (username: string)=> {
+    setShareUserName(username);
+  }
+
   return (
     <div className="to-do-list-container">
       <Header />
@@ -74,21 +79,8 @@ export const ToDoList = () => {
               <div className="description">{todo.description}</div>
             </div>
             <div className="shareToDo">
-              <input
-                className="user-name-input"
-                list="userNameList"
-                type="text"
-                placeholder="select user"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setShareUserName(e.target.value)
-                }
-              />
-              <datalist id="userNameList">
-                {userNameList.map((val, indx) => (
-                  <option key={indx}>{val.username}</option>
-                ))}
-              </datalist>
-              <button onClick={() => todoShare(todo.id, shareUserName)}>
+              <DropDown userNameList = {userNameList} updateUserShareName = {updateUserShareName}/>
+              <button className="share-button" onClick={() => todoShare(todo.id, shareUserName)}>
                 {" "}
                 Share
               </button>
