@@ -52,8 +52,10 @@ $signupTextFieldPaddingRight: 5px;
 }
 
 .signup-textfield {
-    width: $signupTextfieldWidth;
-    height: $signupTextfieldHeight; 
+    width: $signupTextFieldWidth;
+    height: $signupTextFieldHeight;
+    padding-left: $signupTextFieldPaddingLeft; 
+    padding-right: $signupTextFieldPaddingRight;  
 }
 
 .signup-label {
