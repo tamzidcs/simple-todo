@@ -1,12 +1,11 @@
-import React from "react";
-import { useState } from "react";
-import { todo } from "../../interfaces/todo";
-import "./AddTodo.scss";
-import { postTodo } from "../../api/todos"
+import React, { useState } from 'react';
+import { todo } from '../../interfaces/todo';
+import './AddTodo.scss';
+import { postTodo } from '../../api/todos';
 
 export const AddTodo = (props: { taskListUpdate: () => void }) => {
   const username = String(localStorage.getItem('username'));
-  const newTodo: todo = { title: "", description: "", username: username };
+  const newTodo: todo = { title: '', description: '', username };
   const [data, setData] = useState<todo>(newTodo);
 
   const addTodoHandler = async (event: { preventDefault: () => void }) => {
@@ -16,10 +15,9 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
       try {
         const result = await postTodo(data);
         if (result) {
-          await props.taskListUpdate();
+          props.taskListUpdate();
           alert('New todo Added.');
-        }
-        else {
+        } else {
           alert('Add todo Failed.');
         }
       } catch (error) {
@@ -51,5 +49,5 @@ export const AddTodo = (props: { taskListUpdate: () => void }) => {
       </form>
     </div>
   );
-};
+}
 export default AddTodo;
