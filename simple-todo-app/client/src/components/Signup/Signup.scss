@@ -28,6 +28,8 @@ $errorMessagePadding: 15px;
 $errorMessageFontSize: 13px;
 $errorMessageMarginTop: 3px;
 $errorMessageBorderRadius: 5px;
+$signupTextfieldPaddingLeft: 5px; 
+$signupTextfieldPaddingRight: 5px; 
 
 .signup-container {
     display: flex;
@@ -50,6 +52,8 @@ $errorMessageBorderRadius: 5px;
 .signup-textfield {
     width: $signupTextfieldWidth;
     height: $signupTextfieldHeight; 
+    padding-left: $signupTextfieldPaddingLeft; 
+    padding-right: $signupTextfieldPaddingRight; 
 }
 
 .signup-label {

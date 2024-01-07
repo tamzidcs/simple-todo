@@ -22,6 +22,8 @@ $loginButtonTextFontWeight: bold;
 $loginHeaderFontSize: 35px;
 $loginHeaderFontWeight: bold;
 $loginHeaderFontPaddingBottom: 20px;
+$loginTextfieldPaddingLeft: 5px;
+$loginTextfieldPaddingRight: 5px;
 
 .login-container {
     display: flex;
@@ -43,7 +45,9 @@ $loginHeaderFontPaddingBottom: 20px;
 
 .login-textfield {
     width: $loginTextfieldWidth;
-    height: $loginTextfieldHeight; 
+    height: $loginTextfieldHeight;
+    padding-left: $loginTextfieldPaddingLeft; 
+    padding-right: $loginTextfieldPaddingRight; 
 }
 
 .login-label {
