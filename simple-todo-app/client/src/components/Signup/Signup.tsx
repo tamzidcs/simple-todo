@@ -10,6 +10,9 @@ const newUser: user = {
     username: '',
     password: ''
 };
+const usernameErrorMessage = "Invalid username";
+const passwordErrorMessage = "Password must be minimum 8 characters long, should contain one uppercase letter,one lowercase letter,one number and a special character.";
+
 export const Signup = () => {
     const [user, setUser] = useState<user>(newUser);
     const [showUsernameError,setShowUsernameError] = useState(false);
@@ -47,10 +50,10 @@ export const Signup = () => {
                 <div className='signup-header' role='header'>Signup</div>
                 <label className='signup-label' htmlFor='username'>Username</label>
                 <input id='username' className='signup-textfield' type='text' placeholder="Username" onChange={e => setUser({ ...user, username: e.target.value })} />
-                {showUsernameError && <div id='username-error' className='error-message'>Invalid username</div>}
+                {showUsernameError && <div id='username-error' className='error-message'>{usernameErrorMessage}</div>}
                 <label className='signup-label' htmlFor='password'>Password</label>
                 <input id='password' className='signup-textfield' type='password' placeholder="Password" onChange={e => setUser({ ...user, password: e.target.value })} />
-                {showPasswordError && <div id='password-error' className='error-message'>Password must be minimum 8 characters long, should contain one uppercase letter,one lowercase letter,one number and a special character.</div>}
+                {showPasswordError && <div id='password-error' className='error-message'>{passwordErrorMessage}</div>}
                 <div className='signup-button-div'><input className='signup-button' type='submit' value='Signup' /></div>
             </form>
         </div>
