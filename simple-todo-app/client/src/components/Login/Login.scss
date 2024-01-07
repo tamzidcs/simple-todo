@@ -12,6 +12,7 @@ $loginFormPaddingTop: 50px;
 $loginFormPaddingBottom: 50px;
 $loginButtonWidth: 120px;
 $loginLabelWidth: 200px;
+$loginLabelMarginBottom: 5px;
 $loginButtonPadding: 10px;
 $loginButtonMarginTop: 10px;
 $loginButtonDivWidth: 250px;
@@ -45,13 +46,15 @@ $loginTextFieldPaddingRight: 5px;
 
 .login-textfield {
     width: $loginTextFieldWidth;
-    height: $loginTextFieldHeight;
+    height: $loginTextFieldHeight; 
     padding-left: $loginTextFieldPaddingLeft; 
     padding-right: $loginTextFieldPaddingRight; 
 }
 
 .login-label {
+    display: inline-block;
     width: $loginLabelWidth;
+    margin-bottom: $loginLabelMarginBottom;
 }
 
 .login-button {

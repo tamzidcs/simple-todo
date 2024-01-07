@@ -5,6 +5,7 @@ $signupFormBackgroundColor: cadetblue;
 $signupTextFieldWidth: 250px;
 $signupErrorMesageWidth: 228px;
 $signupTextFieldHeight: 30px;
+$signupTextfieldMarginBottom: 10px;
 $signupFormWidth: 260px;
 $signupFormHeight: 250px;
 $signupFormPaddingLeft: 70px;
@@ -13,6 +14,7 @@ $signupFormPaddingTop: 50px;
 $signupFormPaddingBottom: 50px;
 $signupButtonWidth: 120px;
 $signupLabelWidth: 200px;
+$signupLabelMarginBottom: 5px;
 $signupButtonPadding: 10px;
 $signupButtonMarginTop: 10px;
 $signupButtonDivWidth: 250px;
@@ -57,7 +59,9 @@ $signupTextFieldPaddingRight: 5px;
 }
 
 .signup-label {
+    display: inline-block;
     width: $signupLabelWidth;
+    margin-bottom: $signupLabelMarginBottom;
 }
 
 .signup-button {
