@@ -7,8 +7,8 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
-describe("Header", () => {
-  it("should render header", () => {
+describe('Header', () => {
+  it('should render header', () => {
     const wrapper = shallow(<Header />);
   });
 });
