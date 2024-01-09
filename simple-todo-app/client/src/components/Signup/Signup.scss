@@ -14,15 +14,17 @@ $signupFormPaddingLeft: 70px;
 $signupFormPaddingRight: 70px;
 $signupFormPaddingTop: 50px;
 $signupFormPaddingBottom: 50px;
+$signupFormBorderRadius: 10px;
 $signupButtonWidth: 120px;
 $signupLabelWidth: 200px;
 $signupLabelMarginBottom: 5px;
-$signupButtonPadding: 10px;
+$signupButtonPadding: 15px;
 $signupButtonMarginTop: 10px;
 $signupButtonDivWidth: 250px;
 $signupButtonColor: burlywood;
 $signupButtonTextColor: black;
 $signupButtonBorder: 0px;
+$signupButtonBorderRadius: 25px;
 $signupButtonTextFontWeight: bold;
 $signupHeaderFontSize: 35px;
 $signupHeaderFontWeight: bold;
@@ -55,6 +57,7 @@ $signupTextFieldPaddingRight: 5px;
     padding-top: $signupFormPaddingTop;
     padding-bottom: $signupFormPaddingBottom;
     margin: auto;
+    border-radius: $signupFormBorderRadius;
 }
 
 .signup-textfield {
@@ -78,6 +81,7 @@ $signupTextFieldPaddingRight: 5px;
     width: $signupButtonWidth;
     border: $signupButtonBorder;
     font-weight: $signupButtonTextFontWeight;
+    border-radius: $signupButtonBorderRadius;
 }
 
 .signup-button-div {
