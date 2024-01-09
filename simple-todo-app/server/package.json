@@ -1,6 +1,6 @@
 {
-  "name": "todolist_server",
-  "version": "1.0.0",
+  "name": "simple_todo_server",
+  "version": "0.5.0",
   "private": true,
   "main": "index.ts",
   "scripts": {

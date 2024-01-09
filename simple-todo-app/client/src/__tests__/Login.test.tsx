@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
 import React from 'react';
 import Login from '../components/Login/Login';
 
@@ -7,9 +7,9 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
-describe("Login", () => {
-  it("should have username,password text-fields,labels and also login and signup button", () => {
-    render(<Login />)
+describe('Login', () => {
+  it('should have username,password text-fields,labels and also login and signup button', () => {
+    render(<Login />);
     expect(screen.getByRole('header')).toBeInTheDocument();
     expect(screen.getByLabelText('Username')).toBeInTheDocument();
     expect(screen.getByLabelText('Password')).toBeInTheDocument();

@@ -1,13 +1,15 @@
 $signupContainerMarginLeft: 250px;
 $signupContainerPadding: 100px;
-$signupContainerWidth: 100vw;
+$signupContainerWidth: 100%;
+$signupContainerHeight: 70vh;
+$signupContainerBackgroundColor: #cbe3e5;
 $signupFormBackgroundColor: cadetblue;
 $signupTextFieldWidth: 250px;
 $signupErrorMesageWidth: 228px;
 $signupTextFieldHeight: 30px;
 $signupTextfieldMarginBottom: 10px;
 $signupFormWidth: 260px;
-$signupFormHeight: 250px;
+$signupFormHeight: 260px;
 $signupFormPaddingLeft: 70px;
 $signupFormPaddingRight: 70px;
 $signupFormPaddingTop: 50px;
@@ -39,16 +41,20 @@ $signupTextFieldPaddingRight: 5px;
     padding-top: $signupContainerPadding;
     padding-bottom: $signupContainerPadding;
     width: $signupContainerWidth;
+    height: $signupContainerHeight;
     color: black;
+    background-color: $signupContainerBackgroundColor;
 }
 
 .signup-form {
     width: $signupFormWidth;
+    height: $signupFormHeight;
     background-color: $signupFormBackgroundColor;
     padding-left: $signupFormPaddingLeft;
     padding-right: $signupFormPaddingRight;
     padding-top: $signupFormPaddingTop;
     padding-bottom: $signupFormPaddingBottom;
+    margin: auto;
 }
 
 .signup-textfield {
