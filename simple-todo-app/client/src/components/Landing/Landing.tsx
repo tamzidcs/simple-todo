@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import React from 'react';
 
-export function Landing() {
-      return <Navigate to="/login" /> 
+function Landing() {
+  return <Navigate to="/login" />;
 }
+export default Landing;
