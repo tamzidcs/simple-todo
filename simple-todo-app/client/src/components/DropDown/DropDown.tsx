@@ -11,11 +11,15 @@ export function DropDown(props: { userNameList: any[], updateUserShareName:
   const dropDownZIndexOnClose = '3';
   const { userNameList, updateUserShareName } = props;
 
+  const changeDropDownZINdex = (ZIndexValue: string) => {
+    if (dropDownRef.current) {
+      dropDownRef.current.style.zIndex = ZIndexValue;
+    }
+  };
+
   const dropDownClicked = () => {
     setOpen(!open);
-    if (dropDownRef.current) {
-      dropDownRef.current.style.zIndex = dropDownZIndexOnOpen;
-    }
+    changeDropDownZINdex(dropDownZIndexOnOpen);
   };
 
   const handleOptionClick = (username: string) => {
@@ -35,9 +39,7 @@ export function DropDown(props: { userNameList: any[], updateUserShareName:
         && dropDownRef.current
         && !dropDownRef.current.contains(event.target)) {
         setOpen(false);
-        if (dropDownRef.current) {
-          dropDownRef.current.style.zIndex = dropDownZIndexOnClose;
-        }
+        changeDropDownZINdex(dropDownZIndexOnClose);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
