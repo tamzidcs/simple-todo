@@ -39,7 +39,7 @@ export function DropDown(props: { userNameList: any[], updateUserShareName:
         && dropDownRef.current
         && !dropDownRef.current.contains(event.target)) {
         setOpen(false);
-        changeDropDownZINdex(dropDownZIndexOnClose);
+        changeDropDownZIndex(dropDownZIndexOnClose);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
