@@ -1,4 +1,5 @@
 import React, { useLayoutEffect, useRef, useState } from 'react';
+import dropDownCaretIcon from '../../resources/assets/caret-down-icon.png';
 import './DropDown.scss';
 
 export function DropDown(props: { userNameList: any[], updateUserShareName:
@@ -6,20 +7,26 @@ export function DropDown(props: { userNameList: any[], updateUserShareName:
   const [open, setOpen] = useState(false);
   const [currentOption, setCurrentOption] = useState('');
   const dropDownRef = useRef<HTMLDivElement>(null);
+  const dropDownZIndexOnOpen = '4';
+  const dropDownZIndexOnClose = '3';
+  const { userNameList, updateUserShareName } = props;
 
   const dropDownClicked = () => {
     setOpen(!open);
+    if (dropDownRef.current) {
+      dropDownRef.current.style.zIndex = dropDownZIndexOnOpen;
+    }
   };
 
   const handleOptionClick = (username: string) => {
     setOpen(false);
     setCurrentOption(username);
-    props.updateUserShareName(username);
+    updateUserShareName(username);
   };
 
   const updateCurrentOption = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCurrentOption(event.target.value);
-    props.updateUserShareName(event.target.value);
+    updateUserShareName(event.target.value);
   };
 
   useLayoutEffect(() => {
@@ -28,6 +35,9 @@ export function DropDown(props: { userNameList: any[], updateUserShareName:
         && dropDownRef.current
         && !dropDownRef.current.contains(event.target)) {
         setOpen(false);
+        if (dropDownRef.current) {
+          dropDownRef.current.style.zIndex = dropDownZIndexOnClose;
+        }
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -43,12 +53,12 @@ export function DropDown(props: { userNameList: any[], updateUserShareName:
         <span
           className="dropdown-caret"
         >
-          <img src={require('../../resources/assets/caret-down-icon.png')} alt="dropdown-caret" width="8px" height="8px" />
+          <img src={dropDownCaretIcon} alt="dropdown-caret" width="8px" height="8px" />
         </span>
       </div>
       {open && (
       <div id="option-view" className="option-view">
-        {props.userNameList.map((user) => <div id="option" onClick={() => handleOptionClick(user.username)} className="option">{user.username}</div>)}
+        {userNameList.map((user) => <div id="option" onClick={() => handleOptionClick(user.username)} className="option">{user.username}</div>)}
       </div>
       )}
     </div>
