@@ -3,7 +3,7 @@ $loginContainerPadding: 100px;
 $loginContainerWidth: 100%;
 $loginContainerHeight: 70vh;
 $loginContainerBackgroundColor: #cbe3e5;
-$loginFormBackgroundColor: cadetblue;
+$loginFormBackgroundColor: #5f9ea0;
 $loginTextFieldWidth: 250px;
 $loginTextFieldHeight: 30px;
 $loginFormWidth: 260px;
@@ -12,23 +12,27 @@ $loginFormPaddingLeft: 70px;
 $loginFormPaddingRight: 70px;
 $loginFormPaddingTop: 50px;
 $loginFormPaddingBottom: 50px;
-$loginFormBorderRadius: 10px;
+$loginFormBorderRadius: 4px;
 $loginButtonWidth: 120px;
 $loginLabelWidth: 200px;
 $loginLabelMarginBottom: 5px;
-$loginButtonPadding: 15px;
+$loginLabelColor: #d5e3ec;
+$loginButtonPadding: 10px;
 $loginButtonMarginTop: 10px;
 $loginButtonDivWidth: 250px;
-$loginButtonColor: burlywood;
-$loginButtonTextColor: black;
+$loginButtonColor: #3856b3;
+$loginButtonTextColor: #eaeef8;
 $loginButtonBorder: 0px;
-$loginButtonBorderRadius: 25px;
+$loginButtonBorderRadius: 4px;
 $loginButtonTextFontWeight: bold;
 $loginHeaderFontSize: 35px;
 $loginHeaderFontWeight: bold;
 $loginHeaderFontPaddingBottom: 20px;
+$loginHeaderColor: #d5e3ec;
 $loginTextFieldPaddingLeft: 5px;
 $loginTextFieldPaddingRight: 5px;
+$loginTextFieldBorderRadius: 4px;
+$loginTextFieldBorderColor: #808080;
 
 .login-container {
     display: flex;
@@ -58,12 +62,15 @@ $loginTextFieldPaddingRight: 5px;
     height: $loginTextFieldHeight; 
     padding-left: $loginTextFieldPaddingLeft; 
     padding-right: $loginTextFieldPaddingRight; 
+    border-radius: $loginTextFieldBorderRadius;
+    border-color: $loginTextFieldBorderColor;
 }
 
 .login-label {
     display: inline-block;
     width: $loginLabelWidth;
     margin-bottom: $loginLabelMarginBottom;
+    color: $loginLabelColor;
 }
 
 .login-button {
@@ -86,4 +93,5 @@ $loginTextFieldPaddingRight: 5px;
     font-size: $loginHeaderFontSize;
     font-weight:  $loginHeaderFontWeight;
     padding-bottom: $loginHeaderFontPaddingBottom;
+    color: $loginHeaderColor;
 }
