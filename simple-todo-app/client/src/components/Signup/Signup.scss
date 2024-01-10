@@ -3,7 +3,7 @@ $signupContainerPadding: 100px;
 $signupContainerWidth: 100%;
 $signupContainerHeight: 70vh;
 $signupContainerBackgroundColor: #cbe3e5;
-$signupFormBackgroundColor: cadetblue;
+$signupFormBackgroundColor: #5f9ea0;
 $signupTextFieldWidth: 250px;
 $signupErrorMesageWidth: 228px;
 $signupTextFieldHeight: 30px;
@@ -14,17 +14,17 @@ $signupFormPaddingLeft: 70px;
 $signupFormPaddingRight: 70px;
 $signupFormPaddingTop: 50px;
 $signupFormPaddingBottom: 50px;
-$signupFormBorderRadius: 10px;
+$signupFormBorderRadius: 4px;
 $signupButtonWidth: 120px;
 $signupLabelWidth: 200px;
 $signupLabelMarginBottom: 5px;
-$signupButtonPadding: 15px;
+$signupButtonPadding: 10px;
 $signupButtonMarginTop: 10px;
 $signupButtonDivWidth: 250px;
-$signupButtonColor: burlywood;
-$signupButtonTextColor: black;
+$signupButtonColor: #3856b3;
+$signupButtonTextColor: #eaeef8;
 $signupButtonBorder: 0px;
-$signupButtonBorderRadius: 25px;
+$signupButtonBorderRadius: 4px;
 $signupButtonTextFontWeight: bold;
 $signupHeaderFontSize: 35px;
 $signupHeaderFontWeight: bold;
@@ -36,6 +36,7 @@ $errorMessageMarginTop: 3px;
 $errorMessageBorderRadius: 5px;
 $signupTextFieldPaddingLeft: 5px; 
 $signupTextFieldPaddingRight: 5px; 
+$signupTextFieldBorderRadius: 4px;
 
 .signup-container {
     display: flex;
@@ -64,13 +65,15 @@ $signupTextFieldPaddingRight: 5px;
     width: $signupTextFieldWidth;
     height: $signupTextFieldHeight; 
     padding-left: $signupTextFieldPaddingLeft; 
-    padding-right: $signupTextFieldPaddingRight; 
+    padding-right: $signupTextFieldPaddingRight;
+    border-radius: $signupTextFieldBorderRadius; 
 }
 
 .signup-label {
     display: inline-block;
     width: $signupLabelWidth;
     margin-bottom: $signupLabelMarginBottom;
+    color: #d5e3ec;
 }
 
 .signup-button {
@@ -93,6 +96,7 @@ $signupTextFieldPaddingRight: 5px;
     font-size: $signupHeaderFontSize;
     font-weight:  $signupHeaderFontWeight;
     padding-bottom: $signupHeaderPaddingBottom;
+    color: #d5e3ec;
 }
 
 .error-message {
