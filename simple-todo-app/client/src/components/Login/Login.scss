@@ -16,6 +16,7 @@ $loginFormBorderRadius: 4px;
 $loginButtonWidth: 120px;
 $loginLabelWidth: 200px;
 $loginLabelMarginBottom: 5px;
+$loginLabelColor: #d5e3ec;
 $loginButtonPadding: 10px;
 $loginButtonMarginTop: 10px;
 $loginButtonDivWidth: 250px;
@@ -27,6 +28,7 @@ $loginButtonTextFontWeight: bold;
 $loginHeaderFontSize: 35px;
 $loginHeaderFontWeight: bold;
 $loginHeaderFontPaddingBottom: 20px;
+$loginHeaderColor: #d5e3ec;
 $loginTextFieldPaddingLeft: 5px;
 $loginTextFieldPaddingRight: 5px;
 $loginTextFieldBorderRadius: 4px;
@@ -68,7 +70,7 @@ $loginTextFieldBorderColor: #808080;
     display: inline-block;
     width: $loginLabelWidth;
     margin-bottom: $loginLabelMarginBottom;
-    color: #d5e3ec;
+    color: $loginLabelColor;
 }
 
 .login-button {
@@ -91,5 +93,5 @@ $loginTextFieldBorderColor: #808080;
     font-size: $loginHeaderFontSize;
     font-weight:  $loginHeaderFontWeight;
     padding-bottom: $loginHeaderFontPaddingBottom;
-    color: #d5e3ec
+    color: $loginHeaderColor;
 }

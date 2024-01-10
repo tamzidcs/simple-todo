@@ -18,6 +18,7 @@ $signupFormBorderRadius: 4px;
 $signupButtonWidth: 120px;
 $signupLabelWidth: 200px;
 $signupLabelMarginBottom: 5px;
+$signupLabelColor: #d5e3ec;
 $signupButtonPadding: 10px;
 $signupButtonMarginTop: 10px;
 $signupButtonDivWidth: 250px;
@@ -29,6 +30,7 @@ $signupButtonTextFontWeight: bold;
 $signupHeaderFontSize: 35px;
 $signupHeaderFontWeight: bold;
 $signupHeaderPaddingBottom: 20px;
+$signupHeaderColor: #d5e3ec;
 $errorMessageBackgroundColor: #c36060;
 $errorMessagePadding: 15px;
 $errorMessageFontSize: 13px;
@@ -73,7 +75,7 @@ $signupTextFieldBorderRadius: 4px;
     display: inline-block;
     width: $signupLabelWidth;
     margin-bottom: $signupLabelMarginBottom;
-    color: #d5e3ec;
+    color: $signupLabelColor;
 }
 
 .signup-button {
@@ -96,7 +98,7 @@ $signupTextFieldBorderRadius: 4px;
     font-size: $signupHeaderFontSize;
     font-weight:  $signupHeaderFontWeight;
     padding-bottom: $signupHeaderPaddingBottom;
-    color: #d5e3ec;
+    color: $signupHeaderColor;
 }
 
 .error-message {
