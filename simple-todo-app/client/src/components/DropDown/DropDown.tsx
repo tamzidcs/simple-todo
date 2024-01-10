@@ -11,7 +11,7 @@ export function DropDown(props: { userNameList: any[], updateUserShareName:
   const dropDownZIndexOnClose = '3';
   const { userNameList, updateUserShareName } = props;
 
-  const changeDropDownZINdex = (ZIndexValue: string) => {
+  const changeDropDownZIndex = (ZIndexValue: string) => {
     if (dropDownRef.current) {
       dropDownRef.current.style.zIndex = ZIndexValue;
     }
@@ -19,7 +19,7 @@ export function DropDown(props: { userNameList: any[], updateUserShareName:
 
   const dropDownClicked = () => {
     setOpen(!open);
-    changeDropDownZINdex(dropDownZIndexOnOpen);
+    changeDropDownZIndex(dropDownZIndexOnOpen);
   };
 
   const handleOptionClick = (username: string) => {
