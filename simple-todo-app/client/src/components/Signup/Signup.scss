@@ -65,10 +65,12 @@ $signupTextFieldBorderRadius: 4px;
 
 .signup-textfield {
     width: $signupTextFieldWidth;
-    height: $signupTextFieldHeight; 
+    height: $signupTextFieldHeight;
     padding-left: $signupTextFieldPaddingLeft; 
     padding-right: $signupTextFieldPaddingRight;
     border-radius: $signupTextFieldBorderRadius; 
+    padding-right: $signupTextFieldPaddingRight;  
+
 }
 
 .signup-label {
