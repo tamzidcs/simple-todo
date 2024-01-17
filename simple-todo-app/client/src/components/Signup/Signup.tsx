@@ -29,16 +29,14 @@ export function Signup() {
       })
       fieldsWithError.includes('username') ? setShowUsernameError(true) : setShowUsernameError(false);
       fieldsWithError.includes('password') ? setShowPasswordError(true) : setShowPasswordError(false);
-    }
-    else {
+    } else {
       try {
         const result = await postUser(user);
         if (result) {
           alert('signup complete.');
           navigate('/login');
         }
-      }
-      catch (error) {
+      } catch (error) {
         alert(error);
       }
     }
@@ -57,6 +55,6 @@ export function Signup() {
         <div className="signup-button-div"><input className="signup-button" type="submit" value="Signup" /></div>
       </form>
     </div>
-  )
+  );
 }
 export default Signup;

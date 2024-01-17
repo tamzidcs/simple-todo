@@ -50,7 +50,7 @@ export function DropDown(props: { userNameList: any[], updateUserShareName:
 
   return (
     <div className="dropdown" ref={dropDownRef}>
-      <div className="dropdown-text" onClick={dropDownClicked}>
+      <div className="dropdown-text" type="button" onClick={dropDownClicked}>
         <input id="search-input" className="search-input" value={currentOption} onChange={(event) => updateCurrentOption(event)} />
         <span
           className="dropdown-caret"
