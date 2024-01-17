@@ -1,12 +1,11 @@
-import { Header } from '../Header/Header';
 import React, { useEffect, useState } from 'react';
-
-import './ToDoList.scss';
 import axios from 'axios';
+import { Header } from '../Header/Header';
 import { AddTodo } from '../AddTodo/AddTodo';
 import { getTodo, postTodoShare, updateTodoDone } from '../../api/todos';
 import { todo } from '../../interfaces/todo';
 import DropDown from '../DropDown/DropDown';
+import './ToDoList.scss';
 
 const url = {
   todos: 'http://localhost:3005/todos/',
@@ -73,14 +72,14 @@ export function ToDoList() {
               <div className="todo-top">
                 <div className="title">{todo.title}</div>
                 <div className="done-button">
-                  <button onClick={() => todoDone(String(todo.id))}> Done</button>
+                  <button type="button" onClick={() => todoDone(String(todo.id))}> Done</button>
                 </div>
               </div>
               <div className="description">{todo.description}</div>
             </div>
             <div className="shareToDo">
               <DropDown userNameList={userNameList} updateUserShareName={updateUserShareName} />
-              <button className="share-button" onClick={() => todoShare(todo.id, shareUserName)}>
+              <button className="share-button" type="button" onClick={() => todoShare(todo.id, shareUserName)}>
                 {' '}
                 Share
               </button>
