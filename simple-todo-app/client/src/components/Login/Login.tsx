@@ -12,7 +12,7 @@ const User: user = {
 export function Login() {
   const [data, setData] = useState<user>(User);
   const navigate = useNavigate();
-  const login = async (event: { preventDefault: () => void; }) => {
+  const login = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     if (data.username && data.password) {
       try {
@@ -32,11 +32,30 @@ export function Login() {
       <form className="login-form" onSubmit={login}>
         <div className="login-header">Login</div>
         <label className="login-label">Username</label>
-        <input className="login-textfield" type="text" placeholder="Username" onChange={(e) => setData({ ...data, username: e.target.value })} />
+        <input
+          className="login-textfield"
+          type="text"
+          placeholder="Username"
+          onChange={(e) => setData({ ...data, username: e.target.value })}
+        />
         <label className="login-label">Password</label>
-        <input className="login-textfield" type="password" placeholder="Password" onChange={(e) => setData({ ...data, password: e.target.value })} />
-        <div className="login-button-div"><input className="login-button" type="submit" value="Login" /></div>
-        <div className="login-button-div"><input className="login-button" type="button" value="Signup" onClick={() => navigate('/signup')} /></div>
+        <input
+          className="login-textfield"
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setData({ ...data, password: e.target.value })}
+        />
+        <div className="login-button-div">
+          <input className="login-button" type="submit" value="Login" />
+        </div>
+        <div className="login-button-div">
+          <input
+            className="login-button"
+            type="button"
+            value="Signup"
+            onClick={() => navigate('/signup')}
+          />
+        </div>
       </form>
     </div>
   );

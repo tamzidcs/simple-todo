@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { todo } from '../../interfaces/todo';
-import './AddTodo.scss';
-import { postTodo } from '../../api/todos';
+import React, { useState } from "react";
+import { todo } from "../../interfaces/todo";
+import "./AddTodo.scss";
+import { postTodo } from "../../api/todos";
 
 export function AddTodo(props: { taskListUpdate: () => void }) {
-  const username = String(localStorage.getItem('username'));
-  const newTodo: todo = { title: '', description: '', username };
+  const username = String(localStorage.getItem("username"));
+  const newTodo: todo = { title: "", description: "", username };
   const [data, setData] = useState<todo>(newTodo);
 
   const addTodoHandler = async (event: { preventDefault: () => void }) => {
@@ -16,9 +16,9 @@ export function AddTodo(props: { taskListUpdate: () => void }) {
         const result = await postTodo(data);
         if (result) {
           props.taskListUpdate();
-          alert('New todo Added.');
+          alert("New todo Added.");
         } else {
-          alert('Add todo Failed.');
+          alert("Add todo Failed.");
         }
       } catch (error) {
         console.error(error);
@@ -44,7 +44,9 @@ export function AddTodo(props: { taskListUpdate: () => void }) {
           onChange={(e) => setData({ ...data, description: e.target.value })}
         />
         <div className="add-button-container">
-          <button className="add-button" data-testid="add-button" type="submit">Add</button>
+          <button className="add-button" data-testid="add-button" type="submit">
+            Add
+          </button>
         </div>
       </form>
     </div>
