@@ -29,20 +29,26 @@ export function AddTodo(props: { taskListUpdate: () => void }) {
   return (
     <div className="add-todo-container">
       <form className="add-todo-form" onSubmit={addTodoHandler}>
-        <label className="title-label">Title</label>
-        <input
-          className="title-textfield"
-          data-testid="title-textfield"
-          type="text"
-          value={data.title}
-          onChange={(e) => setData({ ...data, title: e.target.value })}
-        />
-        <label className="description-label">Desciption</label>
-        <textarea
-          className="description-textfield"
-          data-testid="description-textfield"
-          onChange={(e) => setData({ ...data, description: e.target.value })}
-        />
+        <label className="title-label" htmlFor="title-textfield">
+          Title
+          <input
+            id="title-textfield"
+            className="title-textfield"
+            data-testid="title-textfield"
+            type="text"
+            value={data.title}
+            onChange={(e) => setData({ ...data, title: e.target.value })}
+          />
+        </label>
+        <label className="description-label" htmlFor="description-textfield">
+          Desciption
+          <textarea
+            id="description-textfield"
+            className="description-textfield"
+            data-testid="description-textfield"
+            onChange={(e) => setData({ ...data, description: e.target.value })}
+          />
+        </label>
         <div className="add-button-container">
           <button className="add-button" data-testid="add-button" type="submit">Add</button>
         </div>

@@ -11,8 +11,14 @@ export function Header() {
 
   return (
     <div className="header-container">
-      <div className="username-container">{localStorage.getItem('username')}</div>
-      <div className="signout-button-container"><button type="button" onClick={signout}>Signout</button></div>
+      <div className="username-container">
+        {localStorage.getItem('username')}
+      </div>
+      <div className="signout-button-container">
+        <button type="button" onClick={signout}>
+          Signout
+        </button>
+      </div>
     </div>
   );
 }
