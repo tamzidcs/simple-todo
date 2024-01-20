@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from "react";
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postUser } from '../../api/users';
 import { user } from '../../interfaces/user';
@@ -24,39 +23,71 @@ export function Signup() {
     const { error } = schema.validate(user, { abortEarly: false });
     const fieldsWithError: string[] = [];
     if (error) {
-      error.details.map((detail) => {
-        return fieldsWithError.push(String(detail.path[0]));
-      })
-      fieldsWithError.includes('username') ? setShowUsernameError(true) : setShowUsernameError(false);
-      fieldsWithError.includes('password') ? setShowPasswordError(true) : setShowPasswordError(false);
-    }
-    else {
+      error.details.map((detail) => fieldsWithError.push(String(detail.path[0])));
+      if (fieldsWithError.includes('username')) {
+        setShowUsernameError(true);
+      } else {
+        setShowUsernameError(false);
+      }
+      if (fieldsWithError.includes('password')) {
+        setShowPasswordError(true);
+      } else {
+        setShowPasswordError(false);
+      }
+    } else {
       try {
         const result = await postUser(user);
         if (result) {
           alert('signup complete.');
           navigate('/login');
         }
-      }
-      catch (error) {
+      } catch (error) {
         alert(error);
       }
     }
-  }
+  };
 
   return (
     <div className="signup-container">
       <form className="signup-form" onSubmit={addUser}>
-        <div className="signup-header" role="header">Signup</div>
-        <label className="signup-label" htmlFor="username">Username</label>
-        <input id="username" className="signup-textfield" type="text" placeholder="Username" onChange={(e) => setUser({ ...user, username: e.target.value })} />
-        {showUsernameError && <div id="username-error" className="error-message">{usernameErrorMessage}</div>}
-        <label className="signup-label" htmlFor="password">Password</label>
-        <input id="password" className="signup-textfield" type="password" placeholder="Password" onChange={(e) => setUser({ ...user, password: e.target.value })} />
-        {showPasswordError && <div id="password-error" className="error-message">{passwordErrorMessage}</div>}
-        <div className="signup-button-div"><input className="signup-button" type="submit" value="Signup" /></div>
+        <div className="signup-header">
+          Signup
+        </div>
+        <label className="signup-label" htmlFor="username">
+          Username
+          <input
+            id="username"
+            className="signup-textfield"
+            type="text"
+            placeholder="Username"
+            onChange={(e) => setUser({ ...user, username: e.target.value })}
+          />
+        </label>
+        {showUsernameError && (
+          <div id="username-error" className="error-message">
+            {usernameErrorMessage}
+          </div>
+        )}
+        <label className="signup-label" htmlFor="password">
+          Password
+          <input
+            id="password"
+            className="signup-textfield"
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setUser({ ...user, password: e.target.value })}
+          />
+        </label>
+        {showPasswordError && (
+          <div id="password-error" className="error-message">
+            {passwordErrorMessage}
+          </div>
+        )}
+        <div className="signup-button-div">
+          <input className="signup-button" type="submit" value="Signup" />
+        </div>
       </form>
     </div>
-  )
+  );
 }
 export default Signup;
