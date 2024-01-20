@@ -4,6 +4,7 @@ import './DropDown.scss';
 
 export function DropDown(props: {
   userNameList: any[];
+  // eslint-disable-next-line no-unused-vars
   updateUserShareName: (username: string) => void;
 }) {
   const [open, setOpen] = useState(false);
@@ -54,7 +55,12 @@ export function DropDown(props: {
 
   return (
     <div className="dropdown" ref={dropDownRef}>
-      <div className="dropdown-text" type="button" onClick={dropDownClicked}>
+      <div
+        className="dropdown-text"
+        role="presentation"
+        onClick={dropDownClicked}
+        onKeyDown={dropDownClicked}
+      >
         <input
           id="search-input"
           className="search-input"
@@ -75,7 +81,9 @@ export function DropDown(props: {
           {userNameList.map((user) => (
             <div
               id="option"
+              role="presentation"
               onClick={() => handleOptionClick(user.username)}
+              onKeyDown={() => handleOptionClick(user.username)}
               className="option"
             >
               {user.username}
