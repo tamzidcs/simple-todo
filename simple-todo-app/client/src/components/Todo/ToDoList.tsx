@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Header } from '../Header/Header';
 import { AddTodo } from '../AddTodo/AddTodo';
 import './ToDoList.scss';
-import axios from 'axios';
 import { getTodo, postTodoShare, updateTodoDone } from '../../api/todos';
 import { todo } from '../../interfaces/todo';
 
@@ -61,37 +61,57 @@ export function ToDoList() {
       <Header />
       <AddTodo taskListUpdate={taskListUpdate} />
       <div className="todolist">
-        {data.length > 0 ? data.map((todo) => (
-          <div className="todo-container" key={todo.id} data-testid="todo">
-            <div className="todo">
-              <div className="todo-top">
-                <div className="title">{todo.title}</div>
-                <div className="done-button">
-                  <button onClick={() => todoDone(String(todo.id))}> Done</button>
+        {data.length > 0 ? (
+          data.map((todoItem) => (
+            <div
+              className="todo-container"
+              key={todoItem.id}
+              data-testid="todo"
+            >
+              <div className="todo">
+                <div className="todo-top">
+                  <div className="title">{todoItem.title}</div>
+                  <div className="done-button">
+                    <button
+                      type="button"
+                      onClick={() => todoDone(String(todoItem.id))}
+                    >
+                      {' '}
+                      Done
+                    </button>
+                  </div>
                 </div>
+                <div className="description">{todoItem.description}</div>
               </div>
-              <div className="description">{todo.description}</div>
+              <div className="shareToDo">
+                <input
+                  className="user-name-input"
+                  list="userNameList"
+                  type="text"
+                  placeholder="select user"
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setShareUserName(e.target.value)}
+                />
+                <datalist id="userNameList">
+                  {userNameList.map((todoListItem) => (
+                    <option key={todoListItem.id}>
+                      {todoListItem.username}
+                    </option>
+                  ))}
+                </datalist>
+                <button
+                  type="button"
+                  onClick={() => todoShare(todoItem.id, shareUserName)}
+                >
+                  {' '}
+                  Share
+                </button>
+              </div>
             </div>
-            <div className="shareToDo">
-              <input
-                className="user-name-input"
-                list="userNameList"
-                type="text"
-                placeholder="select user"
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setShareUserName(e.target.value)}
-              />
-              <datalist id="userNameList">
-                {userNameList.map((val, indx) => (
-                  <option key={indx}>{val.username}</option>
-                ))}
-              </datalist>
-              <button onClick={() => todoShare(todo.id, shareUserName)}>
-                {' '}
-                Share
-              </button>
-            </div>
-          </div>
-        )) : <div />}
+          ))
+        ) : (
+          <div />
+        )}
       </div>
     </div>
   );
