@@ -38,17 +38,15 @@ describe('AddToDo', () => {
       descriptionTextField = screen.getByTestId(
         'description-textfield',
       ) as HTMLInputElement;
-      const jsdomAlert = window.alert;
       window.alert = () => {};
       (axios.post as jest.Mock).mockResolvedValue({ data: newTodo });
-      const result = await postTodo(newTodo);
+      await postTodo(newTodo);
       await waitFor(() =>
-        fireEvent.change(titleTextField, { target: { value: 'title1' } })
-      );
+        fireEvent.change(titleTextField, { target: { value: 'title1' } }));
       await waitFor(() =>
         fireEvent.change(descriptionTextField, {
           target: { value: 'description1' },
-        })
+        }),
       );
       await waitFor(() => fireEvent.click(addButton));
     });

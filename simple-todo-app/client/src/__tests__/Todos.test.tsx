@@ -41,5 +41,5 @@ it('todos list', async () => {
 });
 
 it('should render signup', () => {
-  const wrapper = shallow(<ToDoList />);
+  shallow(<ToDoList />);
 });

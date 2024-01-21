@@ -9,5 +9,5 @@ jest.mock('react-router-dom', () => ({
 }));
 
 it('should render signup', () => {
-  const wrapper = shallow(<Login />);
+  shallow(<Login />);
 });
