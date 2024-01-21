@@ -15,7 +15,7 @@ export function Header() {
         {localStorage.getItem('username')}
       </div>
       <div className="signout-button-container">
-        <button onClick={signout}>Signout</button>
+        <button type="button" onClick={signout}>Signout</button>
       </div>
     </div>
   );

@@ -31,20 +31,26 @@ export function Login() {
     <div className="login-container">
       <form className="login-form" onSubmit={login}>
         <div className="login-header">Login</div>
-        <label className="login-label">Username</label>
-        <input
-          className="login-textfield"
-          type="text"
-          placeholder="Username"
-          onChange={(e) => setData({ ...data, username: e.target.value })}
-        />
-        <label className="login-label">Password</label>
-        <input
-          className="login-textfield"
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setData({ ...data, password: e.target.value })}
-        />
+        <label className="login-label" htmlFor="username-textfield">
+          Username
+          <input
+            id="username-textfield"
+            className="login-textfield"
+            type="text"
+            placeholder="Username"
+            onChange={(e) => setData({ ...data, username: e.target.value })}
+          />
+        </label>
+        <label className="login-label" htmlFor="password-textfield">
+          Password
+          <input
+            id="password-textfield"
+            className="login-textfield"
+            type="password"
+            placeholder="Password"
+            onChange={(e) => setData({ ...data, password: e.target.value })}
+          />
+        </label>
         <div className="login-button-div">
           <input className="login-button" type="submit" value="Login" />
         </div>
