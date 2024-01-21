@@ -10,7 +10,7 @@ jest.mock('react-router-dom', () => ({
 describe('Login', () => {
   it('should have username,password text-fields,labels and also login and signup button', () => {
     render(<Login />);
-    expect(screen.getByRole('header')).toBeInTheDocument();
+    expect(screen.getAllByText('Login')).toHaveLength(2);
     expect(screen.getByLabelText('Username')).toBeInTheDocument();
     expect(screen.getByLabelText('Password')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Login' })).toBeInTheDocument();
