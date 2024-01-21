@@ -40,6 +40,6 @@ it('todos list', async () => {
   expect(todoList).toHaveLength(3);
 });
 
-it('should render signup', () => {
+it('should render todos list', () => {
   shallow(<ToDoList />);
 });
