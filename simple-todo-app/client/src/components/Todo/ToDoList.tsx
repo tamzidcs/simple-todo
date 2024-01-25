@@ -49,7 +49,7 @@ export function ToDoList() {
     getTodosByParam('username');
   };
 
-  const todoShare = async (todoId: any, userName: string) => {
+  const shareToDo = async (todoId: any, userName: string) => {
     const result = await postTodoShare(todoId, userName);
     if (result) {
       alert(`Todo shared with ${userName}`);
@@ -101,7 +101,7 @@ export function ToDoList() {
                 </datalist>
                 <button
                   type="button"
-                  onClick={() => todoShare(todoItem.id, shareUserName)}
+                  onClick={() => shareToDo(todoItem.id, shareUserName)}
                 >
                   {' '}
                   Share
