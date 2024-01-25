@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Header } from '../Header/Header';
 import { AddTodo } from '../AddTodo/AddTodo';
-import './ToDoList.scss';
+import './TodoList.scss';
 import { getTodo, postTodoShare, updateTodoDone } from '../../api/todos';
 import { todo } from '../../interfaces/todo';
 
@@ -12,7 +12,7 @@ const url = {
   share: 'http://localhost:3005/share/',
 };
 
-export function ToDoList() {
+export function TodoList() {
   const [data, setData] = useState<todo[]>([]);
   const [userNameList, setUserNameList] = useState<any[]>([]);
   const [shareUserName, setShareUserName] = useState('');
@@ -49,7 +49,7 @@ export function ToDoList() {
     getTodosByParam('username');
   };
 
-  const shareToDo = async (todoId: any, userName: string) => {
+  const shareTodo = async (todoId: any, userName: string) => {
     const result = await postTodoShare(todoId, userName);
     if (result) {
       alert(`Todo shared with ${userName}`);
@@ -101,7 +101,7 @@ export function ToDoList() {
                 </datalist>
                 <button
                   type="button"
-                  onClick={() => shareToDo(todoItem.id, shareUserName)}
+                  onClick={() => shareTodo(todoItem.id, shareUserName)}
                 >
                   {' '}
                   Share
@@ -116,4 +116,4 @@ export function ToDoList() {
     </div>
   );
 }
-export default ToDoList;
+export default TodoList;
