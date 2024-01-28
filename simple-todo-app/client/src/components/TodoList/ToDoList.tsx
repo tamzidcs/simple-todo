@@ -5,7 +5,7 @@ import { AddTodo } from '../AddTodo/AddTodo';
 import { getTodo, postTodoShare, updateTodoDone } from '../../api/todos';
 import { todo } from '../../interfaces/todo';
 import DropDown from '../DropDown/DropDown';
-import './ToDoList.scss';
+import './TodoList.scss';
 
 const url = {
   todos: 'http://localhost:3005/todos/',
@@ -13,7 +13,7 @@ const url = {
   share: 'http://localhost:3005/share/',
 };
 
-export function ToDoList() {
+export function TodoList() {
   const [data, setData] = useState<todo[]>([]);
   const [userNameList, setUserNameList] = useState<any[]>([]);
   const [shareUserName, setShareUserName] = useState('');
@@ -77,7 +77,7 @@ export function ToDoList() {
               </div>
               <div className="description">{todo.description}</div>
             </div>
-            <div className="shareToDo">
+            <div className="shareTodo">
               <DropDown userNameList={userNameList} updateUserShareName={updateUserShareName} />
               <button className="share-button" type="button" onClick={() => todoShare(todo.id, shareUserName)}>
                 {' '}
@@ -90,4 +90,4 @@ export function ToDoList() {
     </div>
   );
 }
-export default ToDoList;
+export default TodoList;
