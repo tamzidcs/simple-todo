@@ -3,9 +3,13 @@ $toDoListContainerMarginBottom: 100px;
 $titleWidth: 345px;
 $titleHeight: 20px;
 $titlePaddingLeft: 10px;
+$titleTextColor: #000000;
+$titleBackgroundColor: #a9a9a9;
 $descriptionWidth: 345px;
 $descriptionHeight: 100px;
 $descriptionPaddingLeft: 10px;
+$descriptionTextColor: #ffffff;
+$descriptionBackgroundColor: #646464;
 $todolistWidth: 355px;
 $todolistPadding: 30px;
 $todoContainerPaddingBottom: 30px;
@@ -15,16 +19,16 @@ $userNameInputWidth: 150px;
 
 .title {
     padding-left: $titlePaddingLeft;
-    color: black;
-    background-color: darkgray;
+    color: $titleBackgroundColor;
+    background-color: $titleBackgroundColor;
     width: $titleWidth;
     height: $titleHeight;
     font-weight: bold;
 }
 
 .description {
-    color: rgb(255, 255, 255);
-    background-color: rgb(100,100,100);
+    color: $descriptionBackgroundColor;
+    background-color: $descriptionBackgroundColor;
     width: $descriptionWidth;
     height: $descriptionHeight;
     padding-left: $descriptionPaddingLeft;
