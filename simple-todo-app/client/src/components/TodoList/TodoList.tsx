@@ -5,6 +5,7 @@ import { AddTodo } from '../AddTodo/AddTodo';
 import './TodoList.scss';
 import { getTodo, postTodoShare, updateTodoDone } from '../../api/todos';
 import { todo } from '../../interfaces/todo';
+import Todo from '../Todo/Todo';
 
 const url = {
   todos: 'http://localhost:3005/todos/',
@@ -68,44 +69,42 @@ export function TodoList() {
               key={todoItem.id}
               data-testid="todo"
             >
-              <div className="todo">
-                <div className="todo-top">
-                  <div className="title">{todoItem.title}</div>
-                  <div className="done-button">
-                    <button
-                      type="button"
-                      onClick={() => todoDone(String(todoItem.id))}
-                    >
-                      {' '}
-                      Done
-                    </button>
-                  </div>
+              <Todo todoItem={todoItem} />
+              <div className="todo-bottom">
+                <div className="share-todo">
+                  <input
+                    className="user-name-input"
+                    list="userNameList"
+                    type="text"
+                    placeholder="select user"
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setShareUserName(e.target.value)}
+                  />
+                  <datalist id="userNameList">
+                    {userNameList.map((todoListItem) => (
+                      <option key={todoListItem.id}>
+                        {todoListItem.username}
+                      </option>
+                    ))}
+                  </datalist>
+                  <button
+                    className="share-button"
+                    type="button"
+                    onClick={() => shareTodo(todoItem.id, shareUserName)}
+                  >
+                    {' '}
+                    Share
+                  </button>
                 </div>
-                <div className="description">{todoItem.description}</div>
-              </div>
-              <div className="shareToDo">
-                <input
-                  className="user-name-input"
-                  list="userNameList"
-                  type="text"
-                  placeholder="select user"
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setShareUserName(e.target.value)}
-                />
-                <datalist id="userNameList">
-                  {userNameList.map((todoListItem) => (
-                    <option key={todoListItem.id}>
-                      {todoListItem.username}
-                    </option>
-                  ))}
-                </datalist>
-                <button
-                  type="button"
-                  onClick={() => shareTodo(todoItem.id, shareUserName)}
-                >
-                  {' '}
-                  Share
-                </button>
+                <div className="done-button">
+                  <button
+                    type="button"
+                    onClick={() => todoDone(String(todoItem.id))}
+                  >
+                    {' '}
+                    Done
+                  </button>
+                </div>
               </div>
             </div>
           ))

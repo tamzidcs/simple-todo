@@ -1,0 +1,39 @@
+$toDoListContainerWidth: 100vw;
+$toDoListContainerMarginBottom: 100px;
+$titleWidth: 345px;
+$titleHeight: 20px;
+$titlePaddingLeft: 10px;
+$descriptionWidth: 345px;
+$descriptionHeight: 100px;
+$descriptionPaddingLeft: 10px;
+$todolistWidth: 355px;
+$todolistPadding: 30px;
+$todoContainerPaddingBottom: 30px;
+$todoMarginBottom: 10px;
+$doneButtonMarginLeft: 5px;
+$userNameInputWidth: 150px;
+
+.title {
+    padding-left: $titlePaddingLeft;
+    color: black;
+    background-color: darkgray;
+    width: $titleWidth;
+    height: $titleHeight;
+    font-weight: bold;
+}
+
+.description {
+    color: rgb(255, 255, 255);
+    background-color: rgb(100,100,100);
+    width: $descriptionWidth;
+    height: $descriptionHeight;
+    padding-left: $descriptionPaddingLeft;
+}
+
+.todo-container {
+    padding-bottom: $todoContainerPaddingBottom;
+}
+
+.todo {
+    margin-bottom: $todoMarginBottom;
+}

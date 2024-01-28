@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import React from 'react';
-import { TodoList } from './components/Todo/TodoList';
+import { TodoList } from './components/TodoList/TodoList';
 import { Landing } from './components/Landing/Landing';
 import { Signup } from './components/Signup/Signup';
 import { Login } from './components/Login/Login';
