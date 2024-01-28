@@ -9,14 +9,14 @@ const newUser: user = {
   password: '',
 };
 export function Signup() {
-  const [data, setData] = useState<user>(newUser);
+  const [signupUser, setSignupUser] = useState<user>(newUser);
   const navigate = useNavigate();
 
   const addUser = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    if (data.username && data.password) {
+    if (signupUser.username && signupUser.password) {
       try {
-        const result = await postUser(data);
+        const result = await postUser(signupUser);
         if (result) {
           alert('signup complete.');
           navigate('/login');
@@ -38,7 +38,8 @@ export function Signup() {
             className="signup-textfield"
             type="text"
             placeholder="Username"
-            onChange={(e) => setData({ ...data, username: e.target.value })}
+            onChange={(e) =>
+              setSignupUser({ ...signupUser, username: e.target.value })}
           />
         </label>
         <label className="signup-label" htmlFor="password-textfield">
@@ -47,7 +48,8 @@ export function Signup() {
             className="signup-textfield"
             type="password"
             placeholder="Password"
-            onChange={(e) => setData({ ...data, password: e.target.value })}
+            onChange={(e) =>
+              setSignupUser({ ...signupUser, password: e.target.value })}
           />
         </label>
         <div className="signup-button-div">

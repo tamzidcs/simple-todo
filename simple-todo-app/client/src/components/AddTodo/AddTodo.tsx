@@ -5,16 +5,16 @@ import { postTodo } from '../../api/todos';
 
 export function AddTodo(props: { taskListUpdate: () => void }) {
   const username = String(localStorage.getItem('username'));
-  const newTodo: todo = { title: '', description: '', username };
-  const [data, setData] = useState<todo>(newTodo);
+  const newTodoInitialState: todo = { title: '', description: '', username };
+  const [newTodo, setNewTodo] = useState<todo>(newTodoInitialState);
   const { taskListUpdate } = props;
 
   const addTodoHandler = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-    if (data.title && data.description && data.username) {
+    if (newTodo.title && newTodo.description && newTodo.username) {
       try {
-        const result = await postTodo(data);
+        const result = await postTodo(newTodo);
         if (result) {
           taskListUpdate();
           alert('New todo Added.');
@@ -37,8 +37,8 @@ export function AddTodo(props: { taskListUpdate: () => void }) {
             className="title-textfield"
             data-testid="title-textfield"
             type="text"
-            value={data.title}
-            onChange={(e) => setData({ ...data, title: e.target.value })}
+            value={newTodo.title}
+            onChange={(e) => setNewTodo({ ...newTodo, title: e.target.value })}
           />
         </label>
         <label className="description-label" htmlFor="description-label">
@@ -47,7 +47,8 @@ export function AddTodo(props: { taskListUpdate: () => void }) {
             id="description-label"
             className="description-textfield"
             data-testid="description-textfield"
-            onChange={(e) => setData({ ...data, description: e.target.value })}
+            onChange={(e) =>
+              setNewTodo({ ...newTodo, description: e.target.value })}
           />
         </label>
         <div className="add-button-container">

@@ -10,15 +10,15 @@ const User: user = {
 };
 
 export function Login() {
-  const [data, setData] = useState<user>(User);
+  const [loginUser, setLoginUser] = useState<user>(User);
   const navigate = useNavigate();
   const login = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    if (data.username && data.password) {
+    if (loginUser.username && loginUser.password) {
       try {
-        const result = await postLogin(data);
+        const result = await postLogin(loginUser);
         if (result) {
-          localStorage.setItem('username', data.username);
+          localStorage.setItem('username', loginUser.username);
           navigate('/toDoList');
         }
       } catch (error) {
@@ -38,7 +38,8 @@ export function Login() {
             className="login-textfield"
             type="text"
             placeholder="Username"
-            onChange={(e) => setData({ ...data, username: e.target.value })}
+            onChange={(e) =>
+              setLoginUser({ ...loginUser, username: e.target.value })}
           />
         </label>
         <label className="login-label" htmlFor="password-textfield">
@@ -48,7 +49,8 @@ export function Login() {
             className="login-textfield"
             type="password"
             placeholder="Password"
-            onChange={(e) => setData({ ...data, password: e.target.value })}
+            onChange={(e) =>
+              setLoginUser({ ...loginUser, password: e.target.value })}
           />
         </label>
         <div className="login-button-div">

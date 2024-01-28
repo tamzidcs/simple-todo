@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import axios from 'axios';
 import { render, waitFor, screen } from '@testing-library/react';
-import ToDoList from '../components/Todo/ToDoList';
+import TodoList from '../components/TodoList/TodoList';
 
 const mockedUsedNavigate = jest.fn();
 jest.mock('axios');
@@ -35,11 +35,11 @@ const dummyTodos = [
 it('todos list', async () => {
   localStorage.setItem('username', 'user1');
   (axios.get as jest.Mock).mockResolvedValue({ data: dummyTodos });
-  render(<ToDoList />);
+  render(<TodoList />);
   const todoList = await waitFor(() => screen.findAllByTestId('todo'));
   expect(todoList).toHaveLength(3);
 });
 
 it('should render todos list', () => {
-  shallow(<ToDoList />);
+  shallow(<TodoList />);
 });
