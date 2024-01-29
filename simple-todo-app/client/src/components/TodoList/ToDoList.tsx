@@ -6,6 +6,7 @@ import { getTodo, postTodoShare, updateTodoDone } from '../../api/todos';
 import { todo } from '../../interfaces/todo';
 import DropDown from '../DropDown/DropDown';
 import './TodoList.scss';
+import Todo from '../Todo/Todo';
 
 const url = {
   todos: 'http://localhost:3005/todos/',
@@ -50,7 +51,7 @@ export function TodoList() {
     getTodosByParam('username');
   };
 
-  const todoShare = async (todoId: any, userName: string) => {
+  const shareTodo = async (todoId: any, userName: string) => {
     const result = await postTodoShare(todoId, userName);
     if (result) {
       alert(`Todo shared with ${userName}`);
@@ -66,26 +67,43 @@ export function TodoList() {
       <Header />
       <AddTodo taskListUpdate={taskListUpdate} />
       <div className="todolist">
-        {data.length > 0 ? data.map((todo) => (
-          <div className="todo-container" key={todo.id} data-testid="todo">
-            <div className="todo">
-              <div className="todo-top">
-                <div className="title">{todo.title}</div>
-                <div className="done-button">
-                  <button type="button" onClick={() => todoDone(String(todo.id))}> Done</button>
+        {data.length > 0 ? (
+          data.map((todoItem) => (
+            <div
+              className="todo-container"
+              key={todoItem.id}
+              data-testid="todo"
+            >
+              <Todo todoItem={todoItem} />
+              <div className="todo-bottom">
+                <div className="share-todo">
+                  <DropDown
+                    userNameList={userNameList}
+                    updateUserShareName={updateUserShareName}
+                  />
+                  <button
+                    className="share-button"
+                    type="button"
+                    onClick={() => shareTodo(todoItem.id, shareUserName)}
+                  >
+                    {' '}
+                    Share
+                  </button>
                 </div>
+                <button
+                  className="done-button"
+                  type="button"
+                  onClick={() => todoDone(String(todoItem.id))}
+                >
+                  {' '}
+                  Done
+                </button>
               </div>
-              <div className="description">{todo.description}</div>
             </div>
-            <div className="shareTodo">
-              <DropDown userNameList={userNameList} updateUserShareName={updateUserShareName} />
-              <button className="share-button" type="button" onClick={() => todoShare(todo.id, shareUserName)}>
-                {' '}
-                Share
-              </button>
-            </div>
-          </div>
-        )) : <div />}
+          ))
+        ) : (
+          <div />
+        )}
       </div>
     </div>
   );

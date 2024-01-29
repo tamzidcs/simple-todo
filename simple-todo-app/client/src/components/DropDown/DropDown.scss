@@ -1,4 +1,3 @@
-$dropDownHeight: 200px;
 $dropDownZIndex: 3;
 $dropDownTextPaddingTop: 2px;
 $dropDownTextPaddingBottom: 2px;
@@ -29,9 +28,8 @@ $optionViewBorderColor: #393939;
 $optionBorderTopColor: #fafbfa;
 
 .dropdown { 
-    height: $dropDownHeight;
     z-index: $dropDownZIndex;
-    position: absolute;
+    position: relative;
 }
 .dropdown-text {
     padding-top: $dropDownTextPaddingTop;
