@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Header } from '../Header/Header';
 import { AddTodo } from '../AddTodo/AddTodo';
-import { getTodo, postTodoShare, updateTodoDone } from '../../api/todos';
+import { getTodo, postShareTodo, updateTodoDone } from '../../api/todos';
 import { todo } from '../../interfaces/todo';
 import DropDown from '../DropDown/DropDown';
 import './TodoList.scss';
@@ -15,7 +15,7 @@ const url = {
 };
 
 export function TodoList() {
-  const [data, setData] = useState<todo[]>([]);
+  const [todoList, setTodoList] = useState<todo[]>([]);
   const [userNameList, setUserNameList] = useState<any[]>([]);
   const [shareUserName, setShareUserName] = useState('');
   const [taskListUpdated, setTodoListUpdated] = useState(false);
@@ -26,7 +26,7 @@ export function TodoList() {
       try {
         const result = await getTodo(localStorageItem);
         if (result) {
-          setData(result);
+          setTodoList(result);
         }
       } catch (error) {
         alert(error);
@@ -34,7 +34,7 @@ export function TodoList() {
     }
   };
 
-  const taskListUpdate = () => {
+  const updateTaskList = () => {
     setTodoListUpdated(true);
   };
 
@@ -52,7 +52,7 @@ export function TodoList() {
   };
 
   const shareTodo = async (todoId: any, userName: string) => {
-    const result = await postTodoShare(todoId, userName);
+    const result = await postShareTodo(todoId, userName);
     if (result) {
       alert(`Todo shared with ${userName}`);
     }
@@ -65,10 +65,10 @@ export function TodoList() {
   return (
     <div className="to-do-list-container">
       <Header />
-      <AddTodo taskListUpdate={taskListUpdate} />
+      <AddTodo updateTaskList={updateTaskList} />
       <div className="todolist">
-        {data.length > 0 ? (
-          data.map((todoItem) => (
+        {todoList.length > 0 ? (
+          todoList.map((todoItem) => (
             <div
               className="todo-container"
               key={todoItem.id}
