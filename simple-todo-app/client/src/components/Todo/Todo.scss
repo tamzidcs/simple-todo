@@ -19,7 +19,7 @@ $userNameInputWidth: 150px;
 
 .title {
     padding-left: $titlePaddingLeft;
-    color: $titleBackgroundColor;
+    color: $titleTextColor;
     background-color: $titleBackgroundColor;
     width: $titleWidth;
     height: $titleHeight;
@@ -27,7 +27,7 @@ $userNameInputWidth: 150px;
 }
 
 .description {
-    color: $descriptionBackgroundColor;
+    color: $descriptionTextColor;
     background-color: $descriptionBackgroundColor;
     width: $descriptionWidth;
     height: $descriptionHeight;
