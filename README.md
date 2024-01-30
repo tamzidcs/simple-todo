@@ -1,5 +1,5 @@
 # Simple Todo App
-Simple ToDo app using React, Node, Express and Postgres.
+Simple Todo app using React, Node, Express and Postgres.
 
 ## Pre-Installation:
 Create ```.env.development``` and ```.env.test``` file inside the server folder. Follow the template bellow and replace with appropriate values.
