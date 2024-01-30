@@ -13,14 +13,13 @@ const usernameErrorMessage = 'Invalid username';
 const passwordErrorMessage = 'Password must be minimum 8 characters long, should contain one uppercase letter,one lowercase letter,one number and a special character.';
 
 export function Signup() {
-  const [user, setUser] = useState<user>(newUser);
+  const [signupUser, setSignupUser] = useState<user>(newUser);
   const [showUsernameError, setShowUsernameError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
   const navigate = useNavigate();
 
-  const addUser = async (event: { preventDefault: () => void; }) => {
-    event.preventDefault();
-    const { error } = schema.validate(user, { abortEarly: false });
+  const handleSignupError = () => {
+    const { error } = schema.validate(signupUser, { abortEarly: false });
     const fieldsWithError: string[] = [];
     if (error) {
       error.details.map((detail) => fieldsWithError.push(String(detail.path[0])));
@@ -34,9 +33,17 @@ export function Signup() {
       } else {
         setShowPasswordError(false);
       }
-    } else {
+      return true;
+    }
+    return false;
+  };
+
+  const handleSignup = async (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    const errorExists = handleSignupError();
+    if (!errorExists) {
       try {
-        const result = await postUser(user);
+        const result = await postUser(signupUser);
         if (result) {
           alert('signup complete.');
           navigate('/login');
@@ -47,12 +54,18 @@ export function Signup() {
     }
   };
 
+  const updateSignupUsername = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSignupUser({ ...signupUser, username: event.target.value });
+  };
+
+  const updateSignupPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSignupUser({ ...signupUser, password: event.target.value });
+  };
+
   return (
     <div className="signup-container">
-      <form className="signup-form" onSubmit={addUser}>
-        <div className="signup-header">
-          Signup
-        </div>
+      <form className="signup-form" onSubmit={handleSignup}>
+        <div className="signup-header">Signup</div>
         <label className="signup-label" htmlFor="username">
           Username
           <input
@@ -60,7 +73,7 @@ export function Signup() {
             className="signup-textfield"
             type="text"
             placeholder="Username"
-            onChange={(e) => setUser({ ...user, username: e.target.value })}
+            onChange={(event) => updateSignupUsername(event)}
           />
         </label>
         {showUsernameError && (
@@ -75,7 +88,7 @@ export function Signup() {
             className="signup-textfield"
             type="password"
             placeholder="Password"
-            onChange={(e) => setUser({ ...user, password: e.target.value })}
+            onChange={(event) => updateSignupPassword(event)}
           />
         </label>
         {showPasswordError && (
