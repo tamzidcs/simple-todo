@@ -1,4 +1,4 @@
-# Simple ToDo App
+# Simple Todo App
 Simple ToDo app using React, Node, Express and Postgres.
 
 ## Pre-Installation:
