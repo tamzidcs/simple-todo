@@ -34,7 +34,7 @@ export async function updateTodoDone(todoId: string): Promise<todo> {
     });
 }
 
-export async function postTodoShare(
+export async function postShareTodo(
   todoId: string,
   username: string,
 ): Promise<todo> {

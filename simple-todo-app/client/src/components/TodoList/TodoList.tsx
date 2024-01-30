@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Header } from '../Header/Header';
 import { AddTodo } from '../AddTodo/AddTodo';
-import { getTodo, postTodoShare, updateTodoDone } from '../../api/todos';
+import { getTodo, postShareTodo, updateTodoDone } from '../../api/todos';
 import { todo } from '../../interfaces/todo';
 import DropDown from '../DropDown/DropDown';
-import './ToDoList.scss';
+import './TodoList.scss';
+import Todo from '../Todo/Todo';
 
 const url = {
   todos: 'http://localhost:3005/todos/',
@@ -13,8 +14,8 @@ const url = {
   share: 'http://localhost:3005/share/',
 };
 
-export function ToDoList() {
-  const [data, setData] = useState<todo[]>([]);
+export function TodoList() {
+  const [todoList, setTodoList] = useState<todo[]>([]);
   const [userNameList, setUserNameList] = useState<any[]>([]);
   const [shareUserName, setShareUserName] = useState('');
   const [taskListUpdated, setTodoListUpdated] = useState(false);
@@ -25,7 +26,7 @@ export function ToDoList() {
       try {
         const result = await getTodo(localStorageItem);
         if (result) {
-          setData(result);
+          setTodoList(result);
         }
       } catch (error) {
         alert(error);
@@ -33,7 +34,7 @@ export function ToDoList() {
     }
   };
 
-  const taskListUpdate = () => {
+  const updateTaskList = () => {
     setTodoListUpdated(true);
   };
 
@@ -50,8 +51,8 @@ export function ToDoList() {
     getTodosByParam('username');
   };
 
-  const todoShare = async (todoId: any, userName: string) => {
-    const result = await postTodoShare(todoId, userName);
+  const shareTodo = async (todoId: any, userName: string) => {
+    const result = await postShareTodo(todoId, userName);
     if (result) {
       alert(`Todo shared with ${userName}`);
     }
@@ -64,30 +65,47 @@ export function ToDoList() {
   return (
     <div className="to-do-list-container">
       <Header />
-      <AddTodo taskListUpdate={taskListUpdate} />
+      <AddTodo updateTaskList={updateTaskList} />
       <div className="todolist">
-        {data.length > 0 ? data.map((todo) => (
-          <div className="todo-container" key={todo.id} data-testid="todo">
-            <div className="todo">
-              <div className="todo-top">
-                <div className="title">{todo.title}</div>
-                <div className="done-button">
-                  <button type="button" onClick={() => todoDone(String(todo.id))}> Done</button>
+        {todoList.length > 0 ? (
+          todoList.map((todoItem) => (
+            <div
+              className="todo-container"
+              key={todoItem.id}
+              data-testid="todo"
+            >
+              <Todo todoItem={todoItem} />
+              <div className="todo-bottom">
+                <div className="share-todo">
+                  <DropDown
+                    userNameList={userNameList}
+                    updateUserShareName={updateUserShareName}
+                  />
+                  <button
+                    className="share-button"
+                    type="button"
+                    onClick={() => shareTodo(todoItem.id, shareUserName)}
+                  >
+                    {' '}
+                    Share
+                  </button>
                 </div>
+                <button
+                  className="done-button"
+                  type="button"
+                  onClick={() => todoDone(String(todoItem.id))}
+                >
+                  {' '}
+                  Done
+                </button>
               </div>
-              <div className="description">{todo.description}</div>
             </div>
-            <div className="shareToDo">
-              <DropDown userNameList={userNameList} updateUserShareName={updateUserShareName} />
-              <button className="share-button" type="button" onClick={() => todoShare(todo.id, shareUserName)}>
-                {' '}
-                Share
-              </button>
-            </div>
-          </div>
-        )) : <div />}
+          ))
+        ) : (
+          <div />
+        )}
       </div>
     </div>
   );
 }
-export default ToDoList;
+export default TodoList;
