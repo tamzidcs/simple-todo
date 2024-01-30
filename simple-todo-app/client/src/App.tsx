@@ -5,7 +5,7 @@ import {
   Route,
 } from 'react-router-dom';
 import React from 'react';
-import { ToDoList } from './components/Todo/ToDoList';
+import { TodoList } from './components/TodoList/TodoList';
 import Landing from './components/Landing/Landing';
 import { Signup } from './components/Signup/Signup';
 import { Login } from './components/Login/Login';
@@ -16,7 +16,7 @@ function App() {
       <Routes>
         <Route index element={<Landing />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/toDoList" element={<ToDoList />} />
+        <Route path="/toDoList" element={<TodoList />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
