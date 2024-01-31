@@ -10,7 +10,6 @@ export function AddTodo(props: { updateTaskList: () => void }) {
   const newTodoInitialState: todo = { title: '', description: '', username };
   const [newTodo, setNewTodo] = useState<todo>(newTodoInitialState);
   const alertInitialValue: alert = { severity: 'success', message: '' };
-  const [data, setData] = useState<todo>(newTodo);
   const { updateTaskList } = props;
   const [alert, setAlert] = useState(alertInitialValue);
   const alertTimeOut = 3000;
@@ -27,7 +26,7 @@ export function AddTodo(props: { updateTaskList: () => void }) {
       try {
         const result = await postTodo(newTodo);
         if (result) {
-          taskListUpdate();
+          updateTaskList();
           setAlert({ severity: alertSuccess, message: newTodoSuccessMessage });
         } else {
           setAlert('new_todo_failed');
