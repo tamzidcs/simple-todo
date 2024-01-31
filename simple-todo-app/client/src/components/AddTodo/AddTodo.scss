@@ -1,7 +1,7 @@
-$addToDoContainerPadding: 30px;
-$addToDoContainerWidth: 355px;
-$addToDoContainerColor: black;
-$addToDoContainerBackgroundColor: lightblue;
+$addTodoContainerPadding: 30px;
+$addTodoContainerWidth: 355px;
+$addTodoContainerColor: black;
+$addTodoContainerBackgroundColor: lightblue;
 $titleTextField: 285px;
 $descriptionTextFieldWidth: 285px;
 $descriptionTextFieldHeight: 96px;
@@ -21,10 +21,10 @@ $descriptionTextFieldPadding: $titleTextFieldPaddingLeft;
 
 .add-todo-container {
     margin: 5px auto;
-    padding: $addToDoContainerPadding;
-    width: $addToDoContainerWidth;
-    color: $addToDoContainerColor;
-    background-color: $addToDoContainerBackgroundColor;
+    padding: $addTodoContainerPadding;
+    width: $addTodoContainerWidth;
+    color: $addTodoContainerColor;
+    background-color: $addTodoContainerBackgroundColor;
 }
 
 .title-textfield {

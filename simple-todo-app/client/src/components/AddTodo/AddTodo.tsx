@@ -5,12 +5,13 @@ import { postTodo } from '../../api/todos';
 import { TodoAlert } from '../TodoAlert/TodoAlert';
 import { alert } from '../../interfaces/alert';
 
-export function AddTodo(props: { taskListUpdate: () => void }) {
+export function AddTodo(props: { updateTaskList: () => void }) {
   const username = String(localStorage.getItem('username'));
-  const newTodo: todo = { title: '', description: '', username };
+  const newTodoInitialState: todo = { title: '', description: '', username };
+  const [newTodo, setNewTodo] = useState<todo>(newTodoInitialState);
   const alertInitialValue: alert = { severity: 'success', message: '' };
   const [data, setData] = useState<todo>(newTodo);
-  const { taskListUpdate } = props;
+  const { updateTaskList } = props;
   const [alert, setAlert] = useState(alertInitialValue);
   const alertTimeOut = 3000;
   const newTodoSuccessMessage = 'New Todo Added.';
@@ -20,11 +21,11 @@ export function AddTodo(props: { taskListUpdate: () => void }) {
     setTimeout(() => setAlert(alertInitialValue), alertTimeOut);
   }, [alert]);
 
-  const addTodoHandler = async (event: { preventDefault: () => void }) => {
+  const handleAddTodo = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    if (data.title && data.description && data.username) {
+    if (newTodo.title && newTodo.description && newTodo.username) {
       try {
-        const result = await postTodo(data);
+        const result = await postTodo(newTodo);
         if (result) {
           taskListUpdate();
           setAlert({ severity: alertSuccess, message: newTodoSuccessMessage });
@@ -39,7 +40,7 @@ export function AddTodo(props: { taskListUpdate: () => void }) {
 
   return (
     <div className="add-todo-container">
-      <form className="add-todo-form" onSubmit={addTodoHandler}>
+      <form className="add-todo-form" onSubmit={handleAddTodo}>
         <label className="title-label" htmlFor="title-textfield">
           Title
           <input
@@ -47,8 +48,8 @@ export function AddTodo(props: { taskListUpdate: () => void }) {
             className="title-textfield"
             data-testid="title-textfield"
             type="text"
-            value={data.title}
-            onChange={(e) => setData({ ...data, title: e.target.value })}
+            value={newTodo.title}
+            onChange={(e) => setNewTodo({ ...newTodo, title: e.target.value })}
           />
         </label>
         <label className="description-label" htmlFor="description-textfield">
@@ -57,7 +58,7 @@ export function AddTodo(props: { taskListUpdate: () => void }) {
             id="description-textfield"
             className="description-textfield"
             data-testid="description-textfield"
-            onChange={(e) => setData({ ...data, description: e.target.value })}
+            onChange={(e) => setNewTodo({ ...newTodo, description: e.target.value })}
           />
         </label>
         <div className="add-button-container">

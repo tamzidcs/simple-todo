@@ -1,5 +1,5 @@
 import React from 'react';
-import AddToDo from '../components/AddTodo/AddTodo';
+import AddTodo from '../components/AddTodo/AddTodo';
 import axios from 'axios';
 import {
   render, waitFor, screen, fireEvent,
@@ -21,10 +21,10 @@ const newTodo: todo = {
 };
 const mockTaskListUpdate = jest.fn();
 
-describe('AddToDo', () => {
+describe('AddTodo', () => {
   beforeEach(() => {
     localStorage.setItem('username', 'user1');
-    render(<AddToDo taskListUpdate={mockTaskListUpdate} />);
+    render(<AddTodo taskListUpdate={mockTaskListUpdate} />);
   });
   describe('when clicked', () => {
     let addButton: HTMLInputElement;
