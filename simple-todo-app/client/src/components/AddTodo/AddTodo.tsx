@@ -1,13 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { todo } from '../../interfaces/todo';
 import './AddTodo.scss';
 import { postTodo } from '../../api/todos';
+import { TodoAlert } from '../TodoAlert/TodoAlert';
+import { alert } from '../../interfaces/alert';
 
 export function AddTodo(props: { updateTaskList: () => void }) {
   const username = String(localStorage.getItem('username'));
   const newTodoInitialState: todo = { title: '', description: '', username };
   const [newTodo, setNewTodo] = useState<todo>(newTodoInitialState);
+  const alertInitialValue: alert = { severity: 'success', message: '' };
+  const [data, setData] = useState<todo>(newTodo);
   const { updateTaskList } = props;
+  const [alert, setAlert] = useState(alertInitialValue);
+  const alertTimeOut = 3000;
+  const newTodoSuccessMessage = 'New Todo Added.';
+  const alertSuccess = 'success';
+
+  useEffect(() => {
+    setTimeout(() => setAlert(alertInitialValue), alertTimeOut);
+  }, [alert]);
 
   const handleAddTodo = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -15,10 +27,10 @@ export function AddTodo(props: { updateTaskList: () => void }) {
       try {
         const result = await postTodo(newTodo);
         if (result) {
-          updateTaskList();
-          alert('New todo Added.');
+          taskListUpdate();
+          setAlert({ severity: alertSuccess, message: newTodoSuccessMessage });
         } else {
-          alert('Add todo Failed.');
+          setAlert('new_todo_failed');
         }
       } catch (error) {
         console.error(error);
@@ -50,9 +62,12 @@ export function AddTodo(props: { updateTaskList: () => void }) {
           />
         </label>
         <div className="add-button-container">
-          <button className="add-button" data-testid="add-button" type="submit">Add</button>
+          <button className="add-button" data-testid="add-button" type="submit">
+            Add
+          </button>
         </div>
       </form>
+      {alert.message !== '' ? <TodoAlert severity={alert.severity} message={alert.message} /> : ''}
     </div>
   );
 }
