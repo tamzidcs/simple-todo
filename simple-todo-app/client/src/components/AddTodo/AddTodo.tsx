@@ -5,7 +5,6 @@ import { postTodo } from '../../api/todos';
 import { TodoAlert } from '../TodoAlert/TodoAlert';
 import { alert } from '../../interfaces/alert';
 import { Button } from '../Button/Button';
-// import { button } from '../../interfaces/button';
 
 export function AddTodo(props: { updateTaskList: () => void }) {
   const username = String(localStorage.getItem('username'));
@@ -63,10 +62,19 @@ export function AddTodo(props: { updateTaskList: () => void }) {
           />
         </label>
         <div className="add-button-container">
-          <Button text="Add" className="add-button" testId="add-button" type="submit" />
+          <Button
+            text="Add"
+            className="add-button"
+            testId="add-button"
+            type="submit"
+          />
         </div>
       </form>
-      {alert.message !== '' ? <TodoAlert severity={alert.severity} message={alert.message} /> : ''}
+      {alert.message !== '' ? (
+        <TodoAlert severity={alert.severity} message={alert.message} />
+      ) : (
+        ''
+      )}
     </div>
   );
 }
