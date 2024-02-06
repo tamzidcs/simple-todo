@@ -19,12 +19,12 @@ const newTodo: todo = {
   description: 'desc1',
   username: 'user1',
 };
-const mockTaskListUpdate = jest.fn();
+const mockUpdateTaskList = jest.fn();
 
 describe('AddTodo', () => {
   beforeEach(() => {
     localStorage.setItem('username', 'user1');
-    render(<AddTodo taskListUpdate={mockTaskListUpdate} />);
+    render(<AddTodo updateTaskList={mockUpdateTaskList} />);
   });
   describe('when clicked', () => {
     let addButton: HTMLInputElement;
@@ -49,7 +49,7 @@ describe('AddTodo', () => {
       expect(descriptionTextField.value).toBe('description1')
     });
     it('calls the prop function to update list', async () => {
-      expect(mockTaskListUpdate.mock.calls).toHaveLength(1);
+      expect(mockUpdateTaskList.mock.calls).toHaveLength(1);
     });
   });
 });

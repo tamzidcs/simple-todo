@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../../api/users';
 import { user } from '../../interfaces/user';
 import './Login.scss';
+import Button from '../Button/Button';
 
 const User: user = {
   username: '',
@@ -54,13 +55,19 @@ export function Login() {
           />
         </label>
         <div className="login-button-div">
-          <input className="login-button" type="submit" value="Login" />
+          <Button
+            className="login-button"
+            testId="login-button"
+            text="Login"
+            type="submit"
+          />
         </div>
         <div className="login-button-div">
-          <input
+          <Button
             className="login-button"
+            testId="signup-button"
+            text="Signup"
             type="button"
-            value="Signup"
             onClick={() => navigate('/signup')}
           />
         </div>
