@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Header.scss';
+import Button from '../Button/Button';
 
 export function Header() {
   const navigate = useNavigate();
@@ -15,9 +16,13 @@ export function Header() {
         {localStorage.getItem('username')}
       </div>
       <div className="signout-button-container">
-        <button type="button" onClick={signout}>
-          Signout
-        </button>
+        <Button
+          className="signout-button"
+          testId="signup-button"
+          text="Signout"
+          type="button"
+          onClick={signout}
+        />
       </div>
     </div>
   );

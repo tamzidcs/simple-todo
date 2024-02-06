@@ -7,6 +7,8 @@ import { todo } from '../../interfaces/todo';
 import DropDown from '../DropDown/DropDown';
 import './TodoList.scss';
 import Todo from '../Todo/Todo';
+// import { button } from '../../interfaces/button';
+import Button from '../Button/Button';
 
 const url = {
   todos: 'http://localhost:3005/todos/',
@@ -81,23 +83,21 @@ export function TodoList() {
                     userNameList={userNameList}
                     updateUserShareName={updateUserShareName}
                   />
-                  <button
+                  <Button
                     className="share-button"
+                    testId="share-button"
+                    text="Share"
                     type="button"
                     onClick={() => shareTodo(todoItem.id, shareUserName)}
-                  >
-                    {' '}
-                    Share
-                  </button>
+                  />
                 </div>
-                <button
+                <Button
                   className="done-button"
+                  testId="done-button"
+                  text="Done"
                   type="button"
                   onClick={() => todoDone(String(todoItem.id))}
-                >
-                  {' '}
-                  Done
-                </button>
+                />
               </div>
             </div>
           ))

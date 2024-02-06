@@ -4,6 +4,7 @@ import { postUser } from '../../api/users';
 import { user } from '../../interfaces/user';
 import { schema } from '../../utils/inputValidator';
 import './Signup.scss';
+import Button from '../Button/Button';
 
 const newUser: user = {
   username: '',
@@ -97,7 +98,12 @@ export function Signup() {
           </div>
         )}
         <div className="signup-button-div">
-          <input className="signup-button" type="submit" value="Signup" />
+          <Button
+            className="signup-button"
+            testId="signup-button"
+            text="Signup"
+            type="submit"
+          />
         </div>
       </form>
     </div>
