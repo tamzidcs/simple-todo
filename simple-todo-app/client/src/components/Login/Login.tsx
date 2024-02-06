@@ -54,15 +54,19 @@ export function Login() {
           />
         </label>
         <div className="login-button-div">
-          <input className="login-button" type="submit" value="Login" />
+          <button className="login-button" type="submit" value="Login">
+            Login
+          </button>
         </div>
         <div className="login-button-div">
-          <input
+          <button
             className="login-button"
             type="button"
             value="Signup"
             onClick={() => navigate('/signup')}
-          />
+          >
+            Signout
+          </button>
         </div>
       </form>
     </div>

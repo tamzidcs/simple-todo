@@ -14,7 +14,7 @@ const url = {
 };
 
 export function TodoList() {
-  const [data, setData] = useState<todo[]>([]);
+  const [todoList, setTodoList] = useState<todo[]>([]);
   const [userNameList, setUserNameList] = useState<any[]>([]);
   const [shareUserName, setShareUserName] = useState('');
   const [taskListUpdated, setTodoListUpdated] = useState(false);
@@ -25,7 +25,7 @@ export function TodoList() {
       try {
         const result = await getTodo(localStorageItem);
         if (result) {
-          setData(result);
+          setTodoList(result);
         }
       } catch (error) {
         alert(error);
@@ -62,8 +62,8 @@ export function TodoList() {
       <Header />
       <AddTodo updateTaskList={updateTaskList} />
       <div className="todolist">
-        {data.length > 0 ? (
-          data.map((todoItem) => (
+        {todoList.length > 0 ? (
+          todoList.map((todoItem) => (
             <div
               className="todo-container"
               key={todoItem.id}
