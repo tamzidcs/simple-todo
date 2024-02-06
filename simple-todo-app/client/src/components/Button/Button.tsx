@@ -8,8 +8,13 @@ export function Button(buttonProps: button) {
   } = buttonProps;
   const buttontype = type || 'button';
   return (
-    // eslint-disable-next-line react/button-has-type
-    <button className={className} data-testid={testId} type={buttontype} onClick={onClick}>
+    <button
+      className={className}
+      data-testid={testId}
+      // eslint-disable-next-line react/button-has-type
+      type={buttontype}
+      onClick={onClick}
+    >
       {text}
     </button>
   );
