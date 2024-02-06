@@ -3,20 +3,20 @@ import { todo } from '../../interfaces/todo';
 import './AddTodo.scss';
 import { postTodo } from '../../api/todos';
 
-export function AddTodo(props: { taskListUpdate: () => void }) {
+export function AddTodo(props: { updateTaskList: () => void }) {
   const username = String(localStorage.getItem('username'));
   const newTodoInitialState: todo = { title: '', description: '', username };
   const [newTodo, setNewTodo] = useState<todo>(newTodoInitialState);
-  const { taskListUpdate } = props;
+  const { updateTaskList } = props;
 
-  const addTodoHandler = async (event: { preventDefault: () => void }) => {
+  const handleAddTodo = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
     if (newTodo.title && newTodo.description && newTodo.username) {
       try {
         const result = await postTodo(newTodo);
         if (result) {
-          taskListUpdate();
+          updateTaskList();
           alert('New todo Added.');
         } else {
           alert('Add todo Failed.');
@@ -29,7 +29,7 @@ export function AddTodo(props: { taskListUpdate: () => void }) {
 
   return (
     <div className="add-todo-container">
-      <form className="add-todo-form" onSubmit={addTodoHandler}>
+      <form className="add-todo-form" onSubmit={handleAddTodo}>
         <label className="title-label" htmlFor="title-label">
           Title
           <input

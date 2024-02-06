@@ -33,7 +33,7 @@ export function TodoList() {
     }
   };
 
-  const taskListUpdate = () => {
+  const updateTaskList = () => {
     setTodoListUpdated(true);
   };
 
@@ -60,7 +60,7 @@ export function TodoList() {
   return (
     <div className="to-do-list-container">
       <Header />
-      <AddTodo taskListUpdate={taskListUpdate} />
+      <AddTodo updateTaskList={updateTaskList} />
       <div className="todolist">
         {data.length > 0 ? (
           data.map((todoItem) => (
