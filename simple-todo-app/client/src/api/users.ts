@@ -7,19 +7,19 @@ const url = {
   login: 'http://localhost:3005/login',
 };
 
-export async function postUser(newUser: user): Promise<user> {
+export async function postUser(newUser: user): Promise<user | void> {
   return axios
     .post(url.user, newUser)
-    .then((resp: { data: any }) => resp.data)
+    .then((resp: { data: user }) => resp.data)
     .catch((error: AxiosError) => {
       handleError(error);
     });
 }
 
-export async function postLogin(User: user): Promise<user> {
+export async function postLogin(User: user): Promise<user | void> {
   return axios
     .post(url.login, { username: User.username, password: User.password })
-    .then((resp: { data: any }) => resp.data)
+    .then((resp: { data: user }) => resp.data)
     .catch((error: AxiosError) => {
       handleError(error);
     });
