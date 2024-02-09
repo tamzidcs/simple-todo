@@ -12,10 +12,14 @@ const url = {
   users: 'http://localhost:3005/users/',
   share: 'http://localhost:3005/share/',
 };
+interface GetAllUserResponse {
+  id: string,
+  username: string
+}
 
 export function TodoList() {
   const [todoList, setTodoList] = useState<todo[]>([]);
-  const [userNameList, setUserNameList] = useState<any[]>([]);
+  const [userNameList, setUserNameList] = useState<GetAllUserResponse[]>([]);
   const [shareUserName, setShareUserName] = useState('');
   const [taskListUpdated, setTodoListUpdated] = useState(false);
 
@@ -40,7 +44,7 @@ export function TodoList() {
   useEffect(() => {
     getTodosByParam('username');
     setTodoListUpdated(false);
-    axios.get(url.users).then((resp: { data: any }) => {
+    axios.get(url.users).then((resp: { data: GetAllUserResponse[] }) => {
       setUserNameList(resp.data);
     });
   }, [taskListUpdated]);
@@ -50,7 +54,7 @@ export function TodoList() {
     getTodosByParam('username');
   };
 
-  const shareTodo = async (todoId: any, userName: string) => {
+  const shareTodo = async (todoId: string, userName: string) => {
     const result = await postTodoShare(todoId, userName);
     if (result) {
       alert(`Todo shared with ${userName}`);
@@ -81,18 +85,18 @@ export function TodoList() {
                       setShareUserName(e.target.value)}
                   />
                   <datalist id="userNameList">
-                    {userNameList.map((todoListItem) => (
-                      <option key={todoListItem.id}>
-                        {todoListItem.username}
+                    {userNameList.map((userNameListItem) => (
+                      <option key={userNameListItem.id}>
+                        {userNameListItem.username}
                       </option>
                     ))}
                   </datalist>
                   <button
                     className="share-button"
                     type="button"
-                    onClick={() => shareTodo(todoItem.id, shareUserName)}
+                    onClick={() =>
+                      shareTodo(String(todoItem.id), shareUserName)}
                   >
-                    {' '}
                     Share
                   </button>
                 </div>
@@ -101,7 +105,6 @@ export function TodoList() {
                     type="button"
                     onClick={() => todoDone(String(todoItem.id))}
                   >
-                    {' '}
                     Done
                   </button>
                 </div>

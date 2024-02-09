@@ -10,6 +10,11 @@ interface RegisterResponse {
   username: string;
 }
 
+interface GetAllUserResponse {
+  id: string,
+  username: string
+}
+
 async function createNewUser(username: string, password: string) {
   const user = new User({
     username: username,
@@ -62,7 +67,7 @@ export async function loginUser(user: User): Promise<LoginResponse | null> {
   throw new Error("login failed");
 }
 
-export async function getAllUsers(): Promise<User[]> {
-  const users = await User.findAll();
+export async function getAllUsers(): Promise<GetAllUserResponse[]> {
+  const users:GetAllUserResponse[]  = await User.findAll({attributes:['id','username']});
   return users;
 }

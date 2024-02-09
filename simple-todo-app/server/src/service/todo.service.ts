@@ -6,27 +6,26 @@ import TodoUserInput from "../interface/todoUser";
 import { where } from "sequelize";
 import { title } from "process";
 
-const ToDoStatusPending = "pending";
-const ToDoStatusDone = "done";
+const TodoStatusPending = "pending";
+const TodoStatusDone = "done";
 
 export async function addNewTodo(newTodo: TodoInput): Promise<Todo> {
   const todo = new Todo({
     title: newTodo.title,
     description: newTodo.description,
-    status: ToDoStatusPending,
+    status: TodoStatusPending,
   });
 
   const savedTodo = await todo.save();
   if (savedTodo) {
     const user = await User.findOne({ where: { username: newTodo.username } });
-    if(user) {
+    if (user) {
       const todoUser = new TodoUser({
         userId: user?.id,
         todoId: todo.id,
       });
       await todoUser.save();
-    }
-    else {
+    } else {
       throw new Error("User not found");
     }
   } else {
@@ -43,7 +42,7 @@ export async function getAllTodos(username: string): Promise<Todo[]> {
       id: allTodoUser.map((allTodoUser) => {
         return allTodoUser.todoId;
       }),
-      status: ToDoStatusPending,
+      status: TodoStatusPending,
     },
   });
   return todos;
