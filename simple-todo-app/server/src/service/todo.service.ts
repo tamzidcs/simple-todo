@@ -3,6 +3,7 @@ import User from "../db/models/User";
 import TodoUser from "../db/models/TodoUser";
 import TodoInput from "../interface/todo";
 import TodoUserInput from "../interface/todoUser";
+import * as TodoRepo from "../repository/todoRepo"
 import { where } from "sequelize";
 import { title } from "process";
 
@@ -16,9 +17,9 @@ export async function addNewTodo(newTodo: TodoInput): Promise<Todo> {
     status: TodoStatusPending,
   });
 
-  const savedTodo = await todo.save();
-  if (savedTodo) {
-    const user = await User.findOne({ where: { username: newTodo.username } });
+  const createdTodo = await TodoRepo.createTodo(todo);
+  if (createdTodo) {
+    const user = await TodoRepo.getTodoByUsername(newTodo.username);
     if (user) {
       const todoUser = new TodoUser({
         userId: user?.id,
@@ -50,7 +51,7 @@ export async function getAllTodos(username: string): Promise<Todo[]> {
 
 export async function updateTodoStatus(todoId: string): Promise<string> {
   const affectedRows = await Todo.update(
-    { status: ToDoStatusDone },
+    { status: TodoStatusDone },
     { where: { id: todoId } }
   );
   if (affectedRows[0] === 0) {
