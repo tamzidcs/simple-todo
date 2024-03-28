@@ -1,5 +1,6 @@
 import { error } from "console";
 import User from "../db/models/User";
+import * as UserRepo from "../repository/userRepo";
 import * as bcrypt from "bcrypt";
 
 interface LoginResponse {
@@ -11,7 +12,7 @@ interface RegisterResponse {
 }
 
 interface GetAllUserResponse {
-  id: string,
+  id?: string,
   username: string
 }
 
@@ -21,12 +22,12 @@ async function createNewUser(username: string, password: string) {
     password: password,
   });
 
-  const existingUser = await User.findOne({ where: { username: username } });
+  const existingUser = await UserRepo.getUserByUsername(user.username);
   if (existingUser) {
     throw new Error("User already exists.");
   } else {
     try {
-      await user.save();
+      await UserRepo.createUser(user);
       return user;
     } catch (error) {
       console.log(error);
@@ -54,7 +55,7 @@ export async function registerUser(newUser: User): Promise<RegisterResponse>{
 }
 
 export async function loginUser(user: User): Promise<LoginResponse | null> {
-  const checkUser = await User.findOne({ where: { username: user.username } });
+  const checkUser = await UserRepo.getUserByUsername(user.username);
   if (!checkUser) {
     throw new Error("user not found");
   } else if (checkUser !== null) {
@@ -68,6 +69,6 @@ export async function loginUser(user: User): Promise<LoginResponse | null> {
 }
 
 export async function getAllUsers(): Promise<GetAllUserResponse[]> {
-  const users:GetAllUserResponse[]  = await User.findAll({attributes:['id','username']});
+  const users:GetAllUserResponse[]  = await UserRepo.getAllUser();
   return users;
 }
