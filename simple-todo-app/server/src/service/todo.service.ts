@@ -35,17 +35,9 @@ export async function addNewTodo(newTodo: TodoInput): Promise<Todo> {
   return todo;
 }
 
-export async function getAllTodos(username: string): Promise<Todo[]> {
-  const user = await User.findOne({ where: { username: username } });
-  const allTodoUser = await TodoUser.findAll({ where: { userId: user?.id } });
-  const todos = await Todo.findAll({
-    where: {
-      id: allTodoUser.map((allTodoUser) => {
-        return allTodoUser.todoId;
-      }),
-      status: globalConstants.TodoStatusPending,
-    },
-  });
+export async function getAllTodosByUsername(username: string): Promise<Todo[]> {
+  const todoStatus = globalConstants.TodoStatusPending;
+  const todos = await TodoRepo.getAllTodosByUsernameStatus(username,todoStatus);
   return todos;
 }
 

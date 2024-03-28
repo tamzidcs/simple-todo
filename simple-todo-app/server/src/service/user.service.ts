@@ -37,7 +37,7 @@ async function createNewUser(username: string, password: string) {
   } else {
     try {
       await user.save();
-      return user;
+      return { userCreated: true, message: userCreatedMessage };
     } catch (error) {
       return { userCreated: false, message: error };
     }
