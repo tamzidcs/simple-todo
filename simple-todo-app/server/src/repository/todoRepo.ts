@@ -23,3 +23,10 @@ export async function getAllTodosByUsernameStatus(username: string,todoStatus: s
     },
   });
 }
+
+export function updateTodoStatusById(todoId: string, todoStatus: string) {
+  return Todo.update(
+    { status: globalConstants.TodoStatusDone },
+    { where: { id: todoId } }
+  );
+}
