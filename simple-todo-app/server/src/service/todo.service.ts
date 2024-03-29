@@ -42,10 +42,7 @@ export async function getAllTodosByUsername(username: string): Promise<Todo[]> {
 }
 
 export async function updateTodoStatus(todoId: string): Promise<string> {
-  const affectedRows = await Todo.update(
-    { status: globalConstants.TodoStatusDone },
-    { where: { id: todoId } }
-  );
+  const affectedRows = await TodoRepo.updateTodoStatusById(todoId,globalConstants.TodoStatusDone);
   if (affectedRows[0] === 0) {
     throw new Error("status update failed.");
   }
