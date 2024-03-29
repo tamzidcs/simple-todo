@@ -3,30 +3,30 @@ import User from "../db/models/User";
 import TodoUser from "../db/models/TodoUser";
 import TodoInput from "../interface/todo";
 import TodoUserInput from "../interface/todoUser";
+import * as UserRepo from "../repository/userRepo";
+import * as TodoRepo from "../repository/todoRepo";
+import * as TodoUserRepo from "../repository/todoUserRepo";
 import { where } from "sequelize";
 import { title } from "process";
-
-const ToDoStatusPending = "pending";
-const ToDoStatusDone = "done";
+import { globalConstants } from "../shared/globalConstants";
 
 export async function addNewTodo(newTodo: TodoInput): Promise<Todo> {
   const todo = new Todo({
     title: newTodo.title,
     description: newTodo.description,
-    status: ToDoStatusPending,
+    status: globalConstants.TodoStatusPending,
   });
 
   const savedTodo = await todo.save();
   if (savedTodo) {
-    const user = await User.findOne({ where: { username: newTodo.username } });
-    if(user) {
+    const user = await TodoRepo.getTodoByUsername(newTodo.username);
+    if (user) {
       const todoUser = new TodoUser({
         userId: user?.id,
         todoId: todo.id,
       });
-      await todoUser.save();
-    }
-    else {
+      TodoUserRepo.createTodoUser(todoUser);
+    } else {
       throw new Error("User not found");
     }
   } else {
@@ -35,25 +35,14 @@ export async function addNewTodo(newTodo: TodoInput): Promise<Todo> {
   return todo;
 }
 
-export async function getAllTodos(username: string): Promise<Todo[]> {
-  const user = await User.findOne({ where: { username: username } });
-  const allTodoUser = await TodoUser.findAll({ where: { userId: user?.id } });
-  const todos = await Todo.findAll({
-    where: {
-      id: allTodoUser.map((allTodoUser) => {
-        return allTodoUser.todoId;
-      }),
-      status: ToDoStatusPending,
-    },
-  });
+export async function getAllTodosByUsername(username: string): Promise<Todo[]> {
+  const todoStatus = globalConstants.TodoStatusPending;
+  const todos = await TodoRepo.getAllTodosByUsernameStatus(username,todoStatus);
   return todos;
 }
 
 export async function updateTodoStatus(todoId: string): Promise<string> {
-  const affectedRows = await Todo.update(
-    { status: ToDoStatusDone },
-    { where: { id: todoId } }
-  );
+  const affectedRows = await  TodoRepo.updateTodoStatusById(todoId,globalConstants.TodoStatusDone);
   if (affectedRows[0] === 0) {
     throw new Error("status update failed.");
   }
@@ -62,16 +51,12 @@ export async function updateTodoStatus(todoId: string): Promise<string> {
 
 export async function shareTodo(newTodoUser: TodoUserInput): Promise<TodoUser> {
   const todoUser = new TodoUser();
-  const user = await User.findOne({
-    where: { username: newTodoUser.username },
-  });
+  const user = await UserRepo.getUserByUsername(newTodoUser.username);
   todoUser.userId = user?.id;
   todoUser.todoId = newTodoUser.todoId;
-  const todoUserFound = await TodoUser.findOne({
-    where: { userId: todoUser.userId, todoId: todoUser.todoId },
-  });
+  const todoUserFound = await TodoUserRepo.getTodoUserByTodoIdUserId(todoUser.userId,todoUser.todoId);
   if (!todoUserFound) {
-    await todoUser.save();
+    await TodoUserRepo.createTodoUser(todoUser);
     return todoUser;
   }
   return todoUserFound;
