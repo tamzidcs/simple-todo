@@ -49,8 +49,8 @@ export function TodoList() {
     });
   }, [taskListUpdated]);
 
-  const todoDone = (taskId: string) => {
-    updateTodoDone(taskId);
+  const todoDone = async (taskId: string) => {
+    await updateTodoDone(taskId);
     getTodosByParam('username');
   };
 
