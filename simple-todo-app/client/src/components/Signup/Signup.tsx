@@ -17,6 +17,11 @@ export function Signup() {
   const [signupUser, setSignupUser] = useState<user>(newUser);
   const [showUsernameError, setShowUsernameError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
+  const signupFormClasses = {
+    usernameErrorClass: 'signup-form-with-username-errors',
+    passwordErrorClass: 'signup-form-with-password-errors',
+    passwordAndUsernameErrorClass: 'signup-form-with-username-password-errors',
+  };
   const navigate = useNavigate();
 
   const handleSignupError = () => {
@@ -63,9 +68,17 @@ export function Signup() {
     setSignupUser({ ...signupUser, password: event.target.value });
   };
 
+  const getSignupClassname = () => `signup-form ' ${
+    showUsernameError ? signupFormClasses.usernameErrorClass : ''
+  } ${showPasswordError ? signupFormClasses.passwordErrorClass : ''} ${
+    showPasswordError && showUsernameError
+      ? signupFormClasses.passwordAndUsernameErrorClass
+      : ''
+  }`;
+
   return (
     <div className="signup-container">
-      <form className="signup-form" onSubmit={handleSignup}>
+      <form className={getSignupClassname()} onSubmit={handleSignup}>
         <div className="signup-header">Signup</div>
         <label className="signup-label" htmlFor="username">
           Username
