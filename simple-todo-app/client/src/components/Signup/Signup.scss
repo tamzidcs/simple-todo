@@ -10,6 +10,9 @@ $signupTextFieldHeight: 30px;
 $signupTextfieldMarginBottom: 10px;
 $signupFormWidth: 260px;
 $signupFormHeight: 260px;
+$signupFormWithUsernameErrorHeight: 320px;
+$signupFormWithPasswordErrorHeight: 350px;
+$signupFormWithUsernamePasswordErrorHeight: 400px;
 $signupFormPaddingLeft: 70px;
 $signupFormPaddingRight: 70px;
 $signupFormPaddingTop: 50px;
@@ -61,6 +64,21 @@ $signupTextFieldBorderRadius: 4px;
     padding-bottom: $signupFormPaddingBottom;
     margin: auto;
     border-radius: $signupFormBorderRadius;
+}
+
+.signup-form-with-password-errors {
+    @extend .signup-form;
+    height: $signupFormWithPasswordErrorHeight;
+}
+
+.signup-form-with-username-errors {
+    @extend .signup-form;
+    height: $signupFormWithUsernameErrorHeight;
+}
+
+.signup-form-with-username-password-errors {
+    @extend .signup-form;
+    height: $signupFormWithUsernamePasswordErrorHeight;
 }
 
 .signup-textfield {
