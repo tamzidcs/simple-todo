@@ -18,9 +18,9 @@ export function Signup() {
   const [showUsernameError, setShowUsernameError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
   const signupFormClasses = {
-    usernameErrorClass: 'signup-form-with-username-errors',
-    passwordErrorClass: 'signup-form-with-password-errors',
-    passwordAndUsernameErrorClass: 'signup-form-with-username-password-errors',
+    usernameErrorClass: 'username-errors',
+    passwordErrorClass: 'password-errors',
+    passwordAndUsernameErrorClass: 'username-password-errors',
   };
   const navigate = useNavigate();
 
@@ -68,11 +68,11 @@ export function Signup() {
     setSignupUser({ ...signupUser, password: event.target.value });
   };
 
-  const getSignupClassname = () => `signup-form ' ${
-    showUsernameError ? signupFormClasses.usernameErrorClass : ''
-  } ${showPasswordError ? signupFormClasses.passwordErrorClass : ''} ${
+  const getSignupClassname = () => `signup-form${
+    showUsernameError ? ` ${signupFormClasses.usernameErrorClass}` : ''
+  }${showPasswordError ? ` ${signupFormClasses.passwordErrorClass}` : ''}${
     showPasswordError && showUsernameError
-      ? signupFormClasses.passwordAndUsernameErrorClass
+      ? ` ${signupFormClasses.passwordAndUsernameErrorClass}`
       : ''
   }`;
 
