@@ -66,17 +66,17 @@ $signupTextFieldBorderRadius: 4px;
     border-radius: $signupFormBorderRadius;
 }
 
-.signup-form-with-password-errors {
+.password-errors {
     @extend .signup-form;
     height: $signupFormWithPasswordErrorHeight;
 }
 
-.signup-form-with-username-errors {
+.username-errors {
     @extend .signup-form;
     height: $signupFormWithUsernameErrorHeight;
 }
 
-.signup-form-with-username-password-errors {
+.username-password-errors {
     @extend .signup-form;
     height: $signupFormWithUsernamePasswordErrorHeight;
 }
