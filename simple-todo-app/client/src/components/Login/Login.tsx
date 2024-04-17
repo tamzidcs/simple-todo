@@ -30,6 +30,7 @@ export function Login() {
 
   return (
     <div className="login-container">
+      <div className="simple-todo-logo">Simple Todo</div>
       <form className="login-form" onSubmit={login}>
         <div className="login-header" aria-valuetext="login">
           Login
