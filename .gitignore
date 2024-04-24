@@ -1,4 +1,4 @@
 .DS_Store
 simple-todo-app/.DS_Store
 *.log
-.vscode
+.vscode/*
