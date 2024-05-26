@@ -1,0 +1,4 @@
+$commonBorderRadius: 4px;
+@mixin common-border {
+    border-radius: $commonBorderRadius;
+}
