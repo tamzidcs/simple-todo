@@ -1,5 +1,3 @@
-@import '../../styles/mixin.scss';
-
 $loginContainerMarginLeft: 250px;
 $loginContainerPadding: 100px;
 $loginContainerWidth: 100%;
@@ -53,7 +51,6 @@ $simpleTodoLogoPaddingBottom: 80px;
 }
 
 .login-form {
-    @include global-border-radius;
     width: $loginFormWidth;
     height: $loginFormHeight;
     background-color: $loginFormBackgroundColor;
@@ -62,6 +59,7 @@ $simpleTodoLogoPaddingBottom: 80px;
     padding-top: $loginFormPaddingTop;
     padding-bottom: $loginFormPaddingBottom;
     margin: auto;
+    border-radius: $loginFormBorderRadius;
 }
 
 .login-textfield {
