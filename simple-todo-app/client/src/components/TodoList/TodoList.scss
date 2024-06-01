@@ -1,3 +1,5 @@
+@import '../../styles/mixin.scss';
+
 $toDoListContainerWidth: 100vw;
 $toDoListContainerMarginBottom: 100px;
 $titleWidth: 300px;
@@ -25,6 +27,7 @@ $shareButtonMarginLeft: 5px;
 }
 
 .title {
+    @include global-border-radius;
     padding-left: $titlePaddingLeft;
     color: black;
     background-color: darkgray;
@@ -34,6 +37,7 @@ $shareButtonMarginLeft: 5px;
 }
 
 .description {
+    @include global-border-radius;
     color: rgb(255, 255, 255);
     background-color: rgb(100,100,100);
     height: $descriptionHeight;
@@ -41,6 +45,7 @@ $shareButtonMarginLeft: 5px;
 }
 
 .todolist {
+    @include global-border-radius;
     display: flex;
     flex-direction: column;
     background-color: lightsteelblue;
@@ -74,6 +79,7 @@ $shareButtonMarginLeft: 5px;
 }
 
 .user-name-input {
+    @include global-border-radius;
     width: $userNameInputWidth;
 }
 
