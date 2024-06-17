@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postUser } from '../../api/users';
-import { user } from '../../interfaces/user';
-import { schema } from '../../utils/inputValidator';
+import { postUser } from '../../../api/users';
+import { user } from '../../../interfaces/user';
+import { schema } from '../../../utils/inputValidator';
 import './Signup.scss';
-import Button from '../Button/Button';
+import Button from '../../Views/Button/Button';
 
 const newUser: user = {
   username: '',

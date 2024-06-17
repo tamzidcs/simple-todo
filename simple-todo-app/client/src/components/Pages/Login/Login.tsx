@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postLogin } from '../../api/users';
-import { user } from '../../interfaces/user';
+import { postLogin } from '../../../api/users';
+import { user } from '../../../interfaces/user';
 import './Login.scss';
-import Button from '../Button/Button';
+import Button from '../../Views/Button/Button';
 
 const User: user = {
   username: '',
