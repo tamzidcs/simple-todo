@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { todo } from '../../interfaces/todo';
+import { todo } from '../../../interfaces/todo';
 import './AddTodo.scss';
-import { postTodo } from '../../api/todos';
+import { postTodo } from '../../../api/todos';
 import { TodoAlert } from '../TodoAlert/TodoAlert';
-import { alert } from '../../interfaces/alert';
+import { alert } from '../../../interfaces/alert';
 import { Button } from '../Button/Button';
 
 export function AddTodo(props: { updateTaskList: () => void }) {
