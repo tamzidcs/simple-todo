@@ -2,7 +2,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import axios from 'axios';
 import { render, waitFor, screen } from '@testing-library/react';
-import TodoList from '../components/TodoList/TodoList';
+import TodoList from '../components/Pages/TodoList/TodoList';
 
 const mockedUsedNavigate = jest.fn();
 jest.mock('axios');

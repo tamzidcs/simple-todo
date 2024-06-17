@@ -1,5 +1,5 @@
 import React from 'react';
-import AddTodo from '../components/AddTodo/AddTodo';
+import AddTodo from '../components/Views/AddTodo/AddTodo';
 import axios from 'axios';
 import {
   render, waitFor, screen, fireEvent,
