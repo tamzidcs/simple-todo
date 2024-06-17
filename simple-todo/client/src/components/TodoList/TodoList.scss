@@ -1,0 +1,96 @@
+@import '../../styles/mixin.scss';
+
+$toDoListContainerWidth: 100vw;
+$toDoListContainerMarginBottom: 100px;
+$titleWidth: 300px;
+$titleHeight: 20px;
+$titlePaddingLeft: 10px;
+$descriptionHeight: 100px;
+$descriptionPaddingLeft: 10px;
+$todolistWidth: 355px;
+$todolistPadding: 30px;
+$todoContainerPaddingBottom: 30px;
+$todoMarginBottom: 10px;
+$doneButtonMarginLeft: 5px;
+$doneButtonWidth: 55px;
+$doneButtonHeight: 26px;
+$userNameInputWidth: 150px;
+$shareTodoWidth: 300px;
+$shareButtonHeight: 26px;
+$shareButtonZIndex: 1;
+$shareButtonMarginLeft: 5px;
+
+.to-do-list-container {
+    display: inline-block;
+    width: $toDoListContainerWidth;
+    margin-bottom: $toDoListContainerMarginBottom;
+}
+
+.title {
+    @include global-border-radius;
+    padding-left: $titlePaddingLeft;
+    color: black;
+    background-color: darkgray;
+    width: $titleWidth;
+    height: $titleHeight;
+    font-weight: bold;
+}
+
+.description {
+    @include global-border-radius;
+    color: rgb(255, 255, 255);
+    background-color: rgb(100,100,100);
+    height: $descriptionHeight;
+    padding-left: $descriptionPaddingLeft;
+}
+
+.todolist {
+    @include global-border-radius;
+    display: flex;
+    flex-direction: column;
+    background-color: lightsteelblue;
+    width: $todolistWidth;
+    padding: $todolistPadding;
+    margin: 0px auto;
+}
+
+.todo-container {
+    padding-bottom: $todoContainerPaddingBottom;
+}
+
+.todo {
+    margin-bottom: $todoMarginBottom;
+}
+
+.todo-top {
+    display: flex;
+}
+
+.done-button {
+    width: $doneButtonWidth;
+    height: $doneButtonHeight;
+    margin-left: $doneButtonMarginLeft;
+}
+
+.share-todo {
+    display: flex;
+    float: right;
+    width: $shareTodoWidth;
+}
+
+.user-name-input {
+    @include global-border-radius;
+    width: $userNameInputWidth;
+}
+
+.share-button {
+    position: relative;
+    z-index: $shareButtonZIndex;
+    height: $shareButtonHeight;
+    float: right;
+    margin-left: $shareButtonMarginLeft;
+}
+
+.todo-bottom {
+    display: flex;
+}
