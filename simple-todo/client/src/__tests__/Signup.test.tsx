@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Signup from '../components/Pages/Signup/Signup';
+import Signup from '../components/pages/Signup/Signup';
 
 const mockedUsedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
