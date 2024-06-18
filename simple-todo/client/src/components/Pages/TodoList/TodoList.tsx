@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Header } from '../../Views/Header/Header';
-import { AddTodo } from '../../Views/AddTodo/AddTodo';
+import { Header } from '../../views/Header/Header';
+import { AddTodo } from '../../views/AddTodo/AddTodo';
 import { getTodo, postShareTodo, updateTodoDone } from '../../../api/todos';
 import { todo } from '../../../interfaces/todo';
-import DropDown from '../../Views/DropDown/DropDown';
+import DropDown from '../../views/DropDown/DropDown';
 import './TodoList.scss';
-import Todo from '../../Views/Todo/Todo';
+import Todo from '../../views/Todo/Todo';
 // import { button } from '../../interfaces/button';
-import Button from '../../Views/Button/Button';
+import Button from '../../views/Button/Button';
 
 const url = {
   todos: 'http://localhost:3005/todos/',

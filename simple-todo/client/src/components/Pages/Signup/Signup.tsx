@@ -4,7 +4,7 @@ import { postUser } from '../../../api/users';
 import { user } from '../../../interfaces/user';
 import { schema } from '../../../utils/inputValidator';
 import './Signup.scss';
-import Button from '../../Views/Button/Button';
+import Button from '../../views/Button/Button';
 
 const newUser: user = {
   username: '',
