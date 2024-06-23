@@ -84,7 +84,7 @@ export function TodoList() {
                     updateUserShareName={updateUserShareName}
                   />
                   <Button
-                    className="share-button"
+                    className="button share-button"
                     testId="share-button"
                     text="Share"
                     type="button"
@@ -92,7 +92,7 @@ export function TodoList() {
                   />
                 </div>
                 <Button
-                  className="done-button"
+                  className="button done-button"
                   testId="done-button"
                   text="Done"
                   type="button"
