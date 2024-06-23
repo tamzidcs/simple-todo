@@ -64,7 +64,7 @@ export function AddTodo(props: { updateTaskList: () => void }) {
         <div className="add-button-container">
           <Button
             text="Add"
-            className="add-button"
+            className="button add-button"
             testId="add-button"
             type="submit"
           />

@@ -17,8 +17,8 @@ export function Header() {
       </div>
       <div className="signout-button-container">
         <Button
-          className="signout-button"
-          testId="signup-button"
+          className="button signout-button"
+          testId="signout-button"
           text="Signout"
           type="button"
           onClick={signout}
