@@ -13,10 +13,7 @@ $descriptionTextFieldResize: vertical;
 $titleLabelWidth: 285px;
 $titleLabelHeight: 30px;
 $titleDescriptionWidth: 285px;
-$addButtonContainerWidth: 285px;
-$addButtonWidth: 80px;
-$addButtonPadding: 10px;
-$addButtonMarginTop:10px;
+$addButtonContainerWidth: 310px;
 $titleTextFieldPaddingLeft: 5px;
 $titleTextFieldPaddingRight: 5px;
 $descriptionTextFieldPadding: $titleTextFieldPaddingLeft;
@@ -54,12 +51,6 @@ $descriptionTextFieldPadding: $titleTextFieldPaddingLeft;
 
 .description-label {
     width: $titleDescriptionWidth;
-}
-
-.add-button {
-    margin-top: $addButtonMarginTop;
-    padding: $addButtonPadding;
-    width: $addButtonWidth;
 }
 
 .add-button-container {

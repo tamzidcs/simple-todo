@@ -1,0 +1,63 @@
+$buttonBorder: 0px;
+$buttonBorderRadius: 8px;
+$buttonFontSize: 15px;
+$buttonFontWeight: 500;
+$buttonBackgroundColor: #4cabd7;
+$buttonColor: #e7e7e7;
+$buttonHoverBackgroundColor: #55bdee;
+$buttonHoverColor: #ebf7ff;
+$addButtonPadding: 10px;
+$addButtonMarginTop:10px;
+$shareTodoWidth: 300px;
+$shareButtonHeight: 26px;
+$shareButtonZIndex: 1;
+$shareButtonMarginLeft: 5px;
+$doneButtonWidth: 55px;
+$doneButtonHeight: 26px;
+$shareButtonWidth: 55px;
+$shareButtonHeight: 26px;
+$signoutTodoWidth: 100px;
+$signoutButtonHeight: 30px;
+$addButtonWidth: 100px;
+$addButtonHeight: 40px;
+
+.button {
+    border: $buttonBorder;
+    border-radius: $buttonBorderRadius;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: $buttonFontSize;
+    font-weight: $buttonFontWeight;
+    background-color: $buttonBackgroundColor;
+    color: $buttonColor;
+    &:hover {
+        background-color: $buttonHoverBackgroundColor;
+        color: $buttonHoverColor;
+    }
+}
+
+.signout-button {
+    width: $signoutTodoWidth;
+    height: $signoutButtonHeight;
+}
+
+.add-button {
+    width: $addButtonWidth;
+    height: $addButtonHeight;
+    margin-top: $addButtonMarginTop;
+    padding: $addButtonPadding;
+}
+
+.done-button {
+    width: $doneButtonWidth;
+    height: $doneButtonHeight;
+}
+
+.share-button {
+    width: $shareButtonWidth;
+    height: $shareButtonHeight;
+    position: relative;
+    z-index: $shareButtonZIndex;
+    height: $shareButtonHeight;
+    float: right;
+    margin-left: $shareButtonMarginLeft;
+}

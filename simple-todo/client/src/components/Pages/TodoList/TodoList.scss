@@ -11,14 +11,8 @@ $todolistWidth: 355px;
 $todolistPadding: 30px;
 $todoContainerPaddingBottom: 30px;
 $todoMarginBottom: 10px;
-$doneButtonMarginLeft: 5px;
-$doneButtonWidth: 55px;
-$doneButtonHeight: 26px;
 $userNameInputWidth: 150px;
 $shareTodoWidth: 300px;
-$shareButtonHeight: 26px;
-$shareButtonZIndex: 1;
-$shareButtonMarginLeft: 5px;
 
 .to-do-list-container {
     display: inline-block;
@@ -66,12 +60,6 @@ $shareButtonMarginLeft: 5px;
     display: flex;
 }
 
-.done-button {
-    width: $doneButtonWidth;
-    height: $doneButtonHeight;
-    margin-left: $doneButtonMarginLeft;
-}
-
 .share-todo {
     display: flex;
     float: right;
@@ -81,14 +69,6 @@ $shareButtonMarginLeft: 5px;
 .user-name-input {
     @include global-border-radius;
     width: $userNameInputWidth;
-}
-
-.share-button {
-    position: relative;
-    z-index: $shareButtonZIndex;
-    height: $shareButtonHeight;
-    float: right;
-    margin-left: $shareButtonMarginLeft;
 }
 
 .todo-bottom {
