@@ -39,13 +39,13 @@ export function AddTodo(props: { updateTaskList: () => void }) {
   };
 
   return (
-    <div className="add-todo-container">
+    <div className="add-todo-container box">
       <form className="add-todo-form" onSubmit={handleAddTodo}>
         <label className="title-label" htmlFor="title-textfield">
           Title
           <input
             id="title-textfield"
-            className="title-textfield"
+            className="title-textfield box"
             data-testid="title-textfield"
             type="text"
             value={newTodo.title}
@@ -56,7 +56,7 @@ export function AddTodo(props: { updateTaskList: () => void }) {
           Desciption
           <textarea
             id="description-textfield"
-            className="description-textfield"
+            className="description-textfield box"
             data-testid="description-textfield"
             onChange={(e) => setNewTodo({ ...newTodo, description: e.target.value })}
           />
