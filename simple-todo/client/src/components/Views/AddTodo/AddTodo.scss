@@ -1,5 +1,3 @@
-@import '../../../styles/mixin.scss';
-
 $addTodoContainerPadding: 30px;
 $addTodoContainerWidth: 355px;
 $addTodoContainerColor: #000000;
@@ -19,7 +17,6 @@ $titleTextFieldPaddingRight: 5px;
 $descriptionTextFieldPadding: $titleTextFieldPaddingLeft;
 
 .add-todo-container {
-    @include global-border-radius;
     margin: 5px auto;
     padding: $addTodoContainerPadding;
     width: $addTodoContainerWidth;
@@ -28,7 +25,6 @@ $descriptionTextFieldPadding: $titleTextFieldPaddingLeft;
 }
 
 .title-textfield {
-    @include global-border-radius;
     width: $titleTextField;
     height: $titleLabelHeight;
     padding-left: $titleTextFieldPaddingLeft;
@@ -36,7 +32,6 @@ $descriptionTextFieldPadding: $titleTextFieldPaddingLeft;
 }
 
 .description-textfield {
-    @include global-border-radius;
     width: $descriptionTextFieldWidth;
     height: $descriptionTextFieldHeight;
     max-height: $descriptionTextFieldMaxHeight;

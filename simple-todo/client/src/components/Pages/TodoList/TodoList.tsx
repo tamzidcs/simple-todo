@@ -68,7 +68,7 @@ export function TodoList() {
     <div className="to-do-list-container">
       <Header />
       <AddTodo updateTaskList={updateTaskList} />
-      <div className="todolist">
+      <div className="todolist box">
         {todoList.length > 0 ? (
           todoList.map((todoItem) => (
             <div
