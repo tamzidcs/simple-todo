@@ -1,5 +1,3 @@
-@import '../../../styles/mixin.scss';
-
 $signupContainerMarginLeft: 250px;
 $signupContainerPadding: 100px;
 $signupContainerWidth: 100%;
@@ -57,7 +55,6 @@ $signupTextFieldBorderRadius: 4px;
 }
 
 .signup-form {
-    @include global-border-radius;
     width: $signupFormWidth;
     height: $signupFormHeight;
     background-color: $signupFormBackgroundColor;
