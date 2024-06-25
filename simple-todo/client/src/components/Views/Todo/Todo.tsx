@@ -8,8 +8,8 @@ type Props = {
 export function Todo({ todoItem }: Props) {
   return (
     <div className="todo">
-      <div className="title">{todoItem.title}</div>
-      <div className="description">{todoItem.description}</div>
+      <div className="title box">{todoItem.title}</div>
+      <div className="description box">{todoItem.description}</div>
     </div>
   );
 }
