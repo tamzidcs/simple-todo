@@ -9,6 +9,7 @@ import './TodoList.scss';
 import Todo from '../../views/Todo/Todo';
 // import { button } from '../../interfaces/button';
 import Button from '../../views/Button/Button';
+import userNameListItem from '../../../interfaces/userNameListItem';
 
 const url = {
   todos: 'http://localhost:3005/todos/',
@@ -40,11 +41,22 @@ export function TodoList() {
     setTodoListUpdated(true);
   };
 
+  const removeCurrentUsernameFromList = (userNameList: userNameListItem[]) => {
+    const currentUsername = localStorage.getItem('username');
+    userNameList.forEach((userNameListItem, userNameListIndex) => {
+      if (userNameListItem.username === currentUsername) {
+        userNameList.splice(userNameListIndex, 1);
+      }
+    });
+    return userNameList;
+  };
+
   useEffect(() => {
     getTodosByParam('username');
     setTodoListUpdated(false);
-    axios.get(url.users).then((resp: { data: any }) => {
-      setUserNameList(resp.data);
+    axios.get(url.users).then((resp: { data: [] }) => {
+      const userNameList = removeCurrentUsernameFromList(resp.data);
+      setUserNameList(userNameList);
     });
   }, [taskListUpdated]);
 
