@@ -19,13 +19,13 @@ $optionPaddingRight: 16px;
 $optionPaddingBottom: 6px;
 $optionPaddingTop: 6px;
 $optionZIndex: 2;
-$optionHoverBackgroundColor: #d3d3d3;
+$optionHoverBackgroundColor: #4ba7d1;
 $dropDownTextBorderColor: #d3d3d3;
 $searchInputFocusBorderColor: #96c8da;
 $searchInputFocusOutlineColor: #586f78;
-$optionViewBackgroundColor: #bcbcbc;
+$optionViewBackgroundColor: #3a83a4;
 $optionViewBorderColor: #393939;
-$optionBorderTopColor: #fafbfa;
+$optionBorderTopColor: #459bc2;
 
 .dropdown { 
     z-index: $dropDownZIndex;
@@ -64,14 +64,15 @@ $optionBorderTopColor: #fafbfa;
 .option-view {
     display: block;
     position: absolute;
-    background-color: $optionViewBackgroundColor;
     width: $optionViewWidth;
-    border: 1px solid $optionViewBorderColor;
+    //border-bottom: 1px solid $optionViewBorderColor;
     border-radius: $optionViewBorderRadius;
     z-index: $optionViewZIndex;
+    overflow: hidden;
 }
 .option {
-    border-top: 1px solid $optionBorderTopColor;
+    border-bottom: 1px solid $optionBorderTopColor;
+    background-color: $optionViewBackgroundColor;
     font-size: $optionFontSize;
     font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
     padding-top: $optionPaddingTop;
@@ -80,7 +81,7 @@ $optionBorderTopColor: #fafbfa;
     padding-right: $optionPaddingRight;
     z-index: $optionZIndex;
     cursor: pointer;
-}
-.option:hover {
-    background-color: $optionHoverBackgroundColor;
+    &:hover{
+        background-color: $optionHoverBackgroundColor;
+    }
 }
