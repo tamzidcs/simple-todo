@@ -81,6 +81,8 @@ $optionBorderTopColor: #459bc2;
     padding-left: $optionPaddingLeft;
     padding-right: $optionPaddingRight;
     z-index: $optionZIndex;
+    overflow: hidden;
+    text-overflow: ellipsis;
     cursor: pointer;
     &:hover{
         background-color: $optionHoverBackgroundColor;
