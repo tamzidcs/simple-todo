@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import dropDownCaretIcon from '../../../resources/assets/caret-down-icon.png';
 import './DropDown.scss';
 
@@ -36,7 +36,7 @@ export function DropDown(props: {
     updateUserShareName(event.target.value);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const handleClickOutside = (event: { target: any }) => {
       if (
         dropDownRef !== null
