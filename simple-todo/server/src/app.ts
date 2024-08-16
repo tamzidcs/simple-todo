@@ -1,5 +1,5 @@
 import express from 'express';
-import router from './routes';
+import routerV1 from './api/v1/routes';
 import cors, { CorsOptions } from 'cors';
 
 const app = express();
@@ -9,6 +9,6 @@ const options:CorsOptions = {
 };
 
 app.use(cors(options));
-app.use('/', router);
+app.use('/', routerV1);
 
 export default app;
