@@ -1,5 +1,5 @@
 import app from './app';
-import { initializeDatabase } from './db';
+import { initializeDatabase } from './api/v1/db/db';
 
 const host = process.env.HOST || "127.0.0.1";
 const port = process.env.PORT || 3005;

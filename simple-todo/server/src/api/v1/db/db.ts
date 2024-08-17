@@ -1,4 +1,4 @@
-import { Todo, TodoUser, User } from "./db/models";
+import { Todo, TodoUser, User } from "./models";
 import dotenv from 'dotenv';
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` })
 const { Sequelize } = require("sequelize-typescript");
