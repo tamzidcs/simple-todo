@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { postUser } from '../../api/users';
-import { user } from '../../interfaces/user';
+import { postUser } from '../../../api/users';
+import { user } from '../../../interfaces/user';
 import './Signup.scss';
 
 const newUser: user = {

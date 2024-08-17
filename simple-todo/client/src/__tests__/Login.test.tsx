@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import Login from '../components/Login/Login';
+import Login from '../components/pages/Login/Login';
 
 const mockedUsedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({

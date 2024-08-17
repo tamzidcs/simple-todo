@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Header } from '../Header/Header';
-import { AddTodo } from '../AddTodo/AddTodo';
+import { Header } from '../../views/Header/Header';
+import { AddTodo } from '../../views/AddTodo/AddTodo';
 import './TodoList.scss';
-import { getTodo, postTodoShare, updateTodoDone } from '../../api/todos';
-import { todo } from '../../interfaces/todo';
-import Todo from '../Todo/Todo';
+import { getTodo, postTodoShare, updateTodoDone } from '../../../api/todos';
+import { todo } from '../../../interfaces/todo';
+import Todo from '../../views/Todo/Todo';
 
 const url = {
   todos: 'http://localhost:3005/todos/',

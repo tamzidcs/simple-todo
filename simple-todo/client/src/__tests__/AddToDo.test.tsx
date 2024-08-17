@@ -3,7 +3,7 @@ import axios from 'axios';
 import {
   render, waitFor, screen, fireEvent,
 } from '@testing-library/react';
-import AddTodo from '../components/AddTodo/AddTodo';
+import AddTodo from '../components/views/AddTodo/AddTodo';
 import { postTodo } from '../api/todos';
 import { todo } from '../interfaces/todo';
 

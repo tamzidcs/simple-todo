@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { todo } from '../../interfaces/todo';
+import { todo } from '../../../interfaces/todo';
 import './AddTodo.scss';
-import { postTodo } from '../../api/todos';
+import { postTodo } from '../../../api/todos';
 
 export function AddTodo(props: { updateTaskList: () => void }) {
   const username = String(localStorage.getItem('username'));
