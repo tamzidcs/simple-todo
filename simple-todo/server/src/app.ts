@@ -8,7 +8,12 @@ const options:CorsOptions = {
   origin: optionsOrigin,
 };
 
+const APIConf = {
+  version: 'v1',
+  router: routerV1
+}
+
 app.use(cors(options));
-app.use('/', routerV1);
+app.use('/', APIConf.router);
 
 export default app;

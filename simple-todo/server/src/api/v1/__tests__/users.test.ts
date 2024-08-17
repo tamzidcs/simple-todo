@@ -1,7 +1,7 @@
 import request from "supertest";
 import status from "http-status";
 import { describe, expect, test } from "@jest/globals";
-import { initializeDatabase } from "../../../db";
+import { initializeDatabase } from "../db/db";
 import app from "../../../app";
 import { User } from "../db/models";
 import { registerUser } from "../service/user.service";
