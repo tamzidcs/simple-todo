@@ -1,6 +1,6 @@
 import { Todo, User } from "../db/models";
-import * as UserRepo from "../repository/userRepo";
-import * as TodoUserRepo from "../repository/todoUserRepo";
+import * as UserRepo from "./userRepo";
+import * as TodoUserRepo from "./todoUserRepo";
 import { globalConstants } from "../shared/globalConstants";
 
 export function createTodo(todo: Todo) {
