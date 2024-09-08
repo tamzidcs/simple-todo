@@ -11,9 +11,6 @@ const options:CorsOptions = {
 
 app.use(cors(options));
 app.use('/', router);
-app.all('*',async (req,resp,next)=>{
-  throw new Error('test');
-})
 app.use(errorHandler);
 
 export default app;
