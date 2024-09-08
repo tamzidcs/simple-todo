@@ -24,7 +24,7 @@ export class BadRequestError extends CustomError {
         super(message);
         Object.setPrototypeOf(this, BadRequestError.prototype)
     }
-    statusCode = 500;
+    statusCode = 400;
     serialize() {
         return {message: this.message}
     }
