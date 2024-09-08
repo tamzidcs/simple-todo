@@ -14,11 +14,8 @@ export async function registerUser(
     res.send(result);
   } catch (error) {
     if(error instanceof Error && error.message === "User already exists.") {
-      res.status(CONFLICT).json({
-        username: user.username,
-      });
+      next(error);
     }
-    next(error);
   }
 }
 
@@ -35,14 +32,10 @@ export async function loginUser(
         username: loggedInUser.username,
       });
     } else {
-      res.status(UNAUTHORIZED).json({
-        username: user.username,
-      });
+      throw Error;
     }
   } catch (error) {
-    res.status(UNAUTHORIZED).json({
-      username: user.username,
-    });
+    next(error);
   }
 }
 
