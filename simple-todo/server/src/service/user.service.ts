@@ -2,6 +2,7 @@ import { error } from "console";
 import User from "../db/models/User";
 import * as UserRepo from "../repository/userRepo";
 import * as bcrypt from "bcrypt";
+import { AuthenticationError } from "../error";
 
 interface LoginResponse {
   username: string;
@@ -57,15 +58,15 @@ export async function registerUser(newUser: User): Promise<RegisterResponse>{
 export async function loginUser(user: User): Promise<LoginResponse | null> {
   const checkUser = await UserRepo.getUserByUsername(user.username);
   if (!checkUser) {
-    throw new Error("user not found");
+    throw new AuthenticationError("user not found");
   } else if (checkUser !== null) {
     const valid = await validatePassord(checkUser.password, user.password);
     if(valid) {
       return { username: checkUser?.username };
     }
-    throw new Error("login failed");
+    throw new AuthenticationError("login failed");
   }
-  throw new Error("login failed");
+  throw new AuthenticationError("login failed");
 }
 
 export async function getAllUsers(): Promise<GetAllUserResponse[]> {
