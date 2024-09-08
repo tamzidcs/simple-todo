@@ -3,6 +3,7 @@ import User from "../db/models/User";
 import * as UserRepo from "../repository/userRepo";
 import * as bcrypt from "bcrypt";
 import { UNAUTHORIZED, OK, CREATED, CONFLICT, INTERNAL_SERVER_ERROR } from "http-status";
+import { AuthenticationError } from "../error";
 
 interface LoginResponse {
   statusCode: number;
@@ -88,20 +89,14 @@ export async function registerUser(newUser: User): Promise<RegisterResponse> {
 export async function loginUser(user: User): Promise<LoginResponse | null> {
   const checkUser = await UserRepo.getUserByUsername(user.username);
   if (!checkUser) {
-    return {
-      statusCode: UNAUTHORIZED,
-      message: incorrectUserNamePasswordMessage,
-    };
+    throw new AuthenticationError(incorrectUserNamePasswordMessage);
   } else if (checkUser !== null) {
     const valid = await validatePassord(checkUser.password, user.password);
     if (valid) {
       return { statusCode: OK, message: loginSuccessfullMessage };
     }
   }
-  return {
-    statusCode: UNAUTHORIZED,
-    message: incorrectUserNamePasswordMessage,
-  };
+  throw new AuthenticationError(incorrectUserNamePasswordMessage);
 }
 
 export async function getAllUsers(): Promise<GetAllUserResponse[]> {

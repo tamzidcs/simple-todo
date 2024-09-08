@@ -1,6 +1,7 @@
 import express from 'express';
 import routerV1 from './api/v1/routes';
 import cors, { CorsOptions } from 'cors';
+import { errorHandler } from './api/v1/middleware/errorHandler';
 
 const app = express();
 const optionsOrigin = 'http://localhost:3000';
@@ -15,5 +16,6 @@ const APIConf = {
 
 app.use(cors(options));
 app.use('/', APIConf.router);
+app.use(errorHandler);
 
 export default app;
