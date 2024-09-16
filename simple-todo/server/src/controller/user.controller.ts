@@ -13,9 +13,7 @@ export async function registerUser(
     const result = await userService.registerUser(user);
     res.send(result);
   } catch (error) {
-    if(error instanceof Error && error.message === "User already exists.") {
-      next(error);
-    }
+    next(error);
   }
 }
 

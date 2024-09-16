@@ -1,16 +1,17 @@
 
 export abstract class CustomError extends Error {
-    constructor(message: string) {
+    statusCode: number;
+    constructor(message: string,statusCode: number) {
         super(message);
+        this.statusCode = statusCode;
         Object.setPrototypeOf(this, CustomError.prototype);
     }
-    abstract statusCode: number;
     abstract serialize(): {message: string};
 }
 
 export class NotFoundError extends CustomError {
-    constructor(message: string) {
-        super(message);
+    constructor(message: string,status: number) {
+        super(message,status);
         Object.setPrototypeOf(this, NotFoundError.prototype)
     }
     statusCode = 404;
@@ -20,8 +21,8 @@ export class NotFoundError extends CustomError {
 }
 
 export class BadRequestError extends CustomError {
-    constructor(message: string) {
-        super(message);
+    constructor(message: string,status: number) {
+        super(message,status);
         Object.setPrototypeOf(this, BadRequestError.prototype)
     }
     statusCode = 400;
@@ -31,11 +32,21 @@ export class BadRequestError extends CustomError {
 }
 
 export class AuthenticationError extends CustomError {
-    constructor(message: string) {
-        super(message);
+    constructor(message: string,status: number) {
+        super(message,status);
         Object.setPrototypeOf(this, AuthenticationError.prototype)
     }
     statusCode = 403;
+    serialize() {
+        return {message: this.message}
+    }
+}
+
+export class DatabaseError extends CustomError {
+    constructor(message: string, statusCode: number) {
+        super(message,statusCode);
+        Object.setPrototypeOf(this, DatabaseError.prototype)
+    }
     serialize() {
         return {message: this.message}
     }

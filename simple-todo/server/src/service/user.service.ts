@@ -2,7 +2,8 @@ import { error } from "console";
 import User from "../db/models/User";
 import * as UserRepo from "../repository/userRepo";
 import * as bcrypt from "bcrypt";
-import { AuthenticationError } from "../error";
+import { AuthenticationError,DatabaseError } from "../error";
+import { CONFLICT, FORBIDDEN } from "http-status";
 
 interface LoginResponse {
   username: string;
@@ -25,13 +26,15 @@ async function createNewUser(username: string, password: string) {
 
   const existingUser = await UserRepo.getUserByUsername(user.username);
   if (existingUser) {
-    throw new Error("User already exists.");
+    throw new DatabaseError("User already exists.", CONFLICT);
   } else {
     try {
       await UserRepo.createUser(user);
       return user;
     } catch (error) {
-      console.log(error);
+      if(error instanceof Error && error.message === "User already exists.") {
+        throw new DatabaseError(error.message, CONFLICT);
+      } 
     }
   }
 }
@@ -58,15 +61,15 @@ export async function registerUser(newUser: User): Promise<RegisterResponse>{
 export async function loginUser(user: User): Promise<LoginResponse | null> {
   const checkUser = await UserRepo.getUserByUsername(user.username);
   if (!checkUser) {
-    throw new AuthenticationError("user not found");
+    throw new AuthenticationError("user not found", FORBIDDEN);
   } else if (checkUser !== null) {
     const valid = await validatePassord(checkUser.password, user.password);
     if(valid) {
       return { username: checkUser?.username };
     }
-    throw new AuthenticationError("login failed");
+    throw new AuthenticationError("login failed", FORBIDDEN);
   }
-  throw new AuthenticationError("login failed");
+  throw new AuthenticationError("login failed", FORBIDDEN);
 }
 
 export async function getAllUsers(): Promise<GetAllUserResponse[]> {
