@@ -2,7 +2,8 @@ import { error } from "console";
 import User from "../db/models/User";
 import * as UserRepo from "../repository/userRepo";
 import * as bcrypt from "bcrypt";
-import { UNAUTHORIZED, OK, CREATED, CONFLICT, INTERNAL_SERVER_ERROR } from "http-status";
+import { UNAUTHORIZED, OK, CREATED, CONFLICT, INTERNAL_SERVER_ERROR, FORBIDDEN } from "http-status";
+import { AuthenticationError, DatabaseError } from "../error";
 
 interface LoginResponse {
   statusCode: number;
@@ -36,7 +37,7 @@ async function createNewUser(username: string, password: string) {
     return { userCreated: false, message: userAlreadyExistMessage };
   } else {
     try {
-      await user.save();
+      await UserRepo.createUser(user);
       return { userCreated: true, message: userCreatedMessage };
     } catch (error) {
       return { userCreated: false, message: error };
@@ -55,28 +56,17 @@ async function validatePassord(
 export async function registerUser(newUser: User): Promise<RegisterResponse> {
   const saltOrRounds = 10;
   const hashedPassword = await bcrypt.hash(newUser.password, saltOrRounds);
-  try {
-    const result = await createNewUser(newUser.username, hashedPassword);
-    if (result.userCreated) {
-      return {
-        statusCode: CREATED,
-        message: userCreatedMessage,
-        username: newUser.username,
-      };
-    } else if (result.message === userAlreadyExistMessage) {
-      return {
-        statusCode: CONFLICT,
-        message: userAlreadyExistMessage,
-        username: newUser.username,
-      };
-    } else {
-      return {
-        statusCode: INTERNAL_SERVER_ERROR,
-        message: registrationFailed,
-        username: newUser.username,
-      };
-    }
-  } catch (error) {
+
+  const result = await createNewUser(newUser.username, hashedPassword);
+  if (result.userCreated) {
+    return {
+      statusCode: CREATED,
+      message: userCreatedMessage,
+      username: newUser.username,
+    };
+  } else if (result.message === userAlreadyExistMessage) {
+    throw new DatabaseError(userAlreadyExistMessage, CONFLICT);
+  } else {
     return {
       statusCode: INTERNAL_SERVER_ERROR,
       message: registrationFailed,
@@ -88,20 +78,14 @@ export async function registerUser(newUser: User): Promise<RegisterResponse> {
 export async function loginUser(user: User): Promise<LoginResponse | null> {
   const checkUser = await UserRepo.getUserByUsername(user.username);
   if (!checkUser) {
-    return {
-      statusCode: UNAUTHORIZED,
-      message: incorrectUserNamePasswordMessage,
-    };
+    throw new AuthenticationError(incorrectUserNamePasswordMessage,FORBIDDEN);
   } else if (checkUser !== null) {
     const valid = await validatePassord(checkUser.password, user.password);
     if (valid) {
       return { statusCode: OK, message: loginSuccessfullMessage };
     }
   }
-  return {
-    statusCode: UNAUTHORIZED,
-    message: incorrectUserNamePasswordMessage,
-  };
+  throw new AuthenticationError(incorrectUserNamePasswordMessage,FORBIDDEN);
 }
 
 export async function getAllUsers(): Promise<GetAllUserResponse[]> {
