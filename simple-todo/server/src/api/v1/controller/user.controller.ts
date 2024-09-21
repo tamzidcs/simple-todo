@@ -14,9 +14,6 @@ export async function registerUser(
     const resp = { message: result.message, username: result.username };
     res.status(result.statusCode).send(resp);
   } catch (error) {
-    res.status(INTERNAL_SERVER_ERROR).json({
-      username: user.username,
-    });
     next(error);
   }
 }
