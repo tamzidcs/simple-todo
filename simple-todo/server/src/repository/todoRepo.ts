@@ -11,6 +11,10 @@ export function getTodoByUsername(username: string) {
   return User.findOne({ where: { username: username } });
 }
 
+export function getTodoById(id: string) {
+  return Todo.findOne({ where: { id: id } });
+}
+
 export async function getAllTodosByUsernameStatus(username: string,todoStatus: string) {
   const user = await UserRepo.getUserByUsername(username);
   const allTodoUser = await TodoUserRepo.getAllTodoUserByUserId(user?.id);
