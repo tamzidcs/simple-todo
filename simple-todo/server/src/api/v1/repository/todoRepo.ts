@@ -7,6 +7,10 @@ export function createTodo(todo: Todo) {
   return todo.save();
 }
 
+export function getTodoById(id: string) {
+  return Todo.findOne({ where: { id: id } });
+}
+
 export function getTodoByUsername(username: string) {
   return User.findOne({ where: { username: username } });
 }
