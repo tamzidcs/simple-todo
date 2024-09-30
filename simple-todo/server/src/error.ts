@@ -14,7 +14,6 @@ export class NotFoundError extends CustomError {
         super(message,statusCode);
         Object.setPrototypeOf(this, NotFoundError.prototype)
     }
-    statusCode = 404;
     serialize() {
         return {message: this.message}
     }
