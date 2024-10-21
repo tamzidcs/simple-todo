@@ -12,9 +12,9 @@ import Button from '../../views/Button/Button';
 import userNameListItem from '../../../interfaces/userNameListItem';
 
 const url = {
-  todos: 'http://localhost:3005/todos/',
-  users: 'http://localhost:3005/users/',
-  share: 'http://localhost:3005/share/',
+  todos: 'http://localhost:3005/v1/todos/',
+  users: 'http://localhost:3005/v1/users/',
+  share: 'http://localhost:3005/v1/share/',
 };
 
 export function TodoList() {

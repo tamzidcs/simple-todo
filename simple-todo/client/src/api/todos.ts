@@ -3,8 +3,8 @@ import { todo } from '../interfaces/todo';
 import { handleError } from '../utils/errorHandler';
 
 const url = {
-  todo: 'http://localhost:3005/todos/',
-  share: 'http://localhost:3005/share/',
+  todo: 'http://localhost:3005/v1/todos/',
+  share: 'http://localhost:3005/v1/share/',
 };
 
 export async function postTodo(newTodo: todo): Promise<todo> {

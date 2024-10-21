@@ -15,7 +15,7 @@ const APIConf = {
 }
 
 app.use(cors(options));
-app.use('/', APIConf.router);
+app.use("/" + APIConf.version, APIConf.router);
 app.use(errorHandler);
 
 export default app;
