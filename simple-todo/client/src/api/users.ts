@@ -3,8 +3,8 @@ import { user } from '../interfaces/user';
 import { handleError } from '../utils/errorHandler';
 
 const url = {
-  user: 'http://localhost:3005/users/',
-  login: 'http://localhost:3005/login',
+  user: 'http://localhost:3005/v1/users/',
+  login: 'http://localhost:3005/v1/login',
 };
 
 export async function postUser(newUser: user): Promise<user> {
