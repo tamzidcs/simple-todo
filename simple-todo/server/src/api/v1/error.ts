@@ -36,7 +36,7 @@ export class AuthenticationError extends CustomError {
         super(message,statusCode);
         Object.setPrototypeOf(this, AuthenticationError.prototype)
     }
-    statusCode = 403;
+    statusCode = 401;
     serialize() {
         return {message: this.message}
     }
