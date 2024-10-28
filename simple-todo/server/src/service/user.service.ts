@@ -3,7 +3,7 @@ import User from "../db/models/User";
 import * as UserRepo from "../repository/userRepo";
 import * as bcrypt from "bcrypt";
 import { AuthenticationError,DatabaseError } from "../error";
-import { CONFLICT, FORBIDDEN } from "http-status";
+import { CONFLICT, FORBIDDEN, UNAUTHORIZED } from "http-status";
 
 interface LoginResponse {
   username: string;
@@ -61,15 +61,15 @@ export async function registerUser(newUser: User): Promise<RegisterResponse>{
 export async function loginUser(user: User): Promise<LoginResponse | null> {
   const checkUser = await UserRepo.getUserByUsername(user.username);
   if (!checkUser) {
-    throw new AuthenticationError("user not found", FORBIDDEN);
+    throw new AuthenticationError("user not found", UNAUTHORIZED);
   } else if (checkUser !== null) {
     const valid = await validatePassord(checkUser.password, user.password);
     if(valid) {
       return { username: checkUser?.username };
     }
-    throw new AuthenticationError("login failed", FORBIDDEN);
+    throw new AuthenticationError("login failed", UNAUTHORIZED);
   }
-  throw new AuthenticationError("login failed", FORBIDDEN);
+  throw new AuthenticationError("login failed", UNAUTHORIZED);
 }
 
 export async function getAllUsers(): Promise<GetAllUserResponse[]> {
