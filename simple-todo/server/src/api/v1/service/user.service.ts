@@ -78,14 +78,14 @@ export async function registerUser(newUser: User): Promise<RegisterResponse> {
 export async function loginUser(user: User): Promise<LoginResponse | null> {
   const checkUser = await UserRepo.getUserByUsername(user.username);
   if (!checkUser) {
-    throw new AuthenticationError(incorrectUserNamePasswordMessage,FORBIDDEN);
+    throw new AuthenticationError(incorrectUserNamePasswordMessage,UNAUTHORIZED);
   } else if (checkUser !== null) {
     const valid = await validatePassord(checkUser.password, user.password);
     if (valid) {
       return { statusCode: OK, message: loginSuccessfullMessage };
     }
   }
-  throw new AuthenticationError(incorrectUserNamePasswordMessage,FORBIDDEN);
+  throw new AuthenticationError(incorrectUserNamePasswordMessage,UNAUTHORIZED);
 }
 
 export async function getAllUsers(): Promise<GetAllUserResponse[]> {
