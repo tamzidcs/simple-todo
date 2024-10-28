@@ -1,7 +1,7 @@
 import { AxiosError } from 'axios';
 
 export const handleError = (error: AxiosError) => {
-  if (error.response?.status === 401) {
+  if (error.response?.status === 403) {
     alert('Wrong username and/or password.');
   }
   if (error.response?.status === 409) {
