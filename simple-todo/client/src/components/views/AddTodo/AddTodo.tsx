@@ -6,12 +6,14 @@ import { TodoAlert } from '../TodoAlert/TodoAlert';
 import { alert } from '../../../interfaces/alert';
 import { Button } from '../Button/Button';
 
-export function AddTodo(props: { updateTaskList: () => void }) {
+interface AddTodoProps {
+  updateTaskList: ()=> void;
+}
+export function AddTodo({ updateTaskList } : AddTodoProps) {
   const username = String(localStorage.getItem('username'));
   const newTodoInitialState: todo = { title: '', description: '', username };
   const [newTodo, setNewTodo] = useState<todo>(newTodoInitialState);
   const alertInitialValue: alert = { severity: 'success', message: '' };
-  const { updateTaskList } = props;
   const [alert, setAlert] = useState(alertInitialValue);
   const alertTimeOut = 3000;
   const newTodoSuccessMessage = 'New Todo Added.';
