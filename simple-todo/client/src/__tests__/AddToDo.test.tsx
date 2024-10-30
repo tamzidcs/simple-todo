@@ -24,7 +24,7 @@ const mockTaskListUpdate = jest.fn();
 describe('AddTodo', () => {
   beforeEach(() => {
     localStorage.setItem('username', 'user1');
-    render(<AddTodo taskListUpdate={mockTaskListUpdate} />);
+    render(<AddTodo updateTaskList={mockTaskListUpdate} />);
   });
   describe('when clicked', () => {
     let addButton: HTMLInputElement;
