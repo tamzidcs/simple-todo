@@ -30,12 +30,15 @@ export function Login() {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={login}>
-        <div className="login-header">Login</div>
+        <div className="login-header" data-testid="login-header">
+          Login
+        </div>
         <label className="login-label" htmlFor="username-textfield">
           Username
           <input
             id="username-textfield"
             className="login-textfield"
+            data-testid="username-textfield"
             type="text"
             placeholder="Username"
             onChange={(e) =>
@@ -47,6 +50,7 @@ export function Login() {
           <input
             id="password-textfield"
             className="login-textfield"
+            data-testid="password-textfield"
             type="password"
             placeholder="Password"
             onChange={(e) =>
@@ -54,7 +58,12 @@ export function Login() {
           />
         </label>
         <div className="login-button-div">
-          <button className="login-button" type="submit" value="Login">
+          <button
+            className="login-button"
+            data-testid="login-button"
+            type="submit"
+            value="Login"
+          >
             Login
           </button>
         </div>
