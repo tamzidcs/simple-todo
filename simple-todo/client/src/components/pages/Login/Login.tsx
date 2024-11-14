@@ -40,6 +40,7 @@ export function Login() {
           <input
             id="username"
             className="login-textfield"
+            data-testid="username-textfield"
             type="text"
             placeholder="Username"
             onChange={(e) => setData({ ...data, username: e.target.value })}
@@ -50,6 +51,7 @@ export function Login() {
           <input
             id="password"
             className="login-textfield"
+            data-testid="password-textfield"
             type="password"
             placeholder="Password"
             onChange={(e) => setData({ ...data, password: e.target.value })}
