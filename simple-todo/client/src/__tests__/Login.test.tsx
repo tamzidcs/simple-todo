@@ -55,7 +55,7 @@ describe('Login', () => {
     it('password textfield has the correct value', async () => {
       expect(passwordTextField.value).toBe(loginUser.password);
     });
-    it('password textfield has the correct value', async () => {
+    it('login request should be submitted', async () => {
       expect(axios.post).toHaveBeenCalled();
     });
   });
