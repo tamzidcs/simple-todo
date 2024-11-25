@@ -30,22 +30,34 @@ export function Signup() {
   return (
     <div className="signup-container">
       <form className="signup-form" onSubmit={addUser}>
-        <div className="signup-header">Signup</div>
-        <label className="signup-label" htmlFor="signup-textfield">
+        <div className="signup-header" data-testid="signup-header">
+          Signup
+        </div>
+        <label
+          className="signup-label"
+          data-testid="username-label"
+          htmlFor="signup-textfield"
+        >
           Username
           <input
             id="signup-textfield"
             className="signup-textfield"
+            data-testid="username-textfield"
             type="text"
             placeholder="Username"
             onChange={(e) =>
               setSignupUser({ ...signupUser, username: e.target.value })}
           />
         </label>
-        <label className="signup-label" htmlFor="password-textfield">
+        <label
+          className="signup-label"
+          data-testid="password-label"
+          htmlFor="password-textfield"
+        >
           Password
           <input
             className="signup-textfield"
+            data-testid="password-textfield"
             type="password"
             placeholder="Password"
             onChange={(e) =>
@@ -53,7 +65,12 @@ export function Signup() {
           />
         </label>
         <div className="signup-button-div">
-          <input className="signup-button" type="submit" value="Signup" />
+          <input
+            className="signup-button"
+            data-testid="signup-button"
+            type="submit"
+            value="Signup"
+          />
         </div>
       </form>
     </div>
