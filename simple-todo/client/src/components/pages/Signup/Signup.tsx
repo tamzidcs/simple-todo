@@ -8,12 +8,12 @@ const newUser: user = {
   username: '',
   password: '',
 };
+
 export function Signup() {
   const [signupUser, setSignupUser] = useState<user>(newUser);
   const navigate = useNavigate();
 
-  const addUser = async (event: { preventDefault: () => void }) => {
-    event.preventDefault();
+  const addUser = async () => {
     if (signupUser.username && signupUser.password) {
       try {
         const result = await postUser(signupUser);
@@ -27,9 +27,18 @@ export function Signup() {
     }
   };
 
+  const handleSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    addUser();
+  };
+
   return (
     <div className="signup-container">
-      <form className="signup-form" onSubmit={addUser}>
+      <form
+        className="signup-form"
+        aria-label="signup-form"
+        onSubmit={handleSubmit}
+      >
         <div className="signup-header" data-testid="signup-header">
           Signup
         </div>
