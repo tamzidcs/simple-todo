@@ -9,29 +9,31 @@ jest.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
-it('should render signup form', () => {
-  render(<Signup />);
-  expect(screen.getByTestId('signup-header')).toBeInTheDocument();
-  expect(screen.getByTestId('signup-button')).toBeInTheDocument();
-  expect(screen.getByTestId('username-label')).toBeInTheDocument();
-  expect(screen.getByTestId('username-textfield')).toBeInTheDocument();
-  expect(screen.getByTestId('password-label')).toBeInTheDocument();
-  expect(screen.getByTestId('password-textfield')).toBeInTheDocument();
-});
-
-it('should submit the form with valid data', async () => {
-  render(<Signup />);
-  screen.getByRole(
-    'form',
-    { name: 'signup-form' },
-  ).onsubmit = mockHandleOnSubmit;
-  fireEvent.change(screen.getByTestId('username-textfield'), {
-    target: { value: 'user1' },
+describe('Signup', () => {
+  it('should render signup form', () => {
+    render(<Signup />);
+    expect(screen.getByTestId('signup-header')).toBeInTheDocument();
+    expect(screen.getByTestId('signup-button')).toBeInTheDocument();
+    expect(screen.getByTestId('username-label')).toBeInTheDocument();
+    expect(screen.getByTestId('username-textfield')).toBeInTheDocument();
+    expect(screen.getByTestId('password-label')).toBeInTheDocument();
+    expect(screen.getByTestId('password-textfield')).toBeInTheDocument();
   });
-  fireEvent.change(screen.getByTestId('password-textfield'), {
-    target: { value: 'pass123' },
-  });
-  await fireEvent.click(screen.getByTestId('signup-button'));
 
-  expect(mockHandleOnSubmit).toHaveBeenCalled();
+  it('should submit the form with valid data', async () => {
+    render(<Signup />);
+    screen.getByRole(
+      'form',
+      { name: 'signup-form' },
+    ).onsubmit = mockHandleOnSubmit;
+    fireEvent.change(screen.getByTestId('username-textfield'), {
+      target: { value: 'user1' },
+    });
+    fireEvent.change(screen.getByTestId('password-textfield'), {
+      target: { value: 'pass123' },
+    });
+    await fireEvent.click(screen.getByTestId('signup-button'));
+
+    expect(mockHandleOnSubmit).toHaveBeenCalled();
+  });
 });
