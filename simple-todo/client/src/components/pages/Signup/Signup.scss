@@ -56,28 +56,12 @@ $signupTextFieldBorderRadius: 4px;
 
 .signup-form {
     width: $signupFormWidth;
-    height: $signupFormHeight;
     background-color: $signupFormBackgroundColor;
     padding-left: $signupFormPaddingLeft;
     padding-right: $signupFormPaddingRight;
     padding-top: $signupFormPaddingTop;
     padding-bottom: $signupFormPaddingBottom;
     margin: auto;
-}
-
-.password-errors {
-    @extend .signup-form;
-    height: $signupFormWithPasswordErrorHeight;
-}
-
-.username-errors {
-    @extend .signup-form;
-    height: $signupFormWithUsernameErrorHeight;
-}
-
-.username-password-errors {
-    @extend .signup-form;
-    height: $signupFormWithUsernamePasswordErrorHeight;
 }
 
 .signup-textfield {

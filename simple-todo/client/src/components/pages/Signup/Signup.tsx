@@ -17,11 +17,6 @@ export function Signup() {
   const [signupUser, setSignupUser] = useState<user>(newUser);
   const [showUsernameError, setShowUsernameError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
-  const signupFormClasses = {
-    usernameErrorClass: 'username-errors',
-    passwordErrorClass: 'password-errors',
-    passwordAndUsernameErrorClass: 'username-password-errors',
-  };
   const navigate = useNavigate();
 
   const handleSignupError = () => {
@@ -68,17 +63,9 @@ export function Signup() {
     setSignupUser({ ...signupUser, password: event.target.value });
   };
 
-  const getSignupClassname = () => `signup-form${
-    showUsernameError ? ` ${signupFormClasses.usernameErrorClass}` : ''
-  }${showPasswordError ? ` ${signupFormClasses.passwordErrorClass}` : ''}${
-    showPasswordError && showUsernameError
-      ? ` ${signupFormClasses.passwordAndUsernameErrorClass}`
-      : ''
-  }`;
-
   return (
     <div className="signup-container">
-      <form className={getSignupClassname()} onSubmit={handleSignup}>
+      <form className="signup-form" onSubmit={handleSignup}>
         <div className="signup-header">Signup</div>
         <label className="signup-label" htmlFor="username">
           Username
@@ -91,9 +78,9 @@ export function Signup() {
           />
         </label>
         {showUsernameError && (
-          <div id="username-error" className="error-message">
-            {usernameErrorMessage}
-          </div>
+        <div id="username-error" className="error-message">
+          {usernameErrorMessage}
+        </div>
         )}
         <label className="signup-label" htmlFor="password">
           Password
@@ -106,9 +93,9 @@ export function Signup() {
           />
         </label>
         {showPasswordError && (
-          <div id="password-error" className="error-message">
-            {passwordErrorMessage}
-          </div>
+        <div id="password-error" className="error-message">
+          {passwordErrorMessage}
+        </div>
         )}
         <div className="signup-button-div">
           <Button
