@@ -65,13 +65,14 @@ export function Signup() {
 
   return (
     <div className="signup-container">
-      <form className="signup-form" onSubmit={handleSignup}>
+      <form className="signup-form" aria-label="signup-form" onSubmit={handleSignup}>
         <div className="signup-header">Signup</div>
         <label className="signup-label" htmlFor="username">
           Username
           <input
             id="username"
             className="signup-textfield"
+            data-testid="username-textfield"
             type="text"
             placeholder="Username"
             onChange={(event) => updateSignupUsername(event)}
@@ -87,6 +88,7 @@ export function Signup() {
           <input
             id="password"
             className="signup-textfield"
+            data-testid="password-textfield"
             type="password"
             placeholder="Password"
             onChange={(event) => updateSignupPassword(event)}
