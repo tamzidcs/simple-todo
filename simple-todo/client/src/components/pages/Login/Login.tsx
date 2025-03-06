@@ -74,7 +74,7 @@ export function Login() {
             value="Signup"
             onClick={() => navigate('/signup')}
           >
-            Signout
+            Signup
           </button>
         </div>
       </form>
