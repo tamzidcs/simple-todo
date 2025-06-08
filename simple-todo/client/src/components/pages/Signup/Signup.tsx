@@ -17,6 +17,11 @@ export function Signup() {
   const [signupUser, setSignupUser] = useState<user>(newUser);
   const [showUsernameError, setShowUsernameError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
+  const signupFormClasses = {
+    usernameErrorClass: 'username-errors',
+    passwordErrorClass: 'password-errors',
+    passwordAndUsernameErrorClass: 'username-password-errors',
+  };
   const navigate = useNavigate();
 
   const handleSignupError = () => {
@@ -63,41 +68,47 @@ export function Signup() {
     setSignupUser({ ...signupUser, password: event.target.value });
   };
 
+  const getSignupClassname = () => `signup-form${
+    showUsernameError ? ` ${signupFormClasses.usernameErrorClass}` : ''
+  }${showPasswordError ? ` ${signupFormClasses.passwordErrorClass}` : ''}${
+    showPasswordError && showUsernameError
+      ? ` ${signupFormClasses.passwordAndUsernameErrorClass}`
+      : ''
+  }`;
+
   return (
     <div className="signup-container">
-      <form className="signup-form" aria-label="signup-form" onSubmit={handleSignup}>
+      <form className={getSignupClassname()} onSubmit={handleSignup}>
         <div className="signup-header">Signup</div>
         <label className="signup-label" htmlFor="username">
           Username
           <input
             id="username"
             className="signup-textfield"
-            data-testid="username-textfield"
             type="text"
             placeholder="Username"
             onChange={(event) => updateSignupUsername(event)}
           />
         </label>
         {showUsernameError && (
-        <div id="username-error" className="error-message">
-          {usernameErrorMessage}
-        </div>
+          <div id="username-error" className="error-message">
+            {usernameErrorMessage}
+          </div>
         )}
         <label className="signup-label" htmlFor="password">
           Password
           <input
             id="password"
             className="signup-textfield"
-            data-testid="password-textfield"
             type="password"
             placeholder="Password"
             onChange={(event) => updateSignupPassword(event)}
           />
         </label>
         {showPasswordError && (
-        <div id="password-error" className="error-message">
-          {passwordErrorMessage}
-        </div>
+          <div id="password-error" className="error-message">
+            {passwordErrorMessage}
+          </div>
         )}
         <div className="signup-button-div">
           <Button
