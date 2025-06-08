@@ -1,7 +1,7 @@
 $signupContainerMarginLeft: 250px;
 $signupContainerPadding: 100px;
 $signupContainerWidth: 100%;
-$signupContainerHeight: 100vh;
+$signupContainerHeight: 70vh;
 $signupContainerBackgroundColor: #cbe3e5;
 $signupFormBackgroundColor: #5f9ea0;
 $signupTextFieldWidth: 250px;
@@ -46,7 +46,8 @@ $signupTextFieldBorderRadius: 4px;
 .signup-container {
     display: flex;
     justify-content: center;
-    align-items: center;
+    padding-top: $signupContainerPadding;
+    padding-bottom: $signupContainerPadding;
     width: $signupContainerWidth;
     height: $signupContainerHeight;
     color: black;
@@ -55,11 +56,28 @@ $signupTextFieldBorderRadius: 4px;
 
 .signup-form {
     width: $signupFormWidth;
+    height: $signupFormHeight;
     background-color: $signupFormBackgroundColor;
     padding-left: $signupFormPaddingLeft;
     padding-right: $signupFormPaddingRight;
     padding-top: $signupFormPaddingTop;
     padding-bottom: $signupFormPaddingBottom;
+    margin: auto;
+}
+
+.password-errors {
+    @extend .signup-form;
+    height: $signupFormWithPasswordErrorHeight;
+}
+
+.username-errors {
+    @extend .signup-form;
+    height: $signupFormWithUsernameErrorHeight;
+}
+
+.username-password-errors {
+    @extend .signup-form;
+    height: $signupFormWithUsernamePasswordErrorHeight;
 }
 
 .signup-textfield {
@@ -69,6 +87,7 @@ $signupTextFieldBorderRadius: 4px;
     padding-right: $signupTextFieldPaddingRight;
     border-radius: $signupTextFieldBorderRadius; 
     padding-right: $signupTextFieldPaddingRight;  
+
 }
 
 .signup-label {
