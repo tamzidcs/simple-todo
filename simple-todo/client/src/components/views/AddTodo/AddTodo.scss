@@ -25,6 +25,7 @@ $descriptionTextFieldPadding: $titleTextFieldPaddingLeft;
 }
 
 .title-textfield {
+    font-family: inherit;
     width: $titleTextField;
     height: $titleLabelHeight;
     padding-left: $titleTextFieldPaddingLeft;
@@ -32,6 +33,7 @@ $descriptionTextFieldPadding: $titleTextFieldPaddingLeft;
 }
 
 .description-textfield {
+    font-family: inherit;
     width: $descriptionTextFieldWidth;
     height: $descriptionTextFieldHeight;
     max-height: $descriptionTextFieldMaxHeight;
