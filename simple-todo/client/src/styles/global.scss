@@ -1,5 +1,17 @@
 $boxBorderRadius: 4px;
 
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
 .box {
     border: 0px;
     border-radius: $boxBorderRadius;
