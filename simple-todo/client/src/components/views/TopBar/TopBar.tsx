@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Header.scss';
+import './TopBar.scss';
 import Button from '../Button/Button';
 
 export function Header() {

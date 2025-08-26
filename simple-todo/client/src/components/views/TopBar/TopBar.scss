@@ -1,8 +1,9 @@
 $headerContainerWidth: 100vw;
-$headerHeight: 65px;
-$signoutButtonContainerMarginRight: 140px; 
-$usernameContainerMarginRight: 140px;
-$usernameContainerMarginBottom: 10px;
+$headerHeight: 75px;
+$signoutButtonContainerPaddingRight: 40px; 
+$usernameContainerPaddingTop: 10px;
+$usernameContainerPaddingRight: 40px;
+$usernameContainerPaddingBottom: 10px;
 $headerContainerBackgroundColor: #1381b6;
 
 .header-container {
@@ -15,13 +16,14 @@ $headerContainerBackgroundColor: #1381b6;
 .signout-button-container {
     display: flex;
     justify-content: right;
-    margin-right: $signoutButtonContainerMarginRight; //ToDo: better way to set the margin or spacing
+    padding-right: $signoutButtonContainerPaddingRight; 
 }
 
 .username-container {
     display: flex;
     justify-content: right;
-    margin-right: $usernameContainerMarginRight;
-    margin-bottom: $usernameContainerMarginBottom;
+    padding-top: $usernameContainerPaddingTop;
+    padding-right: $usernameContainerPaddingRight;
+    padding-bottom: $usernameContainerPaddingBottom;
     font-weight: bold;
 }
