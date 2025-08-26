@@ -1,22 +1,22 @@
 $headerContainerWidth: 100vw;
 $headerHeight: 75px;
-$signoutButtonContainerPaddingRight: 40px; 
+$signoutButtonContainerPaddingRight: 10px;
 $usernameContainerPaddingTop: 10px;
-$usernameContainerPaddingRight: 40px;
+$usernameContainerPaddingRight: 10px;
 $usernameContainerPaddingBottom: 10px;
 $headerContainerBackgroundColor: #1381b6;
 
 .header-container {
+    display: flex;
+    flex-direction: row;
     width: $headerContainerWidth;
     height: $headerHeight;
     color: black;
     background-color: $headerContainerBackgroundColor;
 }
 
-.signout-button-container {
-    display: flex;
-    justify-content: right;
-    padding-right: $signoutButtonContainerPaddingRight; 
+.topbar-right {
+    padding-right: $signoutButtonContainerPaddingRight;
 }
 
 .username-container {
@@ -26,4 +26,18 @@ $headerContainerBackgroundColor: #1381b6;
     padding-right: $usernameContainerPaddingRight;
     padding-bottom: $usernameContainerPaddingBottom;
     font-weight: bold;
+}
+
+.topbar-left {
+    width: 70px;
+
+    img {
+        height: 70px;
+        width: 70px;
+        padding-left: 10px;
+    }
+}
+
+.topbar-center {
+    width: 80vw;
 }
