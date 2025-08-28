@@ -18,6 +18,11 @@ export function Signup() {
   const [signupUser, setSignupUser] = useState<user>(newUser);
   const [showUsernameError, setShowUsernameError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
+  const signupFormClasses = {
+    usernameErrorClass: 'username-errors',
+    passwordErrorClass: 'password-errors',
+    passwordAndUsernameErrorClass: 'username-password-errors',
+  };
   const navigate = useNavigate();
 
   const handleSignupError = () => {
@@ -64,6 +69,14 @@ export function Signup() {
     setSignupUser({ ...signupUser, password: event.target.value });
   };
 
+  const getSignupClassname = () => `signup-form${
+    showUsernameError ? ` ${signupFormClasses.usernameErrorClass}` : ''
+  }${showPasswordError ? ` ${signupFormClasses.passwordErrorClass}` : ''}${
+    showPasswordError && showUsernameError
+      ? ` ${signupFormClasses.passwordAndUsernameErrorClass}`
+      : ''
+  }`;
+
   return (
     <div className="signup-container">
       <form
@@ -81,7 +94,6 @@ export function Signup() {
           <input
             id="username"
             className="signup-textfield"
-            data-testid="username-textfield"
             type="text"
             placeholder="Username"
             onChange={(event) => updateSignupUsername(event)}
@@ -97,7 +109,6 @@ export function Signup() {
           <input
             id="password"
             className="signup-textfield"
-            data-testid="password-textfield"
             type="password"
             placeholder="Password"
             onChange={(event) => updateSignupPassword(event)}
