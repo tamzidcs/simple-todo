@@ -37,6 +37,7 @@ $simpleTodoLogoFontSize: 35px;
 $simpleTodoLogoFontColor: #5f9ea0;
 $simpleTodoLogoPaddingBottom: 60px;
 $simpleTodoLogoTextColor: #e9e5e5;
+$simpleTodoLogoPaddingLeft: 5px;
 
 .login-container {
     display: flex;
@@ -109,7 +110,7 @@ $simpleTodoLogoTextColor: #e9e5e5;
 }
 
 .simple-todo-logo-text {
-    padding-left: 5px;
+    padding-left: $simpleTodoLogoPaddingLeft;
     color: $simpleTodoLogoTextColor;
     font-weight: bold;
 }
