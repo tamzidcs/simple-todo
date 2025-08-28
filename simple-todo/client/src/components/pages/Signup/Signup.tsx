@@ -5,6 +5,7 @@ import { user } from '../../../interfaces/user';
 import { schema } from '../../../utils/inputValidator';
 import './Signup.scss';
 import Button from '../../views/Button/Button';
+import simpleTodoLogo from '../../../resources/assets/simple-todo-logo.png';
 
 const newUser: user = {
   username: '',
@@ -65,7 +66,15 @@ export function Signup() {
 
   return (
     <div className="signup-container">
-      <form className="signup-form" aria-label="signup-form" onSubmit={handleSignup}>
+      <form
+        className="signup-form"
+        aria-label="signup-form"
+        onSubmit={handleSignup}
+      >
+        <div className="simple-todo-logo">
+          <img src={simpleTodoLogo} alt="simple-todo-logo" />
+          <div className="simple-todo-logo-text">Simple ToDo</div>
+        </div>
         <div className="signup-header">Signup</div>
         <label className="signup-label" htmlFor="username">
           Username
@@ -79,9 +88,9 @@ export function Signup() {
           />
         </label>
         {showUsernameError && (
-        <div id="username-error" className="error-message">
-          {usernameErrorMessage}
-        </div>
+          <div id="username-error" className="error-message">
+            {usernameErrorMessage}
+          </div>
         )}
         <label className="signup-label" htmlFor="password">
           Password
@@ -95,9 +104,9 @@ export function Signup() {
           />
         </label>
         {showPasswordError && (
-        <div id="password-error" className="error-message">
-          {passwordErrorMessage}
-        </div>
+          <div id="password-error" className="error-message">
+            {passwordErrorMessage}
+          </div>
         )}
         <div className="signup-button-div">
           <Button

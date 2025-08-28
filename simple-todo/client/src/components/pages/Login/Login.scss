@@ -7,7 +7,7 @@ $loginTextFieldWidth: 250px;
 $loginTextFieldHeight: 30px;
 $loginTextfieldMarginBottom: 10px;
 $loginFormWidth: 260px;
-$loginFormHeight: 260px;
+$loginFormHeight: 300px;
 $loginFormPaddingLeft: 70px;
 $loginFormPaddingRight: 70px;
 $loginFormPaddingTop: 50px;
@@ -36,6 +36,8 @@ $loginTextFieldBorderColor: #808080;
 $simpleTodoLogoFontSize: 35px;
 $simpleTodoLogoFontColor: #5f9ea0;
 $simpleTodoLogoPaddingBottom: 60px;
+$simpleTodoLogoTextColor: #e9e5e5;
+$simpleTodoLogoPaddingLeft: 5px;
 
 .login-container {
     display: flex;
@@ -60,9 +62,9 @@ $simpleTodoLogoPaddingBottom: 60px;
 
 .login-textfield {
     width: $loginTextFieldWidth;
-    height: $loginTextFieldHeight; 
-    padding-left: $loginTextFieldPaddingLeft; 
-    padding-right: $loginTextFieldPaddingRight; 
+    height: $loginTextFieldHeight;
+    padding-left: $loginTextFieldPaddingLeft;
+    padding-right: $loginTextFieldPaddingRight;
     border-radius: $loginTextFieldBorderRadius;
     border-color: $loginTextFieldBorderColor;
 }
@@ -92,16 +94,23 @@ $simpleTodoLogoPaddingBottom: 60px;
 
 .login-header {
     font-size: $loginHeaderFontSize;
-    font-weight:  $loginHeaderFontWeight;
+    font-weight: $loginHeaderFontWeight;
     padding-bottom: $loginHeaderFontPaddingBottom;
     color: $loginHeaderColor;
 }
 
-.simple-todo-logo{
+.simple-todo-logo {
     display: flex;
-    justify-content: center;
-    font-size: $simpleTodoLogoFontSize;
+    align-items: center;
+    img {
+        width: 32px;
+        height: 32px;
+    }
+    padding-bottom: 15px;
+}
+
+.simple-todo-logo-text {
+    padding-left: $simpleTodoLogoPaddingLeft;
+    color: $simpleTodoLogoTextColor;
     font-weight: bold;
-    color: $simpleTodoLogoFontColor;
-    padding-bottom: $simpleTodoLogoPaddingBottom;
 }
