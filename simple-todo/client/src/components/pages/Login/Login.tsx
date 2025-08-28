@@ -4,6 +4,7 @@ import { postLogin } from '../../../api/users';
 import { user } from '../../../interfaces/user';
 import './Login.scss';
 import Button from '../../views/Button/Button';
+import simpleTodoLogo from '../../../resources/assets/simple-todo-logo.png';
 
 const User: user = {
   username: '',
@@ -13,7 +14,7 @@ const User: user = {
 export function Login() {
   const [data, setData] = useState<user>(User);
   const navigate = useNavigate();
-  const login = async (event: { preventDefault: () => void; }) => {
+  const login = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     if (data.username && data.password) {
       try {
@@ -30,8 +31,11 @@ export function Login() {
 
   return (
     <div className="login-container">
-      <div className="simple-todo-logo">Simple Todo</div>
       <form className="login-form" onSubmit={login}>
+        <div className="simple-todo-logo">
+          <img src={simpleTodoLogo} alt="simple-todo-logo" />
+          <div className="simple-todo-logo-text">Simple ToDo</div>
+        </div>
         <div className="login-header" aria-valuetext="login">
           Login
         </div>

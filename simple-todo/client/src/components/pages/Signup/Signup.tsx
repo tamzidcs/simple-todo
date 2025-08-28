@@ -5,6 +5,7 @@ import { user } from '../../../interfaces/user';
 import { schema } from '../../../utils/inputValidator';
 import './Signup.scss';
 import Button from '../../views/Button/Button';
+import simpleTodoLogo from '../../../resources/assets/simple-todo-logo.png';
 
 const newUser: user = {
   username: '',
@@ -78,7 +79,15 @@ export function Signup() {
 
   return (
     <div className="signup-container">
-      <form className={getSignupClassname()} onSubmit={handleSignup}>
+      <form
+        className="signup-form"
+        aria-label="signup-form"
+        onSubmit={handleSignup}
+      >
+        <div className="simple-todo-logo">
+          <img src={simpleTodoLogo} alt="simple-todo-logo" />
+          <div className="simple-todo-logo-text">Simple ToDo</div>
+        </div>
         <div className="signup-header">Signup</div>
         <label className="signup-label" htmlFor="username">
           Username
