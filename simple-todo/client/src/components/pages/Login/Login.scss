@@ -1,6 +1,7 @@
 $loginContainerMarginLeft: 250px;
-$loginContainerWidth: 100vw;
-$loginContainerHeight: 100vh;
+$loginContainerPadding: 100px;
+$loginContainerWidth: 100%;
+$loginContainerHeight: 70vh;
 $loginContainerBackgroundColor: #cbe3e5;
 $loginFormBackgroundColor: #5f9ea0;
 $loginTextFieldWidth: 250px;
@@ -43,7 +44,8 @@ $simpleTodoLogoPaddingLeft: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    padding-top: $loginContainerPadding;
+    padding-bottom: $loginContainerPadding;
     width: $loginContainerWidth;
     height: $loginContainerHeight;
     color: black;
@@ -58,6 +60,7 @@ $simpleTodoLogoPaddingLeft: 5px;
     padding-right: $loginFormPaddingRight;
     padding-top: $loginFormPaddingTop;
     padding-bottom: $loginFormPaddingBottom;
+    margin: auto;
 }
 
 .login-textfield {
