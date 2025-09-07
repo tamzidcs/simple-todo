@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Header } from '../../views/Header/Header';
+import { Header } from '../../views/TopBar/TopBar';
 import { AddTodo } from '../../views/AddTodo/AddTodo';
 import { getTodo, postShareTodo, updateTodoDone } from '../../../api/todos';
 import { todo } from '../../../interfaces/todo';
