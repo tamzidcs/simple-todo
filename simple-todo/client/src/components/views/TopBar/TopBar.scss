@@ -9,6 +9,10 @@ $simpleTodoLogoFontColor: #5f9ea0;
 $simpleTodoLogoPaddingBottom: 60px;
 $simpleTodoLogoTextColor: #e9e5e5;
 $simpleTodoLogoPaddingLeft: 5px;
+$topbarLeftWidth: 150px;
+$topbarImageWidth: 70px;
+$topbarImageHeight: 70px;
+$topbarPaddingLeft: 10px;
 
 .header-container {
     display: flex;
@@ -33,12 +37,12 @@ $simpleTodoLogoPaddingLeft: 5px;
 }
 
 .topbar-left {
-    width: 150px;
+    width: $topbarLeftWidth;
 
     img {
-        height: 70px;
-        width: 70px;
-        padding-left: 10px;
+        height: $topbarImageHeight;
+        width: $topbarImageWidth;
+        padding-left: $topbarPaddingLeft;
     }
 }
 
