@@ -1,0 +1,68 @@
+$headerContainerWidth: 100vw;
+$headerHeight: 75px;
+$signoutButtonContainerPaddingRight: 10px;
+$usernameContainerPaddingRight: 10px;
+$usernameContainerPaddingBottom: 10px;
+$headerContainerBackgroundColor: #1381b6;
+$simpleTodoLogoFontSize: 16px;
+$simpleTodoLogoFontColor: #5f9ea0;
+$simpleTodoLogoPaddingBottom: 60px;
+$simpleTodoLogoTextColor: #e9e5e5;
+$simpleTodoLogoPaddingLeft: 5px;
+$topbarLeftWidth: 150px;
+$topbarImageWidth: 70px;
+$topbarImageHeight: 70px;
+$topbarPaddingLeft: 10px;
+
+.header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: $headerContainerWidth;
+    height: $headerHeight;
+    color: black;
+    background-color: $headerContainerBackgroundColor;
+}
+
+.topbar-right {
+    padding-right: $signoutButtonContainerPaddingRight;
+}
+
+.username-container {
+    display: flex;
+    justify-content: right;
+    padding-right: $usernameContainerPaddingRight;
+    padding-bottom: $usernameContainerPaddingBottom;
+    font-weight: bold;
+}
+
+.topbar-left {
+    width: $topbarLeftWidth;
+
+    img {
+        height: $topbarImageHeight;
+        width: $topbarImageWidth;
+        padding-left: $topbarPaddingLeft;
+    }
+}
+
+.topbar-center {
+    width: 80vw;
+}
+
+.topbar-simple-todo-logo {
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.topbar-simple-todo-logo-text {
+    padding-left: $simpleTodoLogoPaddingLeft;
+    color: $simpleTodoLogoTextColor;
+    font-weight: bold;
+    font-size: $simpleTodoLogoFontSize;
+}
