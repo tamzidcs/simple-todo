@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TopBar.scss';
 import Button from '../Button/Button';
-import simpleTodoTopbarLogo from '../../../resources/assets/simple-todo-topbar-logo.png';
+import simpleTodoLogo from '../../../resources/assets/simple-todo-logo.png';
 
 export function Header() {
   const navigate = useNavigate();
@@ -14,7 +14,10 @@ export function Header() {
   return (
     <div className="header-container">
       <div className="topbar-left">
-        <img src={simpleTodoTopbarLogo} alt="simple-todo-topbar-logo" />
+        <div className="topbar-simple-todo-logo">
+          <img src={simpleTodoLogo} alt="simple-todo-logo" />
+          <div className="topbar-simple-todo-logo-text">Simple ToDo</div>
+        </div>
       </div>
       <div className="topbar-center"> </div>
 
