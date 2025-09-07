@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import React from 'react';
-import Header from '../components/views/Header/Header';
+import Header from '../components/views/TopBar/TopBar';
 
 const mockedUsedNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
