@@ -13,6 +13,7 @@ export function DropDown(props: {
   const dropDownZIndexOnOpen = '4';
   const dropDownZIndexOnClose = '3';
   const { userNameList, updateUserShareName } = props;
+  const [dropDownItems, setDropDownItems] = useState<any[]>([]);
 
   const changeDropDownZIndex = (ZIndexValue: string) => {
     if (dropDownRef.current) {
@@ -20,7 +21,22 @@ export function DropDown(props: {
     }
   };
 
+  const initDropDownItems = async () => {
+    const users = [...userNameList];
+    setDropDownItems(users);
+  };
+
+  const filterDropDownItemsWithString = (filterString: string) => {
+    const users = userNameList.filter((item) => item.username.includes(filterString));
+    setDropDownItems(users);
+  };
+
+  const isDropDownInputEmpty = () => (!currentOption);
+
   const dropDownClicked = () => {
+    if (isDropDownInputEmpty()) {
+      initDropDownItems();
+    }
     setOpen(!open);
     changeDropDownZIndex(dropDownZIndexOnOpen);
   };
@@ -31,9 +47,16 @@ export function DropDown(props: {
     updateUserShareName(username);
   };
 
-  const updateCurrentOption = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentOption(event.target.value);
-    updateUserShareName(event.target.value);
+  const updateCurrentOption = (option: string) => {
+    setCurrentOption(option);
+    updateUserShareName(option);
+  };
+
+  const handleDropDownInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    updateCurrentOption(event.target.value);
+    filterDropDownItemsWithString(event.target.value);
   };
 
   useEffect(() => {
@@ -65,7 +88,7 @@ export function DropDown(props: {
           id="search-input"
           className="search-input"
           value={currentOption}
-          onChange={(event) => updateCurrentOption(event)}
+          onChange={(event) => handleDropDownInputChange(event)}
         />
         <span className="dropdown-caret">
           <img
@@ -78,7 +101,7 @@ export function DropDown(props: {
       </div>
       {open && (
         <div id="option-view" className="option-view">
-          {userNameList.map((user) => (
+          {dropDownItems.map((user) => (
             <div
               id="option"
               role="presentation"
