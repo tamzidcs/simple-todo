@@ -27,7 +27,7 @@ export function DropDown(props: {
     setDropDownItems(users);
   };
 
-  const filterDropDownItemsWithString = (filterString: string) => {
+  const filterDropDownItemsByString = (filterString: string) => {
     const users = userNameList.filter((item) => item.username.includes(filterString));
     setDropDownItems(users);
   };
@@ -57,7 +57,7 @@ export function DropDown(props: {
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     updateCurrentOption(event.target.value);
-    filterDropDownItemsWithString(event.target.value);
+    filterDropDownItemsByString(event.target.value);
   };
 
   useEffect(() => {
