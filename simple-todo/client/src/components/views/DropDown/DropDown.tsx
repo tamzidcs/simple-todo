@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import dropDownCaretIcon from '../../../resources/assets/caret-down-icon.png';
+import { userNameListItem } from '../../../interfaces/userNameListItem';
 import './DropDown.scss';
 
 export function DropDown(props: {
-  userNameList: any[];
+  userNameList: userNameListItem[];
   // eslint-disable-next-line no-unused-vars
   updateUserShareName: (username: string) => void;
 }) {
@@ -13,7 +14,7 @@ export function DropDown(props: {
   const dropDownZIndexOnOpen = '4';
   const dropDownZIndexOnClose = '3';
   const { userNameList, updateUserShareName } = props;
-  const [dropDownItems, setDropDownItems] = useState<any[]>([]);
+  const [dropDownItems, setDropDownItems] = useState<userNameListItem[]>([]);
 
   const changeDropDownZIndex = (ZIndexValue: string) => {
     if (dropDownRef.current) {
@@ -85,8 +86,8 @@ export function DropDown(props: {
         onKeyDown={dropDownClicked}
       >
         <input
-          id="search-input"
-          className="search-input"
+          id="dropdown-input"
+          className="dropdown-input"
           value={currentOption}
           onChange={(event) => handleDropDownInputChange(event)}
         />
@@ -101,10 +102,11 @@ export function DropDown(props: {
       </div>
       {open && (
         <div id="option-view" className="option-view">
-          {dropDownItems.map((user) => (
+          {dropDownItems && dropDownItems.map((user) => (
             <div
               id="option"
               role="presentation"
+              key={user.id}
               onClick={() => handleOptionClick(user.username)}
               onKeyDown={() => handleOptionClick(user.username)}
               className="option"
