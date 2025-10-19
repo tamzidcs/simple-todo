@@ -48,7 +48,7 @@ $optionBorderTopColor: #459bc2;
     height: $dropdownCaretHeight;
     width: $dropdownCaretWidth;
 }
-.drop-down-input {
+.dropdown-input {
     display: inline-block;
     vertical-align: middle;
     position: relative;
@@ -59,7 +59,7 @@ $optionBorderTopColor: #459bc2;
     font-size: $searchInputFontSize;
     cursor: pointer;
 }
-.drop-down-input:focus {
+.dropdown-input:focus {
     border-color: $searchInputFocusBorderColor;
     outline: $searchInputFocusOutlineColor;
 }
