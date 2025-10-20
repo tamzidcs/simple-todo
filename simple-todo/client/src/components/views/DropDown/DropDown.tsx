@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import dropDownCaretIcon from '../../../resources/assets/caret-down-icon.png';
+import { userNameListItem } from '../../../interfaces/userNameListItem';
 import './DropDown.scss';
 
 export function DropDown(props: {
-  userNameList: any[];
+  userNameList: userNameListItem[];
   // eslint-disable-next-line no-unused-vars
   updateUserShareName: (username: string) => void;
 }) {
@@ -13,6 +14,7 @@ export function DropDown(props: {
   const dropDownZIndexOnOpen = '4';
   const dropDownZIndexOnClose = '3';
   const { userNameList, updateUserShareName } = props;
+  const [dropDownItems, setDropDownItems] = useState<userNameListItem[]>([]);
 
   const changeDropDownZIndex = (ZIndexValue: string) => {
     if (dropDownRef.current) {
@@ -20,7 +22,22 @@ export function DropDown(props: {
     }
   };
 
+  const initDropDownItems = async () => {
+    const users = [...userNameList];
+    setDropDownItems(users);
+  };
+
+  const filterDropDownItemsByString = (filterString: string) => {
+    const users = userNameList.filter((item) => item.username.includes(filterString));
+    setDropDownItems(users);
+  };
+
+  const isDropDownInputEmpty = () => (!currentOption);
+
   const dropDownClicked = () => {
+    if (isDropDownInputEmpty()) {
+      initDropDownItems();
+    }
     setOpen(!open);
     changeDropDownZIndex(dropDownZIndexOnOpen);
   };
@@ -31,9 +48,16 @@ export function DropDown(props: {
     updateUserShareName(username);
   };
 
-  const updateCurrentOption = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCurrentOption(event.target.value);
-    updateUserShareName(event.target.value);
+  const updateCurrentOption = (option: string) => {
+    setCurrentOption(option);
+    updateUserShareName(option);
+  };
+
+  const handleDropDownInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
+    updateCurrentOption(event.target.value);
+    filterDropDownItemsByString(event.target.value);
   };
 
   useEffect(() => {
@@ -59,13 +83,12 @@ export function DropDown(props: {
         className="dropdown-text"
         role="presentation"
         onClick={dropDownClicked}
-        onKeyDown={dropDownClicked}
       >
         <input
-          id="search-input"
-          className="search-input"
+          id="dropdown-input"
+          className="dropdown-input"
           value={currentOption}
-          onChange={(event) => updateCurrentOption(event)}
+          onChange={(event) => handleDropDownInputChange(event)}
         />
         <span className="dropdown-caret">
           <img
@@ -78,12 +101,12 @@ export function DropDown(props: {
       </div>
       {open && (
         <div id="option-view" className="option-view">
-          {userNameList.map((user) => (
+          {dropDownItems && dropDownItems.map((user) => (
             <div
               id="option"
               role="presentation"
+              key={user.id}
               onClick={() => handleOptionClick(user.username)}
-              onKeyDown={() => handleOptionClick(user.username)}
               className="option"
             >
               {user.username}
