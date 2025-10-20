@@ -9,7 +9,7 @@ import './TodoList.scss';
 import Todo from '../../views/Todo/Todo';
 // import { button } from '../../interfaces/button';
 import Button from '../../views/Button/Button';
-import userNameListItem from '../../../interfaces/userNameListItem';
+import { userNameListItem } from '../../../interfaces/userNameListItem';
 
 const url = {
   todos: 'http://localhost:3005/v1/todos/',
