@@ -83,7 +83,6 @@ export function DropDown(props: {
         className="dropdown-text"
         role="presentation"
         onClick={dropDownClicked}
-        onKeyDown={dropDownClicked}
       >
         <input
           id="dropdown-input"
@@ -108,7 +107,6 @@ export function DropDown(props: {
               role="presentation"
               key={user.id}
               onClick={() => handleOptionClick(user.username)}
-              onKeyDown={() => handleOptionClick(user.username)}
               className="option"
             >
               {user.username}
