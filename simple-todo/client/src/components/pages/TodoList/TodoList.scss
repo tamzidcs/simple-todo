@@ -1,8 +1,5 @@
 $toDoListContainerWidth: 100vw;
 $toDoListContainerMarginBottom: 100px;
-$titleWidth: 300px;
-$titleHeight: 20px;
-$titlePaddingLeft: 10px;
 $descriptionHeight: 100px;
 $descriptionPaddingLeft: 10px;
 $todolistWidth: 355px;
@@ -10,9 +7,8 @@ $todolistPadding: 30px;
 $todoContainerPaddingBottom: 30px;
 $todoMarginBottom: 10px;
 $doneButtonMarginLeft: 5px;
-$userNameInputWidth: 150px;
 $shareButtonMarginLeft: 5px;
-$shareTodoWidth: 185px;
+$shareTodoWidth: 165px;
 
 .to-do-list-container {
     display: inline-block;
@@ -21,11 +17,8 @@ $shareTodoWidth: 185px;
 }
 
 .title {
-    padding-left: $titlePaddingLeft;
     color: black;
     background-color: darkgray;
-    width: $titleWidth;
-    height: $titleHeight;
     font-weight: bold;
 }
 
@@ -65,10 +58,6 @@ $shareTodoWidth: 185px;
 .share-todo {
     width: $shareTodoWidth;
     float: right;
-}
-
-.user-name-input {
-    width: $userNameInputWidth;
 }
 
 .todo-bottom {
