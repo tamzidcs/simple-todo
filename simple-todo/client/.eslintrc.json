@@ -32,11 +32,7 @@
               "tsx": "never"
             }
          ],
-         "implicit-arrow-linebreak":"off",
-         "max-len":[
-            "error",
-            {"code":80}
-         ]
+         "no-shadow":"off"
     },
     "settings": {
         "import/resolver": {
