@@ -39,5 +39,7 @@ $userNameInputWidth: 150px;
 }
 
 .todo {
+    display: flex;
+    flex-direction: column;
     margin-bottom: $todoMarginBottom;
 }
