@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Header } from '../../views/Header/Header';
+import { TopBar } from '../../views/TopBar/TopBar';
 import { AddTodo } from '../../views/AddTodo/AddTodo';
 import './TodoList.scss';
 import { getTodo, postTodoShare, updateTodoDone } from '../../../api/todos';
@@ -76,7 +76,7 @@ export function TodoList() {
 
   return (
     <div className="to-do-list-container">
-      <Header />
+      <TopBar />
       <AddTodo updateTaskList={updateTaskList} />
       <div className="todolist">
         {todoList.length > 0 ? (

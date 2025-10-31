@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Header.scss';
+import './TopBar.scss';
 
-export function Header() {
+export function TopBar() {
   const currentUsername = localStorage.getItem('username');
   const navigate = useNavigate();
   const signout = () => {
@@ -21,4 +21,4 @@ export function Header() {
     </div>
   );
 }
-export default Header;
+export default TopBar;
