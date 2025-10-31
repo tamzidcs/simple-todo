@@ -54,8 +54,7 @@ export function Signup() {
             data-testid="username-textfield"
             type="text"
             placeholder="Username"
-            onChange={(e) =>
-              setSignupUser({ ...signupUser, username: e.target.value })}
+            onChange={(e) => setSignupUser({ ...signupUser, username: e.target.value })}
           />
         </label>
         <label
@@ -69,8 +68,7 @@ export function Signup() {
             data-testid="password-textfield"
             type="password"
             placeholder="Password"
-            onChange={(e) =>
-              setSignupUser({ ...signupUser, password: e.target.value })}
+            onChange={(e) => setSignupUser({ ...signupUser, password: e.target.value })}
           />
         </label>
         <div className="signup-button-div">

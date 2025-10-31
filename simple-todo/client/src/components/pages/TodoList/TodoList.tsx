@@ -6,20 +6,18 @@ import './TodoList.scss';
 import { getTodo, postTodoShare, updateTodoDone } from '../../../api/todos';
 import { todo } from '../../../interfaces/todo';
 import Todo from '../../views/Todo/Todo';
+import DropDown from '../../views/DropDown/DropDown';
+import { userNameListItem } from '../../../interfaces/userNameListItem';
 
 const url = {
   todos: 'http://localhost:3005/todos/',
   users: 'http://localhost:3005/users/',
   share: 'http://localhost:3005/share/',
 };
-interface GetAllUserResponse {
-  id: string,
-  username: string
-}
 
 export function TodoList() {
   const [todoList, setTodoList] = useState<todo[]>([]);
-  const [userNameList, setUserNameList] = useState<GetAllUserResponse[]>([]);
+  const [userNameList, setUserNameList] = useState<any[]>([]);
   const [shareUserName, setShareUserName] = useState('');
   const [taskListUpdated, setTodoListUpdated] = useState(false);
 
@@ -41,11 +39,22 @@ export function TodoList() {
     setTodoListUpdated(true);
   };
 
+  const removeCurrentUsernameFromList = (userNameList: userNameListItem[]) => {
+    const currentUsername = localStorage.getItem('username');
+    userNameList.forEach((userNameListItem, userNameListIndex) => {
+      if (userNameListItem.username === currentUsername) {
+        userNameList.splice(userNameListIndex, 1);
+      }
+    });
+    return userNameList;
+  };
+
   useEffect(() => {
     getTodosByParam('username');
     setTodoListUpdated(false);
-    axios.get(url.users).then((resp: { data: GetAllUserResponse[] }) => {
-      setUserNameList(resp.data);
+    axios.get(url.users).then((resp: { data: [] }) => {
+      const userNameList = removeCurrentUsernameFromList(resp.data);
+      setUserNameList(userNameList);
     });
   }, [taskListUpdated]);
 
@@ -59,6 +68,10 @@ export function TodoList() {
     if (result) {
       alert(`Todo shared with ${userName}`);
     }
+  };
+
+  const updateUserShareName = (username: string) => {
+    setShareUserName(username);
   };
 
   return (
@@ -76,26 +89,14 @@ export function TodoList() {
               <Todo todoItem={todoItem} />
               <div className="todo-bottom">
                 <div className="share-todo">
-                  <input
-                    className="user-name-input"
-                    list="userNameList"
-                    type="text"
-                    placeholder="select user"
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      setShareUserName(e.target.value)}
+                  <DropDown
+                    userNameList={userNameList}
+                    updateUserShareName={updateUserShareName}
                   />
-                  <datalist id="userNameList">
-                    {userNameList.map((userNameListItem) => (
-                      <option key={userNameListItem.id}>
-                        {userNameListItem.username}
-                      </option>
-                    ))}
-                  </datalist>
                   <button
                     className="share-button"
                     type="button"
-                    onClick={() =>
-                      shareTodo(String(todoItem.id), shareUserName)}
+                    onClick={() => shareTodo(String(todoItem.id), shareUserName)}
                   >
                     Share
                   </button>

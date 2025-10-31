@@ -50,8 +50,7 @@ export function AddTodo({ updateTaskList } : AddTodoProps) {
             id="description-label"
             className="description-textfield"
             data-testid="description-textfield"
-            onChange={(e) =>
-              setNewTodo({ ...newTodo, description: e.target.value })}
+            onChange={(e) => setNewTodo({ ...newTodo, description: e.target.value })}
           />
         </label>
         <div className="add-button-container">

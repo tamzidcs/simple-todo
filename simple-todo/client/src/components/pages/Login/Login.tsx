@@ -41,8 +41,7 @@ export function Login() {
             data-testid="username-textfield"
             type="text"
             placeholder="Username"
-            onChange={(e) =>
-              setLoginUser({ ...loginUser, username: e.target.value })}
+            onChange={(e) => setLoginUser({ ...loginUser, username: e.target.value })}
           />
         </label>
         <label className="login-label" htmlFor="password-textfield">
@@ -53,8 +52,7 @@ export function Login() {
             data-testid="password-textfield"
             type="password"
             placeholder="Password"
-            onChange={(e) =>
-              setLoginUser({ ...loginUser, password: e.target.value })}
+            onChange={(e) => setLoginUser({ ...loginUser, password: e.target.value })}
           />
         </label>
         <div className="login-button-div">
