@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import dropDownCaretIcon from '../../../resources/assets/caret-down-icon.png';
 import { userNameListItem } from '../../../interfaces/userNameListItem';
 import './DropDown.scss';
@@ -11,8 +11,16 @@ export function DropDown(props: {
   const [open, setOpen] = useState(false);
   const [currentOption, setCurrentOption] = useState('');
   const dropDownRef = useRef<HTMLDivElement>(null);
+  const dropDownZIndexOnOpen = '4';
+  const dropDownZIndexOnClose = '3';
   const { userNameList, updateUserShareName } = props;
   const [dropDownItems, setDropDownItems] = useState<userNameListItem[]>([]);
+
+  const changeDropDownZIndex = (ZIndexValue: string) => {
+    if (dropDownRef.current) {
+      dropDownRef.current.style.zIndex = ZIndexValue;
+    }
+  };
 
   const initDropDownItems = async () => {
     const users = [...userNameList];
@@ -31,6 +39,7 @@ export function DropDown(props: {
       initDropDownItems();
     }
     setOpen(!open);
+    changeDropDownZIndex(dropDownZIndexOnOpen);
   };
 
   const handleOptionClick = (username: string) => {
@@ -50,6 +59,23 @@ export function DropDown(props: {
     updateCurrentOption(event.target.value);
     filterDropDownItemsByString(event.target.value);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: { target: any }) => {
+      if (
+        dropDownRef !== null
+        && dropDownRef.current
+        && !dropDownRef.current.contains(event.target)
+      ) {
+        setOpen(false);
+        changeDropDownZIndex(dropDownZIndexOnClose);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropDownRef]);
 
   return (
     <div className="dropdown" ref={dropDownRef}>

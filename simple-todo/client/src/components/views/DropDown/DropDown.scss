@@ -46,7 +46,7 @@ $optionBorderTopColor: #459bc2;
 .option {
     border-bottom: 1px solid $optionBorderTopColor;
     background-color: $optionViewBackgroundColor;
-    padding: 5px;
+    padding-left: 13px;
     width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
