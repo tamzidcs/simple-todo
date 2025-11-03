@@ -18,6 +18,7 @@ $signupFormPaddingRight: 70px;
 $signupFormPaddingTop: 50px;
 $signupFormPaddingBottom: 50px;
 $signupFormBorderRadius: 4px;
+$signupFormBorderColor: #808080;
 $signupButtonWidth: 120px;
 $signupLabelWidth: 200px;
 $signupLabelMarginBottom: 5px;
@@ -62,6 +63,8 @@ $signupTextFieldBorderRadius: 4px;
     padding-right: $signupFormPaddingRight;
     padding-top: $signupFormPaddingTop;
     padding-bottom: $signupFormPaddingBottom;
+    border-color: $signupFormBorderColor;
+    border-radius: $signupFormBorderRadius;
     margin: auto;
 }
 
