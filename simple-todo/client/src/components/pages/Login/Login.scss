@@ -14,6 +14,7 @@ $loginFormPaddingRight: 70px;
 $loginFormPaddingTop: 50px;
 $loginFormPaddingBottom: 50px;
 $loginFormBorderRadius: 4px;
+$loginFormBorderColor: #808080;
 $loginButtonWidth: 120px;
 $loginLabelWidth: 200px;
 $loginLabelMarginBottom: 5px;
@@ -60,6 +61,8 @@ $simpleTodoLogoPaddingLeft: 5px;
     padding-right: $loginFormPaddingRight;
     padding-top: $loginFormPaddingTop;
     padding-bottom: $loginFormPaddingBottom;
+    border-radius: $loginFormBorderRadius;
+    border-color: $loginFormBorderColor;
     margin: auto;
 }
 
