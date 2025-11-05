@@ -31,7 +31,7 @@ export function Login() {
 
   return (
     <div className="login-container">
-      <form className="login-form box" onSubmit={login}>
+      <form className="login-form" onSubmit={login}>
         <div className="simple-todo-logo">
           <img src={simpleTodoLogo} alt="simple-todo-logo" />
           <div className="simple-todo-logo-text">Simple ToDo</div>
