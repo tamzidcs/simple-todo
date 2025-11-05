@@ -1,4 +1,7 @@
 $boxBorderRadius: 4px;
+$boxShadowLength: 1px;
+$boxShadowBlur: 5px;
+$boxShadowColor: #808080;
 
 body {
   margin: 0;
@@ -13,6 +16,7 @@ code {
 }
 
 .box {
-    border: 0px;
-    border-radius: $boxBorderRadius;
+  border: 0px;
+  border-radius: $boxBorderRadius;
+  box-shadow: $boxShadowLength $boxShadowLength $boxShadowBlur $boxShadowColor;
 }

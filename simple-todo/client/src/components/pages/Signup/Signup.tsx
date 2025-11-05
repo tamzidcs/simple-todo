@@ -80,7 +80,7 @@ export function Signup() {
   return (
     <div className="signup-container">
       <form
-        className="signup-form"
+        className="signup-form box"
         aria-label="signup-form"
         onSubmit={handleSignup}
       >
