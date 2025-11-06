@@ -1,8 +1,7 @@
-$headerContainerWidth: 100vw;
-$headerHeight: 75px;
+$topbarContainerWidth: 100vw;
+$topbarHeight: 48px;
 $signoutButtonContainerPaddingRight: 10px;
-$usernameContainerPaddingRight: 10px;
-$usernameContainerPaddingBottom: 10px;
+$usernameContainerPadding: 5px;
 $headerContainerBackgroundColor: #1381b6;
 $simpleTodoLogoFontSize: 16px;
 $simpleTodoLogoFontColor: #5f9ea0;
@@ -18,21 +17,21 @@ $topbarPaddingLeft: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: $headerContainerWidth;
-    height: $headerHeight;
+    width: $topbarContainerWidth;
+    height: $topbarHeight;
     color: black;
     background-color: $headerContainerBackgroundColor;
 }
 
 .topbar-right {
+    display: flex;
     padding-right: $signoutButtonContainerPaddingRight;
 }
 
 .username-container {
     display: flex;
     justify-content: right;
-    padding-right: $usernameContainerPaddingRight;
-    padding-bottom: $usernameContainerPaddingBottom;
+    padding: $usernameContainerPadding;
     font-weight: bold;
 }
 
