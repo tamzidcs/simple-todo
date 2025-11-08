@@ -2,8 +2,10 @@ $addTodoContainerPadding: 30px;
 $addTodoContainerWidth: 355px;
 $addTodoContainerColor: black;
 $addTodoContainerBackgroundColor: lightblue;
-$titleTextField: 285px;
-$descriptionTextField: 285px;
+$titleTextFieldWidth: 285px;
+$titleTextFieldHeight: 20px;
+$descriptionTextFieldWidth: 285px;
+$descriptionTextFieldHeight: 50px;
 $titleLabelWidth: 285px;
 $titleDescriptionWidth: 285px;
 $addButtonContainerWidth: 285px;
@@ -21,12 +23,14 @@ $addButtonMarginTop:10px;
 
 .title-textfield {
     font-family: inherit;
-    width: $titleTextField;
+    width: $titleTextFieldWidth;
+    height: $titleTextFieldHeight;
 }
 
 .description-textfield {
     font-family: inherit;
-    width: $descriptionTextField;
+    width: $descriptionTextFieldWidth;
+    height: $descriptionTextFieldHeight;
 }
 
 .title-label {
