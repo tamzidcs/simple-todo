@@ -33,7 +33,7 @@ export function AddTodo({ updateTaskList } : AddTodoProps) {
   return (
     <div className="add-todo-container">
       <form className="add-todo-form" onSubmit={handleAddTodo}>
-        <label className="title-label" htmlFor="title-label">
+        <label className="add-todo-title" htmlFor="title-label">
           Title
           <input
             id="title-label"

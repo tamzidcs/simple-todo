@@ -2,6 +2,7 @@ $addTodoContainerPadding: 30px;
 $addTodoContainerWidth: 355px;
 $addTodoContainerColor: black;
 $addTodoContainerBackgroundColor: lightblue;
+$addTodoTitlePaddingBottom: 10px;
 $titleTextFieldWidth: 285px;
 $titleTextFieldHeight: 20px;
 $descriptionTextFieldWidth: 285px;
@@ -33,8 +34,9 @@ $addButtonMarginTop:10px;
     height: $descriptionTextFieldHeight;
 }
 
-.title-label {
+.add-todo-title {
     width: $titleLabelWidth;
+    padding-bottom: $addTodoTitlePaddingBottom;
 }
 
 .description-label {
