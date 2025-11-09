@@ -43,7 +43,7 @@ export function AddTodo({ updateTaskList } : AddTodoProps) {
   return (
     <div className="add-todo-container box">
       <form className="add-todo-form" onSubmit={handleAddTodo}>
-        <label className="title-label" htmlFor="title-textfield">
+        <label className="add-todo-title" htmlFor="title-textfield">
           Title
           <input
             id="title-textfield"
