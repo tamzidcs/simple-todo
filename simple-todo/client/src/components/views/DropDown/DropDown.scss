@@ -34,6 +34,9 @@ $optionBorderTopColor: #459bc2;
     border: none;
     padding-left: $searchInputPaddingLeft;
     cursor: pointer;
+    &:focus {
+        outline: none;
+    }
 }
 
 .option-view {
