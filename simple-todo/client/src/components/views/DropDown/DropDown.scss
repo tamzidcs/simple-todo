@@ -1,5 +1,7 @@
 $dropDownTextBorderRadius: 4px;
 $dropdownCaretBackgroundColor: #ffffff;
+$dropDownCaretHeight: 19px;
+$dropDownInputHeight: 17px;
 $optionViewBorderRadius: 4px;
 $optionViewZIndex: 2;
 $optionZIndex: 2;
@@ -12,10 +14,6 @@ $optionViewBackgroundColor: #3a83a4;
 $optionViewBorderColor: #393939;
 $optionBorderTopColor: #459bc2;
 
-.dropdown {
-    position: relative;
-}
-
 .dropdown-text {
     border: 1px solid $dropDownTextBorderColor;
     border-radius: $dropDownTextBorderRadius;
@@ -25,8 +23,9 @@ $optionBorderTopColor: #459bc2;
     display: inline-block;
     vertical-align: middle;
     background-color: $dropdownCaretBackgroundColor;
-    height: 18px;
+    height: $dropDownCaretHeight;
 }
+
 .dropdown-input {
     display: inline-block;
     vertical-align: middle;
@@ -34,6 +33,10 @@ $optionBorderTopColor: #459bc2;
     border: none;
     padding-left: $searchInputPaddingLeft;
     cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+    height: $dropDownInputHeight;
 }
 
 .option-view {
