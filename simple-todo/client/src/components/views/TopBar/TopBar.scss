@@ -9,7 +9,7 @@ $usernamePadding: 10px;
 
 .header-container {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     width: $headerContainerWidth;
     height: $headerHeight;
     color: black;
