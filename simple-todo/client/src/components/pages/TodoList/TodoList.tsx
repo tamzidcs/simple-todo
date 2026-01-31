@@ -117,7 +117,7 @@ export function TodoList() {
             </div>
           ))
         ) : (
-          <div />
+          <div className="empty-todo-text">There are no todos in your list.</div>
         )}
       </div>
     </div>
