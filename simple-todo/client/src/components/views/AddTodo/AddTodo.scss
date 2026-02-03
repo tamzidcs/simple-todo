@@ -1,24 +1,21 @@
 $addTodoContainerPadding: 30px;
-$addTodoContainerWidth: 355px;
+$addTodoContainerWidth: 700px;
 $addTodoContainerColor: #000000;
 $addTodoContainerBackgroundColor: #add8e6;
 $addTodoTitlePaddingBottom: 10px;
-$titleTextField: 285px;
-$descriptionTextFieldWidth: 285px;
+$titleTextFieldWidth: $addTodoContainerWidth;
+$descriptionTextFieldWidth: $addTodoContainerWidth;;
 $descriptionTextFieldHeight: 96px;
 $descriptionTextFieldMaxHeight: 200px;
 $descriptionTextFieldMinHeight: 96px;
 $descriptionTextFieldResize: vertical;
-$titleLabelWidth: 285px;
+$titleLabelWidth: $addTodoContainerWidth;;
 $titleLabelHeight: 30px;
-$titleDescriptionWidth: 285px;
-$addButtonContainerWidth: 310px;
-$titleTextFieldPaddingLeft: 5px;
-$titleTextFieldPaddingRight: 5px;
-$descriptionTextFieldPadding: $titleTextFieldPaddingLeft;
+$titleDescriptionWidth: $addTodoContainerWidth;;
+$addButtonContainerWidth: $addTodoContainerWidth;;
 
 .add-todo-container {
-    margin: 5px auto;
+    display: flex;
     padding: $addTodoContainerPadding;
     width: $addTodoContainerWidth;
     color: $addTodoContainerColor;
@@ -27,10 +24,8 @@ $descriptionTextFieldPadding: $titleTextFieldPaddingLeft;
 
 .title-textfield {
     font-family: inherit;
-    width: $titleTextField;
+    width: $titleTextFieldWidth;
     height: $titleLabelHeight;
-    padding-left: $titleTextFieldPaddingLeft;
-    padding-right: $titleTextFieldPaddingRight;
 }
 
 .description-textfield {
@@ -40,7 +35,6 @@ $descriptionTextFieldPadding: $titleTextFieldPaddingLeft;
     max-height: $descriptionTextFieldMaxHeight;
     min-height: $descriptionTextFieldMinHeight;
     resize: $descriptionTextFieldResize;
-    padding: $descriptionTextFieldPadding;;
 }
 
 .add-todo-title {
@@ -61,5 +55,4 @@ $descriptionTextFieldPadding: $titleTextFieldPaddingLeft;
 .add-todo-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
