@@ -5,7 +5,7 @@ $titleHeight: 20px;
 $titlePaddingLeft: 10px;
 $descriptionHeight: 100px;
 $descriptionPaddingLeft: 10px;
-$todolistWidth: 355px;
+$todolistWidth: 700px;
 $todolistPadding: 30px;
 $todoContainerPaddingBottom: 30px;
 $todoMarginBottom: 10px;
@@ -13,7 +13,9 @@ $userNameInputWidth: 150px;
 $shareTodoWidth: 300px;
 
 .to-do-list-container {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: $toDoListContainerWidth;
     margin-bottom: $toDoListContainerMarginBottom;
 }
@@ -37,10 +39,10 @@ $shareTodoWidth: 300px;
 .todolist {
     display: flex;
     flex-direction: column;
+    align-items: center;
     background-color: #add8e6;
     width: $todolistWidth;
     padding: $todolistPadding;
-    margin: 0px auto;
 }
 
 .todo-container {
