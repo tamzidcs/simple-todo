@@ -7,9 +7,9 @@ import { alert } from '../../../interfaces/alert';
 import { Button } from '../Button/Button';
 
 interface AddTodoProps {
-  updateTaskList: ()=> void;
+  updateTaskList: () => void;
 }
-export function AddTodo({ updateTaskList } : AddTodoProps) {
+export function AddTodo({ updateTaskList }: AddTodoProps) {
   const username = String(localStorage.getItem('username'));
   const newTodoInitialState: todo = { title: '', description: '', username };
   const [newTodo, setNewTodo] = useState<todo>(newTodoInitialState);
@@ -72,11 +72,13 @@ export function AddTodo({ updateTaskList } : AddTodoProps) {
           />
         </div>
       </form>
-      {alert.message !== '' ? (
-        <TodoAlert severity={alert.severity} message={alert.message} />
-      ) : (
-        ''
-      )}
+      <div className="alert-container">
+        {alert.message !== '' ? (
+          <TodoAlert severity={alert.severity} message={alert.message} />
+        ) : (
+          ''
+        )}
+      </div>
     </div>
   );
 }

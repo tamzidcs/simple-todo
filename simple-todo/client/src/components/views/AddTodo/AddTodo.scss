@@ -16,6 +16,7 @@ $addButtonContainerWidth: $addTodoContainerWidth;;
 
 .add-todo-container {
     display: flex;
+    flex-direction: column;
     padding: $addTodoContainerPadding;
     width: $addTodoContainerWidth;
     color: $addTodoContainerColor;
