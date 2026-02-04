@@ -1,4 +1,12 @@
 $alertMessagePaddingTop: 10px;
+$alertMessageWidth: 300px;
+
+.alert-container {
+    display: flex;
+    justify-content: center;
+}
+
 .alert-message {
+    width: $alertMessageWidth;
     padding-top: $alertMessagePaddingTop;
 }
