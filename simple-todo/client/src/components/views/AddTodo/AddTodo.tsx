@@ -10,8 +10,8 @@ interface AddTodoProps {
   updateTaskList: () => void;
 }
 export function AddTodo({ updateTaskList }: AddTodoProps) {
-  const username = String(localStorage.getItem('username'));
-  const newTodoInitialState: todo = { title: '', description: '', username };
+  // const username = String(localStorage.getItem('username'));
+  const newTodoInitialState: todo = { title: '', description: '' };
   const [newTodo, setNewTodo] = useState<todo>(newTodoInitialState);
   const alertInitialValue: alert = { severity: 'success', message: '' };
   const [alert, setAlert] = useState(alertInitialValue);
@@ -25,7 +25,7 @@ export function AddTodo({ updateTaskList }: AddTodoProps) {
 
   const handleAddTodo = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    if (newTodo.title && newTodo.description && newTodo.username) {
+    if (newTodo.title && newTodo.description) {
       try {
         const result = await postTodo(newTodo);
         if (result) {

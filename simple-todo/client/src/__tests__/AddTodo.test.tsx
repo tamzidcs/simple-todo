@@ -17,7 +17,7 @@ jest.mock('react-router-dom', () => ({
 const newTodo: todo = {
   title: 'todo1',
   description: 'desc1',
-  username: 'user1',
+  status: 'pending',
 };
 const mockUpdateTaskList = jest.fn();
 
