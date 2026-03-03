@@ -34,19 +34,18 @@ describe('AddTodo', () => {
       addButton = screen.getByTestId('add-button') as HTMLInputElement;
       titleTextField = screen.getByTestId('title-textfield') as HTMLInputElement;
       descriptionTextField = screen.getByTestId('description-textfield') as HTMLInputElement;
-      const jsdomAlert = window.alert;
       window.alert = () => {};
       (axios.post as jest.Mock).mockResolvedValue({ data: newTodo });
-      const result = await postTodo(newTodo);
+      await postTodo(newTodo);
       await waitFor(() => fireEvent.change(titleTextField, { target: { value: 'title1' } }));
       await waitFor(() => fireEvent.change(descriptionTextField, { target: { value: 'description1' } }));
       await waitFor(() => fireEvent.click(addButton));
     });
     it('title textfield has the correct value', async () => {
-      expect(titleTextField.value).toBe('title1')
+      expect(titleTextField.value).toBe('title1');
     });
     it('description textfield has the correct value', async () => {
-      expect(descriptionTextField.value).toBe('description1')
+      expect(descriptionTextField.value).toBe('description1');
     });
     it('calls the prop function to update list', async () => {
       expect(mockUpdateTaskList.mock.calls).toHaveLength(1);

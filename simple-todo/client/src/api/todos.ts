@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { todo } from '../interfaces/todo';
+import { todo, todoRequest } from '../interfaces/todo';
 import { handleError } from '../utils/errorHandler';
 
 const url = {
@@ -7,7 +7,7 @@ const url = {
   share: 'http://localhost:3005/v1/share/',
 };
 
-export async function postTodo(newTodo: todo): Promise<todo> {
+export async function postTodo(newTodo: todoRequest): Promise<todo> {
   return axios
     .post(url.todo, newTodo)
     .then((resp) => resp.data)

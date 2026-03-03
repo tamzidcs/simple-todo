@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { todo } from '../../../interfaces/todo';
+import { todoRequest } from '../../../interfaces/todo';
 import './AddTodo.scss';
 import { postTodo } from '../../../api/todos';
 import { TodoAlert } from '../TodoAlert/TodoAlert';
@@ -10,9 +10,9 @@ interface AddTodoProps {
   updateTaskList: () => void;
 }
 export function AddTodo({ updateTaskList }: AddTodoProps) {
-  // const username = String(localStorage.getItem('username'));
-  const newTodoInitialState: todo = { title: '', description: '' };
-  const [newTodo, setNewTodo] = useState<todo>(newTodoInitialState);
+  const username = String(localStorage.getItem('username'));
+  const newTodoInitialState: todoRequest = { title: '', description: '', username };
+  const [newTodo, setNewTodo] = useState<todoRequest>(newTodoInitialState);
   const alertInitialValue: alert = { severity: 'success', message: '' };
   const [alert, setAlert] = useState(alertInitialValue);
   const alertTimeOut = 3000;

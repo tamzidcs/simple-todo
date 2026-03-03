@@ -4,3 +4,9 @@ export interface todo {
   description: string;
   status: string;
 }
+
+export interface todoRequest {
+  title: string;
+  description: string;
+  username: string;
+}

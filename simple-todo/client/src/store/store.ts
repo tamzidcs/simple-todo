@@ -1,12 +1,10 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import todoReducer from './slices/todosSlice';
-// import { todoState } from '../interfaces/todoState';
 
 const rootReducer = combineReducers({
   todos: todoReducer,
 });
 
-export type RootState = ReturnType<typeof rootReducer>
 export type PreloadedState = Parameters<typeof rootReducer>[0];
 
 export function setupStore(preloadedState?: PreloadedState) {
@@ -17,5 +15,6 @@ export function setupStore(preloadedState?: PreloadedState) {
 }
 
 export const store = setupStore();
+export type RootState = ReturnType<typeof store.getState>;
 export type AppStore = ReturnType<typeof setupStore>;
-export type AppDispatch = AppStore['dispatch'];
+export type AppDispatch = typeof store.dispatch;
