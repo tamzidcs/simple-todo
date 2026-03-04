@@ -10,3 +10,7 @@ export interface todoRequest {
   description: string;
   username: string;
 }
+
+export interface todoState {
+    todos: todo[];
+}

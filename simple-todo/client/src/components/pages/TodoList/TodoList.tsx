@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch, RootState } from '../../../store/store';
+import { RootState } from '../../../store/store';
 import { setAllTodos } from '../../../store/slices/todosSlice';
 import { Header } from '../../views/TopBar/TopBar';
 import { AddTodo } from '../../views/AddTodo/AddTodo';
@@ -20,11 +20,11 @@ const url = {
 };
 
 export function TodoList() {
-  const [userNameList, setUserNameList] = useState<any[]>([]);
+  const [userNameList, setUserNameList] = useState<userNameListItem[]>([]);
   const [shareUserName, setShareUserName] = useState('');
   const [taskListUpdated, setTodoListUpdated] = useState(false);
   const todoList = useSelector((state:RootState) => state.todos);
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const getTodosByParam = async (param: string) => {
     const localStorageItem = localStorage.getItem(param);

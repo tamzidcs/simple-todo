@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { todo } from '../../interfaces/todo';
+import { todo, todoState } from '../../interfaces/todo';
 
-const initialState: todo[] = [];
+const initialState: todoState = { todos: [] };
 
 const todosSlice = createSlice({
   name: 'todos',
@@ -9,7 +9,7 @@ const todosSlice = createSlice({
   reducers: {
     setAllTodos(state, action: PayloadAction<todo[]>) {
       // eslint-disable-next-line no-param-reassign
-      state = action.payload;
+      state.todos = action.payload;
     },
   },
 });
