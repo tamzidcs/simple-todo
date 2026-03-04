@@ -20,7 +20,7 @@ const url = {
 };
 
 export function TodoList() {
-  const [userNameList, setUserNameList] = useState<any[]>([]);
+  const [userNameList, setUserNameList] = useState<userNameListItem[]>([]);
   const [shareUserName, setShareUserName] = useState('');
   const [taskListUpdated, setTodoListUpdated] = useState(false);
   const todoList = useSelector((state:RootState) => state.todos);
