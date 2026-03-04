@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { todo } from '../../../interfaces/todo';
+import { todoRequest } from '../../../interfaces/todo';
 import './AddTodo.scss';
 import { postTodo } from '../../../api/todos';
 import { TodoAlert } from '../TodoAlert/TodoAlert';
@@ -11,13 +11,15 @@ interface AddTodoProps {
 }
 export function AddTodo({ updateTaskList }: AddTodoProps) {
   const username = String(localStorage.getItem('username'));
-  const newTodoInitialState: todo = { title: '', description: '', username };
-  const [newTodo, setNewTodo] = useState<todo>(newTodoInitialState);
-  const alertInitialValue: alert = { severity: 'success', message: '' };
+  const newTodoInitialState: todoRequest = { title: '', description: '', username };
+  const [newTodo, setNewTodo] = useState<todoRequest>(newTodoInitialState);
+  const alertSeveritySuccess = 'success';
+  const alertSeverityError = 'error';
+  const alertInitialValue: alert = { severity: alertSeveritySuccess, message: '' };
   const [alert, setAlert] = useState(alertInitialValue);
   const alertTimeOut = 3000;
   const newTodoSuccessMessage = 'New Todo Added.';
-  const alertSuccess = 'success';
+  const newTodoFailedMessage = 'New Todo Failed.';
 
   useEffect(() => {
     setTimeout(() => setAlert(alertInitialValue), alertTimeOut);
@@ -30,13 +32,15 @@ export function AddTodo({ updateTaskList }: AddTodoProps) {
         const result = await postTodo(newTodo);
         if (result) {
           updateTaskList();
-          setAlert({ severity: alertSuccess, message: newTodoSuccessMessage });
+          setAlert({ severity: alertSeveritySuccess, message: newTodoSuccessMessage });
         } else {
-          setAlert('new_todo_failed');
+          setAlert({ severity: alertSeverityError, message: newTodoFailedMessage });
         }
       } catch (error) {
         console.error(error);
       }
+    } else {
+      setAlert({ severity: alertSeverityError, message: newTodoFailedMessage });
     }
   };
 
