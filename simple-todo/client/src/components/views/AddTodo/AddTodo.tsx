@@ -13,11 +13,13 @@ export function AddTodo({ updateTaskList }: AddTodoProps) {
   const username = String(localStorage.getItem('username'));
   const newTodoInitialState: todoRequest = { title: '', description: '', username };
   const [newTodo, setNewTodo] = useState<todoRequest>(newTodoInitialState);
-  const alertInitialValue: alert = { severity: 'success', message: '' };
+  const alertSeveritySuccess = 'success';
+  const alertSeverityError = 'error';
+  const alertInitialValue: alert = { severity: alertSeveritySuccess, message: '' };
   const [alert, setAlert] = useState(alertInitialValue);
   const alertTimeOut = 3000;
   const newTodoSuccessMessage = 'New Todo Added.';
-  const alertSuccess = 'success';
+  const newTodoFailedMessage = 'New Todo Failed.';
 
   useEffect(() => {
     setTimeout(() => setAlert(alertInitialValue), alertTimeOut);
@@ -25,18 +27,20 @@ export function AddTodo({ updateTaskList }: AddTodoProps) {
 
   const handleAddTodo = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    if (newTodo.title && newTodo.description) {
+    if (newTodo.title && newTodo.description && newTodo.username) {
       try {
         const result = await postTodo(newTodo);
         if (result) {
           updateTaskList();
-          setAlert({ severity: alertSuccess, message: newTodoSuccessMessage });
+          setAlert({ severity: alertSeveritySuccess, message: newTodoSuccessMessage });
         } else {
-          setAlert('new_todo_failed');
+          setAlert({ severity: alertSeverityError, message: newTodoFailedMessage });
         }
       } catch (error) {
         console.error(error);
       }
+    } else {
+      setAlert({ severity: alertSeverityError, message: newTodoFailedMessage });
     }
   };
 
