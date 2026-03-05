@@ -1,23 +1,27 @@
 $addTodoContainerPadding: 30px;
-$addTodoContainerWidth: 700px;
+$addTodoContainerWidth: 760px;
 $addTodoContainerColor: #000000;
 $addTodoContainerBackgroundColor: #add8e6;
 $addTodoTitlePaddingBottom: 10px;
-$titleTextFieldWidth: $addTodoContainerWidth;
-$descriptionTextFieldWidth: $addTodoContainerWidth;;
+$titleTextFieldWidth: 700px;
+$descriptionTextFieldWidth: 700px;
 $descriptionTextFieldHeight: 96px;
 $descriptionTextFieldMaxHeight: 200px;
 $descriptionTextFieldMinHeight: 96px;
 $descriptionTextFieldResize: vertical;
-$titleLabelWidth: $addTodoContainerWidth;;
+$titleLabelWidth: $titleTextFieldWidth;;
 $titleLabelHeight: 30px;
-$titleDescriptionWidth: $addTodoContainerWidth;;
+$titleDescriptionWidth: $titleTextFieldWidth;;
 $addButtonContainerWidth: $addTodoContainerWidth;;
 
 .add-todo-container {
     display: flex;
     flex-direction: column;
-    padding: $addTodoContainerPadding;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    // padding: $addTodoContainerPadding;
+    height: 270px;
     width: $addTodoContainerWidth;
     color: $addTodoContainerColor;
     background-color: $addTodoContainerBackgroundColor;
@@ -56,4 +60,5 @@ $addButtonContainerWidth: $addTodoContainerWidth;;
 .add-todo-form {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }

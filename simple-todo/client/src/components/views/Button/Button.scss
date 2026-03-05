@@ -20,6 +20,7 @@ $signoutTodoWidth: 70px;
 $signoutButtonHeight: 30px;
 $addButtonWidth: 100px;
 $addButtonHeight: 40px;
+$addButtonMarginRight: 20px;
 
 .button {
     border: $buttonBorder;
@@ -45,6 +46,7 @@ $addButtonHeight: 40px;
     height: $addButtonHeight;
     margin-top: $addButtonMarginTop;
     padding: $addButtonPadding;
+    margin-right: $addButtonMarginRight;
 }
 
 .done-button {
