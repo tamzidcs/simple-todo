@@ -5,10 +5,15 @@ $titleHeight: 20px;
 $titlePaddingLeft: 10px;
 $descriptionHeight: 100px;
 $descriptionPaddingLeft: 10px;
-$todolistWidth: 700px;
-$todolistPadding: 30px;
-$todoContainerPaddingBottom: 30px;
+$todolistWidth: 760px;
+$todolistMarginTop: 20px;
+$todolistPaddingBottom: 20px;
+$todoContainerHeight: 200px;
+$todoContainerMarginTop: $todolistMarginTop;
+$todoContainerBackgroundColor: #bbdfe6;
+$todoContainerBorderRadius: 4px;
 $todoMarginBottom: 10px;
+$todoBottomMarginLeft: 24px;
 $userNameInputWidth: 150px;
 $shareTodoWidth: 300px;
 
@@ -30,7 +35,7 @@ $shareTodoWidth: 300px;
 }
 
 .description {
-    color: rgb(255, 255, 255);
+    color: #ffffff;
     background-color: #646464;
     height: $descriptionHeight;
     padding-left: $descriptionPaddingLeft;
@@ -42,11 +47,18 @@ $shareTodoWidth: 300px;
     align-items: center;
     background-color: #add8e6;
     width: $todolistWidth;
-    padding: $todolistPadding;
+    margin-top: $todolistMarginTop;
+    padding-bottom: $todolistPaddingBottom;
 }
 
 .todo-container {
-    padding-bottom: $todoContainerPaddingBottom;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: $todoContainerHeight;
+    border-radius: $todoContainerBorderRadius;
+    margin-top: $todoContainerMarginTop;
+    background-color: $todoContainerBackgroundColor;
 }
 
 .todo {
@@ -69,6 +81,7 @@ $shareTodoWidth: 300px;
 
 .todo-bottom {
     display: flex;
+    margin-left: $todoBottomMarginLeft;
 }
 
 .empty-todo-text {
