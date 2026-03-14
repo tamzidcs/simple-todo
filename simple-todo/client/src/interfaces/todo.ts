@@ -4,3 +4,7 @@ export interface todo {
   description: string;
   username: string;
 }
+
+export interface todoState {
+  todos: todo[];
+}

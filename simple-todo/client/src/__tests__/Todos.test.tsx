@@ -2,12 +2,15 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import axios from 'axios';
 import { render, waitFor, screen } from '@testing-library/react';
+import {
+  expect, it, Mock, vi,
+} from 'vitest';
 import TodoList from '../components/pages/TodoList/TodoList';
 
-const mockedUsedNavigate = jest.fn();
-jest.mock('axios');
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+const mockedUsedNavigate = vi.fn();
+vi.mock('axios');
+vi.mock('react-router-dom', () => ({
+  ...vi.importActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
 
@@ -34,7 +37,7 @@ const dummyTodos = [
 
 it('todos list', async () => {
   localStorage.setItem('username', 'user1');
-  (axios.get as jest.Mock).mockResolvedValue({ data: dummyTodos });
+  (axios.get as Mock).mockResolvedValue({ data: dummyTodos });
   render(<TodoList />);
   const todoList = await waitFor(() => screen.findAllByTestId('todo'));
   expect(todoList).toHaveLength(3);

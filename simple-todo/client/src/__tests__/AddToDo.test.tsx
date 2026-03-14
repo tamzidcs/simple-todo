@@ -3,14 +3,17 @@ import axios from 'axios';
 import {
   render, waitFor, screen, fireEvent,
 } from '@testing-library/react';
+import {
+  beforeEach, describe, expect, it, Mock, vi,
+} from 'vitest';
 import AddTodo from '../components/views/AddTodo/AddTodo';
 import { postTodo } from '../api/todos';
 import { todo } from '../interfaces/todo';
 
-const mockedUsedNavigate = jest.fn();
-jest.mock('axios');
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+const mockedUsedNavigate = vi.fn();
+vi.mock('axios');
+vi.mock('react-router-dom', () => ({
+  ...vi.importActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
 
@@ -19,7 +22,7 @@ const newTodo: todo = {
   description: 'desc1',
   username: 'user1',
 };
-const mockTaskListUpdate = jest.fn();
+const mockTaskListUpdate = vi.fn();
 
 describe('AddTodo', () => {
   beforeEach(() => {
@@ -39,15 +42,12 @@ describe('AddTodo', () => {
         'description-textfield',
       ) as HTMLInputElement;
       window.alert = () => {};
-      (axios.post as jest.Mock).mockResolvedValue({ data: newTodo });
+      (axios.post as Mock).mockResolvedValue({ data: newTodo });
       await postTodo(newTodo);
-      await waitFor(() =>
-        fireEvent.change(titleTextField, { target: { value: 'title1' } }));
-      await waitFor(() =>
-        fireEvent.change(descriptionTextField, {
-          target: { value: 'description1' },
-        }),
-      );
+      await waitFor(() => fireEvent.change(titleTextField, { target: { value: 'title1' } }));
+      await waitFor(() => fireEvent.change(descriptionTextField, {
+        target: { value: 'description1' },
+      }));
       await waitFor(() => fireEvent.click(addButton));
     });
     it('title textfield has the correct value', async () => {
