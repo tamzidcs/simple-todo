@@ -1,20 +1,23 @@
 import React, { PropsWithChildren, ReactElement } from 'react';
 import { Provider } from 'react-redux';
 import { RenderOptions, render } from '@testing-library/react';
+import { configureStore, PreloadedState } from '@reduxjs/toolkit';
 import {
-  AppStore, setupStore, PreloadedState,
+  AppStore,
+  RootState,
 } from '../store/store';
+import todoReducer from '../store/slices/todosSlice';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
-    preloadedState?: PreloadedState;
+    preloadedState?: PreloadedState<RootState>;
     store?: AppStore;
 }
 
 export default function renderWithProvider(
   ui: React.ReactElement,
   {
-    preloadedState = { todos: [] },
-    store = setupStore(preloadedState),
+    preloadedState,
+    store = configureStore({ reducer: todoReducer, preloadedState }),
     ...renderOptions
   }: ExtendedRenderOptions = {},
 ) {

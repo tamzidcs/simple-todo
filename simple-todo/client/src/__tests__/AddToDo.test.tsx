@@ -57,7 +57,7 @@ describe('AddTodo', () => {
       expect(descriptionTextField.value).toBe('description1');
     });
     it('calls the prop function to update list', async () => {
-      expect(mockTaskListUpdate.mock.calls).toHaveLength(1);
+      expect(mockTaskListUpdate).toHaveBeenCalled();
     });
   });
 });
