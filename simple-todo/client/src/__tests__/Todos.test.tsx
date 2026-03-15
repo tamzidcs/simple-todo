@@ -1,17 +1,21 @@
-import { shallow } from 'enzyme';
 import React from 'react';
 import axios from 'axios';
-import { render, waitFor, screen } from '@testing-library/react';
+import { waitFor, screen } from '@testing-library/react';
+import {
+  describe,
+  expect, it, Mock, vi,
+} from 'vitest';
 import TodoList from '../components/pages/TodoList/TodoList';
+import renderWithProvider from '../utils/renderWithProvider';
 
-const mockedUsedNavigate = jest.fn();
-jest.mock('axios');
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+const mockedUsedNavigate = vi.fn();
+vi.mock('axios');
+vi.mock('react-router-dom', () => ({
+  ...vi.importActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
 
-const dummyTodos = [
+const testTodos = [
   {
     id: 1,
     title: 'todo1',
@@ -32,14 +36,15 @@ const dummyTodos = [
   },
 ];
 
-it('todos list', async () => {
-  localStorage.setItem('username', 'user1');
-  (axios.get as jest.Mock).mockResolvedValue({ data: dummyTodos });
-  render(<TodoList />);
-  const todoList = await waitFor(() => screen.findAllByTestId('todo'));
-  expect(todoList).toHaveLength(3);
-});
-
-it('should render todos list', () => {
-  shallow(<TodoList />);
+const initialState = {
+  todos: testTodos,
+};
+describe('TodoList', () => {
+  it('should render todos list', async () => {
+    localStorage.setItem('username', 'user1');
+    (axios.get as Mock).mockResolvedValue({ data: testTodos });
+    renderWithProvider(<TodoList />, { preloadedState: initialState });
+    const todoList = await waitFor(() => screen.findAllByTestId('todo'));
+    expect(todoList).toHaveLength(3);
+  });
 });

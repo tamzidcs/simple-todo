@@ -1,18 +1,19 @@
 import {
   fireEvent,
-  getByText,
   render, screen,
   waitFor,
 } from '@testing-library/react';
 import React from 'react';
 import axios from 'axios';
+import {
+  beforeEach, describe, expect, it, vi, Mock
+} from 'vitest';
 import Login from '../components/pages/Login/Login';
-import { postLogin } from '../api/users';
 
-const mockedUsedNavigate = jest.fn();
-jest.mock('axios');
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+const mockedUsedNavigate = vi.fn();
+vi.mock('axios');
+vi.mock('react-router-dom', () => ({
+  ...vi.importActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
 
@@ -38,15 +39,13 @@ describe('Login', () => {
         'password-textfield',
       ) as HTMLInputElement;
       window.alert = () => {};
-      (axios.post as jest.Mock).mockResolvedValue({ data: loginUser });
-      await waitFor(() =>
-        fireEvent.change(usernameTextField, {
-          target: { value: loginUser.username },
-        }));
-      await waitFor(() =>
-        fireEvent.change(passwordTextField, {
-          target: { value: loginUser.password },
-        }));
+      (axios.post as Mock).mockResolvedValue({ data: loginUser });
+      await waitFor(() => fireEvent.change(usernameTextField, {
+        target: { value: loginUser.username },
+      }));
+      await waitFor(() => fireEvent.change(passwordTextField, {
+        target: { value: loginUser.password },
+      }));
       await waitFor(() => fireEvent.click(loginButton));
     });
     it('username textfield has the correct value', async () => {

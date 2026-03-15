@@ -1,11 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
+import {
+  describe, expect, it, vi,
+} from 'vitest';
 import Signup from '../components/pages/Signup/Signup';
 
-const mockedUsedNavigate = jest.fn();
-const mockHandleOnSubmit = jest.fn();
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+const mockedUsedNavigate = vi.fn();
+const mockHandleOnSubmit = vi.fn();
+vi.mock('react-router-dom', () => ({
+  ...vi.importActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
 
