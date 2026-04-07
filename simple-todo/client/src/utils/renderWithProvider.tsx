@@ -21,7 +21,7 @@ export default function renderWithProvider(
     ...renderOptions
   }: ExtendedRenderOptions = {},
 ) {
-  function Wrapper({ children }: PropsWithChildren<{}>): ReactElement {
+  function Wrapper({ children }: PropsWithChildren<{}>): React.ReactElement {
     return <Provider store={store}>{children}</Provider>;
   }
   return render(ui, { wrapper: Wrapper, ...renderOptions });
