@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { todoRequest } from '../../../interfaces/todo';
+import { useEffect, useState } from 'react';
+import type { todoRequest } from '../../../interfaces/todo';
 import './AddTodo.scss';
 import { postTodo } from '../../../api/todos';
 import { TodoAlert } from '../TodoAlert/TodoAlert';
-import { alert } from '../../../interfaces/alert';
+import type { alert } from '../../../interfaces/alert';
 import { Button } from '../Button/Button';
 
 interface AddTodoProps {

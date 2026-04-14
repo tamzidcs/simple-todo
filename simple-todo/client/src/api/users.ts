@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { user } from '../interfaces/user';
+import type { user } from '../interfaces/user';
 import { handleError } from '../utils/errorHandler';
 
 const url = {

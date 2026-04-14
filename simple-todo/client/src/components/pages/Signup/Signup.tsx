@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postUser } from '../../../api/users';
-import { user } from '../../../interfaces/user';
+import type { user } from '../../../interfaces/user';
 import { schema } from '../../../utils/inputValidator';
 import './Signup.scss';
 import Button from '../../views/Button/Button';
@@ -18,11 +18,6 @@ export function Signup() {
   const [signupUser, setSignupUser] = useState<user>(newUser);
   const [showUsernameError, setShowUsernameError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
-  const signupFormClasses = {
-    usernameErrorClass: 'username-errors',
-    passwordErrorClass: 'password-errors',
-    passwordAndUsernameErrorClass: 'username-password-errors',
-  };
   const navigate = useNavigate();
 
   const handleSignupError = () => {
@@ -68,14 +63,6 @@ export function Signup() {
   const updateSignupPassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSignupUser({ ...signupUser, password: event.target.value });
   };
-
-  const getSignupClassname = () => `signup-form${
-    showUsernameError ? ` ${signupFormClasses.usernameErrorClass}` : ''
-  }${showPasswordError ? ` ${signupFormClasses.passwordErrorClass}` : ''}${
-    showPasswordError && showUsernameError
-      ? ` ${signupFormClasses.passwordAndUsernameErrorClass}`
-      : ''
-  }`;
 
   return (
     <div className="signup-container">
