@@ -1,15 +1,14 @@
 import {
   fireEvent, render, screen, waitFor,
 } from '@testing-library/react';
-import React from 'react';
 import axios from 'axios';
 import Login from '../components/pages/Login/Login';
-import { postLogin } from '../api/users';
+import { vi } from 'vitest';
 
-const mockedUsedNavigate = jest.fn();
-jest.mock('axios');
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+const mockedUsedNavigate = vi.fn();
+vi.mock('axios');
+vi.mock('react-router-dom', () => ({
+  ...vi.importActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
 
@@ -20,6 +19,7 @@ const loginUser = {
 
 describe('Login', () => {
   beforeEach(() => {
+    // eslint-disable-next-line react/react-in-jsx-scope
     render(<Login />);
   });
   describe('when login button is clicked', () => {
@@ -35,7 +35,7 @@ describe('Login', () => {
         'password-textfield',
       ) as HTMLInputElement;
       window.alert = () => {};
-      (axios.post as jest.Mock).mockResolvedValue({ data: loginUser });
+      (axios.post as vi.Mock).mockResolvedValue({ data: loginUser });
       await waitFor(() => fireEvent.change(usernameTextField, {
         target: { value: loginUser.username },
       }));

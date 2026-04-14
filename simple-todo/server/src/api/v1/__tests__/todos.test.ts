@@ -38,7 +38,7 @@ const createToDo = async () => {
 };
 
 beforeAll(async () => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   initializeDatabase();
   await createUsers();
   await createToDo();

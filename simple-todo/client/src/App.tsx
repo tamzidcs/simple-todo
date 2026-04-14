@@ -4,7 +4,6 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import React from 'react';
 import { Provider } from 'react-redux';
 import { TodoList } from './components/pages/TodoList/TodoList';
 import Landing from './components/pages/Landing/Landing';
