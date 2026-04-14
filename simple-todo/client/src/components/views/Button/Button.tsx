@@ -1,5 +1,6 @@
+import React from 'react';
 import './Button.scss';
-import type { button } from '../../../interfaces/button';
+import { button } from '../../../interfaces/button';
 
 export function Button(buttonProps: button) {
   const {

@@ -1,13 +1,13 @@
+import React from 'react';
 import axios from 'axios';
 import { waitFor, screen } from '@testing-library/react';
 import TodoList from '../components/pages/TodoList/TodoList';
 import renderWithProvider from '../utils/renderWithProvder';
-import { vi } from 'vitest';
 
-const mockedUsedNavigate = vi.fn();
-vi.mock('axios');
-vi.mock('react-router-dom', () => ({
-  ...vi.importActual('react-router-dom'),
+const mockedUsedNavigate = jest.fn();
+jest.mock('axios');
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
 
@@ -39,8 +39,7 @@ const initialState = {
 describe('TodoList', () => {
   it('should render todos list', async () => {
     localStorage.setItem('username', 'user1');
-    (axios.get as vi.Mock).mockResolvedValue({ data: testTodos });
-    // eslint-disable-next-line react/react-in-jsx-scope
+    (axios.get as jest.Mock).mockResolvedValue({ data: testTodos });
     renderWithProvider(<TodoList />, { preloadedState: initialState });
     const todoList = await waitFor(() => screen.findAllByTestId('todo'));
     expect(todoList).toHaveLength(3);

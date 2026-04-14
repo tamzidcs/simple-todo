@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import dropDownCaretIcon from '../../../resources/assets/caret-down-icon.png';
-import type { userNameListItem } from '../../../interfaces/userNameListItem';
+import { userNameListItem } from '../../../interfaces/userNameListItem';
 import './DropDown.scss';
 
 export function DropDown(props: {

@@ -1,6 +1,7 @@
+import * as React from 'react';
 import Alert from '@mui/material/Alert';
 import './TodoAlert.scss';
-import type { alert } from '../../../interfaces/alert';
+import { alert } from '../../../interfaces/alert';
 
 export function TodoAlert(props: alert) {
   const { severity, message } = props;

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TopBar.scss';
 import Button from '../Button/Button';

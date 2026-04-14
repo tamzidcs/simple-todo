@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 
 export interface button {
   className: string;

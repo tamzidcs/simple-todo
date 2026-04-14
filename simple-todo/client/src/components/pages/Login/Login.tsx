@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../../../api/users';
-import type { user } from '../../../interfaces/user';
+import { user } from '../../../interfaces/user';
 import './Login.scss';
 import Button from '../../views/Button/Button';
 import simpleTodoLogo from '../../../resources/assets/simple-todo-logo.png';

@@ -16,7 +16,7 @@ const createUser = async () => {
 };
 
 beforeAll(async () => {
-  vi.clearAllMocks();
+  jest.clearAllMocks();
   initializeDatabase();
   await createUser();
 });

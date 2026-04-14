@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import type { todo, todoRequest } from '../interfaces/todo';
+import { todo, todoRequest } from '../interfaces/todo';
 import { handleError } from '../utils/errorHandler';
 
 const url = {
