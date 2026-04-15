@@ -3,7 +3,7 @@ import {
 } from '@testing-library/react';
 import axios from 'axios';
 import Login from '../components/pages/Login/Login';
-import { vi } from 'vitest';
+import { vi, type Mock } from 'vitest';
 
 const mockedUsedNavigate = vi.fn();
 vi.mock('axios');
@@ -35,7 +35,7 @@ describe('Login', () => {
         'password-textfield',
       ) as HTMLInputElement;
       window.alert = () => {};
-      (axios.post as vi.Mock).mockResolvedValue({ data: loginUser });
+      (axios.post as Mock).mockResolvedValue({ data: loginUser });
       await waitFor(() => fireEvent.change(usernameTextField, {
         target: { value: loginUser.username },
       }));
