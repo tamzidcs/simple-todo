@@ -2,7 +2,7 @@ import axios from 'axios';
 import { waitFor, screen } from '@testing-library/react';
 import TodoList from '../components/pages/TodoList/TodoList';
 import renderWithProvider from '../utils/renderWithProvder';
-import { vi } from 'vitest';
+import { vi, type Mock } from 'vitest';
 
 const mockedUsedNavigate = vi.fn();
 vi.mock('axios');
@@ -39,7 +39,7 @@ const initialState = {
 describe('TodoList', () => {
   it('should render todos list', async () => {
     localStorage.setItem('username', 'user1');
-    (axios.get as vi.Mock).mockResolvedValue({ data: testTodos });
+    (axios.get as Mock).mockResolvedValue({ data: testTodos });
     // eslint-disable-next-line react/react-in-jsx-scope
     renderWithProvider(<TodoList />, { preloadedState: initialState });
     const todoList = await waitFor(() => screen.findAllByTestId('todo'));
