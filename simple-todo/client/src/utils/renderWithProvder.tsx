@@ -1,8 +1,8 @@
-import React, { PropsWithChildren, ReactElement } from 'react';
+import React, { type PropsWithChildren, type ReactElement } from 'react';
 import { Provider } from 'react-redux';
-import { RenderOptions, render } from '@testing-library/react';
-import { configureStore, PreloadedState } from '@reduxjs/toolkit';
-import {
+import { type RenderOptions, render } from '@testing-library/react';
+import { configureStore, type PreloadedState } from '@reduxjs/toolkit';
+import type {
   AppStore,
   RootState,
 } from '../store/store';

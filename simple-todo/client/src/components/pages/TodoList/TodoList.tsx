@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../../store/store';
+import type { RootState } from '../../../store/store';
 import { setAllTodos } from '../../../store/slices/todosSlice';
 import { Header } from '../../views/TopBar/TopBar';
 import { AddTodo } from '../../views/AddTodo/AddTodo';
@@ -11,7 +11,7 @@ import './TodoList.scss';
 import Todo from '../../views/Todo/Todo';
 // import { button } from '../../interfaces/button';
 import Button from '../../views/Button/Button';
-import { userNameListItem } from '../../../interfaces/userNameListItem';
+import type { userNameListItem } from '../../../interfaces/userNameListItem';
 
 const url = {
   todos: 'http://localhost:3005/v1/todos/',
