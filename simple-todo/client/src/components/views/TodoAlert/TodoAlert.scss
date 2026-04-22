@@ -1,9 +1,16 @@
 $alertMessagePaddingTop: 10px;
 $alertMessageWidth: 300px;
+$alertContainerLeft: 10px;
+$alertContainerBottom: 10px;
+$alertContainerZIndex: 1;
 
 .alert-container {
     display: flex;
     justify-content: center;
+    position: absolute;
+    left: $alertContainerLeft;
+    bottom: $alertContainerBottom;
+    z-index: $alertContainerZIndex;
 }
 
 .alert-message {
