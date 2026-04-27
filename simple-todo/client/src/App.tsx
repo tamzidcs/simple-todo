@@ -18,7 +18,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <div><Toaster /></div>
+        <Toaster />
         <Routes>
           <Route element={<PrivateRoutes />}>
             <Route path="/toDoList" element={<TodoList />} />
