@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import React from 'react';
 import { Provider } from 'react-redux';
+import { Toaster } from 'react-hot-toast';
 import { TodoList } from './components/pages/TodoList/TodoList';
 import { Landing } from './components/pages/Landing/Landing';
 import { Signup } from './components/pages/Signup/Signup';
@@ -17,6 +18,7 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
+        <div><Toaster /></div>
         <Routes>
           <Route element={<PrivateRoutes />}>
             <Route path="/toDoList" element={<TodoList />} />

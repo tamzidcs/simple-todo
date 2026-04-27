@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../../../api/users';
 import { user } from '../../../interfaces/user';
 import './Login.scss';
+import toast, { Toaster } from 'react-hot-toast';
 
 const User: user = {
   username: '',
@@ -22,7 +23,7 @@ export function Login() {
           navigate('/toDoList');
         }
       } catch (error) {
-        alert(error);
+        toast.error(String(error));
       }
     }
   };

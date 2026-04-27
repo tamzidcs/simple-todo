@@ -10,6 +10,7 @@ import { getTodo, postTodoShare, updateTodoDone } from '../../../api/todos';
 import Todo from '../../views/Todo/Todo';
 import DropDown from '../../views/DropDown/DropDown';
 import { userNameListItem } from '../../../interfaces/userNameListItem';
+import toast, { Toaster } from 'react-hot-toast';
 
 const url = {
   todos: 'http://localhost:3005/todos/',
@@ -69,7 +70,7 @@ export function TodoList() {
   const shareTodo = async (todoId: string, userName: string) => {
     const result = await postTodoShare(todoId, userName);
     if (result) {
-      alert(`Todo shared with ${userName}`);
+      toast.success(`Todo shared with ${userName}`);
     }
   };
 
