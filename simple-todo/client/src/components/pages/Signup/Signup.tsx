@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { postUser } from '../../../api/users';
 import { user } from '../../../interfaces/user';
 import './Signup.scss';
+import toast from 'react-hot-toast';
 
 const newUser: user = {
   username: '',
@@ -18,11 +19,11 @@ export function Signup() {
       try {
         const result = await postUser(signupUser);
         if (result) {
-          alert('signup complete.');
+          toast.success('signup complete.');
           navigate('/login');
         }
       } catch (error) {
-        alert(error);
+        toast.error(String(error));
       }
     }
   };

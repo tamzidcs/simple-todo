@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { todo } from '../../../interfaces/todo';
 import './AddTodo.scss';
 import { postTodo } from '../../../api/todos';
+import toast, { Toaster } from 'react-hot-toast';
 
 interface AddTodoProps {
   updateTaskList: ()=> void;
@@ -20,9 +21,9 @@ export function AddTodo({ updateTaskList } : AddTodoProps) {
         const result = await postTodo(newTodo);
         if (result) {
           updateTaskList();
-          alert('New todo Added.');
+          toast.success('New todo Added.');
         } else {
-          alert('Add todo Failed.');
+          toast.error('Add todo Failed.');
         }
       } catch (error) {
         console.error(error);
@@ -32,6 +33,7 @@ export function AddTodo({ updateTaskList } : AddTodoProps) {
 
   return (
     <div className="add-todo-container">
+      <div><Toaster /></div>
       <form className="add-todo-form" onSubmit={handleAddTodo}>
         <label className="add-todo-title" htmlFor="title-label">
           Title
