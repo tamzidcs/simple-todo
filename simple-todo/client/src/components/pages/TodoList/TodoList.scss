@@ -6,6 +6,7 @@ $titlePaddingLeft: 10px;
 $descriptionHeight: 100px;
 $descriptionPaddingLeft: 10px;
 $todolistWidth: 760px;
+$todolistHeight: 60px;
 $todolistMarginTop: 20px;
 $todolistPaddingBottom: 20px;
 $todoContainerHeight: 200px;
@@ -45,10 +46,11 @@ $shareTodoWidth: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     background-color: #add8e6;
     width: $todolistWidth;
+    height: $todolistHeight;
     margin-top: $todolistMarginTop;
-    padding-bottom: $todolistPaddingBottom;
 }
 
 .todo-container {
