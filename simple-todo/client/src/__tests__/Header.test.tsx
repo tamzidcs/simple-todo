@@ -1,4 +1,4 @@
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import React from 'react';
 import {
   it, vi,
@@ -12,5 +12,5 @@ vi.mock('react-router-dom', () => ({
 }));
 
 it('should render signup', () => {
-  shallow(<TopBar />);
+  render(<TopBar />);
 });
