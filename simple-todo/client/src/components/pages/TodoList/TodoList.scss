@@ -16,6 +16,7 @@ $todoMarginBottom: 10px;
 $todoBottomMarginLeft: 24px;
 $userNameInputWidth: 150px;
 $shareTodoWidth: 300px;
+$emptyTodoTextPaddingTop: 20px;
 
 .to-do-list-container {
     display: flex;
@@ -45,6 +46,7 @@ $shareTodoWidth: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     background-color: #add8e6;
     width: $todolistWidth;
     margin-top: $todolistMarginTop;
@@ -87,4 +89,5 @@ $shareTodoWidth: 300px;
 .empty-todo-text {
     display: flex;
     justify-content: center;
+    padding-top: $emptyTodoTextPaddingTop;
 }
