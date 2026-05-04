@@ -12,6 +12,7 @@ import Todo from '../../views/Todo/Todo';
 // import { button } from '../../interfaces/button';
 import Button from '../../views/Button/Button';
 import type { userNameListItem } from '../../../interfaces/userNameListItem';
+import type { todo } from '../../../interfaces/todo';
 
 const url = {
   todos: 'http://localhost:3005/v1/todos/',
@@ -26,13 +27,19 @@ export function TodoList() {
   const todoList = useSelector((state:RootState) => state.todos);
   const dispatch = useDispatch();
 
+  const sortTodoListByLatest = (todoList: todo[]) => {
+    const sortedTodoList = todoList.reverse();
+    return sortedTodoList;
+  };
+
   const getTodosByParam = async (param: string) => {
     const localStorageItem = localStorage.getItem(param);
     if (localStorageItem) {
       try {
         const result = await getTodo(localStorageItem);
         if (result) {
-          dispatch(setAllTodos(result));
+          const sortedTodoList = sortTodoListByLatest(result);
+          dispatch(setAllTodos(sortedTodoList));
         }
       } catch (error) {
         alert(error);
