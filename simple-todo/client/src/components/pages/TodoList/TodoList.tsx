@@ -22,7 +22,7 @@ const url = {
 export function TodoList() {
   const [userNameList, setUserNameList] = useState<any[]>([]);
   const [shareUserName, setShareUserName] = useState('');
-  const [taskListUpdated, setTodoListUpdated] = useState(false);
+  const [todoListUpdated, setTodoListUpdated] = useState(false);
   const todoList = useSelector((state:RootState) => state.todos);
   const dispatch = useDispatch();
 
@@ -46,7 +46,7 @@ export function TodoList() {
     }
   };
 
-  const updateTaskList = () => {
+  const updateTodoList = () => {
     setTodoListUpdated(true);
   };
 
@@ -67,10 +67,10 @@ export function TodoList() {
       const userNameList = removeCurrentUsernameFromList(resp.data);
       setUserNameList(userNameList);
     });
-  }, [taskListUpdated]);
+  }, [todoListUpdated]);
 
-  const todoDone = async (taskId: string) => {
-    await updateTodoDone(taskId);
+  const todoDone = async (todoId: string) => {
+    await updateTodoDone(todoId);
     getTodosByParam('username');
   };
 
@@ -88,7 +88,7 @@ export function TodoList() {
   return (
     <div className="to-do-list-container">
       <TopBar />
-      <AddTodo updateTaskList={updateTaskList} />
+      <AddTodo updateTodoList={updateTodoList} />
       <div className="todolist">
         {todoList.length > 0 ? (
           todoList.map((todoItem) => (
