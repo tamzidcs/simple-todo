@@ -24,7 +24,7 @@ export async function addNewTodo(newTodo: TodoInput): Promise<Todo> {
 
   const createdTodo = await TodoRepo.createTodo(todo);
 
-  UserRepo.createUserTodoRelationship(String(user.id),newTodo.id);
+  UserRepo.createUserTodoRelationship(String(user.id),String(createdTodo.id));
 
   if (createdTodo) {
     const user = await TodoRepo.getTodoByUsername(newTodo.username);
