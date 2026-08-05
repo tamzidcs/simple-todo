@@ -1,9 +1,10 @@
 import { error } from "console";
-import User from "../db/models/User";
-import * as UserRepo from "../repository/userRepo";
+import { User } from '../db/entity/User.js';
+import * as UserRepo from '../repository/userRepo.js';
 import * as bcrypt from "bcrypt";
-import { UNAUTHORIZED, OK, CREATED, CONFLICT, INTERNAL_SERVER_ERROR, FORBIDDEN } from "http-status";
-import { AuthenticationError, DatabaseError } from "../error";
+import status from "http-status";
+import { AuthenticationError, DatabaseError } from '../error.js';
+import AppDataSource from '../db/db.js';
 
 interface LoginResponse {
   statusCode: number;
@@ -27,10 +28,10 @@ interface GetAllUserResponse {
 }
 
 async function createNewUser(username: string, password: string) {
-  const user = new User({
-    username: username,
-    password: password,
-  });
+  const user = new User();
+  user.username = username;
+  user.password = password;
+  user.todos = [];
 
   const existingUser = await UserRepo.getUserByUsername(user.username);
   if (existingUser) {
@@ -60,15 +61,15 @@ export async function registerUser(newUser: User): Promise<RegisterResponse> {
   const result = await createNewUser(newUser.username, hashedPassword);
   if (result.userCreated) {
     return {
-      statusCode: CREATED,
+      statusCode: status.CREATED,
       message: userCreatedMessage,
       username: newUser.username,
     };
   } else if (result.message === userAlreadyExistMessage) {
-    throw new DatabaseError(userAlreadyExistMessage, CONFLICT);
+    throw new DatabaseError(userAlreadyExistMessage, status.CONFLICT);
   } else {
     return {
-      statusCode: INTERNAL_SERVER_ERROR,
+      statusCode: status.INTERNAL_SERVER_ERROR,
       message: registrationFailed,
       username: newUser.username,
     };
@@ -78,17 +79,28 @@ export async function registerUser(newUser: User): Promise<RegisterResponse> {
 export async function loginUser(user: User): Promise<LoginResponse | null> {
   const checkUser = await UserRepo.getUserByUsername(user.username);
   if (!checkUser) {
-    throw new AuthenticationError(incorrectUserNamePasswordMessage,UNAUTHORIZED);
+    throw new AuthenticationError(incorrectUserNamePasswordMessage,status.UNAUTHORIZED);
   } else if (checkUser !== null) {
     const valid = await validatePassord(checkUser.password, user.password);
     if (valid) {
-      return { statusCode: OK, message: loginSuccessfullMessage };
+      return { statusCode: status.OK, message: loginSuccessfullMessage };
     }
   }
-  throw new AuthenticationError(incorrectUserNamePasswordMessage,UNAUTHORIZED);
+  throw new AuthenticationError(incorrectUserNamePasswordMessage,status.UNAUTHORIZED);
 }
 
-export async function getAllUsers(): Promise<GetAllUserResponse[]> {
-  const users:GetAllUserResponse[]  = await User.findAll({attributes:['id','username']});
+export async function getAllUsers(): Promise<User[]> {
+  const users  = await AppDataSource
+  .getRepository(User)
+  .createQueryBuilder("user")
+  .getMany()
+
   return users;
+}
+
+export async function createUserTodoRelationship(userId: string, todoId: string) {
+  await AppDataSource.createQueryBuilder()
+    .relation(User, "todos")
+    .of(userId)
+    .add(todoId);
 }

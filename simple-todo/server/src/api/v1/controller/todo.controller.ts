@@ -1,9 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
-import { TodoUser } from '../db/models';
-import Todo from '../db/models/Todo';
-import * as todoService from '../service/todo.service';
-import * as todoUserService from '../service/todoUser.service';
-import { CREATED } from "http-status";
+import * as todoService from '../service/todo.service.js';
+import status from "http-status";
+import { Todo } from '../db/entity/Todo.js';
 
 export async function addNewTodo(
   req: Request,
@@ -14,7 +12,7 @@ export async function addNewTodo(
 
   try {
     const result = await todoService.addNewTodo(todo);
-    res.status(CREATED).send(result);
+    res.status(status.CREATED).send(result);
   } catch (error) {
     next(error);
   }

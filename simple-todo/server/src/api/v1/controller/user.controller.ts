@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import User from "../db/models/User";
-import * as userService from "../service/user.service";
-import { OK, UNAUTHORIZED, CONFLICT, CREATED, INTERNAL_SERVER_ERROR } from "http-status";
+import * as userService from "../service/user.service.js";
+import status from "http-status";
+import { User } from "../db/entity/User.js";
 
 export async function registerUser(
   req: Request,

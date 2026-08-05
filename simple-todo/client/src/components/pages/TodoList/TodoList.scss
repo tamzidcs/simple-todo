@@ -71,7 +71,13 @@ $emptyTodoTextPaddingTop: 20px;
     display: flex;
 }
 
-.share-todo {
+.todo-bottom-left {
+    display: flex;
+    float: right;
+    width: $shareTodoWidth;
+}
+
+.todo-bottom-right {
     display: flex;
     float: right;
     width: $shareTodoWidth;
