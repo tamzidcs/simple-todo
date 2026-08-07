@@ -20,9 +20,9 @@ export async function getTodoById(id: string) {
 
 export async function getTodoByUsername(username: string) {
     const todo = await AppDataSource
-    .getRepository(User)
-    .createQueryBuilder("user")
-    .where("user.username = :username", { username: username})
+    .getRepository(Todo)
+    .createQueryBuilder("todo")
+    .where("todo.username = :username", { username: username})
     .getOne();
 
     return todo;
@@ -33,14 +33,16 @@ export async function getAllTodosByUsernameStatus(
   todoStatus: string,
 ) {
   const user = await UserRepo.getUserByUsername(username);
+  const userId =user?.id;
   const todoByUsername = await AppDataSource
-    .getRepository(Todo)
-    .createQueryBuilder("todo")
-    .leftJoinAndSelect("todo.users", "user")
-    .where("todo.status = :status", {status: todoStatus})
-    .getMany()
+    .getRepository(User)
+    .createQueryBuilder("user")
+    .leftJoinAndSelect("user.todos", "todo")
+    .where("user.id = :id", {id: userId})
+    .andWhere("todo.status = :status", {status: todoStatus})
+    .getOne()
 
-  return todoByUsername;
+  return todoByUsername?.todos;
 }
 
 export async function updateTodoStatusById(todoId: string, todoStatus: string) {

@@ -27,11 +27,10 @@ export async function addNewTodo(newTodo: TodoInput): Promise<Todo> {
   UserRepo.createUserTodoRelationship(String(user.id),String(createdTodo.id));
 
   if (createdTodo) {
-    const user = await TodoRepo.getTodoByUsername(newTodo.username);
+    return createdTodo;
   } else {
     throw new NotFoundError("Invalid ToDo",status.NOT_FOUND);
   }
-  return todo;
 }
 
 export async function getAllTodosByUsername(username: string): Promise<Todo[]> {
@@ -42,7 +41,12 @@ export async function getAllTodosByUsername(username: string): Promise<Todo[]> {
       username,
       todoStatus
     );
-    return todos;
+    if(todos) {
+      return todos;
+    }
+    else {
+      throw new NotFoundError("Todos not found", status.NOT_FOUND);
+    }
   } else {
     throw new NotFoundError("User not found", status.NOT_FOUND);
   }
