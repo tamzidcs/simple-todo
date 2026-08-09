@@ -10,7 +10,7 @@
     "dev": "NODE_ENV=development concurrently \"npx tsc  --watch\" \"nodemon  -q dist/src/server.js\"",
     "start:debug:ts": "NODE_ENV=development node --inspect-brk --import tsx src/server.ts",
     "test": "NODE_ENV=test jest --detectOpenHandles",
-    "db": "NODE_ENV=development sequelize db:create && NODE_ENV=development sequelize db:migrate",
+    "db": "NODE_ENV=development npx tsx src/api/v1/db/scripts/createDatabase.ts",
     "db:test": "NODE_ENV=test sequelize db:create && NODE_ENV=test sequelize db:migrate"
   },
   "dependencies": {
@@ -36,6 +36,7 @@
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.0",
     "@types/node": "^25.9.5",
+    "@types/pg": "^8.21.0",
     "@types/supertest": "^2.0.12",
     "bcrypt": "^5.1.0",
     "concurrently": "^7.6.0",
