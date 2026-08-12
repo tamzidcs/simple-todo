@@ -10,12 +10,17 @@
     "dev": "NODE_ENV=development concurrently \"npx tsc  --watch\" \"nodemon  -q dist/src/server.js\"",
     "start:debug:ts": "NODE_ENV=development node --inspect-brk --import tsx src/server.ts",
     "test": "NODE_ENV=test jest --detectOpenHandles",
-    "db": "NODE_ENV=development npx tsx src/api/v1/db/scripts/createDatabase.ts",
-    "db:test": "NODE_ENV=test sequelize db:create && NODE_ENV=test sequelize db:migrate"
+    "db:create": "npx tsx src/api/v1/db/scripts/createDatabase.ts",
+    "db:migration:clean":"rm -f src/api/v1/db/migration/*",
+    "db:migration:generate": "npx typeorm-ts-node-esm migration:generate src/api/v1/db/migration/todolist_db_migration -d src/api/v1/db/data-source.ts",
+    "db:migrate": "npx typeorm-ts-node-esm migration:run -d src/api/v1/db/data-source.ts",
+    "dev:prep": "NODE_ENV=development npm run db:create && npm run db:migration:clean && NODE_ENV=development npm run db:migration:generate && NODE_ENV=development npm run db:migrate",
+    "test:prep": "NODE_ENV=test npm run db:create && npm run db:migration:clean && NODE_ENV=test npm run db:migration:generate && NODE_ENV=test npm run db:migrate"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
+    "cross-env": "^10.1.0",
     "debug": "~2.6.9",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
