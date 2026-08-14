@@ -11,7 +11,7 @@
     "start:debug:ts": "NODE_ENV=development node --inspect-brk --import tsx src/server.ts",
     "test": "NODE_ENV=test jest --detectOpenHandles",
     "db:create": "npx tsx src/api/v1/db/scripts/createDatabase.ts",
-    "db:migration:clean":"rm -f src/api/v1/db/migration/*",
+    "db:migration:clean":"rm -f src/api/v1/db/migration/* && rm -f dist/src/api/v1/db/migration/*",
     "db:migration:generate": "npx typeorm-ts-node-esm migration:generate src/api/v1/db/migration/todolist_db_migration -d src/api/v1/db/data-source.ts",
     "db:migrate": "npx typeorm-ts-node-esm migration:run -d src/api/v1/db/data-source.ts",
     "dev:prep": "NODE_ENV=development npm run db:create && npm run db:migration:clean && NODE_ENV=development npm run db:migration:generate && NODE_ENV=development npm run db:migrate",

@@ -97,10 +97,3 @@ export async function getAllUsers(): Promise<User[]> {
 
   return users;
 }
-
-export async function createUserTodoRelationship(userId: string, todoId: string) {
-  await AppDataSource.createQueryBuilder()
-    .relation(User, "todos")
-    .of(userId)
-    .add(todoId);
-}
