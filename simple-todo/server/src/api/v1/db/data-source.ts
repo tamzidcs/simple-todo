@@ -15,6 +15,6 @@ export const AppDataSource = new DataSource({
   synchronize: false,
   logging: false,
   entities: [User, Todo],
-  migrations: [ "dist/src/api/v1/db/migration/**/*.js"],
+  migrations: [],
   subscribers: [],
 });
