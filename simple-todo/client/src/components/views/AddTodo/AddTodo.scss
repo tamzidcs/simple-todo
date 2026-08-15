@@ -15,6 +15,7 @@ $titleLabelWidth: $titleTextFieldWidth;;
 $titleLabelHeight: 30px;
 $titleDescriptionWidth: $titleTextFieldWidth;;
 $addButtonContainerWidth: 700px;
+$dueDateLabelWidth: 70px;
 
 .add-todo-container {
     display: flex;
@@ -67,7 +68,7 @@ $addButtonContainerWidth: 700px;
 .due-date-label{
     display: flex;
     align-items: center;
-    width: 70px;
+    width: $dueDateLabelWidth;
 }
 
 .add-button-bottom-left {
