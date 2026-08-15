@@ -1,23 +1,22 @@
 import request from "supertest";
 import status from "http-status";
-import { describe, expect, test } from "@jest/globals";
-import { initializeDatabase } from "../db/db";
-import app from "../../../app";
-import { Todo, TodoUser, User } from "../db/models";
-import { registerUser } from "../service/user.service";
-import { addNewTodo } from "../service/todo.service";
-import todo from "../interface/todo";
+import { afterAll, beforeAll, describe, expect, it, test, vi } from "vitest";
+import AppDataSource, { initializeDatabase } from "../db/db.js";
+import app from "../../../app.js";
+import { Todo } from "../db/entity/Todo.js";
+import { User } from "../db/entity/User.js";
+import { registerUser } from "../service/user.service.js";
+import { addNewTodo } from "../service/todo.service.js";
+import todo from "../interface/todo.js";
 
 const createUsers = async () => {
-  const user = new User({
-    username: "user1",
-    password: "123456",
-  });
+  const user = new User();
+  user.username = "user1";
+  user.password = "123456";
 
-  const user2 = new User({
-    username: "user2",
-    password: "123456",
-  });
+  const user2 = new User()
+  user2.username = "user2";
+  user2.password = "123456";
 
   await registerUser(user);
   await registerUser(user2);
@@ -31,6 +30,7 @@ const createToDo = async () => {
     username: "user1",
     status: "pending",
     id: "",
+    dueDate: ""
   };
 
   const newToDoResponse = await addNewTodo(newTodo);
@@ -45,18 +45,17 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await User.destroy({
-    where: {},
-    truncate: true
-  });
-  await Todo.destroy({
-    where: {},
-    truncate: true
-  });
-  await TodoUser.destroy({
-    where: {},
-    truncate: true
-  });
+  await AppDataSource
+  .createQueryBuilder()
+  .delete()
+  .from(User)
+  .execute()
+
+  await AppDataSource
+  .createQueryBuilder()
+  .delete()
+  .from(Todo)
+  .execute()
 });
 
 describe("Todo", () => {

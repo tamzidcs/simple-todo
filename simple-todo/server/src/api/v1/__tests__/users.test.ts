@@ -1,16 +1,16 @@
 import request from "supertest";
 import status from "http-status";
-import { describe, expect, test } from "@jest/globals";
-import { initializeDatabase } from "../db/db";
-import app from "../../../app";
-import { User } from "../db/models";
-import { registerUser } from "../service/user.service";
+import AppDataSource, { initializeDatabase } from "../db/db.js";
+import app from "../../../app.js";
+import { User } from "../db/entity/User.js";
+import { registerUser } from "../service/user.service.js";
+import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 
 const createUser = async () => {
-  const user = new User({
-    username: "user3",
-    password: "123456",
-  });
+  const user = new User()
+  user.username = "user3";
+  user.password = "123456";
+
 
   await registerUser(user);
 };
@@ -22,10 +22,11 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  await User.destroy({
-    where: {},
-    truncate: true
-  });
+  await AppDataSource
+  .createQueryBuilder()
+  .delete()
+  .from(User)
+  .execute()
 });
 
 describe("Users", () => {

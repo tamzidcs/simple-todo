@@ -1,25 +1,34 @@
-import { useEffect, useState } from 'react';
-import type { todoRequest } from '../../../interfaces/todo';
-import './AddTodo.scss';
-import { postTodo } from '../../../api/todos';
-import { TodoAlert } from '../TodoAlert/TodoAlert';
-import type { alert } from '../../../interfaces/alert';
-import { Button } from '../Button/Button';
+import { useEffect, useState } from "react";
+import type { todoRequest } from "../../../interfaces/todo";
+import "./AddTodo.scss";
+import { postTodo } from "../../../api/todos";
+import { TodoAlert } from "../TodoAlert/TodoAlert";
+import type { alert } from "../../../interfaces/alert";
+import { Button } from "../Button/Button";
+import DatePicker from "../DatePicker/DatePicker";
 
 interface AddTodoProps {
   updateTaskList: () => void;
 }
 export function AddTodo({ updateTaskList }: AddTodoProps) {
-  const username = String(localStorage.getItem('username'));
-  const newTodoInitialState: todoRequest = { title: '', description: '', username };
+  const username = String(localStorage.getItem("username"));
+  const newTodoInitialState: todoRequest = {
+    title: "",
+    description: "",
+    username,
+    dueDate: "",
+  };
   const [newTodo, setNewTodo] = useState<todoRequest>(newTodoInitialState);
-  const alertSeveritySuccess = 'success';
-  const alertSeverityError = 'error';
-  const alertInitialValue: alert = { severity: alertSeveritySuccess, message: '' };
+  const alertSeveritySuccess = "success";
+  const alertSeverityError = "error";
+  const alertInitialValue: alert = {
+    severity: alertSeveritySuccess,
+    message: "",
+  };
   const [alert, setAlert] = useState(alertInitialValue);
   const alertTimeOut = 3000;
-  const newTodoSuccessMessage = 'New Todo Added.';
-  const newTodoFailedMessage = 'New Todo Failed.';
+  const newTodoSuccessMessage = "New Todo Added.";
+  const newTodoFailedMessage = "New Todo Failed.";
 
   useEffect(() => {
     setTimeout(() => setAlert(alertInitialValue), alertTimeOut);
@@ -27,14 +36,20 @@ export function AddTodo({ updateTaskList }: AddTodoProps) {
 
   const handleAddTodo = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    if (newTodo.title && newTodo.description && newTodo.username) {
+    if (newTodo.title && newTodo.description && newTodo.username && newTodo.dueDate) {
       try {
         const result = await postTodo(newTodo);
         if (result) {
           updateTaskList();
-          setAlert({ severity: alertSeveritySuccess, message: newTodoSuccessMessage });
+          setAlert({
+            severity: alertSeveritySuccess,
+            message: newTodoSuccessMessage,
+          });
         } else {
-          setAlert({ severity: alertSeverityError, message: newTodoFailedMessage });
+          setAlert({
+            severity: alertSeverityError,
+            message: newTodoFailedMessage,
+          });
         }
       } catch (error) {
         console.error(error);
@@ -64,10 +79,21 @@ export function AddTodo({ updateTaskList }: AddTodoProps) {
             id="description-textfield"
             className="description-textfield box"
             data-testid="description-textfield"
-            onChange={(e) => setNewTodo({ ...newTodo, description: e.target.value })}
+            onChange={(e) =>
+              setNewTodo({ ...newTodo, description: e.target.value })
+            }
           />
         </label>
         <div className="add-button-container">
+          <div className="add-button-bottom-left">
+            <label className="due-date-label">Due Date</label>
+            <DatePicker
+              id="due-date-add-todo"
+              className={"due-date-add-todo"}
+              testId={"due-date-add-todo"}
+              onChange={(e) => setNewTodo({ ...newTodo, dueDate: e.target.value })}
+            />
+          </div>
           <Button
             text="Add"
             className="button add-button"
@@ -77,10 +103,10 @@ export function AddTodo({ updateTaskList }: AddTodoProps) {
         </div>
       </form>
       <div className="alert-container">
-        {alert.message !== '' ? (
+        {alert.message !== "" ? (
           <TodoAlert severity={alert.severity} message={alert.message} />
         ) : (
-          ''
+          ""
         )}
       </div>
     </div>
