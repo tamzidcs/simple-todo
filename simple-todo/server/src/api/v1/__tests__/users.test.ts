@@ -5,6 +5,7 @@ import app from '../../../app.js';
 import { User } from '../db/entity/User.js';
 import { registerUser } from '../service/user.service.js';
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
+import { API_CONFIG } from "../../../config/api.config.js";
 
 const createUser = async () => {
   const user = new User();
@@ -34,14 +35,14 @@ describe("Users", () => {
         username: "user4",
         password: "123456",
       };
-      const response = await request(app).post("/v1/users").send(user);
+      const response = await request(app).post("/"+API_CONFIG.apiVersion+"/users").send(user);
       expect(response.status).toEqual(status.CREATED);
     });
   });
 
   describe("GET /users", () => {
     it("should respond with a 200 status code", async () => {
-      const response = await request(app).get("/v1/users");
+      const response = await request(app).get("/"+API_CONFIG.apiVersion+"/users");
       expect(response.status).toEqual(status.OK);
     });
   });
@@ -52,7 +53,7 @@ describe("Users", () => {
         username: "user3",
         password: "123456",
       };
-      const response = await request(app).post("/v1/login").send(user);
+      const response = await request(app).post("/"+API_CONFIG.apiVersion+"/login").send(user);
       expect(response.status).toEqual(status.OK);
       const userResponse = response.body;
       expect(userResponse).toEqual({

@@ -10,6 +10,7 @@ import { User } from '../db/entity/User.js';
 import { registerUser } from '../service/user.service.js';
 import { addNewTodo } from '../service/todo.service.js';
 import todo from '../interface/todo.js';
+import { API_CONFIG } from "../../../config/api.config.js";
 
 const createUsers = async () => {
   const user = new User();
@@ -54,14 +55,14 @@ describe("Todo", () => {
 
   describe("GET /todos", () => {
     it("should respond with a 200 status code", async () => {
-      const response = await request(app).get("/v1/todos/user1");
+      const response = await request(app).get("/"+API_CONFIG.apiVersion+"/todos/user1");
       expect(response.status).toBe(status.OK);
     });
   });
 
   describe("POST /todos", () => {
     it("should respond with a 201 status code", async () => {
-      const response = await request(app).post("/v1/todos").send({
+      const response = await request(app).post("/"+API_CONFIG.apiVersion+"/todos").send({
         title: "todo2",
         description: "description2",
         status: "pending",
@@ -74,7 +75,7 @@ describe("Todo", () => {
 
   describe("POST /share", () => {
     it("should respond with a 200 status code", async () => {
-      const response = await request(app).post("/v1//share").send({
+      const response = await request(app).post("/"+API_CONFIG.apiVersion+"/share").send({
         todoId: todoId,
         username: "user2",
       });
@@ -84,7 +85,7 @@ describe("Todo", () => {
 
   describe("PATCH /todos", () => {
     it("should respond with a 200 status code", async () => {
-      const response = await request(app).patch("/v1/todos/" + todoId);
+      const response = await request(app).patch("/"+API_CONFIG.apiVersion+"/todos/" + todoId);
       expect(response.status).toBe(status.OK);
     });
   });
