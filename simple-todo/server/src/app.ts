@@ -1,8 +1,9 @@
+import "reflect-metadata";
+import { DataSource } from 'typeorm'; 
 import express from 'express';
 import routerV1 from './api/v1/routes/index.js';
 import cors, { CorsOptions } from 'cors';
 import { errorHandler } from './api/v1/middleware/errorHandler.js';
-import "reflect-metadata";
 
 const app = express();
 const optionsOrigin = 'http://localhost:3000';

@@ -1,9 +1,9 @@
-import AppDataSource from '../db/db.js';
 import { Todo } from '../db/entity/Todo.js';
 import { User } from '../db/entity/User.js';
+import AppDataSource from '../db/db.js';
 
-export function createUser(user: User) {
-   return AppDataSource.manager.save(user);
+export async function createUser(user: User) {
+   return await AppDataSource.manager.save(user);
 }
 
 export async function getUserByUsername(username: string){
