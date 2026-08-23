@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import * as userService from "../service/user.service.js";
+import * as userService from '../service/user.service.js';
 import status from "http-status";
-import { User } from "../db/entity/User.js";
+import { User } from '../db/entity/User.js';
 
 export async function registerUser(
   req: Request,

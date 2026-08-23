@@ -1,8 +1,8 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
 import dotenv from "dotenv";
-import { User } from "./entity/User.js";
-import { Todo } from "./entity/Todo.js";
+import { User } from './entity/User.js';
+import { Todo } from './entity/Todo.js';
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 export const AppDataSource = new DataSource({
@@ -14,7 +14,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME,
   synchronize: false,
   logging: false,
-  entities: [User, Todo],
-  migrations: [import.meta.dirname+"/migration/**/*.ts"],
+  entities: [User,Todo],
+  migrations: [import.meta.dirname + "/migration/**/*.{js,ts}"],
   subscribers: [],
 });

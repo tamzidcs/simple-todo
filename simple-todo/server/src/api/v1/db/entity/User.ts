@@ -14,5 +14,5 @@ export class User {
 
   @ManyToMany(() => Todo,(todo) => todo.users)
   @JoinTable()
-  todos!: Todo[];
+  todos: Todo[]
 }

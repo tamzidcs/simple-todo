@@ -4,8 +4,8 @@ import * as UserRepo from './userRepo.js';
 import { globalConstants } from '../shared/globalConstants.js';
 import AppDataSource from '../db/db.js';
 
-export function createTodo(todo: Todo) {
-  return AppDataSource.manager.save(todo);
+export async function createTodo(todo: Todo) {
+  return await AppDataSource.manager.save(todo);
 }
 
 export async function getTodoById(id: string) {
