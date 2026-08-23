@@ -6,9 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "npx tsc",
-    "start": "node dist/src/server.js",
     "dev": "NODE_ENV=development concurrently \"npx tsc  --watch\" \"nodemon  -q dist/server.js\"",
-    "start:debug:ts": "NODE_ENV=development node --inspect-brk --import tsx src/server.ts",
+    "dev:debug": "NODE_ENV=development node --inspect-brk --import tsx src/server.ts",
     "test": "NODE_ENV=test npx vitest",
     "test:debug": "NODE_ENV=test npx vitest --inspect-brk --no-file-parallelism --test-timeout=0",
     "db:create": "npx tsx src/api/v1/db/scripts/createDatabase.ts",
