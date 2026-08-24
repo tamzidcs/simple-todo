@@ -34,6 +34,15 @@ export async function updateTodoDone(todoId: string): Promise<todo> {
     });
 }
 
+export async function updateTodo(todoId: string | undefined,updateFields: {}): Promise<todo> {
+  return axios
+    .patch(url.todo + todoId, updateFields)
+    .then((resp) => resp.data)
+    .catch((error: AxiosError) => {
+      handleError(error);
+    });
+}
+
 export async function postShareTodo(
   todoId: string,
   username: string,

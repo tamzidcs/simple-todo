@@ -1,30 +1,35 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-import type { RootState } from '../../../store/store';
-import { setAllTodos } from '../../../store/slices/todosSlice';
-import { Header } from '../../views/TopBar/TopBar';
-import { AddTodo } from '../../views/AddTodo/AddTodo';
-import { getTodo, postShareTodo, updateTodoDone } from '../../../api/todos';
-import DropDown from '../../views/DropDown/DropDown';
-import './TodoList.scss';
-import Todo from '../../views/Todo/Todo';
-// import { button } from '../../interfaces/button';
-import Button from '../../views/Button/Button';
-import type { userNameListItem } from '../../../interfaces/userNameListItem';
-import type { todo } from '../../../interfaces/todo';
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "../../../store/store";
+import { setAllTodos } from "../../../store/slices/todosSlice";
+import { Header } from "../../views/TopBar/TopBar";
+import { AddTodo } from "../../views/AddTodo/AddTodo";
+import {
+  getTodo,
+  postShareTodo,
+  updateTodoDone,
+  updateTodo,
+} from "../../../api/todos";
+import DropDown from "../../views/DropDown/DropDown";
+import "./TodoList.scss";
+import Todo from "../../views/Todo/Todo";
+import Button from "../../views/Button/Button";
+import type { userNameListItem } from "../../../interfaces/userNameListItem";
+import type { todo } from "../../../interfaces/todo";
+import DatePicker from "../../views/DatePicker/DatePicker";
 
 const url = {
-  todos: 'http://localhost:3005/v1/todos/',
-  users: 'http://localhost:3005/v1/users/',
-  share: 'http://localhost:3005/v1/share/',
+  todos: "http://localhost:3005/v1/todos/",
+  users: "http://localhost:3005/v1/users/",
+  share: "http://localhost:3005/v1/share/",
 };
 
 export function TodoList() {
   const [userNameList, setUserNameList] = useState<userNameListItem[]>([]);
-  const [shareUserName, setShareUserName] = useState('');
+  const [shareUserName, setShareUserName] = useState("");
   const [taskListUpdated, setTodoListUpdated] = useState(false);
-  const todoList = useSelector((state:RootState) => state.todos);
+  const todoList = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
 
   const sortTodoListByLatest = (todoList: todo[]) => {
@@ -52,7 +57,7 @@ export function TodoList() {
   };
 
   const removeCurrentUsernameFromList = (userNameList: userNameListItem[]) => {
-    const currentUsername = localStorage.getItem('username');
+    const currentUsername = localStorage.getItem("username");
     userNameList.forEach((userNameListItem, userNameListIndex) => {
       if (userNameListItem.username === currentUsername) {
         userNameList.splice(userNameListIndex, 1);
@@ -62,7 +67,7 @@ export function TodoList() {
   };
 
   useEffect(() => {
-    getTodosByParam('username');
+    getTodosByParam("username");
     setTodoListUpdated(false);
     axios.get(url.users).then((resp: { data: [] }) => {
       const userNameList = removeCurrentUsernameFromList(resp.data);
@@ -72,7 +77,7 @@ export function TodoList() {
 
   const todoDone = async (taskId: string) => {
     await updateTodoDone(taskId);
-    getTodosByParam('username');
+    getTodosByParam("username");
   };
 
   const shareTodo = async (todoId: any, userName: string) => {
@@ -80,6 +85,15 @@ export function TodoList() {
     if (result) {
       alert(`Todo shared with ${userName}`);
     }
+  };
+
+  const handleDueDateChange = async (
+    todoId: string | undefined,
+    dueDate: string,
+  ) => {
+    await updateTodo(todoId, {dueDate:dueDate});
+    getTodosByParam("username");
+    
   };
 
   const updateUserShareName = (username: string) => {
@@ -100,7 +114,7 @@ export function TodoList() {
             >
               <Todo todoItem={todoItem} />
               <div className="todo-bottom">
-                <div className="share-todo">
+                <div className="todo-bottom-left">
                   <DropDown
                     userNameList={userNameList}
                     updateUserShareName={updateUserShareName}
@@ -113,18 +127,29 @@ export function TodoList() {
                     onClick={() => shareTodo(todoItem.id, shareUserName)}
                   />
                 </div>
-                <Button
-                  className="button done-button"
-                  testId="done-button"
-                  text="Done"
-                  type="button"
-                  onClick={() => todoDone(String(todoItem.id))}
-                />
+                <div className="todo-bottom-right">
+                  <DatePicker
+                    id="due-date-todolist"
+                    className={"due-date-todolist"}
+                    testId={"due-date-todolist"}
+                    value={todoItem.dueDate}
+                    onChange={(e)=> handleDueDateChange(todoItem.id, e.target.value)}
+                  />
+                  <Button
+                    className="button done-button"
+                    testId="done-button"
+                    text="Done"
+                    type="button"
+                    onClick={() => todoDone(String(todoItem.id))}
+                  />
+                </div>
               </div>
             </div>
           ))
         ) : (
-          <div className="empty-todo-text">There are no todos in your list.</div>
+          <div className="empty-todo-text">
+            There are no todos in your list.
+          </div>
         )}
       </div>
     </div>

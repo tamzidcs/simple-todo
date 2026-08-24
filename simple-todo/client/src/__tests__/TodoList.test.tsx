@@ -11,24 +11,31 @@ vi.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
+const tomorrow:Date = new Date();
+tomorrow.setDate(tomorrow.getDate()+1);
+const dueDateString:string = tomorrow.toISOString().split('T')[0];
+
 const testTodos = [
   {
     id: '1',
     title: 'todo1',
     description: 'desc1',
     status: 'pending',
+    dueDate: dueDateString,
   },
   {
     id: '2',
     title: 'todo2',
     description: 'desc2',
     status: 'pending',
+    dueDate: dueDateString,
   },
   {
     id: '3',
     title: 'todo3',
     description: 'desc3',
     status: 'pending',
+    dueDate: dueDateString,
   },
 ];
 

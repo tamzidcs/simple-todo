@@ -1,17 +1,17 @@
 import { Router } from 'express'
-import { addNewTodo,getAllTodosByUsername } from '../controller/todo.controller';
-import { getAllUsers, loginUser, registerUser } from '../controller/user.controller';
-import { updateTodoStatus } from '../controller/todo.controller';
-import { shareTodo } from '../controller/todo.controller';
+import { addNewTodo,getAllTodosByUsername, updateTodo } from '../controller/todo.controller.js';
+import { getAllUsers, loginUser, registerUser } from '../controller/user.controller.js';
+import { shareTodo } from '../controller/todo.controller.js';
+import express from 'express';
 
 const router = Router();
-const express = require('express');
+
 
 router.use(express.json());
 
 router.post('/todos', addNewTodo);
 router.post('/share', shareTodo);
-router.patch('/todos/:todoId', updateTodoStatus);
+router.patch('/todos/:todoId', updateTodo);
 router.get('/todos/:username', getAllTodosByUsername);
 router.post('/users', registerUser);
 router.get('/users', getAllUsers);
