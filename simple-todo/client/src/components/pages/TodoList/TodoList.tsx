@@ -14,7 +14,6 @@ import {
 import DropDown from "../../views/DropDown/DropDown";
 import "./TodoList.scss";
 import Todo from "../../views/Todo/Todo";
-// import { button } from '../../interfaces/button';
 import Button from "../../views/Button/Button";
 import type { userNameListItem } from "../../../interfaces/userNameListItem";
 import type { todo } from "../../../interfaces/todo";

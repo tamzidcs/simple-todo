@@ -85,7 +85,9 @@ describe("Todo", () => {
 
   describe("PATCH /todos", () => {
     it("should respond with a 200 status code", async () => {
-      const response = await request(app).patch("/"+API_CONFIG.apiVersion+"/todos/" + todoId);
+      const response = await request(app).patch("/"+API_CONFIG.apiVersion+"/todos/" + todoId).send({
+        dueDate: "2026-12-12"
+      });
       expect(response.status).toBe(status.OK);
     });
   });
