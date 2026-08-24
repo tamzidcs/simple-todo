@@ -52,10 +52,10 @@ export async function getAllTodosByUsername(username: string): Promise<Todo[]> {
   }
 }
 
-export async function updateTodoStatus(todoId: string): Promise<string> {
+export async function updateTodo(todoId: string,updateFields: {}): Promise<string> {
   const todo = await TodoRepo.getTodoById(todoId);
   if(todo) {
-    const affectedRows = await TodoRepo.updateTodoStatusById(todoId,globalConstants.TodoStatusDone);
+    const affectedRows = await TodoRepo.updateTodoById(todoId,updateFields);
     if (affectedRows.affected === 0) {
       throw new Error("status update failed.");
     }

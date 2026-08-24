@@ -33,14 +33,15 @@ export async function getAllTodosByUsername(
   }
 }
 
-export async function updateTodoStatus(
+export async function updateTodo(
   req: Request,
   res: Response<string>,
   next: NextFunction
 ): Promise<void> {
   const todoId = req.params.todoId;
+  const updateFields = req.body;
   try {
-    const data = await todoService.updateTodoStatus(todoId);
+    const data = await todoService.updateTodo(todoId,updateFields);
     res.send(data);
   } catch (error) {
     next(error);

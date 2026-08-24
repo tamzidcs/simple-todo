@@ -45,11 +45,11 @@ export async function getAllTodosByUsernameStatus(
   return todoByUsername?.todos;
 }
 
-export async function updateTodoStatusById(todoId: string, todoStatus: string) {
+export async function updateTodoById(todoId: string, updateFields: {}) {
   const updateResponse  = await AppDataSource
   .createQueryBuilder()
   .update(Todo)
-  .set({ status: todoStatus })
+  .set(updateFields)
   .where("id = :id", { id: todoId })
   .execute()
 

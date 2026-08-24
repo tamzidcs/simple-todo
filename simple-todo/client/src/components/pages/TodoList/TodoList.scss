@@ -14,6 +14,8 @@ $todoContainerBackgroundColor: #bbdfe6;
 $todoContainerBorderRadius: 4px;
 $todoMarginBottom: 10px;
 $todoBottomMarginLeft: 24px;
+$todoBottomWidth: 650px;
+$todoBottomRightWidth: 190px;
 $userNameInputWidth: 150px;
 $shareTodoWidth: 300px;
 $emptyTodoTextPaddingTop: 20px;
@@ -80,7 +82,8 @@ $emptyTodoTextPaddingTop: 20px;
 .todo-bottom-right {
     display: flex;
     float: right;
-    width: $shareTodoWidth;
+    width: $todoBottomRightWidth;
+    justify-content: space-between;
 }
 
 .user-name-input {
@@ -90,6 +93,8 @@ $emptyTodoTextPaddingTop: 20px;
 .todo-bottom {
     display: flex;
     margin-left: $todoBottomMarginLeft;
+    width: $todoBottomWidth;
+    justify-content: space-between;
 }
 
 .empty-todo-text {

@@ -5,7 +5,12 @@ import type { RootState } from "../../../store/store";
 import { setAllTodos } from "../../../store/slices/todosSlice";
 import { Header } from "../../views/TopBar/TopBar";
 import { AddTodo } from "../../views/AddTodo/AddTodo";
-import { getTodo, postShareTodo, updateTodoDone } from "../../../api/todos";
+import {
+  getTodo,
+  postShareTodo,
+  updateTodoDone,
+  updateTodo,
+} from "../../../api/todos";
 import DropDown from "../../views/DropDown/DropDown";
 import "./TodoList.scss";
 import Todo from "../../views/Todo/Todo";
@@ -25,6 +30,7 @@ export function TodoList() {
   const [userNameList, setUserNameList] = useState<userNameListItem[]>([]);
   const [shareUserName, setShareUserName] = useState("");
   const [taskListUpdated, setTodoListUpdated] = useState(false);
+  const [dueDate, setDueDate] = useState("");
   const todoList = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
 
@@ -83,6 +89,15 @@ export function TodoList() {
     }
   };
 
+  const handleDueDateChange = async (
+    todoId: string | undefined,
+    dueDate: string,
+  ) => {
+    await updateTodo(todoId, {dueDate:dueDate});
+    getTodosByParam("username");
+    
+  };
+
   const updateUserShareName = (username: string) => {
     setShareUserName(username);
   };
@@ -119,6 +134,8 @@ export function TodoList() {
                     id="due-date-todolist"
                     className={"due-date-todolist"}
                     testId={"due-date-todolist"}
+                    value={todoItem.dueDate}
+                    onChange={(e)=> handleDueDateChange(todoItem.id, e.target.value)}
                   />
                   <Button
                     className="button done-button"
