@@ -30,7 +30,6 @@ export function TodoList() {
   const [userNameList, setUserNameList] = useState<userNameListItem[]>([]);
   const [shareUserName, setShareUserName] = useState("");
   const [taskListUpdated, setTodoListUpdated] = useState(false);
-  const [dueDate, setDueDate] = useState("");
   const todoList = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
 

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { datePicker } from "../../../interfaces/datePicker";
 import "./DatePicker.scss";
 
