@@ -1,23 +1,31 @@
 import request from "supertest";
 import status from "http-status";
-import { describe, expect, test } from "@jest/globals";
+import {
+  afterAll,
+  beforeAll,
+  describe,
+  expect,
+  it,
+  jest,
+  test,
+} from "@jest/globals";
 import { initializeDatabase } from "../db";
 import app from "../app";
-import { Todo, TodoUser, User } from "../db/models";
+import { Todo } from "../db/entities/Todo.js";
+import { User } from "../db/entities/User.js";
 import { registerUser } from "../service/user.service";
 import { addNewTodo } from "../service/todo.service";
 import todo from "../interface/todo";
+import { AppDataSource } from "../db/data-source";
 
 const createUsers = async () => {
-  const user = new User({
-    username: "user1",
-    password: "123456",
-  });
+  const user = new User();
+  user.username = "user1";
+  user.password = "123456";
 
-  const user2 = new User({
-    username: "user2",
-    password: "123456",
-  });
+  const user2 = new User();
+  user.username = "user2";
+  user.password = "123456";
 
   await registerUser(user);
   await registerUser(user2);
@@ -38,25 +46,15 @@ const createToDo = async () => {
 };
 
 beforeAll(async () => {
-  jest.clearAllMocks();
-  initializeDatabase();
+  await initializeDatabase();
   await createUsers();
   await createToDo();
 });
 
 afterAll(async () => {
-  await User.destroy({
-    where: {},
-    truncate: true
-  });
-  await Todo.destroy({
-    where: {},
-    truncate: true
-  });
-  await TodoUser.destroy({
-    where: {},
-    truncate: true
-  });
+  await AppDataSource.createQueryBuilder().delete().from(User).execute();
+  await AppDataSource.createQueryBuilder().delete().from(Todo).execute();
+  await AppDataSource.destroy();
 });
 
 describe("Todo", () => {
@@ -96,3 +94,4 @@ describe("Todo", () => {
     });
   });
 });
+ 

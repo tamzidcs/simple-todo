@@ -1,43 +1,37 @@
-import Todo from "../db/models/Todo";
-import User from "../db/models/User";
-import TodoUser from "../db/models/TodoUser";
+import { Todo } from "../db/entities/Todo.js";
+import { User } from "../db/entities/User.js";
 import TodoInput from "../interface/todo";
 import TodoUserInput from "../interface/todoUser";
-import * as UserRepo from "../repository/userRepo";
-import * as TodoRepo from "../repository/todoRepo";
-import * as TodoUserRepo from "../repository/todoUserRepo";
+import * as UserRepo from "../repository/userRepo.js";
+import * as TodoRepo from "../repository/todoRepo.js";
 import { where } from "sequelize";
 import { title } from "process";
-import { globalConstants } from "../shared/globalConstants";
-import { NotFoundError } from "../error";
-import { NOT_FOUND } from "http-status";
+import { globalConstants } from "../shared/globalConstants.js";
+import { NotFoundError } from "../error.js";
+import status from "http-status";
+import { AppDataSource } from "../db/data-source.js";
 
 export async function addNewTodo(newTodo: TodoInput): Promise<Todo> {
-  const todo = new Todo({
-    title: newTodo.title,
-    description: newTodo.description,
-    status: globalConstants.TodoStatusPending,
-  });
+  const todo = new Todo();
+  todo.title = newTodo.title;
+  todo.description = newTodo.description;
+  todo.status = globalConstants.TodoStatusPending;
+
+  const user = await UserRepo.getUserByUsername(newTodo.username);
+  if(!user)
+    throw new NotFoundError("User not found",status.NOT_FOUND);
 
   const createdTodo = await TodoRepo.createTodo(todo);
+
+  UserRepo.createUserTodoRelationship(String(user.id),String(createdTodo.id));
   if (createdTodo) {
-    const user = await TodoRepo.getTodoByUsername(newTodo.username);
-    if (user) {
-      const todoUser = new TodoUser({
-        userId: user?.id,
-        todoId: todo.id,
-      });
-      TodoUserRepo.createTodoUser(todoUser);
-    } else {
-      throw new NotFoundError("User not found",NOT_FOUND);
-    }
+    return createdTodo;
   } else {
-    throw new NotFoundError("Invalid ToDo",NOT_FOUND);
+    throw new NotFoundError("Invalid ToDo",status.NOT_FOUND);
   }
-  return todo;
 }
 
-export async function getAllTodosByUsername(username: string): Promise<Todo[]> {
+export async function getAllTodosByUsername(username: string): Promise<Todo[] | undefined> {
   const todoStatus = globalConstants.TodoStatusPending;
   const user = await UserRepo.getUserByUsername(username);
   if (user) {
@@ -45,40 +39,40 @@ export async function getAllTodosByUsername(username: string): Promise<Todo[]> {
       username,
       todoStatus
     );
-    return todos;
+    if(todos) {
+      return todos;
+    }
   } else {
-    throw new NotFoundError("User not found", NOT_FOUND);
+    throw new NotFoundError("User not found", status.NOT_FOUND);
   }
 }
 
-export async function updateTodoStatus(todoId: string): Promise<string> {
+export async function updateTodo(todoId: string,updateFields: {}): Promise<string> {
   const todo = await TodoRepo.getTodoById(todoId);
   if(todo) {
-    const affectedRows = await TodoRepo.updateTodoStatusById(todoId,globalConstants.TodoStatusDone);
-    if (affectedRows[0] === 0) {
+    const affectedRows = await TodoRepo.updateTodoById(todoId,updateFields);
+    if (affectedRows.affected === 0) {
       throw new Error("status update failed.");
     }
     return todoId;
   }
   else {
-    throw new NotFoundError("ToDo not found", NOT_FOUND); 
+    throw new NotFoundError("ToDo not found", status.NOT_FOUND); 
   }
 }
 
-export async function shareTodo(newTodoUser: TodoUserInput): Promise<TodoUser> {
-  const todoUser = new TodoUser();
+export async function shareTodo(newTodoUser: TodoUserInput): Promise<User> {
   const user = await UserRepo.getUserByUsername(newTodoUser.username);
   if(user) {
-    todoUser.userId = user?.id;
-    todoUser.todoId = newTodoUser.todoId;
-    const todoUserFound = await TodoUserRepo.getTodoUserByTodoIdUserId(todoUser.userId,todoUser.todoId);
-    if (!todoUserFound) {
-      await TodoUserRepo.createTodoUser(todoUser);
-      return todoUser;
-    }
-    return todoUserFound;
+    const shareTodoQuery = await AppDataSource
+    .createQueryBuilder()
+    .relation(Todo, "users")
+    .of(newTodoUser.todoId)
+
+    shareTodoQuery.add(user.id);
+    return user;
   }
   else {
-    throw new NotFoundError("User not found", NOT_FOUND);
+    throw new NotFoundError("User not found", status.NOT_FOUND);
   }
 }
