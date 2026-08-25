@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import User from "../db/models/User";
-import * as userService from "../service/user.service";
-import { OK, UNAUTHORIZED,CONFLICT } from "http-status";
+import { User } from "../db/entities/User.js";
+import * as userService from "../service/user.service.js";
+import status from "http-status";
 
 export async function registerUser(
   req: Request,
@@ -26,7 +26,7 @@ export async function loginUser(
   try {
     const loggedInUser = await userService.loginUser(user);
     if (loggedInUser) {
-      res.status(OK).json({
+      res.status(status.OK).json({
         username: loggedInUser.username,
       });
     } else {
