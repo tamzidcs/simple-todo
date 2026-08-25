@@ -43,11 +43,11 @@ Add seperate database(DB_NAME) for development and test.
 ### Tests:
 
 #### Server
-1. Run test db script from the server folder.
+1. Run test setup script from the server folder.
 ```cmd 
     npm run test:prep
 ```
-2. Run inside server or client folder to test them.
+2. Run inside server.
 ```cmd 
     npm run test
 ```
