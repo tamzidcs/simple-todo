@@ -20,9 +20,9 @@ Add seperate database(DB_NAME) for development and test.
 ```cmd
     npm install
 ```
-2. Run database script.
+2. Run the setup script.
 ```cmd
-    npm run db
+    npm run dev:prep
 ```
 3. Run the server:
 ```cmd
@@ -41,12 +41,21 @@ Add seperate database(DB_NAME) for development and test.
 ```
 
 ### Tests:
-1. Run test db script from the server folder.
+
+#### Server
+1. Run test setup script from the server folder.
 ```cmd 
-    npm run db:test
+    npm run test:prep
 ```
-2. Run inside server or client folder to test them.
+2. Run inside server.
 ```cmd 
     npm run test
+```
+
+#### Client
+
+1. Run inside client
+```cmd 
+    npm test
 ```
 
