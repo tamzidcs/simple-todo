@@ -22,12 +22,12 @@ const newTodo: todo = {
   description: 'desc1',
   username: 'user1',
 };
-const mockTaskListUpdate = vi.fn();
+const mockTodoListUpdate = vi.fn();
 
 describe('AddTodo', () => {
   beforeEach(() => {
     localStorage.setItem('username', 'user1');
-    render(<AddTodo updateTaskList={mockTaskListUpdate} />);
+    render(<AddTodo updateTodoList={mockTodoListUpdate} />);
   });
   describe('when clicked', () => {
     let addButton: HTMLInputElement;
@@ -57,7 +57,7 @@ describe('AddTodo', () => {
       expect(descriptionTextField.value).toBe('description1');
     });
     it('calls the prop function to update list', async () => {
-      expect(mockTaskListUpdate).toHaveBeenCalled();
+      expect(mockTodoListUpdate).toHaveBeenCalled();
     });
   });
 });
