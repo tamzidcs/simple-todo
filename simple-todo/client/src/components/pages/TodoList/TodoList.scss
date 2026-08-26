@@ -2,11 +2,17 @@ $toDoListContainerWidth: 100vw;
 $toDoListContainerMarginBottom: 100px;
 $descriptionHeight: 100px;
 $descriptionPaddingLeft: 10px;
+$descriptionColor: #ffffff;
+$descriptionBackgroundColor: #646464;
+$titleColor: #000000;
+$titleBackgroundColor: #a9a9a9;
 $todolistWidth: 355px;
 $todolistPadding: 30px;
+$todolistBackgroundColor: #b0c4de;
 $todoContainerPaddingBottom: 30px;
 $todoMarginBottom: 10px;
 $doneButtonMarginLeft: 5px;
+$doneButtonWidth: 55px;
 $shareButtonMarginLeft: 5px;
 
 .to-do-list-container {
@@ -16,14 +22,14 @@ $shareButtonMarginLeft: 5px;
 }
 
 .title {
-    color: black;
-    background-color: darkgray;
+    color: $titleColor;
+    background-color: $titleBackgroundColor;
     font-weight: bold;
 }
 
 .description {
-    color: #ffffff;
-    background-color: #646464;
+    color: $descriptionColor;
+    background-color: $descriptionBackgroundColor;
     height: $descriptionHeight;
     padding-left: $descriptionPaddingLeft;
 }
@@ -31,7 +37,7 @@ $shareButtonMarginLeft: 5px;
 .todolist {
     display: flex;
     flex-direction: column;
-    background-color: lightsteelblue;
+    background-color: $todolistBackgroundColor;
     width: $todolistWidth;
     padding: $todolistPadding;
     margin: 0px auto;
@@ -50,7 +56,7 @@ $shareButtonMarginLeft: 5px;
 }
 
 .done-button {
-    width: 55px;
+    width: $doneButtonWidth;
     margin-left: $doneButtonMarginLeft;
 }
 
