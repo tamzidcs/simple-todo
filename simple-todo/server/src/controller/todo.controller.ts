@@ -1,8 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
-import { TodoUser } from '../db/models';
-import Todo from '../db/models/Todo';
-import * as todoService from '../service/todo.service';
-import * as todoUserService from '../service/todoUser.service';
+import { Request, Response, NextFunction } from 'express'
+import { Todo } from '../db/entities/Todo.js'
+import * as todoService from '../service/todo.service.js';
 
 export async function addNewTodo(
   req: Request,
@@ -33,14 +31,15 @@ export async function getAllTodosByUsername(
   }
 }
 
-export async function updateTodoStatus(
+export async function updateTodo(
   req: Request,
   res: Response<string>,
   next: NextFunction
 ): Promise<void> {
   const todoId = req.params.todoId;
+  const updateFields = req.body;
   try {
-    const data = await todoService.updateTodoStatus(todoId);
+    const data = await todoService.updateTodo(todoId,updateFields);
     res.send(data);
   } catch (error) {
     next(error);

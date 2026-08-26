@@ -3,14 +3,20 @@
   "version": "1.0.0",
   "private": true,
   "main": "index.ts",
+  "type": "module",
   "scripts": {
     "build": "npx tsc",
-    "start": "node dist/server.js",
     "dev": "NODE_ENV=development concurrently \"npx tsc  --watch\" \"nodemon  -q dist/server.js\"",
-    "start:debug:ts": "NODE_ENV=development node --inspect --require ts-node/register src/server.ts",
-    "test": "NODE_ENV=test jest --detectOpenHandles",
-    "db": "NODE_ENV=development sequelize db:create && NODE_ENV=development sequelize db:migrate",
-    "db:test": "NODE_ENV=test sequelize db:create && NODE_ENV=test sequelize db:migrate"
+    "dev:debug": "NODE_ENV=development node --inspect-brk --import tsx src/server.ts",
+    "test": "NODE_ENV=test npx vitest",
+    "test:debug": "NODE_ENV=test npx vitest --inspect-brk --no-file-parallelism --test-timeout=0",
+    "db:create": "npx tsx src/db/scripts/createDatabase.ts",
+    "db:migration:clean": "rm -f src/db/migrations/* && rm -f dist/src/db/migrations/*",
+    "db:migration:generate": "npx typeorm-ts-node-esm migration:generate -d src/db/data-source.ts src/db/migrations/todolist_db_migration",
+    "db:migration:generate:test": "npx typeorm-ts-node-esm migration:generate -d src/db/data-source.ts src/db/migrations/todolist_test_db_migration",
+    "db:migrate": "npx typeorm-ts-node-esm migration:run -d src/db/data-source.ts",
+    "dev:prep": "NODE_ENV=development npm run db:create && npm run db:migration:clean && NODE_ENV=development npm run db:migration:generate && NODE_ENV=development npm run db:migrate",
+    "test:prep": "NODE_ENV=test npm run db:create && npm run db:migration:clean && NODE_ENV=test npm run db:migration:generate:test && NODE_ENV=test npm run db:migrate"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -32,18 +38,21 @@
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.0",
-    "@types/node": "^18.14.0",
+    "@types/node": "^26.3.0",
+    "@types/pg": "^8.23.1",
     "@types/supertest": "^2.0.12",
     "babel-jest": "^29.5.0",
     "bcrypt": "^5.1.0",
     "concurrently": "^7.6.0",
     "jest": "^29.5.0",
     "nodemon": "^3.0.2",
+    "reflect-metadata": "^0.2.2",
     "sequelize": "^6.28.2",
     "sequelize-cli": "^6.6.0",
     "sequelize-typescript": "^2.1.5",
     "ts-jest": "^29.0.5",
-    "typescript": "^4.9.5"
+    "typeorm": "^1.1.0",
+    "typescript": "^6.0.3"
   },
   "eslintConfig": {
     "extends": [

@@ -1,4 +1,5 @@
 $headerContainerWidth: 100vw;
+$headerContainerColor: #000000;
 $headerHeight: 48px;
 $signoutButtonContainerMarginRight: 140px;
 $signoutButtonContainerPaddingRight: 5px;
@@ -12,7 +13,7 @@ $usernamePadding: 10px;
     justify-content: flex-end;
     width: $headerContainerWidth;
     height: $headerHeight;
-    color: black;
+    color: $headerContainerColor;
     background-color: $headerContainerBackgroundColor;
 }
 

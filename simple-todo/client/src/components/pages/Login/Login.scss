@@ -1,6 +1,7 @@
 $loginContainerMarginLeft: 250px;
 $loginContainerPadding: 100px;
 $loginContainerWidth: 100vw;
+$loginContainerColor: #000000;
 $loginFormBackgroundColor: cadetblue;
 $loginTextfieldWidth: 250px;
 $loginTextfieldHeight: 30px;
@@ -29,7 +30,7 @@ $loginHeaderFontPaddingBottom: 20px;
     padding-top: $loginContainerPadding;
     padding-bottom: $loginContainerPadding;
     width: $loginContainerWidth;
-    color: black;
+    color: $loginContainerColor;
 }
 
 .login-form {

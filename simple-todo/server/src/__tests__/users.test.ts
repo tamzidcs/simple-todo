@@ -1,31 +1,39 @@
 import request from "supertest";
 import status from "http-status";
-import { describe, expect, test } from "@jest/globals";
+import {
+  afterAll,
+  beforeAll,
+  describe,
+  expect,
+  it,
+  jest,
+  test,
+} from "@jest/globals";
 import { initializeDatabase } from "../db";
 import app from "../app";
-import { User } from "../db/models";
+import { User } from "../db/entities/User.js";
 import { registerUser } from "../service/user.service";
+import { AppDataSource } from "../db/data-source";
 
 const createUser = async () => {
-  const user = new User({
-    username: "user3",
-    password: "123456",
-  });
+  const user = new User();
+  user.username = "user3";
+  user.password = "123456";
 
   await registerUser(user);
 };
 
 beforeAll(async () => {
-  jest.clearAllMocks();
-  initializeDatabase();
+  await initializeDatabase();
   await createUser();
 });
 
 afterAll(async () => {
-  await User.destroy({
-    where: {},
-    truncate: true
-  });
+  await AppDataSource.manager
+    .createQueryBuilder(User, "user")
+    .delete()
+    .execute();
+  await AppDataSource.destroy();
 });
 
 describe("Users", () => {
@@ -45,8 +53,6 @@ describe("Users", () => {
       const response = await request(app).get("/users");
       expect(response.status).toEqual(status.OK);
     });
-
-   
   });
 
   describe("POST /login", () => {
