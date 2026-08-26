@@ -1,6 +1,7 @@
 $signupContainerMarginLeft: 250px;
 $signupContainerPadding: 100px;
 $signupContainerWidth: 100vw;
+$signupContainerColor: #000000;
 $signupFormBackgroundColor: cadetblue;
 $signupTextfieldWidth: 250px;
 $signupTextfieldHeight: 30px;
@@ -29,7 +30,7 @@ $signupHeaderPaddingBottom: 20px;
     padding-top: $signupContainerPadding;
     padding-bottom: $signupContainerPadding;
     width: $signupContainerWidth;
-    color: black;
+    color: $signupContainerColor;
 }
 
 .signup-form {
