@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
+import toast, { Toaster } from 'react-hot-toast';
 import { RootState } from '../../../store/store';
 import { setAllTodos } from '../../../store/slices/todosSlice';
 import { TopBar } from '../../views/TopBar/TopBar';
 import { AddTodo } from '../../views/AddTodo/AddTodo';
 import './TodoList.scss';
-import { getTodo, postTodoShare, updateTodoDone } from '../../../api/todos';
+import { getTodo, postTodoShare, updateTodo } from '../../../api/todos';
 import Todo from '../../views/Todo/Todo';
 import DropDown from '../../views/DropDown/DropDown';
 import { userNameListItem } from '../../../interfaces/userNameListItem';
-import toast, { Toaster } from 'react-hot-toast';
 import { todo } from '../../../interfaces/todo';
+import globalConstants from '../../../shared/globalConstants';
 
 const url = {
   todos: 'http://localhost:3005/todos/',
@@ -39,6 +40,8 @@ export function TodoList() {
         if (result) {
           const sortedTodoList = sortTodoListByLatest(result);
           dispatch(setAllTodos(sortedTodoList));
+        } else {
+          dispatch(setAllTodos([]));
         }
       } catch (error) {
         alert(error);
@@ -70,8 +73,8 @@ export function TodoList() {
   }, [todoListUpdated]);
 
   const todoDone = async (todoId: string) => {
-    await updateTodoDone(todoId);
-    getTodosByParam('username');
+    await updateTodo(todoId, { status: globalConstants.TodoStatusDone });
+    // getTodosByParam('username');
   };
 
   const shareTodo = async (todoId: string, userName: string) => {
@@ -98,7 +101,7 @@ export function TodoList() {
               data-testid="todo"
             >
               <Todo todoItem={todoItem} />
-              <div className="todo-bottom">
+              <div id={todoItem.id} className="todo-bottom" data-testid="todo-bottom">
                 <div className="share-todo">
                   <DropDown
                     userNameList={userNameList}
@@ -116,6 +119,7 @@ export function TodoList() {
                   <button
                     type="button"
                     onClick={() => todoDone(String(todoItem.id))}
+                    data-testid="todo-done-button"
                   >
                     Done
                   </button>

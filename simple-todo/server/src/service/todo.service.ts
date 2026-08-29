@@ -47,14 +47,14 @@ export async function getAllTodosByUsername(username: string): Promise<Todo[] | 
   }
 }
 
-export async function updateTodo(todoId: string,updateFields: {}): Promise<string> {
+export async function updateTodo(todoId: string,updateFields: {}): Promise<{}> {
   const todo = await TodoRepo.getTodoById(todoId);
   if(todo) {
     const affectedRows = await TodoRepo.updateTodoById(todoId,updateFields);
     if (affectedRows.affected === 0) {
       throw new Error("status update failed.");
     }
-    return todoId;
+    return {todoId: todoId};
   }
   else {
     throw new NotFoundError("ToDo not found", status.NOT_FOUND); 

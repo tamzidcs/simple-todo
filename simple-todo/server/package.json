@@ -51,6 +51,7 @@
     "sequelize-cli": "^6.6.0",
     "sequelize-typescript": "^2.1.5",
     "ts-jest": "^29.0.5",
+    "tsx": "^4.23.12",
     "typeorm": "^1.1.0",
     "typescript": "^6.0.3"
   },

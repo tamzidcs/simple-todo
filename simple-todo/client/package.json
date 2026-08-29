@@ -24,6 +24,7 @@
     "start": "vite",
     "build": "tsc && vite build",
     "test": "vitest",
+    "test:debug": "npx vitest --inspect-brk --no-isolate --no-file-parallelism",
     "preview": "vite preview"
   },
   "eslintConfig": {
