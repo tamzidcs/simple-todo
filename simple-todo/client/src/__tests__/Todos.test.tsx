@@ -5,7 +5,7 @@ import {
   describe,
   expect, it, Mock, vi,
 } from 'vitest';
-import TodoList from '../components/pages/TodoList/TodoList';
+import TodoList from '../components/views/TodoList/TodoList';
 import renderWithProvider from '../utils/renderWithProvider';
 
 const mockedUsedNavigate = vi.fn();

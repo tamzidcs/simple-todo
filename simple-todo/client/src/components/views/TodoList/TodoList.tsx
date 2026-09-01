@@ -1,31 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
+import toast, { Toaster } from 'react-hot-toast';
 import { RootState } from '../../../store/store';
 import { setAllTodos } from '../../../store/slices/todosSlice';
-import { TopBar } from '../../views/TopBar/TopBar';
-import { AddTodo } from '../../views/AddTodo/AddTodo';
 import './TodoList.scss';
 import { getTodo, postTodoShare, updateTodoDone } from '../../../api/todos';
-import Todo from '../../views/Todo/Todo';
-import DropDown from '../../views/DropDown/DropDown';
+import Todo from '../Todo/Todo';
+import DropDown from '../DropDown/DropDown';
 import { userNameListItem } from '../../../interfaces/userNameListItem';
-import toast, { Toaster } from 'react-hot-toast';
 import { todo } from '../../../interfaces/todo';
+import URL from '../../../shared/constants';
 
-const url = {
-  todos: 'http://localhost:3005/todos/',
-  users: 'http://localhost:3005/users/',
-  share: 'http://localhost:3005/share/',
-};
+interface TodoListProps {
+  todoList: todo[];
+  todoListUpdated: boolean;
+  setTodoListUpdated:React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-export function TodoList() {
+export function TodoList({ todoList, todoListUpdated, setTodoListUpdated }: TodoListProps) {
   const [userNameList, setUserNameList] = useState<any[]>([]);
   const [shareUserName, setShareUserName] = useState('');
-  const [todoListUpdated, setTodoListUpdated] = useState(false);
-  const todoList = useSelector((state:RootState) => state.todos);
   const dispatch = useDispatch();
-
   const sortTodoListByLatest = (todoList: todo[]) => {
     const sortedTodoList = todoList.reverse();
     return sortedTodoList;
@@ -63,7 +59,7 @@ export function TodoList() {
   useEffect(() => {
     getTodosByParam('username');
     setTodoListUpdated(false);
-    axios.get(url.users).then((resp: { data: [] }) => {
+    axios.get(URL.users).then((resp: { data: [] }) => {
       const userNameList = removeCurrentUsernameFromList(resp.data);
       setUserNameList(userNameList);
     });
@@ -87,8 +83,6 @@ export function TodoList() {
 
   return (
     <div className="to-do-list-container">
-      <TopBar />
-      <AddTodo updateTodoList={updateTodoList} />
       <div className="todolist">
         {todoList.length > 0 ? (
           todoList.map((todoItem) => (

@@ -20,7 +20,7 @@ export function Login() {
         const result = await postLogin(loginUser);
         if (result) {
           localStorage.setItem('username', loginUser.username);
-          navigate('/toDoList');
+          navigate('/home');
         }
       } catch (error) {
         toast.error(String(error));
