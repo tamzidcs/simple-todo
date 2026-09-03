@@ -5,10 +5,10 @@ import { postTodo } from '../../../api/todos';
 import toast, { Toaster } from 'react-hot-toast';
 
 interface AddTodoProps {
-  handleAddTodo: ()=> void;
+  handleTodoListUpdate: ()=> void;
 }
 
-export function AddTodo({ handleAddTodo } : AddTodoProps) {
+export function AddTodo({ handleTodoListUpdate } : AddTodoProps) {
   const username = String(localStorage.getItem('username'));
   const newTodoInitialState: todo = { title: '', description: '', username };
   const [newTodo, setNewTodo] = useState<todo>(newTodoInitialState);
@@ -20,7 +20,7 @@ export function AddTodo({ handleAddTodo } : AddTodoProps) {
       try {
         const result = await postTodo(newTodo);
         if (result) {
-          handleAddTodo();
+          handleTodoListUpdate();
           toast.success('New todo Added.');
         } else {
           toast.error('Add todo Failed.');

@@ -21,9 +21,9 @@ export async function getTodo(username: string): Promise<todo[]> {
     });
 }
 
-export async function updateTodoDone(todoId: string): Promise<todo> {
+export async function updateTodo(todoId: string, updateFields:{}): Promise<todo> {
   return axios
-    .patch(URL.todos + todoId)
+    .patch(URL.todos + todoId, updateFields)
     .then((resp) => resp.data)
     .catch((error: AxiosError) => {
       handleError(error);

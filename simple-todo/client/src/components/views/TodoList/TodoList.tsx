@@ -1,86 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import toast, { Toaster } from 'react-hot-toast';
-import { RootState } from '../../../store/store';
 import { setAllTodos } from '../../../store/slices/todosSlice';
 import './TodoList.scss';
-import { getTodo, postTodoShare, updateTodoDone } from '../../../api/todos';
+import { getTodo, postTodoShare, updateTodo } from '../../../api/todos';
 import Todo from '../Todo/Todo';
 import DropDown from '../DropDown/DropDown';
 import { userNameListItem } from '../../../interfaces/userNameListItem';
 import { todo } from '../../../interfaces/todo';
-import URL from '../../../shared/constants';
 
 interface TodoListProps {
   todoList: todo[];
-  todoListUpdated: boolean;
-  setTodoListUpdated:React.Dispatch<React.SetStateAction<boolean>>;
+  userNameList: userNameListItem[];
+  // eslint-disable-next-line no-unused-vars
+  updateUserShareName: (username: string) => void;
+  // eslint-disable-next-line no-unused-vars
+  handleShareTodo: (todoId: string) => void;
+  // eslint-disable-next-line no-unused-vars
+  handleTodoDone: (todoId: string, updateFields: {}) => void;
 }
 
-export function TodoList({ todoList, todoListUpdated, setTodoListUpdated }: TodoListProps) {
-  const [userNameList, setUserNameList] = useState<any[]>([]);
-  const [shareUserName, setShareUserName] = useState('');
-  const dispatch = useDispatch();
-  const sortTodoListByLatest = (todoList: todo[]) => {
-    const sortedTodoList = todoList.reverse();
-    return sortedTodoList;
-  };
-
-  const getTodosByParam = async (param: string) => {
-    const localStorageItem = localStorage.getItem(param);
-    if (localStorageItem) {
-      try {
-        const result = await getTodo(localStorageItem);
-        if (result) {
-          const sortedTodoList = sortTodoListByLatest(result);
-          dispatch(setAllTodos(sortedTodoList));
-        }
-      } catch (error) {
-        alert(error);
-      }
-    }
-  };
-
-  const updateTodoList = () => {
-    setTodoListUpdated(true);
-  };
-
-  const removeCurrentUsernameFromList = (userNameList: userNameListItem[]) => {
-    const currentUsername = localStorage.getItem('username');
-    userNameList.forEach((userNameListItem, userNameListIndex) => {
-      if (userNameListItem.username === currentUsername) {
-        userNameList.splice(userNameListIndex, 1);
-      }
-    });
-    return userNameList;
-  };
-
-  useEffect(() => {
-    getTodosByParam('username');
-    setTodoListUpdated(false);
-    axios.get(URL.users).then((resp: { data: [] }) => {
-      const userNameList = removeCurrentUsernameFromList(resp.data);
-      setUserNameList(userNameList);
-    });
-  }, [todoListUpdated]);
-
-  const todoDone = async (todoId: string) => {
-    await updateTodoDone(todoId);
-    getTodosByParam('username');
-  };
-
-  const shareTodo = async (todoId: string, userName: string) => {
-    const result = await postTodoShare(todoId, userName);
-    if (result) {
-      toast.success(`Todo shared with ${userName}`);
-    }
-  };
-
-  const updateUserShareName = (username: string) => {
-    setShareUserName(username);
-  };
-
+export function TodoList({
+  todoList,
+  userNameList,
+  updateUserShareName,
+  handleShareTodo,
+  handleTodoDone,
+}: TodoListProps) {
   return (
     <div className="to-do-list-container">
       <div className="todolist">
@@ -101,7 +48,7 @@ export function TodoList({ todoList, todoListUpdated, setTodoListUpdated }: Todo
                   <button
                     className="share-button"
                     type="button"
-                    onClick={() => shareTodo(String(todoItem.id), shareUserName)}
+                    onClick={() => handleShareTodo(String(todoItem.id))}
                   >
                     Share
                   </button>
@@ -109,7 +56,7 @@ export function TodoList({ todoList, todoListUpdated, setTodoListUpdated }: Todo
                 <div className="done-button">
                   <button
                     type="button"
-                    onClick={() => todoDone(String(todoItem.id))}
+                    onClick={() => handleTodoDone(String(todoItem.id), { status: 'done' })}
                   >
                     Done
                   </button>
