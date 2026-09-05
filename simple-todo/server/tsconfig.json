@@ -8,7 +8,6 @@
     "module": "ESNext",    
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
-    "isolatedModules": true,  
     "esModuleInterop": true,                            
     "forceConsistentCasingInFileNames": true,            
     "strict": true,                                      
