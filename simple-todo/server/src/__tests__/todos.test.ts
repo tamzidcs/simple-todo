@@ -1,14 +1,8 @@
 import request from "supertest";
 import status from "http-status";
 import {
-  afterAll,
-  beforeAll,
-  describe,
-  expect,
-  it,
-  jest,
-  test,
-} from "@jest/globals";
+  beforeEach, describe, expect, it, Mock, vi,
+} from 'vitest';
 import { initializeDatabase } from "../db";
 import app from "../app";
 import { Todo } from "../db/entities/Todo.js";
@@ -19,15 +13,15 @@ import todo from "../interface/todo";
 import { AppDataSource } from "../db/data-source";
 
 const createUsers = async () => {
-  const user = new User();
-  user.username = "user1";
-  user.password = "123456";
+  const user1 = new User();
+  user1.username = "user1";
+  user1.password = "123456";
 
   const user2 = new User();
-  user.username = "user2";
-  user.password = "123456";
+  user2.username = "user2";
+  user2.password = "123456";
 
-  await registerUser(user);
+  await registerUser(user1);
   await registerUser(user2);
 };
 
@@ -88,8 +82,10 @@ describe("Todo", () => {
   });
 
   describe("PATCH /todos", () => {
-    it("should respond with a 200 status code", async () => {
-      const response = await request(app).patch("/todos/" + todoId);
+       it("should respond with a 200 status code", async () => {
+      const response = await request(app).patch("/todos/" + todoId).send({
+        status: "done"
+      });
       expect(response.status).toBe(status.OK);
     });
   });

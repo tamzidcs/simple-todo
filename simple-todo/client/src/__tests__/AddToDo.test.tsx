@@ -21,13 +21,14 @@ const newTodo: todo = {
   title: 'todo1',
   description: 'desc1',
   username: 'user1',
+  status: 'pending',
 };
-const mockTodoListUpdate = vi.fn();
+const mockHandleTodoListUpdate = vi.fn();
 
 describe('AddTodo', () => {
   beforeEach(() => {
     localStorage.setItem('username', 'user1');
-    render(<AddTodo updateTodoList={mockTodoListUpdate} />);
+    render(<AddTodo handleTodoListUpdate={mockHandleTodoListUpdate} />);
   });
   describe('when clicked', () => {
     let addButton: HTMLInputElement;
@@ -56,8 +57,8 @@ describe('AddTodo', () => {
     it('description textfield has the correct value', async () => {
       expect(descriptionTextField.value).toBe('description1');
     });
-    it('calls the prop function to update list', async () => {
-      expect(mockTodoListUpdate).toHaveBeenCalled();
+    it('calls the prop function to update the list', async () => {
+      expect(mockHandleTodoListUpdate).toHaveBeenCalled();
     });
   });
 });
