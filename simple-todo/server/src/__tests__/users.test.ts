@@ -1,19 +1,13 @@
 import request from "supertest";
 import status from "http-status";
-import {
-  afterAll,
-  beforeAll,
-  describe,
-  expect,
-  it,
-  jest,
-  test,
-} from "@jest/globals";
 import { initializeDatabase } from "../db";
 import app from "../app";
 import { User } from "../db/entities/User.js";
 import { registerUser } from "../service/user.service";
 import { AppDataSource } from "../db/data-source";
+import {
+  beforeEach, describe, expect, it, Mock, vi,
+} from 'vitest';
 
 const createUser = async () => {
   const user = new User();

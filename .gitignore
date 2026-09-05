@@ -2,4 +2,5 @@
 simple-todo-app/.DS_Store
 *.log
 .vscode/*
-/simple-todo/server/src/api/v1/db/migrations
+/simple-todo/server/src/db/migrations
+    
