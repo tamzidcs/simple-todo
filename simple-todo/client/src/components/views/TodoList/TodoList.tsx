@@ -1,10 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import toast, { Toaster } from 'react-hot-toast';
-import { setAllTodos } from '../../../store/slices/todosSlice';
+import React from 'react';
 import './TodoList.scss';
-import { getTodo, postTodoShare, updateTodo } from '../../../api/todos';
 import Todo from '../Todo/Todo';
 import DropDown from '../DropDown/DropDown';
 import { userNameListItem } from '../../../interfaces/userNameListItem';
