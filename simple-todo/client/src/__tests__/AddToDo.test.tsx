@@ -30,11 +30,11 @@ describe('AddTodo', () => {
     render(<AddTodo updateTodoList={mockTodoListUpdate} />);
   });
   describe('when clicked', () => {
-    let addButton: HTMLInputElement;
+    let addButton: HTMLButtonElement;
     let titleTextField: HTMLInputElement;
     let descriptionTextField: HTMLInputElement;
     beforeEach(async () => {
-      addButton = screen.getByTestId('add-button') as HTMLInputElement;
+      addButton = screen.getByTestId('add-button') as HTMLButtonElement;
       titleTextField = screen.getByTestId(
         'title-textfield',
       ) as HTMLInputElement;

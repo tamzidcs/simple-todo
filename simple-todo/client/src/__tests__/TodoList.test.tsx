@@ -23,19 +23,19 @@ vi.mock('react-router-dom', () => ({
 
 const testTodos = [
   {
-    id: 1,
+    id: '1',
     title: 'todo1',
     description: 'desc1',
     status: 'pending',
   },
   {
-    id: 2,
+    id: '2',
     title: 'todo2',
     description: 'desc2',
     status: 'pending',
   },
   {
-    id: 3,
+    id: '3',
     title: 'todo3',
     description: 'desc3',
     status: 'pending',
@@ -61,16 +61,15 @@ describe('TodoList', () => {
       let doneButton: HTMLButtonElement;
       beforeEach(async () => {
       });
-      it('should remove todo from the list', async () => {
-        doneButton = within(todoList[0]).getByTestId('todo-done-button');
-        // vi.mocked(axios.patch).mockResolvedValue({ todoId: 0 });
+      it('should call update todo ', async () => {
+        doneButton = screen.getByTestId('todo-done-button-1') as HTMLButtonElement;
         const spy = vi.spyOn(todoApi, 'updateTodo').mockResolvedValue({
-          id: '0',
+          id: '1',
           title: 'todo1',
           description: 'desc1',
           username: 'user1',
         });
-        await userEvent.click(doneButton);
+        await waitFor(() => fireEvent.click(doneButton));
         expect(spy).toHaveBeenCalled();
       });
     });

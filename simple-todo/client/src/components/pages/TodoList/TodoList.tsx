@@ -119,7 +119,7 @@ export function TodoList() {
                   <button
                     type="button"
                     onClick={() => todoDone(String(todoItem.id))}
-                    data-testid="todo-done-button"
+                    data-testid={`todo-done-button-${todoItem.id}`}
                   >
                     Done
                   </button>
