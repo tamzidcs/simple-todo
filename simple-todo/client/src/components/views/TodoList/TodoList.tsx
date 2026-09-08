@@ -57,6 +57,7 @@ export function TodoList({
                   <button
                     type="button"
                     onClick={() => handleTodoDone(String(todoItem.id), { status: 'done' })}
+                    data-testid={`todo-done-button-${todoItem.id}`}
                   >
                     Done
                   </button>
