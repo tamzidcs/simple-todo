@@ -74,7 +74,7 @@ export function TodoList() {
 
   const todoDone = async (todoId: string) => {
     await updateTodo(todoId, { status: globalConstants.TodoStatusDone });
-    // getTodosByParam('username');
+    getTodosByParam('username');
   };
 
   const shareTodo = async (todoId: string, userName: string) => {
