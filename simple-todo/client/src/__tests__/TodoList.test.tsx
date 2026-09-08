@@ -2,16 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import {
   waitFor, screen, fireEvent,
-  within,
 } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import {
   beforeEach, describe, expect, it, Mock, vi,
 } from 'vitest';
 import TodoList from '../components/pages/TodoList/TodoList';
 import renderWithProvider from '../utils/renderWithProvider';
 import * as todoApi from '../api/todos';
-import Todo from '../components/views/Todo/Todo';
 
 const mockedUsedNavigate = vi.fn();
 
