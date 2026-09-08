@@ -13,7 +13,7 @@ vi.mock('react-router-dom', () => ({
 }));
 
 describe('Signup', () => {
-  it('should render signup form', () => {
+  it('should render the signup form', () => {
     render(<Signup />);
     expect(screen.getByTestId('signup-header')).toBeInTheDocument();
     expect(screen.getByTestId('signup-button')).toBeInTheDocument();
