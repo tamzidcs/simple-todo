@@ -11,6 +11,6 @@ vi.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
-it('should render signup', () => {
+it('should render the topbar', () => {
   render(<TopBar />);
 });
