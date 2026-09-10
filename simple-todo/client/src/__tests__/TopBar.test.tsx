@@ -7,7 +7,7 @@ vi.mock('react-router-dom', () => ({
   ...vi.importActual('react-router-dom'),
   useNavigate: () => mockedUsedNavigate,
 }));
-describe('Header', () => {
+describe('TopBar', () => {
   it('should render header', () => {
     // eslint-disable-next-line react/react-in-jsx-scope
     render(<TopBar />);
