@@ -44,12 +44,14 @@ const initialState = {
 };
 
 describe('TodoList', () => {
+  let todoList: HTMLElement[];
+  beforeEach(() => {
+    localStorage.setItem('username','user1');
+    (axios.get as Mock).mockResolvedValue({data: testTodos});
+    renderWithProvider(<TodoList />,{preloadedState: initialState});
+  });
   it('should render todos list', async () => {
-    localStorage.setItem('username', 'user1');
-    (axios.get as Mock).mockResolvedValue({ data: testTodos });
-    // eslint-disable-next-line react/react-in-jsx-scope
-    renderWithProvider(<TodoList />, { preloadedState: initialState });
-    const todoList = await waitFor(() => screen.findAllByTestId('todo'));
+    todoList = await waitFor(() => screen.findAllByTestId('todo'));
     expect(todoList).toHaveLength(3);
   });
 });
