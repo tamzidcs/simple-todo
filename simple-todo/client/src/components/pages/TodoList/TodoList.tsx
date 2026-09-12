@@ -137,7 +137,7 @@ export function TodoList() {
                   />
                   <Button
                     className="button done-button"
-                    testId="done-button"
+                    testId={`todo-done-button-${todoItem.id}`}
                     text="Done"
                     type="button"
                     onClick={() => todoDone(String(todoItem.id))}
