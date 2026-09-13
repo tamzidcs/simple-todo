@@ -8,9 +8,9 @@ import { Button } from "../Button/Button";
 import DatePicker from "../DatePicker/DatePicker";
 
 interface AddTodoProps {
-  updateTaskList: () => void;
+  handleTodoListUpdate: () => void;
 }
-export function AddTodo({ updateTaskList }: AddTodoProps) {
+export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
   const username = String(localStorage.getItem("username"));
   const newTodoInitialState: todoRequest = {
     title: "",
@@ -40,7 +40,7 @@ export function AddTodo({ updateTaskList }: AddTodoProps) {
       try {
         const result = await postTodo(newTodo);
         if (result) {
-          updateTaskList();
+          handleTodoListUpdate();
           setAlert({
             severity: alertSeveritySuccess,
             message: newTodoSuccessMessage,
