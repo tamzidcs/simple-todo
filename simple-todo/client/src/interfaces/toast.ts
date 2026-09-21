@@ -1,5 +1,5 @@
 export type Severity = 'error' | 'success' | 'info' | 'warning' | undefined;
-export interface alert{
+export interface toast{
     severity: Severity,
     message: string
 }

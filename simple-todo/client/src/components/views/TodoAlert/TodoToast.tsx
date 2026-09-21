@@ -1,8 +1,8 @@
 import Alert from '@mui/material/Alert';
-import './TodoAlert.scss';
-import type { alert } from '../../../interfaces/alert';
+import './TodoToast.scss';
+import type { toast } from '../../../interfaces/toast';
 
-export function TodoAlert(props: alert) {
+export function TodoToast(props: toast) {
   const { severity, message } = props;
   return (
     <div className="alert-message">
@@ -10,4 +10,4 @@ export function TodoAlert(props: alert) {
     </div>
   );
 }
-export default TodoAlert;
+export default TodoToast;

@@ -4,7 +4,7 @@ $alertContainerLeft: 10px;
 $alertContainerBottom: 10px;
 $alertContainerZIndex: 1;
 
-.alert-container {
+.toast-container {
     display: flex;
     justify-content: center;
     position: absolute;
@@ -13,7 +13,7 @@ $alertContainerZIndex: 1;
     z-index: $alertContainerZIndex;
 }
 
-.alert-message {
+.toast-message {
     width: $alertMessageWidth;
     padding-top: $alertMessagePaddingTop;
 }

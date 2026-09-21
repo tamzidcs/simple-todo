@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import type { todoRequest } from "../../../interfaces/todo";
 import "./AddTodo.scss";
 import { postTodo } from "../../../api/todos";
-import { TodoAlert } from "../TodoAlert/TodoAlert";
-import type { alert } from "../../../interfaces/alert";
+import { TodoToast } from "../TodoAlert/TodoToast";
+import type { toast } from "../../../interfaces/toast";
 import { Button } from "../Button/Button";
 import DatePicker from "../DatePicker/DatePicker";
 
@@ -19,20 +19,20 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
     dueDate: "",
   };
   const [newTodo, setNewTodo] = useState<todoRequest>(newTodoInitialState);
-  const alertSeveritySuccess = "success";
-  const alertSeverityError = "error";
-  const alertInitialValue: alert = {
-    severity: alertSeveritySuccess,
+  const toastSeveritySuccess = "success";
+  const toastSeverityError = "error";
+  const toastInitialValue: toast = {
+    severity: toastSeveritySuccess,
     message: "",
   };
-  const [alert, setAlert] = useState(alertInitialValue);
-  const alertTimeOut = 3000;
+  const [toast, setToast] = useState(toastInitialValue);
+  const toastTimeOut = 3000;
   const newTodoSuccessMessage = "New Todo Added.";
   const newTodoFailedMessage = "New Todo Failed.";
 
   useEffect(() => {
-    setTimeout(() => setAlert(alertInitialValue), alertTimeOut);
-  }, [alert]);
+    setTimeout(() => setToast(toastInitialValue), toastTimeOut);
+  }, [toast]);
 
   const handleAddTodo = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -41,13 +41,13 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
         const result = await postTodo(newTodo);
         if (result) {
           handleTodoListUpdate();
-          setAlert({
-            severity: alertSeveritySuccess,
+          setToast({
+            severity: toastSeveritySuccess,
             message: newTodoSuccessMessage,
           });
         } else {
-          setAlert({
-            severity: alertSeverityError,
+          setToast({
+            severity: toastSeverityError,
             message: newTodoFailedMessage,
           });
         }
@@ -55,7 +55,7 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
         console.error(error);
       }
     } else {
-      setAlert({ severity: alertSeverityError, message: newTodoFailedMessage });
+      setToast({ severity: toastSeverityError, message: newTodoFailedMessage });
     }
   };
 
@@ -102,9 +102,9 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
           />
         </div>
       </form>
-      <div className="alert-container">
-        {alert.message !== "" ? (
-          <TodoAlert severity={alert.severity} message={alert.message} />
+      <div className="toast-container">
+        {toast.message !== "" ? (
+          <TodoToast severity={toast.severity} message={toast.message} />
         ) : (
           ""
         )}
