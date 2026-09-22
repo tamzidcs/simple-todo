@@ -1,19 +1,19 @@
-$alertMessagePaddingTop: 10px;
-$alertMessageWidth: 300px;
-$alertContainerLeft: 10px;
-$alertContainerBottom: 10px;
-$alertContainerZIndex: 1;
+$toastMessagePaddingTop: 10px;
+$toastMessageWidth: 300px;
+$toastContainerLeft: 10px;
+$toastContainerBottom: 10px;
+$toastContainerZIndex: 1;
 
 .toast-container {
     display: flex;
     justify-content: center;
     position: absolute;
-    left: $alertContainerLeft;
-    bottom: $alertContainerBottom;
-    z-index: $alertContainerZIndex;
+    left: $toastContainerLeft;
+    bottom: $toastContainerBottom;
+    z-index: $toastContainerZIndex;
 }
 
 .toast-message {
-    width: $alertMessageWidth;
-    padding-top: $alertMessagePaddingTop;
+    width: $toastMessageWidth;
+    padding-top: $toastMessagePaddingTop;
 }
