@@ -5,7 +5,7 @@ import type { toast } from '../../../interfaces/toast';
 export function TodoToast(props: toast) {
   const { severity, message } = props;
   return (
-    <div className="alert-message">
+    <div className="toast-message">
       <Alert severity={severity}>{message}</Alert>
     </div>
   );
