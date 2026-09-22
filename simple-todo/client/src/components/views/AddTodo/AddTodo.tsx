@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { todoRequest } from "../../../interfaces/todo";
 import "./AddTodo.scss";
 import { postTodo } from "../../../api/todos";
-import { TodoToast } from "../TodoAlert/TodoToast";
+import { TodoToast } from "../TodoToast/TodoToast";
 import type { toast } from "../../../interfaces/toast";
 import { Button } from "../Button/Button";
 import DatePicker from "../DatePicker/DatePicker";
