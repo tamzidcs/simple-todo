@@ -5,7 +5,11 @@ type ShowToastType = (message: string, severity: Severity) => void;
 
 const ToastContext = createContext<ShowToastType | undefined>(undefined);
 
-export function ToastProvider(children: ReactNode) {
+interface ToastProviderProps {
+    children: ReactNode
+}
+
+export function ToastProvider({children}: ToastProviderProps) {
   const [toasts, setToasts] = useState<toast[]>([]);
 
   const showToast = (message: string, severity: Severity) => {

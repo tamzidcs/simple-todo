@@ -11,11 +11,14 @@ import { Login } from './components/pages/Login/Login';
 import PrivateRoutes from './routes/PrivateRoutes';
 import { store } from './store/store';
 import Home from './components/pages/Home/Home';
+import { ToastProvider } from './components/views/ToastProvider/ToastProvider';
 
 function App() {
   return (
+    
     <Provider store={store}>
       <Router>
+        <ToastProvider>
         <Routes>
           <Route element={<PrivateRoutes />}>
             <Route path="/toDoList" element={<Home />} />
@@ -24,6 +27,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
         </Routes>
+        </ToastProvider>
       </Router>
     </Provider>
   );
