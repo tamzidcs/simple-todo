@@ -1,17 +1,17 @@
 import { useState, createContext, type ReactNode } from "react";
-import type { toast } from "../../../interfaces/toast";
+import type { toast,Severity } from "../../../interfaces/toast";
 
-type ShowToastType = (message: string) => void;
+type ShowToastType = (message: string, severity: Severity) => void;
 
 const ToastContext = createContext<ShowToastType | undefined>(undefined);
 
 export function ToastProvider(children: ReactNode) {
   const [toasts, setToasts] = useState<toast[]>([]);
 
-  const showToast = (message: string) => {
+  const showToast = (message: string, severity: Severity) => {
     const id = Date.now();
 
-    setToasts((prev) => [...prev, { id, message }]);
+    setToasts((prev) => [...prev, { id, severity, message }]);
 
     setTimeout(() => {
       setToasts((prev) => prev.filter((toast) => toast.id != id));
