@@ -1,9 +1,9 @@
 import { useState, createContext, type ReactNode } from "react";
 import type { toast,Severity } from "../../../interfaces/toast";
 
-type ShowToastType = (message: string, severity: Severity) => void;
+export type ShowToastType = (message: string, severity: Severity) => void;
 
-const ToastContext = createContext<ShowToastType | undefined>(undefined);
+export const ToastContext = createContext<ShowToastType | undefined>(undefined);
 
 interface ToastProviderProps {
     children: ReactNode

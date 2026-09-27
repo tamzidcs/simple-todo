@@ -6,6 +6,7 @@ import { TodoToast } from "../TodoToast/TodoToast";
 import type { toast } from "../../../interfaces/toast";
 import { Button } from "../Button/Button";
 import DatePicker from "../DatePicker/DatePicker";
+import { useToast } from "../../../hooks/useToast";
 
 interface AddTodoProps {
   handleTodoListUpdate: () => void;
@@ -24,15 +25,12 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
   const toastInitialValue: toast = {
     severity: toastSeveritySuccess,
     message: "",
+    id: 0
   };
   const [toast, setToast] = useState(toastInitialValue);
-  const toastTimeOut = 3000;
+  const showToast = useToast();
   const newTodoSuccessMessage = "New Todo Added.";
   const newTodoFailedMessage = "New Todo Failed.";
-
-  useEffect(() => {
-    setTimeout(() => setToast(toastInitialValue), toastTimeOut);
-  }, [toast]);
 
   const handleAddTodo = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -44,19 +42,22 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
           setToast({
             severity: toastSeveritySuccess,
             message: newTodoSuccessMessage,
+            id: 0,
           });
         } else {
           setToast({
             severity: toastSeverityError,
             message: newTodoFailedMessage,
+            id: 0,
           });
         }
       } catch (error) {
         console.error(error);
       }
     } else {
-      setToast({ severity: toastSeverityError, message: newTodoFailedMessage });
+
     }
+    showToast("Test", toast.severity);
   };
 
   return (
@@ -102,14 +103,7 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
           />
         </div>
       </form>
-      <div className="toast-container">
-        {toast.message !== "" ? (
-          <TodoToast severity={toast.severity} message={toast.message} />
-        ) : (
-          ""
-        )}
       </div>
-    </div>
   );
 }
 export default AddTodo;
