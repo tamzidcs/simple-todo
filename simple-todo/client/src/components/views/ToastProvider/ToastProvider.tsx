@@ -1,5 +1,6 @@
 import { useState, createContext, type ReactNode } from "react";
 import type { toast,Severity } from "../../../interfaces/toast";
+import "./ToastProvider.scss";
 
 export type ShowToastType = (message: string, severity: Severity) => void;
 

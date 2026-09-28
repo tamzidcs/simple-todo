@@ -25,7 +25,7 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
   const toastInitialValue: toast = {
     severity: toastSeveritySuccess,
     message: "",
-    id: 0
+    id: 0,
   };
   const [toast, setToast] = useState(toastInitialValue);
   const showToast = useToast();
@@ -34,7 +34,12 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
 
   const handleAddTodo = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    if (newTodo.title && newTodo.description && newTodo.username && newTodo.dueDate) {
+    if (
+      newTodo.title &&
+      newTodo.description &&
+      newTodo.username &&
+      newTodo.dueDate
+    ) {
       try {
         const result = await postTodo(newTodo);
         if (result) {
@@ -51,13 +56,18 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
             id: 0,
           });
         }
+        showToast(toast.message, toast.severity);
       } catch (error) {
         console.error(error);
       }
     } else {
-
+      setToast({
+        severity: toastSeverityError,
+        message: newTodoFailedMessage,
+        id: 0,
+      });
+      showToast(toast.message, toast.severity);
     }
-    showToast("Test", toast.severity);
   };
 
   return (
@@ -92,7 +102,9 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
               id="due-date-add-todo"
               className={"due-date-add-todo"}
               testId={"due-date-add-todo"}
-              onChange={(e) => setNewTodo({ ...newTodo, dueDate: e.target.value })}
+              onChange={(e) =>
+                setNewTodo({ ...newTodo, dueDate: e.target.value })
+              }
             />
           </div>
           <Button
@@ -103,7 +115,7 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
           />
         </div>
       </form>
-      </div>
+    </div>
   );
 }
 export default AddTodo;
