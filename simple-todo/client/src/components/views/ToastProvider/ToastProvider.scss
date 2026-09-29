@@ -1,9 +1,10 @@
 $toastContainerBottom: 20px;
-$toastContainerRight: 20px;
+$toastContainerLeft: 20px;
 $toastContainerWidth: 300px;
 $toastContainerGap: 10px;
 $toastContainerZIndex: 9999;
-$toastItembackgroundColor: #222;
+$toastSuccessBackgroundColor: #28a745;
+$toastErrorBackgroundColor: #dc3545;
 $toastItemColor: #fff;
 $toastItemPadding: 12px 20px;
 $toastItemBorderRadius: 6px;
@@ -13,7 +14,7 @@ $toastItemBoxShadow: 0 4px 10px #00000033;
 .toast-container {
   position: fixed;
   bottom: $toastContainerBottom;
-  right: $toastContainerRight;
+  left: $toastContainerLeft;
   width: $toastContainerWidth;
   display: flex;
   flex-direction: column;
@@ -22,7 +23,6 @@ $toastItemBoxShadow: 0 4px 10px #00000033;
 }
 
 .toast-item {
-  background-color: $toastItembackgroundColor;
   color: $toastItemColor;
   padding: $toastItemPadding;
   border-radius: $toastItemBorderRadius;
@@ -30,6 +30,14 @@ $toastItemBoxShadow: 0 4px 10px #00000033;
   font-size: $toastItemFontSize;
   box-shadow: $toastItemBoxShadow;
   animation: toastSlideIn 0.2s ease-out;
+}
+
+.toast-success {
+  background-color: $toastSuccessBackgroundColor;
+}
+
+.toast-error {
+  background-color: $toastErrorBackgroundColor;
 }
 
 @keyframes toastSlideIn {

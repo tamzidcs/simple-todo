@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import type { todoRequest } from "../../../interfaces/todo";
 import "./AddTodo.scss";
 import { postTodo } from "../../../api/todos";
-import { TodoToast } from "../TodoToast/TodoToast";
-import type { toast } from "../../../interfaces/toast";
 import { Button } from "../Button/Button";
 import DatePicker from "../DatePicker/DatePicker";
 import { useToast } from "../../../hooks/useToast";
@@ -22,12 +20,6 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
   const [newTodo, setNewTodo] = useState<todoRequest>(newTodoInitialState);
   const toastSeveritySuccess = "success";
   const toastSeverityError = "error";
-  const toastInitialValue: toast = {
-    severity: toastSeveritySuccess,
-    message: "",
-    id: 0,
-  };
-  const [toast, setToast] = useState(toastInitialValue);
   const showToast = useToast();
   const newTodoSuccessMessage = "New Todo Added.";
   const newTodoFailedMessage = "New Todo Failed.";

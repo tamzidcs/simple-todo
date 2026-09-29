@@ -27,7 +27,7 @@ export function ToastProvider({children}: ToastProviderProps) {
       {children}
       <div className="toast-container">
         {toasts.map((toast) => (
-          <div key={toast.id} className="toast-item">
+          <div key={toast.id} className={`toast-item toast-${toast.severity}`}>
             {toast.message}
           </div>
         ))}
