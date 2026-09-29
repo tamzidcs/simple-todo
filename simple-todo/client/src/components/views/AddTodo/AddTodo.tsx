@@ -44,29 +44,15 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
         const result = await postTodo(newTodo);
         if (result) {
           handleTodoListUpdate();
-          setToast({
-            severity: toastSeveritySuccess,
-            message: newTodoSuccessMessage,
-            id: 0,
-          });
+          showToast(newTodoSuccessMessage, toastSeveritySuccess);
         } else {
-          setToast({
-            severity: toastSeverityError,
-            message: newTodoFailedMessage,
-            id: 0,
-          });
+          showToast(newTodoFailedMessage, toastSeverityError)
         }
-        showToast(toast.message, toast.severity);
       } catch (error) {
         console.error(error);
       }
     } else {
-      setToast({
-        severity: toastSeverityError,
-        message: newTodoFailedMessage,
-        id: 0,
-      });
-      showToast(toast.message, toast.severity);
+      showToast(newTodoFailedMessage, toastSeverityError);
     }
   };
 
