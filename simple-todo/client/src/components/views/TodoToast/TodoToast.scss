@@ -1,0 +1,19 @@
+$toastMessagePaddingTop: 10px;
+$toastMessageWidth: 300px;
+$toastContainerLeft: 10px;
+$toastContainerBottom: 10px;
+$toastContainerZIndex: 1;
+
+.toast-container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: $toastContainerLeft;
+    bottom: $toastContainerBottom;
+    z-index: $toastContainerZIndex;
+}
+
+.toast-message {
+    width: $toastMessageWidth;
+    padding-top: $toastMessagePaddingTop;
+}
