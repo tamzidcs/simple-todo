@@ -12,7 +12,7 @@ interface ToastProviderProps {
 
 export function ToastProvider({children}: ToastProviderProps) {
   const [toasts, setToasts] = useState<toast[]>([]);
-
+  
   const showToast = (message: string, severity: Severity) => {
     const id = Date.now();
 
