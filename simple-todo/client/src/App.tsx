@@ -5,25 +5,29 @@ import {
   Route,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { TodoList } from './components/pages/TodoList/TodoList';
 import Landing from './components/pages/Landing/Landing';
 import { Signup } from './components/pages/Signup/Signup';
 import { Login } from './components/pages/Login/Login';
 import PrivateRoutes from './routes/PrivateRoutes';
 import { store } from './store/store';
+import Home from './components/pages/Home/Home';
+import { ToastProvider } from './components/views/ToastProvider/ToastProvider';
 
 function App() {
   return (
+    
     <Provider store={store}>
       <Router>
+        <ToastProvider>
         <Routes>
           <Route element={<PrivateRoutes />}>
-            <Route path="/toDoList" element={<TodoList />} />
+            <Route path="/toDoList" element={<Home />} />
           </Route>
           <Route index element={<Landing />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
         </Routes>
+        </ToastProvider>
       </Router>
     </Provider>
   );
