@@ -41,7 +41,7 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
           showToast(newTodoFailedMessage, toastSeverityError)
         }
       } catch (error) {
-        console.error(error);
+        showToast(newTodoFailedMessage, toastSeverityError);
       }
     } else {
       showToast(newTodoFailedMessage, toastSeverityError);
