@@ -1,12 +1,8 @@
-import { Request, Response, NextFunction } from 'express'
-import { Todo } from '../db/entities/Todo.js'
+import { Request, Response, NextFunction } from 'express';
+import { Todo } from '../db/entities/Todo.js';
 import * as todoService from '../service/todo.service.js';
 
-export async function addNewTodo(
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> {
+export async function addNewTodo(req: Request, res: Response, next: NextFunction): Promise<void> {
   const todo = req.body;
 
   try {
@@ -20,7 +16,7 @@ export async function addNewTodo(
 export async function getAllTodosByUsername(
   req: Request,
   res: Response<Todo[]>,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const user = req.params;
@@ -34,23 +30,19 @@ export async function getAllTodosByUsername(
 export async function updateTodo(
   req: Request,
   res: Response<string>,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   const todoId = req.params.todoId;
   const updateFields = req.body;
   try {
-    const data = await todoService.updateTodo(todoId,updateFields);
+    const data = await todoService.updateTodo(todoId, updateFields);
     res.send(data);
   } catch (error) {
     next(error);
   }
 }
 
-export async function shareTodo(
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> {
+export async function shareTodo(req: Request, res: Response, next: NextFunction): Promise<void> {
   const newTodoUser = req.body;
   try {
     const result = await todoService.shareTodo(newTodoUser);

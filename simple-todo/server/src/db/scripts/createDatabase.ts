@@ -1,5 +1,5 @@
 import pg from 'pg';
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 const { Client } = pg;
@@ -7,10 +7,10 @@ export async function createDatabase() {
   const targetDB = process.env.DB_NAME;
   const client = new Client({
     host: process.env.DB_HOST,
-    port: parseInt(process.env.DB_PORT || "5432"),
+    port: parseInt(process.env.DB_PORT || '5432'),
     user: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-    database: "postgres",
+    database: 'postgres',
   });
 
   try {
@@ -25,7 +25,7 @@ export async function createDatabase() {
       console.log('Database "${targetDB}" successfully created!');
     }
   } catch (error) {
-    console.log("Error during database creation:", error);
+    console.log('Error during database creation:', error);
   } finally {
     await client.end();
   }

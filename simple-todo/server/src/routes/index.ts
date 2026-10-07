@@ -1,8 +1,8 @@
-import { Router } from 'express'
-import { addNewTodo,getAllTodosByUsername } from '../controller/todo.controller.js'
-import { getAllUsers, loginUser, registerUser } from '../controller/user.controller.js'
-import { updateTodo } from '../controller/todo.controller.js'
-import { shareTodo } from '../controller/todo.controller.js'
+import { Router } from 'express';
+import { addNewTodo, getAllTodosByUsername } from '../controller/todo.controller.js';
+import { getAllUsers, loginUser, registerUser } from '../controller/user.controller.js';
+import { updateTodo } from '../controller/todo.controller.js';
+import { shareTodo } from '../controller/todo.controller.js';
 import express from 'express';
 
 const router = Router();

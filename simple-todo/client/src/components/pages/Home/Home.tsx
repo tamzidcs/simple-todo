@@ -17,7 +17,7 @@ export function Home() {
   const todoList = useSelector((state: RootState) => state.todos);
   const [todoListUpdated, setTodoListUpdated] = useState(false);
   const [userNameList, setUserNameList] = useState<userNameListItem[]>([]);
-  const [shareUserName, setShareUserName] = useState('');
+  const [shareUserName, setShareUserName] = useState("");
   const dispatch = useDispatch();
 
   const handleTodoListUpdate = () => {
@@ -47,7 +47,7 @@ export function Home() {
   };
 
   const removeCurrentUsernameFromList = (userNameList: userNameListItem[]) => {
-    const currentUsername = localStorage.getItem('username');
+    const currentUsername = localStorage.getItem("username");
     userNameList.forEach((userNameListItem, userNameListIndex) => {
       if (userNameListItem.username === currentUsername) {
         userNameList.splice(userNameListIndex, 1);
@@ -77,7 +77,7 @@ export function Home() {
   };
 
   useEffect(() => {
-    getTodosByParam('username');
+    getTodosByParam("username");
     setTodoListUpdated(false);
     axios.get(URL.users).then((resp: { data: [] }) => {
       const userNameList = removeCurrentUsernameFromList(resp.data);

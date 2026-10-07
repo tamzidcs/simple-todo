@@ -1,13 +1,9 @@
-import { Request, Response, NextFunction } from "express";
-import { User } from "../db/entities/User.js";
-import * as userService from "../service/user.service.js";
-import status from "http-status";
+import { Request, Response, NextFunction } from 'express';
+import { User } from '../db/entities/User.js';
+import * as userService from '../service/user.service.js';
+import status from 'http-status';
 
-export async function registerUser(
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> {
+export async function registerUser(req: Request, res: Response, next: NextFunction): Promise<void> {
   const user = req.body;
   try {
     const result = await userService.registerUser(user);
@@ -17,11 +13,7 @@ export async function registerUser(
   }
 }
 
-export async function loginUser(
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> {
+export async function loginUser(req: Request, res: Response, next: NextFunction): Promise<void> {
   const user: User = req.body;
   try {
     const loggedInUser = await userService.loginUser(user);
@@ -37,11 +29,7 @@ export async function loginUser(
   }
 }
 
-export async function getAllUsers(
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> {
+export async function getAllUsers(req: Request, res: Response, next: NextFunction): Promise<void> {
   const user = req.params.username;
   try {
     const result = await userService.getAllUsers();
