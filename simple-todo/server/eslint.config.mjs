@@ -1,18 +1,15 @@
-import eslint from '@eslint/js';
+// @ts-check
+import js from '@eslint/js';
+import { defineConfig } from 'eslint/config';
 import tseslint from 'typescript-eslint';
-import eslintConfigPrettier from 'eslint-config-prettier';
 
-export default tseslint.config(
-  eslint.configs.recommended,
-  ...tseslint.configs.recommended,
-  eslintConfigPrettier,
-  {
-    ignores: ['node_modules/', 'dist/'],
+export default defineConfig({
+  files: ['**/*.{js,ts}'],
+  extends: [
+    js.configs.recommended, 
+    tseslint.configs.recommended
+  ],
+  rules: {
+    '@typescript-eslint/no-unused-vars': 'error',
   },
-  {
-    rules: {
-      'no-console': 'warn',
-      '@typescript-eslint/no-explicit-any': 'warn',
-    },
-  }
-);
+});
