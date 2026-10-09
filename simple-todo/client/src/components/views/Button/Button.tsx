@@ -2,9 +2,7 @@ import './Button.scss';
 import type { button } from '../../../interfaces/button';
 
 export function Button(buttonProps: button) {
-  const {
-    text, testId, className, type, onClick,
-  } = buttonProps;
+  const { text, testId, className, type, onClick } = buttonProps;
   const buttontype = type || 'button';
   return (
     <button

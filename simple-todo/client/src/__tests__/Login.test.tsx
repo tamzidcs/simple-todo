@@ -1,6 +1,4 @@
-import {
-  fireEvent, render, screen, waitFor,
-} from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import Login from '../components/pages/Login/Login';
 import { vi, type Mock } from 'vitest';
@@ -36,12 +34,16 @@ describe('Login', () => {
       ) as HTMLInputElement;
       window.alert = () => {};
       (axios.post as Mock).mockResolvedValue({ data: loginUser });
-      await waitFor(() => fireEvent.change(usernameTextField, {
-        target: { value: loginUser.username },
-      }));
-      await waitFor(() => fireEvent.change(passwordTextField, {
-        target: { value: loginUser.password },
-      }));
+      await waitFor(() =>
+        fireEvent.change(usernameTextField, {
+          target: { value: loginUser.username },
+        }),
+      );
+      await waitFor(() =>
+        fireEvent.change(passwordTextField, {
+          target: { value: loginUser.password },
+        }),
+      );
       await waitFor(() => fireEvent.click(loginButton));
     });
     it('username textfield has the correct value', async () => {

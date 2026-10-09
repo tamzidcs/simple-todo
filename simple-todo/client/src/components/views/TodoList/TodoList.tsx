@@ -1,10 +1,10 @@
-import DropDown from "../DropDown/DropDown";
-import "./TodoList.scss";
-import Todo from "../Todo/Todo";
-import Button from "../Button/Button";
-import type { userNameListItem } from "../../../interfaces/userNameListItem";
-import type { todo } from "../../../interfaces/todo";
-import DatePicker from "../DatePicker/DatePicker";
+import DropDown from '../DropDown/DropDown';
+import './TodoList.scss';
+import Todo from '../Todo/Todo';
+import Button from '../Button/Button';
+import type { userNameListItem } from '../../../interfaces/userNameListItem';
+import type { todo } from '../../../interfaces/todo';
+import DatePicker from '../DatePicker/DatePicker';
 
 interface TodoListProps {
   todoList: todo[];
@@ -25,7 +25,7 @@ export function TodoList({
   updateUserShareName,
   handleShareTodo,
   handleTodoDone,
-  handleDueDateChange
+  handleDueDateChange,
 }: TodoListProps) {
   return (
     <div className="to-do-list-container">
@@ -55,8 +55,8 @@ export function TodoList({
                 <div className="todo-bottom-right">
                   <DatePicker
                     id="due-date-todolist"
-                    className={"due-date-todolist"}
-                    testId={"due-date-todolist"}
+                    className={'due-date-todolist'}
+                    testId={'due-date-todolist'}
                     value={todoItem.dueDate}
                     onChange={(e) =>
                       handleDueDateChange(String(todoItem.id), e.target.value)
@@ -67,7 +67,9 @@ export function TodoList({
                     testId={`todo-done-button-${todoItem.id}`}
                     text="Done"
                     type="button"
-                    onClick={() => handleTodoDone(String(todoItem.id),{status: "done"})}
+                    onClick={() =>
+                      handleTodoDone(String(todoItem.id), { status: 'done' })
+                    }
                   />
                 </div>
               </div>

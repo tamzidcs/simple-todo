@@ -1,5 +1,5 @@
-import type { datePicker } from "../../../interfaces/datePicker";
-import "./DatePicker.scss";
+import type { datePicker } from '../../../interfaces/datePicker';
+import './DatePicker.scss';
 
 export function DatePicker(datePickerProps: datePicker) {
   const { id, className, testId, value, onChange } = datePickerProps;

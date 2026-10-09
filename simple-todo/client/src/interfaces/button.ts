@@ -5,5 +5,5 @@ export interface button {
   text: string;
   type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
   testId: string;
-  onClick?:()=>void;
+  onClick?: () => void;
 }

@@ -16,9 +16,9 @@ vi.mock('react-router-dom', () => ({
   useNavigate: () => mockedUsedNavigate,
 }));
 
-const tomorrow:Date = new Date();
-tomorrow.setDate(tomorrow.getDate()+1);
-const dueDateString:string = tomorrow.toISOString().split('T')[0];
+const tomorrow: Date = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+const dueDateString: string = tomorrow.toISOString().split('T')[0];
 
 const testTodos = [
   {
@@ -50,11 +50,11 @@ const initialState = {
   todos: testTodos,
 };
 
-describe("TodoList", () => {
-   beforeEach(() => {
+describe('TodoList', () => {
+  beforeEach(() => {
     localStorage.setItem('username', 'user1');
     (axios.get as Mock).mockResolvedValue({ data: testTodos });
-     renderWithProvider(
+    renderWithProvider(
       <TodoList
         todoList={testTodos}
         userNameList={userNameList}
@@ -66,16 +66,16 @@ describe("TodoList", () => {
       { preloadedState: initialState },
     );
   });
-  it("should render todos list", async () => {
-    const todoList = await waitFor(() => screen.findAllByTestId("todo"));
+  it('should render todos list', async () => {
+    const todoList = await waitFor(() => screen.findAllByTestId('todo'));
     expect(todoList).toHaveLength(3);
   });
-  describe("TodoDone", () => {
-    describe("when done button is clicked", () => {
+  describe('TodoDone', () => {
+    describe('when done button is clicked', () => {
       let doneButton: HTMLButtonElement;
-      it("should call todo done", async () => {
+      it('should call todo done', async () => {
         doneButton = screen.getByTestId(
-          "todo-done-button-1",
+          'todo-done-button-1',
         ) as HTMLButtonElement;
         await waitFor(() => fireEvent.click(doneButton));
         expect(handleTodoDone).toHaveBeenCalled();

@@ -12,7 +12,8 @@ const newUser: user = {
   password: '',
 };
 const usernameErrorMessage = 'Invalid username';
-const passwordErrorMessage = 'Password must be minimum 8 characters long, should contain one uppercase letter,one lowercase letter,one number and a special character.';
+const passwordErrorMessage =
+  'Password must be minimum 8 characters long, should contain one uppercase letter,one lowercase letter,one number and a special character.';
 
 export function Signup() {
   const [signupUser, setSignupUser] = useState<user>(newUser);
@@ -24,7 +25,9 @@ export function Signup() {
     const { error } = schema.validate(signupUser, { abortEarly: false });
     const fieldsWithError: string[] = [];
     if (error) {
-      error.details.map((detail) => fieldsWithError.push(String(detail.path[0])));
+      error.details.map((detail) =>
+        fieldsWithError.push(String(detail.path[0])),
+      );
       if (fieldsWithError.includes('username')) {
         setShowUsernameError(true);
       } else {
