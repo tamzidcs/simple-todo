@@ -9,49 +9,42 @@ export async function createTodo(todo: Todo) {
 }
 
 export async function getTodoById(id: string) {
-  const todo = await AppDataSource
-    .getRepository(Todo)
-    .createQueryBuilder("todo")
-    .where("todo.id = :id", { id: id })
+  const todo = await AppDataSource.getRepository(Todo)
+    .createQueryBuilder('todo')
+    .where('todo.id = :id', { id: id })
     .getOne();
 
-    return todo;
+  return todo;
 }
 
 export async function getTodoByUsername(username: string) {
-    const todo = await AppDataSource
-    .getRepository(Todo)
-    .createQueryBuilder("todo")
-    .where("todo.username = :username", { username: username})
+  const todo = await AppDataSource.getRepository(Todo)
+    .createQueryBuilder('todo')
+    .where('todo.username = :username', { username: username })
     .getOne();
 
-    return todo;
+  return todo;
 }
 
-export async function getAllTodosByUsernameStatus(
-  username: string,
-  todoStatus: string,
-) {
+export async function getAllTodosByUsernameStatus(username: string, todoStatus: string) {
   const user = await UserRepo.getUserByUsername(username);
-  const userId =user?.id;
-  const todoByUsername = await AppDataSource
-    .getRepository(User)
-    .createQueryBuilder("user")
-    .leftJoinAndSelect("user.todos", "todo")
-    .where("user.id = :id", {id: userId})
-    .andWhere("todo.status = :status", {status: todoStatus})
-    .getOne()
+  const userId = user?.id;
+  const todoByUsername = await AppDataSource.getRepository(User)
+    .createQueryBuilder('user')
+    .leftJoinAndSelect('user.todos', 'todo')
+    .where('user.id = :id', { id: userId })
+    .andWhere('todo.status = :status', { status: todoStatus })
+    .getOne();
 
   return todoByUsername?.todos;
 }
 
 export async function updateTodoById(todoId: string, updateFields: {}) {
-  const updateResponse  = await AppDataSource
-  .createQueryBuilder()
-  .update(Todo)
-  .set(updateFields)
-  .where("id = :id", { id: todoId })
-  .execute()
+  const updateResponse = await AppDataSource.createQueryBuilder()
+    .update(Todo)
+    .set(updateFields)
+    .where('id = :id', { id: todoId })
+    .execute();
 
   return updateResponse;
 }
