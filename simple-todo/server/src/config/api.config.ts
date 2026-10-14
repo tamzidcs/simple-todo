@@ -1,3 +1,3 @@
 export const API_CONFIG = {
-  apiVersion: 'v1'
+  apiVersion: 'v1',
 };

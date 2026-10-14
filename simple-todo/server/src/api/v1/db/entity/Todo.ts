@@ -1,23 +1,23 @@
-import { Entity,PrimaryGeneratedColumn,Column, ManyToMany, JoinTable } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
 import { User } from './User.js';
 
 @Entity()
 export class Todo {
-    @PrimaryGeneratedColumn()
-    id!: number;
+  @PrimaryGeneratedColumn()
+  id!: number;
 
-    @Column({type:"varchar"})
-    title!: string;
+  @Column({ type: 'varchar' })
+  title!: string;
 
-    @Column({type:"varchar"})
-    description!: string;
+  @Column({ type: 'varchar' })
+  description!: string;
 
-    @Column({type:"varchar"})
-    status!: string;
+  @Column({ type: 'varchar' })
+  status!: string;
 
-    @Column({type:"varchar"})
-    dueDate!: string;
+  @Column({ type: 'varchar' })
+  dueDate!: string;
 
-    @ManyToMany(() => User,(user) => user.todos)
-    users: User[]
+  @ManyToMany(() => User, (user) => user.todos)
+  users: User[];
 }

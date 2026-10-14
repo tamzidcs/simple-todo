@@ -14,5 +14,5 @@ export interface todoRequest {
 }
 
 export interface todoState {
-    todos: todo[];
+  todos: todo[];
 }

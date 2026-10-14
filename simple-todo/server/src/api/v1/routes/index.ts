@@ -1,11 +1,10 @@
-import { Router } from 'express'
-import { addNewTodo,getAllTodosByUsername, updateTodo } from '../controller/todo.controller.js';
+import { Router } from 'express';
+import { addNewTodo, getAllTodosByUsername, updateTodo } from '../controller/todo.controller.js';
 import { getAllUsers, loginUser, registerUser } from '../controller/user.controller.js';
 import { shareTodo } from '../controller/todo.controller.js';
 import express from 'express';
 
 const router = Router();
-
 
 router.use(express.json());
 
