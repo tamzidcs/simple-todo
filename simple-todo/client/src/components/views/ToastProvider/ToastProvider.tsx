@@ -1,18 +1,18 @@
-import { useState, createContext, type ReactNode } from "react";
-import type { toast,Severity } from "../../../interfaces/toast";
-import "./ToastProvider.scss";
+import { useState, createContext, type ReactNode } from 'react';
+import type { toast, Severity } from '../../../interfaces/toast';
+import './ToastProvider.scss';
 
 export type ShowToastType = (message: string, severity: Severity) => void;
 
 export const ToastContext = createContext<ShowToastType | undefined>(undefined);
 
 interface ToastProviderProps {
-    children: ReactNode
+  children: ReactNode;
 }
 
-export function ToastProvider({children}: ToastProviderProps) {
+export function ToastProvider({ children }: ToastProviderProps) {
   const [toasts, setToasts] = useState<toast[]>([]);
-  
+
   const showToast = (message: string, severity: Severity) => {
     const id = Date.now();
 

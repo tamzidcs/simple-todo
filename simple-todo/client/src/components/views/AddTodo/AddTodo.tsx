@@ -1,28 +1,28 @@
-import { useState } from "react";
-import type { todoRequest } from "../../../interfaces/todo";
-import "./AddTodo.scss";
-import { postTodo } from "../../../api/todos";
-import { Button } from "../Button/Button";
-import DatePicker from "../DatePicker/DatePicker";
-import { useToast } from "../../../hooks/useToast";
+import { useState } from 'react';
+import type { todoRequest } from '../../../interfaces/todo';
+import './AddTodo.scss';
+import { postTodo } from '../../../api/todos';
+import { Button } from '../Button/Button';
+import DatePicker from '../DatePicker/DatePicker';
+import { useToast } from '../../../hooks/useToast';
 
 interface AddTodoProps {
   handleTodoListUpdate: () => void;
 }
 export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
-  const username = String(localStorage.getItem("username"));
+  const username = String(localStorage.getItem('username'));
   const newTodoInitialState: todoRequest = {
-    title: "",
-    description: "",
+    title: '',
+    description: '',
     username,
-    dueDate: "",
+    dueDate: '',
   };
   const [newTodo, setNewTodo] = useState<todoRequest>(newTodoInitialState);
-  const toastSeveritySuccess = "success";
-  const toastSeverityError = "error";
+  const toastSeveritySuccess = 'success';
+  const toastSeverityError = 'error';
   const showToast = useToast();
-  const newTodoSuccessMessage = "New Todo Added.";
-  const newTodoFailedMessage = "New Todo Failed.";
+  const newTodoSuccessMessage = 'New Todo Added.';
+  const newTodoFailedMessage = 'New Todo Failed.';
 
   const handleAddTodo = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -38,7 +38,7 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
           handleTodoListUpdate();
           showToast(newTodoSuccessMessage, toastSeveritySuccess);
         } else {
-          showToast(newTodoFailedMessage, toastSeverityError)
+          showToast(newTodoFailedMessage, toastSeverityError);
         }
       } catch (error) {
         showToast(newTodoFailedMessage, toastSeverityError);
@@ -78,8 +78,8 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
             <label className="due-date-label">Due Date</label>
             <DatePicker
               id="due-date-add-todo"
-              className={"due-date-add-todo"}
-              testId={"due-date-add-todo"}
+              className={'due-date-add-todo'}
+              testId={'due-date-add-todo'}
               onChange={(e) =>
                 setNewTodo({ ...newTodo, dueDate: e.target.value })
               }

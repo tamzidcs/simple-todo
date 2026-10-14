@@ -1,23 +1,23 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import toast from "react-hot-toast";
-import type { RootState } from "../../../store/store";
-import AddTodo from "../../views/AddTodo/AddTodo";
-import TopBar from "../../views/TopBar/TopBar";
-import { TodoList } from "../../views/TodoList/TodoList";
-import "./Home.scss";
-import { getTodo, postShareTodo, updateTodo } from "../../../api/todos";
-import { setAllTodos } from "../../../store/slices/todosSlice";
-import URL from "../../../shared/constants";
-import type { userNameListItem } from "../../../interfaces/userNameListItem";
-import type { todo } from "../../../interfaces/todo";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
+import type { RootState } from '../../../store/store';
+import AddTodo from '../../views/AddTodo/AddTodo';
+import TopBar from '../../views/TopBar/TopBar';
+import { TodoList } from '../../views/TodoList/TodoList';
+import './Home.scss';
+import { getTodo, postShareTodo, updateTodo } from '../../../api/todos';
+import { setAllTodos } from '../../../store/slices/todosSlice';
+import URL from '../../../shared/constants';
+import type { userNameListItem } from '../../../interfaces/userNameListItem';
+import type { todo } from '../../../interfaces/todo';
 
 export function Home() {
   const todoList = useSelector((state: RootState) => state.todos);
   const [todoListUpdated, setTodoListUpdated] = useState(false);
   const [userNameList, setUserNameList] = useState<userNameListItem[]>([]);
-  const [shareUserName, setShareUserName] = useState("");
+  const [shareUserName, setShareUserName] = useState('');
   const dispatch = useDispatch();
 
   const handleTodoListUpdate = () => {
@@ -47,7 +47,7 @@ export function Home() {
   };
 
   const removeCurrentUsernameFromList = (userNameList: userNameListItem[]) => {
-    const currentUsername = localStorage.getItem("username");
+    const currentUsername = localStorage.getItem('username');
     userNameList.forEach((userNameListItem, userNameListIndex) => {
       if (userNameListItem.username === currentUsername) {
         userNameList.splice(userNameListIndex, 1);
@@ -81,11 +81,11 @@ export function Home() {
     dueDate: string,
   ) => {
     await updateTodo(todoId, { dueDate: dueDate });
-    getTodosByParam("username");
+    getTodosByParam('username');
   };
 
   useEffect(() => {
-    getTodosByParam("username");
+    getTodosByParam('username');
     setTodoListUpdated(false);
     axios.get(URL.users).then((resp: { data: [] }) => {
       const userNameList = removeCurrentUsernameFromList(resp.data);

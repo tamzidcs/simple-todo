@@ -1,9 +1,5 @@
 import './App.scss';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Landing from './components/pages/Landing/Landing';
 import { Signup } from './components/pages/Signup/Signup';
@@ -15,18 +11,17 @@ import { ToastProvider } from './components/views/ToastProvider/ToastProvider';
 
 function App() {
   return (
-    
     <Provider store={store}>
       <Router>
         <ToastProvider>
-        <Routes>
-          <Route element={<PrivateRoutes />}>
-            <Route path="/toDoList" element={<Home />} />
-          </Route>
-          <Route index element={<Landing />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
+          <Routes>
+            <Route element={<PrivateRoutes />}>
+              <Route path="/toDoList" element={<Home />} />
+            </Route>
+            <Route index element={<Landing />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+          </Routes>
         </ToastProvider>
       </Router>
     </Provider>

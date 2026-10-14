@@ -28,11 +28,13 @@ export function DropDown(props: {
   };
 
   const filterDropDownItemsByString = (filterString: string) => {
-    const users = userNameList.filter((item) => item.username.includes(filterString));
+    const users = userNameList.filter((item) =>
+      item.username.includes(filterString),
+    );
     setDropDownItems(users);
   };
 
-  const isDropDownInputEmpty = () => (!currentOption);
+  const isDropDownInputEmpty = () => !currentOption;
 
   const dropDownClicked = () => {
     if (isDropDownInputEmpty()) {
@@ -63,9 +65,9 @@ export function DropDown(props: {
   useEffect(() => {
     const handleClickOutside = (event: { target: any }) => {
       if (
-        dropDownRef !== null
-        && dropDownRef.current
-        && !dropDownRef.current.contains(event.target)
+        dropDownRef !== null &&
+        dropDownRef.current &&
+        !dropDownRef.current.contains(event.target)
       ) {
         setOpen(false);
         changeDropDownZIndex(dropDownZIndexOnClose);
@@ -101,17 +103,18 @@ export function DropDown(props: {
       </div>
       {open && (
         <div id="option-view" className="option-view">
-          {dropDownItems && dropDownItems.map((user) => (
-            <div
-              id="option"
-              role="presentation"
-              key={user.id}
-              onClick={() => handleOptionClick(user.username)}
-              className="option"
-            >
-              {user.username}
-            </div>
-          ))}
+          {dropDownItems &&
+            dropDownItems.map((user) => (
+              <div
+                id="option"
+                role="presentation"
+                key={user.id}
+                onClick={() => handleOptionClick(user.username)}
+                className="option"
+              >
+                {user.username}
+              </div>
+            ))}
         </div>
       )}
     </div>

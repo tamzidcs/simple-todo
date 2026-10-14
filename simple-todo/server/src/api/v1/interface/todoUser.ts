@@ -1,4 +1,4 @@
 export default interface TodoUserInput {
-    todoId: number;
-    username: string;
+  todoId: number;
+  username: string;
 }

@@ -1,8 +1,8 @@
-import { error } from "console";
+import { error } from 'console';
 import { User } from '../db/entity/User.js';
 import * as UserRepo from '../repository/userRepo.js';
-import * as bcrypt from "bcrypt";
-import status from "http-status";
+import * as bcrypt from 'bcrypt';
+import status from 'http-status';
 import { AuthenticationError, DatabaseError } from '../error.js';
 import AppDataSource from '../db/db.js';
 
@@ -17,14 +17,14 @@ interface RegisterResponse {
   username: string;
 }
 
-const incorrectUserNamePasswordMessage = "Incorrect username or password.";
-const loginSuccessfullMessage = "Login successfull.";
-const userAlreadyExistMessage = "User already exists";
-const userCreatedMessage = "User created.";
-const registrationFailed = "User registration failed.";
+const incorrectUserNamePasswordMessage = 'Incorrect username or password.';
+const loginSuccessfullMessage = 'Login successfull.';
+const userAlreadyExistMessage = 'User already exists';
+const userCreatedMessage = 'User created.';
+const registrationFailed = 'User registration failed.';
 interface GetAllUserResponse {
-  id?: string,
-  username: string
+  id?: string;
+  username: string;
 }
 
 async function createNewUser(username: string, password: string) {
@@ -46,10 +46,7 @@ async function createNewUser(username: string, password: string) {
   }
 }
 
-async function validatePassord(
-  userPassword: string,
-  loginPassword: string
-): Promise<Boolean> {
+async function validatePassord(userPassword: string, loginPassword: string): Promise<Boolean> {
   const valid = await bcrypt.compare(loginPassword, userPassword);
   return valid;
 }
@@ -79,21 +76,18 @@ export async function registerUser(newUser: User): Promise<RegisterResponse> {
 export async function loginUser(user: User): Promise<LoginResponse | null> {
   const checkUser = await UserRepo.getUserByUsername(user.username);
   if (!checkUser) {
-    throw new AuthenticationError(incorrectUserNamePasswordMessage,status.UNAUTHORIZED);
+    throw new AuthenticationError(incorrectUserNamePasswordMessage, status.UNAUTHORIZED);
   } else if (checkUser !== null) {
     const valid = await validatePassord(checkUser.password, user.password);
     if (valid) {
       return { statusCode: status.OK, message: loginSuccessfullMessage };
     }
   }
-  throw new AuthenticationError(incorrectUserNamePasswordMessage,status.UNAUTHORIZED);
+  throw new AuthenticationError(incorrectUserNamePasswordMessage, status.UNAUTHORIZED);
 }
 
 export async function getAllUsers(): Promise<User[]> {
-  const users  = await AppDataSource
-  .getRepository(User)
-  .createQueryBuilder("user")
-  .getMany()
+  const users = await AppDataSource.getRepository(User).createQueryBuilder('user').getMany();
 
   return users;
 }
