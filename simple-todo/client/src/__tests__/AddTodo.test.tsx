@@ -40,6 +40,8 @@ describe('AddTodo', () => {
     let addButton: HTMLInputElement;
     let titleTextField: HTMLInputElement;
     let descriptionTextField: HTMLInputElement;
+    let dueDateField: HTMLInputElement;
+
     beforeEach(async () => {
       addButton = screen.getByTestId('add-button') as HTMLInputElement;
       titleTextField = screen.getByTestId(
@@ -47,6 +49,9 @@ describe('AddTodo', () => {
       ) as HTMLInputElement;
       descriptionTextField = screen.getByTestId(
         'description-textfield',
+      ) as HTMLInputElement;
+      dueDateField = screen.getByTestId(
+        'due-date-add-todo',
       ) as HTMLInputElement;
       window.alert = () => {};
       (axios.post as Mock).mockResolvedValue({ data: newTodo });
@@ -59,6 +64,11 @@ describe('AddTodo', () => {
           target: { value: 'description1' },
         }),
       );
+      await waitFor(() =>
+        fireEvent.change(dueDateField, {
+          target: { value: '2026-10-11' },
+        }),
+      );
       await waitFor(() => fireEvent.click(addButton));
     });
     it('title textfield has the correct value', async () => {
@@ -66,6 +76,9 @@ describe('AddTodo', () => {
     });
     it('description textfield has the correct value', async () => {
       expect(descriptionTextField.value).toBe('description1');
+    });
+    it('due date field has the correct value', async () => {
+      expect(dueDateField.value).toBe('2026-10-11');
     });
     it('calls the prop function to update list', async () => {
       expect(mockUpdateTaskList.mock.calls).toHaveBeenCalled;

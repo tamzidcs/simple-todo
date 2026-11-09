@@ -9,7 +9,7 @@ export function DatePicker(datePickerProps: datePicker) {
       type="date"
       id={id}
       className={className}
-      data-test-id={testId}
+      data-testid={testId}
       value={value}
       onChange={onChange}
     />
