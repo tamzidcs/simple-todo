@@ -69,7 +69,7 @@ describe('Todo', () => {
           description: 'description2',
           status: 'pending',
           username: 'user1',
-          dueDate: '08/22/2026',
+          dueDate: '2026-11-10',
         });
       expect(response.status).toBe(status.CREATED);
     });
