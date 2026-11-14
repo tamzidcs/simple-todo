@@ -2,7 +2,6 @@ import TodoInput from '../interface/todo.js';
 import TodoUserInput from '../interface/todoUser.js';
 import * as UserRepo from '../repository/userRepo.js';
 import * as TodoRepo from '../repository/todoRepo.js';
-import { where } from 'sequelize';
 import { title } from 'process';
 import { globalConstants } from '../shared/globalConstants.js';
 import { NotFoundError } from '../error.js';
