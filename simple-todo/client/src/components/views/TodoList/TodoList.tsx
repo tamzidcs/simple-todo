@@ -29,7 +29,7 @@ export function TodoList({
 }: TodoListProps) {
   return (
     <div className="to-do-list-container">
-      <div className="todolist box">
+      <div className="todolist">
         {todoList.length > 0 ? (
           todoList.map((todoItem) => (
             <div
