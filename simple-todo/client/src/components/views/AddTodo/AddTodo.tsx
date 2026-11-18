@@ -51,28 +51,28 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
   return (
     <div className="add-todo-container box">
       <form className="add-todo-form" onSubmit={handleAddTodo}>
-        <label className="add-todo-title" htmlFor="title-textfield">
-          Title
+        <div className="title-textfield">
           <input
-            id="title-textfield"
-            className="title-textfield box"
+            id="title-text-input"
+            placeholder="Title"
+            className="title-textfield-input box"
             data-testid="title-textfield"
             type="text"
             value={newTodo.title}
             onChange={(e) => setNewTodo({ ...newTodo, title: e.target.value })}
           />
-        </label>
-        <label className="description-label" htmlFor="description-textfield">
-          Desciption
+        </div>
+        <div className="description-textfield">
           <textarea
-            id="description-textfield"
-            className="description-textfield box"
+            id="description-text-input"
+            placeholder="Description"
+            className="description-textfield-input box"
             data-testid="description-textfield"
             onChange={(e) =>
               setNewTodo({ ...newTodo, description: e.target.value })
             }
           />
-        </label>
+        </div>
         <div className="add-button-container">
           <div className="add-button-bottom-left">
             <label className="due-date-label">Due Date</label>

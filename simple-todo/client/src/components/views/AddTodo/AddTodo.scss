@@ -11,16 +11,19 @@ $descriptionTextFieldHeight: 96px;
 $descriptionTextFieldMaxHeight: 200px;
 $descriptionTextFieldMinHeight: 96px;
 $descriptionTextFieldResize: vertical;
-$titleLabelWidth: $titleTextFieldWidth;;
+$titleLabelWidth: $titleTextFieldWidth;
+;
 $titleLabelHeight: 30px;
-$titleDescriptionWidth: $titleTextFieldWidth;;
+$titleDescriptionWidth: $titleTextFieldWidth;
+;
+$titleTextFieldPaddingBottom: 10px;
 $addButtonContainerWidth: 700px;
 $dueDateLabelWidth: 70px;
 
 .add-todo-container {
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content: center;
     align-items: center;
     margin-top: $addTodoContainerMarginTop;
     height: $addTodoContainerHeight;
@@ -30,18 +33,40 @@ $dueDateLabelWidth: 70px;
 }
 
 .title-textfield {
-    font-family: inherit;
     width: $titleTextFieldWidth;
     height: $titleLabelHeight;
+    padding-bottom: $titleTextFieldPaddingBottom;
 }
 
 .description-textfield {
+    width: $descriptionTextFieldWidth;
+    height: $descriptionTextFieldHeight;
+    max-height: $descriptionTextFieldMaxHeight;
+    min-height: $descriptionTextFieldMinHeight;
+    resize: $descriptionTextFieldResize;
+}
+
+.title-textfield-input {
+    font-family: inherit;
+    width: $titleTextFieldWidth;
+    height: $titleLabelHeight;
+    &::placeholder {
+        color: #888;
+        opacity: 1;
+    }
+}
+
+.description-textfield-input {
     font-family: inherit;
     width: $descriptionTextFieldWidth;
     height: $descriptionTextFieldHeight;
     max-height: $descriptionTextFieldMaxHeight;
     min-height: $descriptionTextFieldMinHeight;
     resize: $descriptionTextFieldResize;
+    &::placeholder {
+        color: #888;
+        opacity: 1;
+    }
 }
 
 .add-todo-title {
@@ -55,7 +80,7 @@ $dueDateLabelWidth: 70px;
 
 .add-button-container {
     display: flex;
-    justify-Content:space-between;
+    justify-Content: space-between;
     width: $addButtonContainerWidth;
 }
 
@@ -65,7 +90,7 @@ $dueDateLabelWidth: 70px;
     align-items: center;
 }
 
-.due-date-label{
+.due-date-label {
     display: flex;
     align-items: center;
     width: $dueDateLabelWidth;
