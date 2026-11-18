@@ -12,11 +12,10 @@ $descriptionTextFieldMaxHeight: 200px;
 $descriptionTextFieldMinHeight: 96px;
 $descriptionTextFieldResize: vertical;
 $titleLabelWidth: $titleTextFieldWidth;
-;
 $titleLabelHeight: 30px;
 $titleDescriptionWidth: $titleTextFieldWidth;
-;
 $titleTextFieldPaddingBottom: 10px;
+$textFieldPlaceHolderColor: #888;
 $addButtonContainerWidth: 700px;
 $dueDateLabelWidth: 70px;
 
@@ -51,7 +50,7 @@ $dueDateLabelWidth: 70px;
     width: $titleTextFieldWidth;
     height: $titleLabelHeight;
     &::placeholder {
-        color: #888;
+        color: $textFieldPlaceHolderColor;
         opacity: 1;
     }
 }
@@ -64,7 +63,7 @@ $dueDateLabelWidth: 70px;
     min-height: $descriptionTextFieldMinHeight;
     resize: $descriptionTextFieldResize;
     &::placeholder {
-        color: #888;
+        color: $textFieldPlaceHolderColor;
         opacity: 1;
     }
 }
