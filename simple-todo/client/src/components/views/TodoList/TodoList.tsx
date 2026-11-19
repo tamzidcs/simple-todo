@@ -33,7 +33,7 @@ export function TodoList({
         {todoList.length > 0 ? (
           todoList.map((todoItem) => (
             <div
-              className="todo-container"
+              className="todo-container box"
               key={todoItem.id}
               data-testid="todo"
             >

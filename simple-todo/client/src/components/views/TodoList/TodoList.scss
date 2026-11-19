@@ -11,7 +11,7 @@ $todolistPaddingBottom: 20px;
 $todoListBackgroundColor: #ffff;
 $todoContainerHeight: 200px;
 $todoContainerMarginTop: $todolistMarginTop;
-$todoContainerBackgroundColor: #e6e1e1;
+$todoContainerBackgroundColor: #f1f0f0cf;
 $todoContainerBorderRadius: 4px;
 $todoMarginBottom: 10px;
 $todoBottomMarginLeft: 5px;
@@ -27,22 +27,6 @@ $emptyTodoTextPaddingTop: 20px;
     align-items: center;
     width: $toDoListContainerWidth;
     margin-bottom: $toDoListContainerMarginBottom;
-}
-
-.title {
-    padding-left: $titlePaddingLeft;
-    color: black;
-    background-color: darkgray;
-    width: $titleWidth;
-    height: $titleHeight;
-    font-weight: bold;
-}
-
-.description {
-    color: #ffffff;
-    background-color: #646464;
-    height: $descriptionHeight;
-    padding-left: $descriptionPaddingLeft;
 }
 
 .todolist {
