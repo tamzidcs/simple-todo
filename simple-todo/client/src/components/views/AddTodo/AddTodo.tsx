@@ -37,6 +37,7 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
         if (result) {
           handleTodoListUpdate();
           showToast(newTodoSuccessMessage, toastSeveritySuccess);
+          setNewTodo(newTodoInitialState);
         } else {
           showToast(newTodoFailedMessage, toastSeverityError);
         }
@@ -68,6 +69,7 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
             placeholder="Description"
             className="description-textfield-input box"
             data-testid="description-textfield"
+            value={newTodo.description}
             onChange={(e) =>
               setNewTodo({ ...newTodo, description: e.target.value })
             }
@@ -80,6 +82,7 @@ export function AddTodo({ handleTodoListUpdate }: AddTodoProps) {
               id="due-date-add-todo"
               className={'due-date-add-todo'}
               testId={'due-date-add-todo'}
+              value={newTodo.dueDate}
               onChange={(e) =>
                 setNewTodo({ ...newTodo, dueDate: e.target.value })
               }
