@@ -6,11 +6,14 @@ $titleHeight: 20px;
 $titlePaddingLeft: 10px;
 $titleTextColor: #505050;
 $titleBackgroundColor: #c3c5c5;
+$titleFontSize: 15px;
+$titlePaddingBottom: 10px;
 $descriptionWidth: 700px;
 $descriptionHeight: 100px;
 $descriptionPaddingLeft: 10px;
 $descriptionTextColor: #505050;
 $descriptionBackgroundColor: #d0cdcd;
+$descriptionFontSize: 14px;
 $todolistWidth: 355px;
 $todolistPadding: 30px;
 $todoContainerPaddingBottom: 30px;
@@ -23,7 +26,8 @@ $userNameInputWidth: 150px;
     color: $titleTextColor;
     width: $titleWidth;
     height: $titleHeight;
-    font-weight: bold;
+    font-size: $titleFontSize;
+    padding-bottom: $titlePaddingBottom;
 }
 
 .description {
@@ -31,6 +35,7 @@ $userNameInputWidth: 150px;
     width: $descriptionWidth;
     height: $descriptionHeight;
     padding-left: $descriptionPaddingLeft;
+    font-size: $descriptionFontSize;
 }
 
 .todo {
